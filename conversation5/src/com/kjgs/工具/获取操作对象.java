@@ -5,7 +5,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.kjgs.枚举.Cons;
 
 public class 获取操作对象 {
-
+    public static JSONObject 操作或默认对象(JSONArray 句子词语集合, JSONObject 当前词语对象){
+        JSONObject 操作对象 = 操作对象(句子词语集合, 当前词语对象);
+        if(操作对象 != null){
+            return 操作对象;
+        }
+        return 获取默认操作对象.默认操作对象(句子词语集合,当前词语对象);
+    }
     public static JSONObject 操作对象(JSONArray 句子词语集合, JSONObject 当前词语对象){
         int 结束下标 = 当前词语对象.getInteger(Cons.结束下标);
 

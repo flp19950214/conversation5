@@ -5,6 +5,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.kjgs.枚举.Cons;
 
 public class 获取归属对象 {
+
+    public static JSONObject 归属或默认对象(JSONArray 句子词语集合, JSONObject 当前词语对象){
+        JSONObject 归属对象 = 归属对象(句子词语集合, 当前词语对象);
+        if(归属对象 != null){
+            return 归属对象;
+        }
+        return 获取默认归属对象.默认归属对象(句子词语集合,当前词语对象);
+    }
     public static JSONObject 归属对象(JSONArray 句子词语集合, JSONObject 当前词语对象){
         int 开始下标 = 当前词语对象.getInteger(Cons.下标);
 
@@ -14,7 +22,6 @@ public class 获取归属对象 {
             int 临时开始下标 = 临时对象.getInteger(Cons.下标);
             int 临时结束下标 = 临时对象.getInteger(Cons.结束下标);
             boolean 临时是否是对象 = 临时对象.getBoolean(Cons.是否是对象);
-            JSONArray 临时词性 = 临时对象.getJSONArray(Cons.词性);
 
             //大于当前对象 跳过
             if(临时开始下标 > 开始下标){
