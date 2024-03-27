@@ -9,6 +9,7 @@ public interface Cons {
     public String 归属对象="归属对象";
     public String 归属对象未知属性=归属对象+未知属性;
     public String 操作对象="操作对象";
+    public String 是否是对象="是否是对象";
     public String 动作结果="动作结果";
     public String 查询结果="查询结果";
     public String 词语="词语";

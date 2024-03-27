@@ -89,8 +89,8 @@ public class 视觉词 extends 功能抽象 {
      */
     @Override
     public void 假设正向结果陈述句() {
-        JSONObject 归属对象 = 获取归属对象();
-        JSONObject 操作对象 = 获取操作对象();
+        归属对象 = 获取归属对象();
+        操作对象 = 获取操作对象();
         if(归属对象 == null || 操作对象 ==null) {
             return;
         }

@@ -56,8 +56,8 @@ public class 归属介词 extends 功能抽象 {
      */
     @Override
     public void 陈述句() {
-        JSONObject 归属对象 = 获取归属对象();
-        JSONObject 操作对象 = 获取操作对象();
+        归属对象 = 获取归属对象();
+        操作对象 = 获取操作对象();
 
         String 归属对象值 = 获取对象默认值.对象值(归属对象);
         int 归属开始下标 = 归属对象.getInteger(Cons.下标);

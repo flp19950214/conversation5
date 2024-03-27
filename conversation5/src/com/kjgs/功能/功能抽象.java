@@ -12,7 +12,6 @@ import org.apache.commons.collections4.CollectionUtils;
 
 
 public abstract class 功能抽象 implements 功能接口{
-    public JSONObject 句子所有信息;
     public JSONArray 句子词语集合;
     public JSONObject 当前词语对象;
     public JSONObject 归属对象;
@@ -34,8 +33,7 @@ public abstract class 功能抽象 implements 功能接口{
         保存句子.保存句子(jsonObject);
     }
 
-    public void 执行流程(JSONObject 句子所有信息, JSONArray 句子词语集合, JSONObject 当前词语对象) {
-        this.句子所有信息 = 句子所有信息;
+    public void 执行流程(JSONArray 句子词语集合, JSONObject 当前词语对象) {
         this.句子词语集合 = 句子词语集合;
         this.当前词语对象 = 当前词语对象;
         String 句型 = 当前词语对象.getString(Cons.句型);
@@ -66,7 +64,7 @@ public abstract class 功能抽象 implements 功能接口{
      * @return
      */
     public JSONObject 获取归属对象(){
-        return 获取归属对象.归属对象();
+        return 获取归属对象.归属对象(句子词语集合,当前词语对象);
     }
 
     /**
@@ -74,7 +72,7 @@ public abstract class 功能抽象 implements 功能接口{
      * @return
      */
     public JSONObject 获取操作对象(){
-        return 获取操作对象.操作对象();
+        return 获取操作对象.操作对象(句子词语集合,当前词语对象);
     }
 
     public String 加双引号(Object arg){
