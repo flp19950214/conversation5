@@ -1,7 +1,9 @@
 package com.kjgs.常用工具;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kjgs.数据库.MongoDao;
+import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Test;
 
 /**
@@ -21,5 +23,13 @@ public class 保存句子 {
 
     public static void 保存句子(JSONObject jsonObject) {
         MongoDao.insert(jsonObject);
+    }
+
+    public static void 保存不重复句子(JSONObject jsonObject) {
+        JSONArray 查询词语集合 = MongoDao.select(jsonObject);
+        if (CollectionUtils.isNotEmpty(查询词语集合)) {
+            return;
+        }
+        保存句子(jsonObject);
     }
 }

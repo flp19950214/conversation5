@@ -12,7 +12,6 @@ public interface Cons {
     public String 是否是对象="是否是对象";
     public String 动作结果="动作结果";
     public String 查询结果="查询结果";
-    public String 词语="词语";
     public String 词语在句子中的属性="词语在句子中的属性";
     public String 姓名="姓名";
     public String 名字="名字";
@@ -22,12 +21,20 @@ public interface Cons {
     public String 主键="主键";
     public String 下标="下标";
     public String 结束下标="结束下标";
+
     public String 判断条件="判断条件";
     public String 判断结果="判断结果";
+    public String 待处理句子="待处理句子";
+
+
     public String 包含="包含";
     public String 新增="新增";
     public String 根据="根据";
     public String 空="空";
+
+
+    public String 当前人="当前人";
+    public String 小燕="小燕";
 
     public String 动词处理结果="动词处理结果";
     public String 疑问句处理结果="疑问句处理结果";

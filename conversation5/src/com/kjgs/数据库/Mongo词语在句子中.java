@@ -11,15 +11,15 @@ import org.bson.Document;
 import java.util.ArrayList;
 import java.util.List;
 
-public class mongo词语在句子中 extends MongoBaseDao {
+public class Mongo词语在句子中 extends MongoBaseDao {
     public static void main(String[] args) {
         String 查询字段 = "词性";
         String 查询条件 = "2如果假设词34什么234";
-        System.out.println(查询在集合中的(查询字段, 查询条件));
+        System.out.println(查询在句子中的(查询字段, 查询条件));
     }
 
     /** 查询词性 */
-    public static JSONArray 查询在集合中的(String 查询字段, String 查询条件){
+    public static JSONArray 查询在句子中的(String 查询字段, String 查询条件){
         // 排除objectid
         MongoClient mc = new MongoClient(host, port);
         //获取库对象
