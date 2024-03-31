@@ -10,6 +10,7 @@ public interface Cons {
     public String 归属对象未知属性=归属对象+未知属性;
     public String 操作对象="操作对象";
     public String 是否是对象="是否是对象";
+    public String 是否是新对象="是否是新对象";
     public String 动作结果="动作结果";
     public String 查询结果="查询结果";
     public String 词语在句子中的属性="词语在句子中的属性";
@@ -83,4 +84,7 @@ public interface Cons {
 
     public String 名词="名词";
     public String 代词="名词";
+
+
+    public String _id="_id";
 }

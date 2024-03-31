@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.kjgs.工具.获取归属对象;
 import com.kjgs.工具.获取操作对象;
 import com.kjgs.工具.递归获取真实对象;
-import com.kjgs.常用工具.保存句子;
+import com.kjgs.常用工具.保存对象;
 import com.kjgs.常用工具.拼接字符串;
 import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
@@ -26,12 +26,15 @@ public abstract class 功能抽象 implements 功能接口{
     }
     public abstract void 功能初始化();
 
+    /**
+     * @param jsonObject
+     * {
+     *     "对象": "如果",
+     *     "词性": "假设词"
+     * }
+     */
     public void initMethod(JSONObject jsonObject) {
-        JSONArray 查询词语集合 = MongoDao.select(jsonObject);
-        if (CollectionUtils.isNotEmpty(查询词语集合)) {
-            return;
-        }
-        保存句子.保存句子(jsonObject);
+        保存对象.保存或更新对象(jsonObject);
     }
 
     public void 执行流程(JSONArray 句子词语集合, JSONObject 当前词语对象) {

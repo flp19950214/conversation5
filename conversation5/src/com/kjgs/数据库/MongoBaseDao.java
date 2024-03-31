@@ -9,7 +9,7 @@ public abstract class MongoBaseDao {
 
     public static final String host = "localhost";
     public static final int port = 27017;
-    public static final String dbName = "kjgs";
+    public static final String dbName = "kjgs2";
     public static final String doc = "kjgsDoc";
     public static JSONArray resultToJson(MongoIterable<Document> documents){
         JSONArray jsonArray =new JSONArray();

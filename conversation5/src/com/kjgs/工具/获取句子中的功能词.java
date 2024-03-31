@@ -13,7 +13,7 @@ public class 获取句子中的功能词 {
             String 词语词性 = 当前词语对象.getString(Cons.词性);
             // 循环执行每个可能的词性
             if (获取内置功能名.内置功能类名.contains(词语词性)) {
-                String 当前词语 = 当前词语对象.getString(Cons.词语);
+                String 当前词语 = 当前词语对象.getString(Cons.对象);
                 result.add(当前词语);
                 break;
             }
