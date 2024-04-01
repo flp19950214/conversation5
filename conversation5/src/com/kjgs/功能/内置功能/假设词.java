@@ -31,7 +31,10 @@ public class 假设词 extends 功能抽象 {
         for(int i=0;i<句子词语集合.size();i++){
             JSONObject 临时词语对象 = 句子词语集合.getJSONObject(i);
             JSONArray 临时词性 = 临时词语对象.getJSONArray(Cons.词性);
-            int 临时下标 = 临时词语对象.getInteger(Cons.下标);
+            Integer 临时下标 = 临时词语对象.getInteger(Cons.下标);
+            if(临时下标==null){
+                continue;
+            }
             if(临时下标 <= 获取当前词语对象下标()){
                 continue;
             }
@@ -46,7 +49,10 @@ public class 假设词 extends 功能抽象 {
         for(int i=0;i<句子词语集合.size();i++){
             JSONObject 临时词语对象 = 句子词语集合.getJSONObject(i);
             String 临时词性 = 临时词语对象.getString(Cons.词性);
-            int 临时下标 = 临时词语对象.getInteger(Cons.下标);
+            Integer 临时下标 = 临时词语对象.getInteger(Cons.下标);
+            if(临时下标==null){
+                continue;
+            }
             if(临时下标 <= 获取当前词语对象下标()){
                 continue;
             }

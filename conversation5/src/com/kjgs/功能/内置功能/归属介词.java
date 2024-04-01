@@ -58,13 +58,20 @@ public class 归属介词 extends 功能抽象 {
     public void 陈述句() {
         归属对象 = 获取归属对象();
         操作对象 = 获取操作对象();
-
+        if(归属对象 == null || 操作对象 == null){
+            return;
+        }
         String 归属对象值 = 获取对象默认值.对象值(归属对象);
-        int 归属开始下标 = 归属对象.getInteger(Cons.下标);
+        Integer 归属开始下标 = 归属对象.getInteger(Cons.下标);
+        if(归属开始下标 == null){
+            return;
+        }
         String 归属未知属性 = 归属对象.getString(Cons.未知属性);
         String 操作对象值 = 获取对象默认值.对象值(操作对象);
-        int 操作结束下标 = 归属对象.getInteger(Cons.结束下标);
-
+        Integer 操作结束下标 = 归属对象.getInteger(Cons.结束下标);
+        if(操作结束下标 == null){
+            return;
+        }
         //拼接新的对象，下标跟归属对象一致
         JSONObject 新对象 = new JSONObject();
         String 新对象值 = 拼接字符串.拼接(归属对象值, 获取当前对象词语(), 归属未知属性);

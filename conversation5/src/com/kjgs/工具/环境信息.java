@@ -14,7 +14,7 @@ public class 环境信息 {
      */
     public static JSONArray 默认环境信息(String input){
         JSONObject 环境对象1 = new JSONObject();
-        环境对象1.put(Cons.当前人,获取当前人信息());
+        环境对象1.put(Cons.对象,Cons.当前人);
         环境对象1.put(Cons.指向,Cons.小燕);
 
         JSONArray result = new JSONArray();

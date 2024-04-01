@@ -25,7 +25,7 @@ public class 指向词 extends 功能抽象 {
         jsonObject是.put(Cons.词性, Cons.指向词);
         initMethod(jsonObject是);
         JSONObject jsonObject叫 = new JSONObject();
-        jsonObject叫.put(Cons.对象, Cons.叫);
+        jsonObject叫.put(Cons.对象, Cons.是);
         jsonObject叫.put(Cons.词性, Cons.指向词);
         initMethod(jsonObject叫);
     }
@@ -49,12 +49,12 @@ public class 指向词 extends 功能抽象 {
     public void 陈述句() {
         归属对象 = 获取归属对象();
         操作对象 = 获取操作对象();
-
+        if(归属对象 == null || 操作对象 == null){
+            return;
+        }
         String 归属对象值 = 获取对象默认值.对象值(归属对象);
-        int 归属开始下标 = 归属对象.getInteger(Cons.下标);
         String 归属未知属性 = 归属对象.getString(Cons.未知属性);
         String 操作对象值 = 获取对象默认值.对象值(操作对象);
-        int 操作结束下标 = 归属对象.getInteger(Cons.结束下标);
 
         //处理逻辑：新增属性，并把临时属性删掉
         if(归属未知属性==null){
@@ -80,7 +80,10 @@ public class 指向词 extends 功能抽象 {
      */
     @Override
     public void 疑问句() {
-        JSONObject 归属对象 = 获取归属对象();
+        归属对象 = 获取归属对象();
+        if(归属对象 == null){
+            return;
+        }
         String 归属对象值 = 获取对象默认值.对象值(归属对象);
         String 归属未知属性 = 归属对象.getString(Cons.未知属性);
 

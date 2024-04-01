@@ -13,13 +13,19 @@ public class 获取默认归属对象 {
         JSONObject 默认归属对象 = new JSONObject();
         String 句子 = 当前词语对象.getString(Cons.上级对象);
         JSONObject 前一个功能对象 =上一个动作对象(句子词语集合, 当前词语对象);
-        int 当前对象的下标 = 当前词语对象.getInteger(Cons.下标);
+        Integer 当前对象的下标 = 当前词语对象.getInteger(Cons.下标);
+        if(当前对象的下标 == null){
+            return null;
+        }
         if(前一个功能对象 ==  null){
             默认归属对象.put(Cons.对象, 句子.substring(0,当前对象的下标));
             默认归属对象.put(Cons.下标, 0);
             默认归属对象.put(Cons.结束下标, 默认归属对象.getString(Cons.对象).length());
         }else{
-            int 上一个对象的结束下标 = 前一个功能对象.getInteger(Cons.结束下标);
+            Integer 上一个对象的结束下标 = 前一个功能对象.getInteger(Cons.结束下标);
+            if(上一个对象的结束下标 == null){
+                return null;
+            }
             默认归属对象.put(Cons.对象, 句子.substring(上一个对象的结束下标+1,当前对象的下标));
             默认归属对象.put(Cons.下标, 上一个对象的结束下标+1);
             默认归属对象.put(Cons.结束下标, 上一个对象的结束下标+默认归属对象.getString(Cons.对象).length());
@@ -30,14 +36,19 @@ public class 获取默认归属对象 {
 
     //即获取上一个动作对象
     public static JSONObject 上一个动作对象(JSONArray 句子词语集合, JSONObject 当前词语对象) {
-        int 开始下标 = 当前词语对象.getInteger(Cons.下标);
-
+        Integer 开始下标 = 当前词语对象.getInteger(Cons.下标);
+        if(开始下标 == null){
+            return null;
+        }
         JSONObject 结果对象 = null;
         for (int i = 0; i < 句子词语集合.size(); i++) {
             JSONObject 临时对象 = 句子词语集合.getJSONObject(i);
-            int 临时开始下标 = 临时对象.getInteger(Cons.下标);
-            int 临时结束下标 = 临时对象.getInteger(Cons.结束下标);
-            int 临时结束词性 = 临时对象.getInteger(Cons.词性);
+            Integer 临时开始下标 = 临时对象.getInteger(Cons.下标);
+            Integer 临时结束下标 = 临时对象.getInteger(Cons.结束下标);
+            if(临时开始下标==null || 临时结束下标 == null){
+                continue;
+            }
+            String 临时结束词性 = 临时对象.getString(Cons.词性);
 
             //大于当前对象 跳过
             if (临时开始下标 > 开始下标) {
@@ -55,9 +66,11 @@ public class 获取默认归属对象 {
                 结果对象 = 临时对象;
                 continue;
             }
-            int 结果开始下标 = 结果对象.getInteger(Cons.下标);
-            int 结果结束下标 = 结果对象.getInteger(Cons.结束下标);
-
+            Integer 结果开始下标 = 结果对象.getInteger(Cons.下标);
+            Integer 结果结束下标 = 结果对象.getInteger(Cons.结束下标);
+            if(结果开始下标==null || 结果结束下标 ==null){
+                continue;
+            }
             if (临时结束下标 > 结果结束下标) {
                 结果对象 = 临时对象;
                 continue;

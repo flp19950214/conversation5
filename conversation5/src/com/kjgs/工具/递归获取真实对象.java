@@ -11,6 +11,9 @@ public class 递归获取真实对象 {
         if(num == 20){
             return jsonObject;
         }
+        if(jsonObject == null){
+            return null;
+        }
         String 指向对象 = jsonObject.getString(Cons.指向);
         if(指向对象 != null){
             // 先到当前集合对象中查，再查库
