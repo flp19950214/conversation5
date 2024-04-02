@@ -54,11 +54,12 @@ public interface Cons {
     public String 遇到="遇到";//视觉词
     public String 在="在";//限定词
     public String 把="把";//限定词
-    public String 左引号="左引号";//词语开始词
-    public String 右引号="右引号";//词语闭合词
+    public String 左引号="“";//词语开始词
+    public String 右引号="”";//词语闭合词
     public String 和="和";//联合词
     public String 中="中";//限定词
     public String 或者="或者";//联合词
+    public String 什么="什么";//疑问词
 
     //句型种类
     public String 疑问句="疑问句";

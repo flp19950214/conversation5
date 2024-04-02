@@ -11,14 +11,14 @@ public class 获取默认归属对象 {
 
     public static JSONObject 默认归属对象(JSONArray 句子词语集合, JSONObject 当前词语对象) {
         JSONObject 默认归属对象 = new JSONObject();
-        String 句子 = 当前词语对象.getString(Cons.上级对象);
+        String 上级对象 = 当前词语对象.getString(Cons.上级对象);
         JSONObject 前一个功能对象 =上一个动作对象(句子词语集合, 当前词语对象);
         Integer 当前对象的下标 = 当前词语对象.getInteger(Cons.下标);
         if(当前对象的下标 == null){
             return null;
         }
         if(前一个功能对象 ==  null){
-            默认归属对象.put(Cons.对象, 句子.substring(0,当前对象的下标));
+            默认归属对象.put(Cons.对象, 上级对象.substring(0,当前对象的下标));
             默认归属对象.put(Cons.下标, 0);
             默认归属对象.put(Cons.结束下标, 默认归属对象.getString(Cons.对象).length());
         }else{
@@ -26,11 +26,14 @@ public class 获取默认归属对象 {
             if(上一个对象的结束下标 == null){
                 return null;
             }
-            默认归属对象.put(Cons.对象, 句子.substring(上一个对象的结束下标+1,当前对象的下标));
-            默认归属对象.put(Cons.下标, 上一个对象的结束下标+1);
+            默认归属对象.put(Cons.对象, 上级对象.substring(上一个对象的结束下标,当前对象的下标));
+            默认归属对象.put(Cons.下标, 上一个对象的结束下标);
             默认归属对象.put(Cons.结束下标, 上一个对象的结束下标+默认归属对象.getString(Cons.对象).length());
         }
         默认归属对象.put(Cons.是否是对象, true);
+        默认归属对象.put(Cons.是否是新对象, Boolean.TRUE);
+        默认归属对象.put(Cons.上级对象, 上级对象);
+        句子词语集合.add(默认归属对象);
         return 默认归属对象;
     }
 

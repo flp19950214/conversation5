@@ -66,7 +66,6 @@ public class 归属介词 extends 功能抽象 {
         if(归属开始下标 == null){
             return;
         }
-        String 归属未知属性 = 归属对象.getString(Cons.未知属性);
         String 操作对象值 = 获取对象默认值.对象值(操作对象);
         Integer 操作结束下标 = 归属对象.getInteger(Cons.结束下标);
         if(操作结束下标 == null){
@@ -74,13 +73,13 @@ public class 归属介词 extends 功能抽象 {
         }
         //拼接新的对象，下标跟归属对象一致
         JSONObject 新对象 = new JSONObject();
-        String 新对象值 = 拼接字符串.拼接(归属对象值, 获取当前对象词语(), 归属未知属性);
+        String 新对象值 = 拼接字符串.拼接(归属对象值, 获取当前对象词语(), 操作对象值);
         新对象.put(Cons.上级对象, 归属对象.getString(Cons.上级对象));
         新对象.put(Cons.对象, 新对象值);
         新对象.put(Cons.下标, 归属开始下标);
         新对象.put(Cons.结束下标, 操作结束下标);
         新对象.put(Cons.未知属性, 操作对象值);
-
+        句子词语集合.add(新对象);
         //记录动作内容
         String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
         当前词语对象.put(Cons.动作句型,methodName);

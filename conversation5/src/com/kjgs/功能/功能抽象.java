@@ -72,7 +72,7 @@ public abstract class 功能抽象 implements 功能接口{
      * @return
      */
     public JSONObject 获取归属对象(){
-        JSONObject 归属对象 = 获取归属对象.归属对象(句子词语集合, 当前词语对象);
+        JSONObject 归属对象 = 获取归属对象.归属或默认对象(句子词语集合, 当前词语对象);
 //        归属对象 = 递归获取真实对象.递归查内存获取真实对象(句子词语集合, 归属对象);
         return 归属对象;
     }
@@ -82,7 +82,7 @@ public abstract class 功能抽象 implements 功能接口{
      * @return
      */
     public JSONObject 获取操作对象(){
-        JSONObject 操作对象 = 获取操作对象.操作对象(句子词语集合,当前词语对象);
+        JSONObject 操作对象 = 获取操作对象.操作或默认对象(句子词语集合,当前词语对象);
 //        操作对象 = 递归获取真实对象.递归查内存获取真实对象(句子词语集合, 操作对象);
         return 操作对象;
     }

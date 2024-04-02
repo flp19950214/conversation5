@@ -10,26 +10,29 @@ import com.kjgs.枚举.Cons;
 public class 获取默认操作对象 {
     public static JSONObject 默认操作对象( JSONArray 句子词语集合, JSONObject 当前词语对象){
         JSONObject 默认操作对象 = new JSONObject();
-        String 句子 = 当前词语对象.getString(Cons.上级对象);
+        String 上级对象 = 当前词语对象.getString(Cons.上级对象);
         JSONObject 下一个功能对象 =下一个动作对象(句子词语集合, 当前词语对象);
         Integer 当前对象的结束下标 = 当前词语对象.getInteger(Cons.结束下标);
         if(当前对象的结束下标 == null){
             return null;
         }
         if(下一个功能对象 ==  null){
-            默认操作对象.put(Cons.对象, 句子.substring(当前对象的结束下标));
-            默认操作对象.put(Cons.下标, 当前对象的结束下标+1);
+            默认操作对象.put(Cons.对象, 上级对象.substring(当前对象的结束下标));
+            默认操作对象.put(Cons.下标, 当前对象的结束下标);
             默认操作对象.put(Cons.结束下标, 默认操作对象.getString(Cons.对象).length());
         }else{
             Integer 下一个对象的下标 = 下一个功能对象.getInteger(Cons.下标);
             if(下一个对象的下标 == null){
                 return null;
             }
-            默认操作对象.put(Cons.对象, 句子.substring(当前对象的结束下标+1,下一个对象的下标));
-            默认操作对象.put(Cons.下标, 当前对象的结束下标+1);
+            默认操作对象.put(Cons.对象, 上级对象.substring(当前对象的结束下标,下一个对象的下标));
+            默认操作对象.put(Cons.下标, 当前对象的结束下标);
             默认操作对象.put(Cons.结束下标, 当前对象的结束下标+默认操作对象.getString(Cons.对象).length());
         }
         默认操作对象.put(Cons.是否是对象, true);
+        默认操作对象.put(Cons.是否是新对象, Boolean.TRUE);
+        默认操作对象.put(Cons.上级对象, 上级对象);
+        句子词语集合.add(默认操作对象);
         return 默认操作对象;
     }
 
@@ -52,7 +55,7 @@ public class 获取默认操作对象 {
                 return null;
             }
             //大于当前对象 跳过
-            if(临时开始下标 > 结束下标){
+            if(临时开始下标 <= 结束下标){
                 continue;
             }
             //不是内置功能词 跳过
