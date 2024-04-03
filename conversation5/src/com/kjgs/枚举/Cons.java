@@ -5,6 +5,7 @@ public interface Cons {
     public String 对象="对象";
     public String 指向="指向";
     public String 未知属性="未知属性";
+    public String 属性="属性";
     public String 动作句型="动作句型";
     public String 归属对象="归属对象";
     public String 归属对象未知属性=归属对象+未知属性;

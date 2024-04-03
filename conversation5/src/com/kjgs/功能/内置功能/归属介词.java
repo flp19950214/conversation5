@@ -67,7 +67,7 @@ public class 归属介词 extends 功能抽象 {
             return;
         }
         String 操作对象值 = 获取对象默认值.对象值(操作对象);
-        Integer 操作结束下标 = 归属对象.getInteger(Cons.结束下标);
+        Integer 操作结束下标 = 操作对象.getInteger(Cons.结束下标);
         if(操作结束下标 == null){
             return;
         }
@@ -79,6 +79,7 @@ public class 归属介词 extends 功能抽象 {
         新对象.put(Cons.下标, 归属开始下标);
         新对象.put(Cons.结束下标, 操作结束下标);
         新对象.put(Cons.未知属性, 操作对象值);
+        新对象.put(Cons.是否是对象, Boolean.TRUE);
         句子词语集合.add(新对象);
         //记录动作内容
         String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();

@@ -2,6 +2,7 @@ package com.kjgs.常用工具;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.kjgs.数据库.MongoBaseDao;
 import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
 import org.junit.Test;
@@ -45,10 +46,11 @@ public class 保存对象 {
     public static void 保存或更新对象(JSONObject jsonObject) {
         //只看对象本身，两个条件，是否有新对象标识，是否有id
         Boolean 是否是新对象 = jsonObject.getBoolean(Cons.是否是新对象);
-        if(是否是新对象==null){
+        if(是否是新对象!=null){
+            jsonObject.remove(Cons._id);
             保存对象(jsonObject);
         }else{
-            String _id = jsonObject.getString(Cons._id);
+            String _id =  MongoBaseDao.获取_id(jsonObject);
             if(_id != null){
                 更新对象(_id, jsonObject);
             }else{

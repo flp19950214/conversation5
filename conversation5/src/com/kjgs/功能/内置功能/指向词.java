@@ -8,7 +8,6 @@ import com.kjgs.工具.获取对象默认值;
 import com.kjgs.常用工具.拼接字符串;
 import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
-import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -59,12 +58,25 @@ public class 指向词 extends 功能抽象 {
         String 操作对象值 = 获取对象默认值.对象值(操作对象);
 
         //处理逻辑：新增属性，并把临时属性删掉
+        String 属性;
         if(归属未知属性==null){
-            归属对象.put(获取当前对象词语(), 操作对象值);
+            属性 = 获取当前对象词语();
         }else{
-            归属对象.put(归属未知属性, 操作对象值);
+            属性 = 归属未知属性;
             归属对象.remove(Cons.未知属性);
         }
+        归属对象.put(属性, 操作对象值);
+
+        //记录动作内容
+        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+        当前词语对象.put(Cons.动作句型,methodName);
+        当前词语对象.put(Cons.归属对象,归属对象值);
+        当前词语对象.put(Cons.操作对象,操作对象值);
+        当前词语对象.put(Cons.动作结果,
+                拼接字符串.拼接(Cons.对象,加双引号(归属对象值)
+                        , Cons.新增
+                        ,Cons.属性,加双引号(属性 +"->"+ 操作对象值)
+                ));
     }
 
 
@@ -88,7 +100,9 @@ public class 指向词 extends 功能抽象 {
         }
         String 归属对象值 = 获取对象默认值.对象值(归属对象);
         String 归属未知属性 = 归属对象.getString(Cons.未知属性);
-
+        if(归属未知属性 == null){
+            归属未知属性 = 获取当前对象词语();
+        }
         //查库 获取第一个
         Map<String,String> map = new HashMap<>();
         map.put(Cons.对象, 归属对象值);

@@ -27,12 +27,14 @@ public class 疑问词 extends 功能抽象 {
         JSONObject 后面最近的结束词 = 找到最近的词性的对象.向后找(句子词语集合, 当前词语对象);
         if(前面最近的结束词==null && 后面最近的结束词 == null){
             替换句型.替换句型(句子词语集合, Cons.疑问句);
-        }
-        if(前面最近的结束词==null){
-            替换句型.替换句型(句子词语集合,null, 后面最近的结束词.getInteger(Cons.下标), Cons.疑问句);
-        }
-        if(后面最近的结束词==null){
-            替换句型.替换句型(句子词语集合, 后面最近的结束词.getInteger(Cons.下标),null, Cons.疑问句);
+        }else{
+
+            if(前面最近的结束词==null){
+                替换句型.替换句型(句子词语集合,null, 后面最近的结束词.getInteger(Cons.下标), Cons.疑问句);
+            }
+            if(后面最近的结束词==null){
+                替换句型.替换句型(句子词语集合, 后面最近的结束词.getInteger(Cons.下标),null, Cons.疑问句);
+            }
         }
     }
 

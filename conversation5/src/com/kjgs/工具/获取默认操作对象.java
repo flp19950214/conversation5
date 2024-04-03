@@ -3,6 +3,7 @@ package com.kjgs.工具;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kjgs.枚举.Cons;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 取当前功能对象和下一个功能对象之间的词
@@ -21,11 +22,15 @@ public class 获取默认操作对象 {
             默认操作对象.put(Cons.下标, 当前对象的结束下标);
             默认操作对象.put(Cons.结束下标, 默认操作对象.getString(Cons.对象).length());
         }else{
-            Integer 下一个对象的下标 = 下一个功能对象.getInteger(Cons.下标);
-            if(下一个对象的下标 == null){
+            Integer 下一个功能的下标 = 下一个功能对象.getInteger(Cons.下标);
+            if(下一个功能的下标 == null){
                 return null;
             }
-            默认操作对象.put(Cons.对象, 上级对象.substring(当前对象的结束下标,下一个对象的下标));
+            String 截取的对象 = 上级对象.substring(当前对象的结束下标,下一个功能的下标);
+            if(StringUtils.isEmpty(截取的对象)){
+                return null;
+            }
+            默认操作对象.put(Cons.对象, 上级对象.substring(当前对象的结束下标,下一个功能的下标));
             默认操作对象.put(Cons.下标, 当前对象的结束下标);
             默认操作对象.put(Cons.结束下标, 当前对象的结束下标+默认操作对象.getString(Cons.对象).length());
         }
@@ -55,7 +60,7 @@ public class 获取默认操作对象 {
                 return null;
             }
             //大于当前对象 跳过
-            if(临时开始下标 <= 结束下标){
+            if(临时开始下标 < 结束下标){
                 continue;
             }
             //不是内置功能词 跳过
@@ -72,7 +77,7 @@ public class 获取默认操作对象 {
                 continue;
             }
             //临时下标大于结果下标
-            if(结果开始下标> 临时开始下标){
+            if(临时开始下标 < 结果开始下标){
                 结果对象 = 临时对象;
                 continue;
             }

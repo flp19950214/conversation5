@@ -8,6 +8,7 @@ import com.kjgs.工具.克隆JSON;
 import com.kjgs.工具.环境信息;
 import com.kjgs.工具.获取内置功能名;
 import com.kjgs.工具.补充对象下标;
+import com.kjgs.常用工具.保存对象;
 import com.kjgs.数据库.Mongo词语在句子中;
 import com.kjgs.枚举.Cons;
 
@@ -16,6 +17,7 @@ import java.util.List;
 
 public class 处理流程 {
     public static void main(String[] args) {
+//        String input = "岁的词性是名词";
         String input = "岁的词性是什么";
 
         初始化内置功能();
@@ -34,6 +36,7 @@ public class 处理流程 {
                 System.out.println(动作结果);
             }
         }
+        保存对象.保存对象集合(句子词语集合);
     }
 
     public static void 处理句子共用流程(JSONArray 句子词语集合, String input){
@@ -55,7 +58,6 @@ public class 处理流程 {
     private static void 添加上级对象(JSONArray 句子词语集合, String input) {
         for (int i = 0; i < 句子词语集合.size(); i++) {
             JSONObject 单个对象 = 句子词语集合.getJSONObject(i);
-            单个对象.put(Cons.是否是新对象, Boolean.TRUE);
             单个对象.put(Cons.上级对象, input);
         }
     }
