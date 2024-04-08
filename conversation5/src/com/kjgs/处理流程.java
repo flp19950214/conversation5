@@ -9,6 +9,7 @@ import com.kjgs.工具.环境信息;
 import com.kjgs.工具.获取内置功能名;
 import com.kjgs.工具.补充对象下标;
 import com.kjgs.常用工具.保存对象;
+import com.kjgs.常用工具.添加日志;
 import com.kjgs.数据库.Mongo词语在句子中;
 import com.kjgs.枚举.Cons;
 
@@ -33,7 +34,7 @@ public class 处理流程 {
             JSONObject 单个对象 = 句子词语集合.getJSONObject(i);
             String 动作结果 = 单个对象.getString(Cons.动作结果);
             if(动作结果 != null){
-                System.out.println(动作结果);
+                添加日志.追加(动作结果);
             }
         }
         保存对象.保存对象集合(句子词语集合);
