@@ -96,7 +96,7 @@ public class 归属介词 extends 功能抽象 {
     }
 
     @Override
-    public void 假设负向结果陈述句() {
+    public void 否定句() {
     }
 
     @Override
@@ -104,6 +104,6 @@ public class 归属介词 extends 功能抽象 {
     }
 
     @Override
-    public void 假设正向结果陈述句() {
+    public void 假设陈述句() {
     }
 }

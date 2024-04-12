@@ -36,7 +36,7 @@ public class 替换词 extends 功能抽象 {
     }
 
     @Override
-    public void 假设负向结果陈述句() {
+    public void 否定句() {
 
     }
 
@@ -61,7 +61,7 @@ public class 替换词 extends 功能抽象 {
      * }
      */
     @Override
-    public void 假设正向结果陈述句() {
+    public void 假设陈述句() {
         归属对象 = 获取归属对象();
         操作对象 = 获取操作对象();
         if(归属对象 == null || 操作对象 ==null) {

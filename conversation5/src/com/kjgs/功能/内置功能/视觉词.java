@@ -34,10 +34,6 @@ public class 视觉词 extends 功能抽象 {
 
     }
 
-    @Override
-    public void 假设负向结果陈述句() {
-
-    }
 
     /**
      * {
@@ -72,6 +68,11 @@ public class 视觉词 extends 功能抽象 {
                 ));
     }
 
+    @Override
+    public void 否定句() {
+
+    }
+
     /**
      * 如果遇到'你'，那么把待处理句子中的'你'替换成为当前人
      * {
@@ -88,7 +89,7 @@ public class 视觉词 extends 功能抽象 {
      * }
      */
     @Override
-    public void 假设正向结果陈述句() {
+    public void 假设陈述句() {
         归属对象 = 获取归属对象();
         操作对象 = 获取操作对象();
         if(归属对象 == null || 操作对象 ==null) {

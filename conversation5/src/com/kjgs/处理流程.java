@@ -19,8 +19,10 @@ import java.util.List;
 public class 处理流程 {
     public static void main(String[] args) {
 //        String input = "岁的词性是名词";
-        String input = "岁的词性是什么";
-
+//        String input = "岁的词性是什么";
+//        String input = "我爱你";
+        String input = "如果遇到你，那么替换为当前人的值";
+//        String input = "如果遇到你我，那么替换为当前对话人的值";
         初始化内置功能();
 
         input = 执行判断逻辑.判断逻辑(input);

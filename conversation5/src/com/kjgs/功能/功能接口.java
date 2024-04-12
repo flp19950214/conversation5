@@ -3,7 +3,7 @@ package com.kjgs.功能;
 public interface 功能接口 {
     void 陈述句();
     void 疑问句();
-    void 假设负向结果陈述句();
     void 假设句();
-    void 假设正向结果陈述句();// 假设正向结果陈述句 区别于 陈述句作用对象不一样。
+    void 否定句();
+    void 假设陈述句();
 }

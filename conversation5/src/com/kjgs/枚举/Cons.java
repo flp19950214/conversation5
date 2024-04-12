@@ -12,6 +12,7 @@ public interface Cons {
     public String 操作对象="操作对象";
     public String 是否是对象="是否是对象";
     public String 是否是新对象="是否是新对象";
+    public String 是否执行动作="是否执行动作";
     public String 动作结果="动作结果";
     public String 查询结果="查询结果";
     public String 词语在句子中的属性="词语在句子中的属性";
@@ -36,7 +37,9 @@ public interface Cons {
 
 
     public String 当前人="当前人";
+    public String 当前对话人="当前对话人";
     public String 小燕="小燕";
+    public String 阿欣="阿欣";
 
     public String 动词处理结果="动词处理结果";
     public String 疑问句处理结果="疑问句处理结果";
@@ -61,13 +64,16 @@ public interface Cons {
     public String 中="中";//限定词
     public String 或者="或者";//联合词
     public String 什么="什么";//疑问词
+    public String 爱="爱";//情感词
+    public String 好感度="好感度";
+    public String 对="对";
 
     //句型种类
     public String 疑问句="疑问句";
     public String 假设句="假设句";
-    public String 假设负向结果陈述句="假设负向结果陈述句";
     public String 陈述句="陈述句";
-    public String 假设正向结果陈述句="假设正向结果陈述句";
+    public String 否定句="否定句";
+    public String 假设陈述句="假设陈述句";
     //词性种类
     public String 假设词="假设词";
     public String 负向判断词="负向判断词";
@@ -80,6 +86,7 @@ public interface Cons {
     public String 疑问词="疑问词";
     public String 视觉词="视觉词";
     public String 句子结束词="句子结束词";
+    public String 情感词="情感词";
     public String 查找词="查找词";
     public String 限定词="限定词";
     public String 联合词="联合词";

@@ -49,6 +49,10 @@ public abstract class 功能抽象 implements 功能接口{
     }
     //词的句型一旦发生改变，则需要重新执行新句型的方法
     public void function(String 句型) {
+        Boolean 是否执行动作 = 当前词语对象.getBoolean(Cons.是否执行动作);
+        if(是否执行动作!=null && 是否执行动作==false){
+            return;
+        }
         switch (句型) {
             case Cons.疑问句:
                 疑问句();
@@ -56,11 +60,11 @@ public abstract class 功能抽象 implements 功能接口{
             case Cons.假设句:
                 假设句(); // 假设条件句
                 break;
-            case Cons.假设负向结果陈述句:
-                假设负向结果陈述句();
+            case Cons.假设陈述句:
+                否定句();
                 break;
-            case Cons.假设正向结果陈述句:
-                假设正向结果陈述句();
+            case Cons.否定句:
+                否定句();
                 break;
             default:
                 陈述句();
