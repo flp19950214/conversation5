@@ -3,6 +3,8 @@ package com.kjgs.枚举;
 public interface Cons {
     public String 上级对象="上级对象";
     public String 对象="对象";
+    public String 的对象="的对象";
+    public String 在上级对象中的成分="在上级对象中的成分";
     public String 指向="指向";
     public String 未知属性="未知属性";
     public String 属性="属性";
@@ -32,6 +34,7 @@ public interface Cons {
 
     public String 包含="包含";
     public String 新增="新增";
+    public String 修改="修改";
     public String 根据="根据";
     public String 空="空";
 
@@ -61,6 +64,7 @@ public interface Cons {
     public String 左引号="“";//词语开始词
     public String 右引号="”";//词语闭合词
     public String 和="和";//联合词
+    public String 之间="之间";//联合词
     public String 中="中";//限定词
     public String 或者="或者";//联合词
     public String 什么="什么";//疑问词

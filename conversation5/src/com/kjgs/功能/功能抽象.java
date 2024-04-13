@@ -21,8 +21,14 @@ public abstract class 功能抽象 implements 功能接口{
     public int 获取当前词语对象下标(){
         return 当前词语对象.getInteger(Cons.下标);
     }
+    public int 获取当前词语对象结束下标(){
+        return 当前词语对象.getInteger(Cons.结束下标);
+    }
     public String 获取当前对象词语(){
         return 当前词语对象.getString(Cons.对象);
+    }
+    public String 获取当前词语的上级对象(){
+        return 当前词语对象.getString(Cons.上级对象);
     }
     public abstract void 功能初始化();
 

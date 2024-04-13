@@ -16,6 +16,9 @@ import com.kjgs.枚举.Cons;
 import java.lang.reflect.Method;
 import java.util.List;
 
+/**
+ * 是否需要创建新对象的原则：是否还有子元素。要充分考虑新增元素的个数
+ */
 public class 处理流程 {
     public static void main(String[] args) {
 //        String input = "岁的词性是名词";

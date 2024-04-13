@@ -6,6 +6,7 @@ import com.kjgs.功能.功能抽象;
 import com.kjgs.工具.根据属性筛选集合;
 import com.kjgs.工具.获取对象默认值;
 import com.kjgs.常用工具.拼接字符串;
+import com.kjgs.常用工具.添加集合;
 import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
 import org.junit.Test;
@@ -71,11 +72,11 @@ public class 指向词 extends 功能抽象 {
         当前词语对象.put(Cons.动作句型,methodName);
         当前词语对象.put(Cons.归属对象,归属对象值);
         当前词语对象.put(Cons.操作对象,操作对象值);
-        当前词语对象.put(Cons.动作结果,
-                拼接字符串.拼接(Cons.对象,加双引号(归属对象值)
-                        , Cons.新增
-                        ,Cons.属性,加双引号(属性 +"->"+ 操作对象值)
-                ));
+        String 动作结果 = 拼接字符串.拼接(Cons.对象, 加双引号(归属对象值)
+                , Cons.新增
+                , Cons.属性, 加双引号(属性 + "->" + 操作对象值)
+        );
+        当前词语对象.put(Cons.动作结果,添加集合.添加集合类型属性元素(当前词语对象, Cons.动作结果, 动作结果));
     }
 
 
@@ -116,10 +117,11 @@ public class 指向词 extends 功能抽象 {
                 加双引号(归属未知属性), Cons.的,
                 Cons.查询结果,Cons.是);
         if(查询结果属性值 == null){
-            当前词语对象.put(Cons.动作结果,  拼接字符串.拼接(动作结果, 加双引号(Cons.空)));
+            动作结果 = 拼接字符串.拼接(动作结果, 加双引号(Cons.空));
         }else{
-            当前词语对象.put(Cons.动作结果,拼接字符串.拼接(动作结果, 加双引号(查询结果属性值.toString())));
+            动作结果 =拼接字符串.拼接(动作结果, 加双引号(查询结果属性值.toString()));
         }
+        当前词语对象.put(Cons.动作结果, 添加集合.添加集合类型属性元素(当前词语对象, Cons.动作结果, 动作结果));
     }
 
     @Test

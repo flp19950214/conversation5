@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.工具.获取对象默认值;
 import com.kjgs.常用工具.拼接字符串;
+import com.kjgs.常用工具.添加集合;
 import com.kjgs.枚举.Cons;
 
 
@@ -83,10 +84,10 @@ public class 替换词 extends 功能抽象 {
         当前词语对象.put(Cons.归属对象,归属对象值);
         当前词语对象.put(Cons.归属对象未知属性,归属对象未知属性);
         当前词语对象.put(Cons.操作对象,操作对象值);
-        当前词语对象.put(Cons.动作结果,
-                拼接字符串.拼接(Cons.把,加双引号(归属对象值),
-                        Cons.中,Cons.的,加双引号(归属对象未知属性),
-                        Cons.替换成,加双引号(操作对象值)
-                ));
+        String 动作结果 = 拼接字符串.拼接(Cons.把, 加双引号(归属对象值),
+                Cons.中, Cons.的, 加双引号(归属对象未知属性),
+                Cons.替换成, 加双引号(操作对象值)
+        );
+        当前词语对象.put(Cons.动作结果, 添加集合.添加集合类型属性元素(当前词语对象, Cons.动作结果, 动作结果));
     }
 }

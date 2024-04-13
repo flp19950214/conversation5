@@ -6,6 +6,7 @@ import com.kjgs.功能.功能抽象;
 import com.kjgs.工具.获取对象默认值;
 import com.kjgs.常用工具.保存对象;
 import com.kjgs.常用工具.拼接字符串;
+import com.kjgs.常用工具.添加集合;
 import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.collections4.CollectionUtils;
@@ -51,11 +52,11 @@ public class 情感词 extends 功能抽象 {
         当前词语对象.put(Cons.动作句型,methodName);
         当前词语对象.put(Cons.归属对象,归属对象值);
         当前词语对象.put(Cons.操作对象,操作对象值);
-        当前词语对象.put(Cons.动作结果,
-                拼接字符串.拼接(Cons.对象,加双引号(归属对象值)
-                        , Cons.新增
-                        ,Cons.属性,加双引号(属性 +"->"+ 操作对象值)
-                ));
+        String 动作结果 = 拼接字符串.拼接(Cons.对象,加双引号(归属对象值)
+                , Cons.新增
+                ,Cons.属性,加双引号(属性 +"->"+ 操作对象值)
+        );
+        当前词语对象.put(Cons.动作结果, 添加集合.添加集合类型属性元素(当前词语对象, Cons.动作结果, 动作结果));
     }
 
     @Override
