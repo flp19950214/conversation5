@@ -37,6 +37,7 @@ public interface Cons {
     public String 修改="修改";
     public String 根据="根据";
     public String 空="空";
+    public String 给="给";
 
 
     public String 当前人="当前人";
@@ -46,8 +47,8 @@ public interface Cons {
 
     public String 动词处理结果="动词处理结果";
     public String 疑问句处理结果="疑问句处理结果";
-    public String 正向判断处理结果="正向判断处理结果";
-    public String 负向判断处理结果="负向判断处理结果";
+    public String 正向判断处理逻辑="正向判断处理逻辑";
+    public String 负向判断处理逻辑="负向判断处理逻辑";
 
 
     //功能代表词
