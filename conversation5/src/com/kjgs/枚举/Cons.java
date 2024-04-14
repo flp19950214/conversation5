@@ -17,7 +17,6 @@ public interface Cons {
     public String 是否执行动作="是否执行动作";
     public String 动作结果="动作结果";
     public String 查询结果="查询结果";
-    public String 词语在句子中的属性="词语在句子中的属性";
     public String 姓名="姓名";
     public String 名字="名字";
     public String 名称="名称";

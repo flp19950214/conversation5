@@ -22,6 +22,14 @@ public class Mongo获取判断逻辑 extends MongoBaseDao {
         查询对象.put(Cons.对象,jsonObject);
         System.out.println(正则查询判断逻辑(查询对象));
     }
+    public static JSONArray 正则查询判断逻辑(String input) {
+        JSONObject 查询对象 = new JSONObject();
+        查询对象.put(Cons.在上级对象中的成分, Cons.判断条件);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("$regex", input);
+        查询对象.put(Cons.对象,jsonObject);
+        return 正则查询判断逻辑(查询对象);
+    }
     public static JSONArray 正则查询判断逻辑(JSONObject 查询对象) {
         MongoClient mc = new MongoClient(host, port);
         //获取库对象

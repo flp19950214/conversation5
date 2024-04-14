@@ -5,11 +5,15 @@ import com.alibaba.fastjson.JSONObject;
 import com.kjgs.处理流程;
 import com.kjgs.工具.环境信息;
 import com.kjgs.数据库.MongoDao;
+import com.kjgs.数据库.Mongo获取判断逻辑;
 import com.kjgs.枚举.Cons;
 
+/**
+ * 只需要知道判断条件就行，无需正向或负向判断逻辑。然后按照句子意思执行逻辑就行
+ */
 public class 执行判断逻辑 {
     public static String 判断逻辑(String input){
-        JSONArray jsonArray = MongoDao.regexSelect(Cons.判断条件, input);
+        JSONArray jsonArray = Mongo获取判断逻辑.正则查询判断逻辑(input);
 
         //多个判断逻辑依次执行，作用在一条句子上。
         String 句子清理的结果 = input;
