@@ -25,11 +25,11 @@ public class 执行判断逻辑 {
             JSONArray 句子词语集合 = 处理流程.查询在句子中的词语对象(判断句子);
 
             JSONObject 句子所有信息 = new JSONObject();
-            句子所有信息.put(Cons.待处理句子, 句子清理的结果);
+            句子所有信息.put(Cons.待处理对象, 句子清理的结果);
 
             处理流程.处理句子共用流程(句子词语集合, input);
 
-            句子清理的结果 = 句子所有信息.getString(Cons.待处理句子);
+            句子清理的结果 = 句子所有信息.getString(Cons.待处理对象);
         }
         return 句子清理的结果;
     }

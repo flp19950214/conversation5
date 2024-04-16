@@ -28,7 +28,7 @@ public interface Cons {
 
     public String 判断条件="判断条件";
     public String 判断结果="判断结果";
-    public String 待处理句子="待处理句子";
+    public String 待处理对象="待处理对象";
 
 
     public String 包含="包含";
@@ -37,6 +37,7 @@ public interface Cons {
     public String 根据="根据";
     public String 空="空";
     public String 给="给";
+    public String 箭头符="->";
 
 
     public String 当前人="当前人";

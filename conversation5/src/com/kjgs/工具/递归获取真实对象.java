@@ -24,8 +24,8 @@ public class 递归获取真实对象 {
             //查库
             JSONArray 根据对象查询结果 = MongoDao.select(Cons.对象, 指向对象);
             JSONObject 库结果 = 递归查内存获取真实对象(根据对象查询结果, 指向对象);
-            if(null != 内存结果){
-                return 内存结果;
+            if(null != 库结果){
+                return 库结果;
             }
         }
         return  jsonObject;

@@ -24,8 +24,10 @@ public class 处理流程 {
 //        String input = "岁的词性是名词";
 //        String input = "岁的词性是什么";
 //        String input = "我爱你";
-        String input = "如果遇到你，那么替换为当前人的值";
-//        String input = "如果遇到你我，那么替换为当前对话人的值";
+//        String input = "如果遇到你，那么把待处理对象中的你替换成当前人的值";
+//        String input = "如果遇到当前人的值，那么把待处理对象中的你替换成当前人的值";
+        String input = "当前人的指向";
+//        String input = "待处理对象中的你";
         初始化内置功能();
 
         input = 执行判断逻辑.判断逻辑(input);
@@ -46,12 +48,11 @@ public class 处理流程 {
     }
 
     public static void 处理句子共用流程(JSONArray 句子词语集合, String input){
+        句子词语集合.addAll(环境信息.默认环境信息(input));
 
         添加上级对象(句子词语集合, input);
 
         补充对象下标.补充对象下标(句子词语集合);
-
-        句子词语集合.addAll(环境信息.默认环境信息(input));
 
         依次执行内置功能(句子词语集合);
     }
