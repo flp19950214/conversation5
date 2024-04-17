@@ -72,6 +72,7 @@ public interface Cons {
     public String 爱="爱";//情感词
     public String 好感度="好感度";
     public String 对="对";
+    public String 找="找";//查找词
 
     //句型种类
     public String 疑问句="疑问句";
