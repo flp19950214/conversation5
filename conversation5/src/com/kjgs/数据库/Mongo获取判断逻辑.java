@@ -31,16 +31,9 @@ public class Mongo获取判断逻辑 extends MongoBaseDao {
         return 正则查询判断逻辑(查询对象);
     }
     public static JSONArray 正则查询判断逻辑(JSONObject 查询对象) {
-        MongoClient mc = new MongoClient(host, port);
-        //获取库对象
-        MongoDatabase db = mc.getDatabase(dbName);
-        //获取表对象
-        MongoCollection<Document> kjgsDoc = db.getCollection(doc);
+        MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
         FindIterable<Document> documents = kjgsDoc.find(Document.parse(查询对象.toJSONString())).sort(sort);
-        try{
-            return resultToJson(documents);
-        }finally {
-            mc.close();
-        }
+        return resultToJson(documents);
+
     }
 }

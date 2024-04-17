@@ -30,7 +30,7 @@ public class 处理流程 {
 //        String input = "待处理对象中的你";
         初始化内置功能();
 
-        input = 执行判断逻辑.判断逻辑(input);
+//        执行判断逻辑.判断逻辑(input);
 
         JSONArray 句子词语集合 = 查询在句子中的词语对象(input);
 

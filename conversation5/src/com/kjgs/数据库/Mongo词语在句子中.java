@@ -2,14 +2,9 @@ package com.kjgs.数据库;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Mongo词语在句子中 extends MongoBaseDao {
     public static void main(String[] args) {
@@ -20,12 +15,7 @@ public class Mongo词语在句子中 extends MongoBaseDao {
 
     /** 查询词性 */
     public static JSONArray 查询在句子中的(String 查询字段, String 查询条件){
-        // 排除objectid
-        MongoClient mc = new MongoClient(host, port);
-        //获取库对象
-        MongoDatabase db = mc.getDatabase(dbName);
-        //获取表对象
-        MongoCollection<Document> kjgsDoc = db.getCollection(doc);
+        MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
         JSONObject jsonObject1 = new JSONObject();
         // 创建函数的JavaScript代码
         String functionBody = "function() { var queryValues = \""+查询条件+"\";" +
@@ -33,10 +23,6 @@ public class Mongo词语在句子中 extends MongoBaseDao {
                 "return index !== -1;}";
         jsonObject1.put("$where", functionBody);
         FindIterable<Document> documents = kjgsDoc.find(Document.parse(jsonObject1.toJSONString()));
-        try{
-            return resultToJson(documents);
-        }finally {
-            mc.close();
-        }
+        return resultToJson(documents);
     }
 }

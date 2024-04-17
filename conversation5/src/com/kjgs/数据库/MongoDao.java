@@ -34,13 +34,8 @@ public class MongoDao extends MongoBaseDao {
         insert(JSON.parseObject(JSON.toJSONString(jsonObject)));
     }
     public static void insert(JSONObject jsonObject){
-        MongoClient mc = new MongoClient(host, port);
-        //获取库对象
-        MongoDatabase db = mc.getDatabase(dbName);
-        //获取表对象
-        MongoCollection<Document> kjgsDoc = db.getCollection(doc);
+        MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
         kjgsDoc.insertOne(Document.parse(jsonObject.toJSONString()));
-        mc.close();
     }
 
     @Test
@@ -56,17 +51,9 @@ public class MongoDao extends MongoBaseDao {
        return select(jsonObject);
     }
     public static JSONArray select(JSONObject jsonObject){
-        MongoClient mc = new MongoClient(host, port);
-        //获取库对象
-        MongoDatabase db = mc.getDatabase(dbName);
-        //获取表对象
-        MongoCollection<Document> kjgsDoc = db.getCollection(doc);
+        MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
         FindIterable<Document> documents = kjgsDoc.find(Document.parse(jsonObject.toJSONString())).sort(sort);
-        try{
-            return resultToJson(documents);
-        }finally {
-            mc.close();
-        }
+        return resultToJson(documents);
     }
 
 
@@ -75,21 +62,13 @@ public class MongoDao extends MongoBaseDao {
         System.out.println(regexSelect("sen","陈述句2"));
     }
     public static JSONArray regexSelect(String key, Object value) {
-        MongoClient mc = new MongoClient(host, port);
-        //获取库对象
-        MongoDatabase db = mc.getDatabase(dbName);
-        //获取表对象
-        MongoCollection<Document> kjgsDoc = db.getCollection(doc);
+        MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("$regex", value);
         JSONObject jsonObject2 = new JSONObject();
         jsonObject2.put(key, jsonObject);
         FindIterable<Document> documents = kjgsDoc.find(Document.parse(jsonObject2.toJSONString())).sort(sort);
-        try{
-            return resultToJson(documents);
-        }finally {
-            mc.close();
-        }
+        return resultToJson(documents);
     }
     @Test
     public void test_update(){
@@ -100,20 +79,12 @@ public class MongoDao extends MongoBaseDao {
     }
     // 只根据id更新
     public static void update(String _id, JSONObject jsonObject) {
-
-        MongoClient mc = new MongoClient(host, port);
-        //获取库对象
-        MongoDatabase db = mc.getDatabase(dbName);
-        //获取表对象
-        MongoCollection<Document> kjgsDoc = db.getCollection(doc);
+        MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
         ObjectId objectId = new ObjectId(_id);
         Document searchSingle = new Document("_id", objectId);
         Document updateSingle = new Document("$set", Document.parse(jsonObject.toJSONString()));
-        try{
-            kjgsDoc.updateOne(searchSingle, updateSingle);
-        }catch (Exception e){
-            mc.close();
-        }
+        kjgsDoc.updateOne(searchSingle, updateSingle);
+
     }
 
 }

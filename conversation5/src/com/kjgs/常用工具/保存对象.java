@@ -2,6 +2,7 @@ package com.kjgs.常用工具;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.kjgs.工具.获取对象_id;
 import com.kjgs.数据库.MongoBaseDao;
 import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
@@ -50,7 +51,7 @@ public class 保存对象 {
             jsonObject.remove(Cons._id);
             保存对象(jsonObject);
         }else{
-            String _id =  MongoBaseDao.获取_id(jsonObject);
+            String _id =  获取对象_id.获取_id(jsonObject);
             if(_id != null){
                 更新对象(_id, jsonObject);
             }else{

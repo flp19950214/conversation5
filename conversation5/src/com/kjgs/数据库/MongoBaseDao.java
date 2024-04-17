@@ -15,12 +15,6 @@ public abstract class MongoBaseDao {
     public static final String doc = "kjgsDoc";
     public static final String $oid = "$oid";
 
-    public static String 获取_id(JSONObject jsonObject){
-        if(jsonObject.getJSONObject(Cons._id) == null){
-            return null;
-        }
-        return jsonObject.getJSONObject(Cons._id).getString(MongoBaseDao.$oid);
-    }
     public static JSONArray resultToJson(MongoIterable<Document> documents){
         JSONArray jsonArray =new JSONArray();
         for(Document doc:documents){
