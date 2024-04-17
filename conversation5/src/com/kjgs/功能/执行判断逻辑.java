@@ -16,34 +16,33 @@ import com.kjgs.枚举.Cons;
 public class 执行判断逻辑 {
 
     public static void main(String[] args) {
-
+        JSONObject 待处理对象 = new JSONObject();
+        待处理对象.put(Cons.对象, "找当前人的指向");
+        判断逻辑(待处理对象);
     }
 
     public static void 判断逻辑(JSONObject 待处理对象){
         String 对象值 = 待处理对象.getString(Cons.对象);
         JSONArray jsonArray = Mongo获取判断逻辑.正则查询判断逻辑(对象值);
 
-
         //多个判断逻辑依次执行，作用在一条句子上。
-        String 句子清理的结果 = 对象值;
-
-        for(int i=0;i<1;i++){//执行一个判断即可
-
+        for(int i=0;i<jsonArray.size() && i<1;i++){//执行一个判断即可
+            执行一条判断逻辑(jsonArray.getJSONObject(i), 待处理对象);
         }
     }
 
-//    public static 执行一条判断逻辑(JSONObject 判断对象, JSONObject 待处理对象){
-//        JSONObject 新建待处理对象 = new JSONObject();
-//        待处理对象.put(Cons.对象, Cons.待处理对象);
-//        待处理对象.put(Cons.指向, );
-//
-//        String 判断句子 = 判断对象.getString(Cons.对象);
-//        //添加一条判断对象记录
-//        JSONArray 句子词语集合 = 处理流程.查询在句子中的词语对象(判断句子);
-//
-//
-//        处理流程.处理句子共用流程(句子词语集合, input);
-//
-//        句子清理的结果 = 待处理对象.getString(Cons.指向);
-//    }
+    public static void 执行一条判断逻辑(JSONObject 判断对象, JSONObject 待处理对象){
+        String 对象值 = 待处理对象.getString(Cons.对象);
+        JSONObject 新建待处理对象 = new JSONObject();
+        待处理对象.put(Cons.对象, Cons.待处理对象);
+        待处理对象.put(Cons.指向, 对象值);
+
+        String 判断句子 = 判断对象.getString(Cons.对象);
+        //添加一条判断对象记录
+        JSONArray 句子词语集合 = 处理流程.查询在句子中的词语对象(判断句子);
+
+        句子词语集合.add(新建待处理对象);
+
+        处理流程.处理句子共用流程(句子词语集合, 判断句子);
+    }
 }
