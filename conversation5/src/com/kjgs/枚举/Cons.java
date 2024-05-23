@@ -93,6 +93,6 @@ public interface Cons {
     public String 处理逻辑="处理逻辑";
 
     //逻辑
-    public String 怎么判断待处理对象是否是内置动作 = "怎么判断待处理对象是否是内置动作";
-    public String 怎么找待处理对象的处理逻辑 = "怎么找待处理对象的处理逻辑";
+    public String 判断待处理对象是否是内置动作 = "判断待处理对象是否是内置动作";
+    public String 找待处理对象的处理逻辑 = "找待处理对象的处理逻辑";
 }
