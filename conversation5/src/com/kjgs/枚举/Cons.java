@@ -81,25 +81,18 @@ public interface Cons {
     public String 否定句="否定句";
     public String 假设陈述句="假设陈述句";
     //词性种类
-    public String 假设词="假设词";
-    public String 负向判断词="负向判断词";
-    public String 判断词="判断词";
     public String 反向判断词="反向判断词";
-    public String 指向词="指向词";
-    public String 归属介词="归属介词";
-    public String 排序词="排序词";
-    public String 替换词="替换词";
-    public String 疑问词="疑问词";
-    public String 视觉词="视觉词";
+
     public String 句子结束词="句子结束词";
-    public String 情感词="情感词";
-    public String 查找词="查找词";
-    public String 限定词="限定词";
-    public String 联合词="联合词";
-
-    public String 名词="名词";
-    public String 代词="名词";
 
 
+    public String 父id="父id";
     public String _id="_id";
+    public String id="id";
+    public String 值="值";
+    public String 处理逻辑="处理逻辑";
+
+    //逻辑
+    public String 怎么判断待处理对象是否是内置动作 = "怎么判断待处理对象是否是内置动作";
+    public String 怎么找待处理对象的处理逻辑 = "怎么找待处理对象的处理逻辑";
 }

@@ -6,6 +6,8 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 
+import java.util.List;
+
 public class Mongo词语在句子中 extends MongoBaseDao {
     public static void main(String[] args) {
         String 查询字段 = "词性";
@@ -14,7 +16,7 @@ public class Mongo词语在句子中 extends MongoBaseDao {
     }
 
     /** 查询词性 */
-    public static JSONArray 查询在句子中的(String 查询字段, String 查询条件){
+    public static List<Document> 查询在句子中的(String 查询字段, String 查询条件){
         MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
         JSONObject jsonObject1 = new JSONObject();
         // 创建函数的JavaScript代码

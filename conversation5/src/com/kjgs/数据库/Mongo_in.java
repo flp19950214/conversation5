@@ -25,7 +25,7 @@ public class Mongo_in extends MongoDao {
     }
 
     /** 查询词性 */
-    public static JSONArray 查询在集合中的(String 查询字段,List<String> 查询集合){
+    public static List<Document> 查询在集合中的(String 查询字段,List<String> 查询集合){
         // 排除objectid
         MongoClient mc = new MongoClient(host, port);
         //获取库对象

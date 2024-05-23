@@ -8,6 +8,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
+import java.util.List;
+
 public class MongoPool extends MongoBaseDao{
     private MongoClient mongoClient = null;
     private static final MongoPool mongoPool = new MongoPool();// 饿汉式单例模式
@@ -54,7 +56,7 @@ public class MongoPool extends MongoBaseDao{
         MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
         JSONObject jsonObject = new JSONObject(){{put("对象","如果");}};
         FindIterable<Document> documents = kjgsDoc.find(Document.parse(jsonObject.toJSONString()));
-        JSONArray jsonArray = resultToJson(documents);
-        System.out.println(jsonArray.toJSONString());
+        List<Document> jsonArray = resultToJson(documents);
+        System.out.println(JSONArray.toJSONString(jsonArray));
     }
 }

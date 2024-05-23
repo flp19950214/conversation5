@@ -1,4 +1,4 @@
-package com.kjgs.常用工具;
+package com.kjgs.工具包;
 
 import com.kjgs.枚举.Cons;
 import org.junit.Test;

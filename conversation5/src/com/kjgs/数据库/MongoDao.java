@@ -9,6 +9,7 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Map;
 
 public class MongoDao extends MongoBaseDao {
@@ -33,26 +34,36 @@ public class MongoDao extends MongoBaseDao {
     public static void insert(Map jsonObject){
         insert(JSON.parseObject(JSON.toJSONString(jsonObject)));
     }
-    public static void insert(JSONObject jsonObject){
+    public static ObjectId insert(JSONObject jsonObject){
         MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
-        kjgsDoc.insertOne(Document.parse(jsonObject.toJSONString()));
+        Document document = Document.parse(jsonObject.toJSONString());
+        kjgsDoc.insertOne(document);
+        return document.getObjectId("_id");
+    }
+
+    public static ObjectId insert(Document document){
+        MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
+        kjgsDoc.insertOne(document);
+        return document.getObjectId("_id");
     }
 
     @Test
     public void testSelect(){
         System.out.println(select(new JSONObject(){{put("词语","如果");}}));
     }
-    public static JSONArray select(Map jsonObject){
-       return select(JSON.parseObject(JSON.toJSONString(jsonObject)));
-    }
-    public static JSONArray select(String key, Object value){
+    public static List<Document> select(String key, Object value){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put(key, value);
        return select(jsonObject);
     }
-    public static JSONArray select(JSONObject jsonObject){
+    public static List<Document> select(JSONObject jsonObject){
         MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
         FindIterable<Document> documents = kjgsDoc.find(Document.parse(jsonObject.toJSONString())).sort(sort);
+        return resultToJson(documents);
+    }
+    public static List<Document> select(Document jsonObject){
+        MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
+        FindIterable<Document> documents = kjgsDoc.find(jsonObject).sort(sort);
         return resultToJson(documents);
     }
 
@@ -61,7 +72,7 @@ public class MongoDao extends MongoBaseDao {
     public void testRegexSelect(){
         System.out.println(regexSelect("sen","陈述句2"));
     }
-    public static JSONArray regexSelect(String key, Object value) {
+    public static List<Document> regexSelect(String key, Object value) {
         MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("$regex", value);

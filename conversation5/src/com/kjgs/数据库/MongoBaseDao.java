@@ -7,6 +7,9 @@ import com.kjgs.枚举.Cons;
 import com.mongodb.client.MongoIterable;
 import org.bson.Document;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class MongoBaseDao {
 
     public static final String host = "localhost";
@@ -15,10 +18,10 @@ public abstract class MongoBaseDao {
     public static final String doc = "kjgsDoc";
     public static final String $oid = "$oid";
 
-    public static JSONArray resultToJson(MongoIterable<Document> documents){
-        JSONArray jsonArray =new JSONArray();
+    public static List<Document> resultToJson(MongoIterable<Document> documents){
+        List<Document> jsonArray = new ArrayList<>();
         for(Document doc:documents){
-            jsonArray.add(JSON.parse(doc.toJson()));
+            jsonArray.add(doc);
         }
         return jsonArray;
     }
