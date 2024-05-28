@@ -1,5 +1,7 @@
 package com.kjgs.枚举;
 
+import org.bson.types.ObjectId;
+
 public interface Cons {
     public String 上级对象="上级对象";
     public String 对象="对象";
@@ -73,6 +75,7 @@ public interface Cons {
     public String 好感度="好感度";
     public String 对="对";
     public String 找="找";//查找词
+    public String 输出="输出";//查找词
 
     //句型种类
     public String 疑问句="疑问句";
@@ -88,11 +91,13 @@ public interface Cons {
 
     public String 父id="父id";
     public String _id="_id";
-    public String id="id";
     public String 值="值";
     public String 处理逻辑="处理逻辑";
 
     //逻辑
-    public String 判断待处理对象是否是内置动作 = "判断待处理对象是否是内置动作";
     public String 找待处理对象的处理逻辑 = "找待处理对象的处理逻辑";
+    public ObjectId 找待处理对象的处理逻辑_id = new ObjectId("101");
+//    public ObjectId 找待处理对象的处理逻辑的值 = "找包含待处理对象的值的判断条件，再找到判断条件的处理逻辑";
+//    public ObjectId 找待处理对象的处理逻辑的值 = "找在判断条件中包含待处理对象的值，再找到判断条件的处理逻辑";
+    public String 找待处理对象的处理逻辑的值 = "找判断条件，过滤包含待处理对象的值的判断条件";
 }

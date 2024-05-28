@@ -3,8 +3,10 @@ package com.kjgs.数据库;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.kjgs.枚举.Cons;
 import com.mongodb.MongoClient;
 import com.mongodb.client.*;
+import org.apache.commons.collections4.CollectionUtils;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.junit.Test;
@@ -65,6 +67,18 @@ public class MongoDao extends MongoBaseDao {
         MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
         FindIterable<Document> documents = kjgsDoc.find(jsonObject).sort(sort);
         return resultToJson(documents);
+    }
+
+    public static Document selectById(ObjectId objectId){
+        Document document = new Document();
+        document.put(Cons._id, objectId);
+        MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
+        FindIterable<Document> documents = kjgsDoc.find(document).limit(1);
+        List<Document> documents1 = resultToJson(documents);
+        if(CollectionUtils.isEmpty(documents1)){
+            return null;
+        }
+        return documents1.get(0);
     }
 
 

@@ -15,7 +15,7 @@ public abstract class MongoBaseDao {
     public static final String host = "localhost";
     public static final int port = 27017;
     public static final String dbName = "kjgs2";
-    public static final String doc = "kjgsDoc";
+    public static final String doc = "kjgsDoc2";
     public static final String $oid = "$oid";
 
     public static List<Document> resultToJson(MongoIterable<Document> documents){
