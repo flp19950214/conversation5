@@ -25,7 +25,7 @@ public interface Cons {
     public String 词性="词性";
     public String 句型="句型";
     public String 主键="主键";
-    public String 下标="下标";
+    public String 开始下标="开始下标";
     public String 结束下标="结束下标";
 
     public String 判断条件="判断条件";
