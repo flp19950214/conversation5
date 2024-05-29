@@ -3,6 +3,10 @@ package com.kjgs.枚举;
 import org.bson.types.ObjectId;
 
 public interface Cons {
+    public String 左尖括号 = "《";
+    public String 右尖括号 = "》";
+    public String 左变量标识符 = "￥{";
+    public String 右变量标识符 = "}";
     public String 上级对象="上级对象";
     public String 对象="对象";
     public String 的对象="的对象";

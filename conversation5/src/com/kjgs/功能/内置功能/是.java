@@ -8,8 +8,8 @@ public class 是 extends 功能抽象 {
     //直接分割句子
     public void 功能(){
         Document document = new Document();
-        String key = 当前逻辑句子.substring(0,获取当前逻辑对象开始下标());
-        String value = 当前逻辑句子.substring(获取当前逻辑对象结束下标());
+        String key = 当前逻辑句子.substring(0,获取当前动作对象开始下标());
+        String value = 当前逻辑句子.substring(获取当前动作对象结束下标());
         document.put(key,value);
         所有逻辑对象.add(document);
     }
