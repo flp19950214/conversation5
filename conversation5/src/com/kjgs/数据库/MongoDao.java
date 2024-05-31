@@ -99,15 +99,12 @@ public class MongoDao extends MongoBaseDao {
     public void test_update(){
 
     }
-    public static void update(String _id, Map jsonObject) {
-        update(_id, JSONObject.parseObject(JSON.toJSONString(jsonObject)));
-    }
+
     // 只根据id更新
-    public static void update(String _id, JSONObject jsonObject) {
+    public static void update(String 主键, Document document) {
         MongoCollection<Document> kjgsDoc = MongoPool.getMongoPool().getDefaultCollection();
-        ObjectId objectId = new ObjectId(_id);
-        Document searchSingle = new Document("_id", objectId);
-        Document updateSingle = new Document("$set", Document.parse(jsonObject.toJSONString()));
+        Document searchSingle = new Document(Cons.主键, 主键);
+        Document updateSingle = new Document("$set", document);
         kjgsDoc.updateOne(searchSingle, updateSingle);
 
     }
