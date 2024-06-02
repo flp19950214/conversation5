@@ -7,7 +7,7 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import java.util.List;
-
+// 只查数据库对象  区别于  执行查询指定属性值方法
 public class 执行查询方法 extends 功能抽象 {
     public static final String 查询的属性 = "查询的属性";
     public static final String 查询的属性值 = "查询的属性值";
