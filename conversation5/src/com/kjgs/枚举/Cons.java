@@ -34,7 +34,7 @@ public interface Cons {
 
     public String 判断条件="判断条件";
     public String 判断结果="判断结果";
-    public String 待处理对象="待处理对象";
+    public String 待处理的对象="待处理的对象";
 
 
     public String 包含="包含";

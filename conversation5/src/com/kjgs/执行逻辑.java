@@ -19,6 +19,7 @@ public class 执行逻辑 {
     }
 
     public static String 保存逻辑0="保存的对象《是》小明\n保存的属性《是》名字\n保存的属性值《是》小明\n《执行保存方法》";
+    public static String 保存逻辑3="保存的对象《是》待处理的对象\n保存的属性《是》是\n保存的属性值《是》我爱你\n《执行保存方法》";
     public static String 查询更新逻辑="查询条件的键《是》对象\n查询条件的值《是》你\n《执行查询方法》\n过滤对象是￥{查询结果}\n过滤条件的键《是》年龄\n《执行过滤大于方法》"
             +"循环对象《是》￥{过滤结果}\n循环动作《是》执行更新方法\n更新的主键《是》ObjectId(\"66514c96e5d2a40c245040fe\")\n更新的属性《是》名字\n更新的属性值《是》小明\n《执行循环方法》"
             +"更新的主键《是》";
@@ -44,11 +45,18 @@ public class 执行逻辑 {
                     "\n查询的对象《是》￥{过滤的结果}\n查询的属性《是》对象\n《执行查询对象指定属性值方法》"+
                     "\n输出的内容《是》￥{查询的结果}\n《执行输出方法》";
     public static String 执行输出方法1="输出的内容《是》你是对的\n《执行输出方法》";
+
+    public static String 执行分割方法= "被分割的对象《是》￥{待处理的对象}\n分割词《是》爱\n《执行分割方法》";
+
+
     @Test
     public void test(){
         //分割逻辑
-        List<String> 逻辑集合 = Arrays.asList(执行查询集合对象指定属性值方法.split("\n"));
+        List<String> 逻辑集合 = Arrays.asList(执行分割方法.split("\n"));
         List<Document> 所有逻辑对象 = new ArrayList<>();
+        Document 待处理的对象 = new Document();
+        待处理的对象.put(Cons.待处理的对象, "123是的我爱你");
+        所有逻辑对象.add(待处理的对象);
         //提取动作
         for (int i = 0; i <逻辑集合.size() ; i++) {
             String 当前逻辑句子 = 逻辑集合.get(i);
