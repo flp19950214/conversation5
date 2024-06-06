@@ -33,6 +33,7 @@ public interface Cons {
     public String 结束下标="结束下标";
 
     public String 判断条件="判断条件";
+    public String 判断条件1="判断条件1";
     public String 判断结果="判断结果";
     public String 待处理的对象="待处理的对象";
 

@@ -1,6 +1,9 @@
 package com.kjgs;
 
+import com.kjgs.功能.内置功能.执行追加方法;
+import com.kjgs.功能.内置功能.是;
 import com.kjgs.功能.功能抽象;
+import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
@@ -47,16 +50,54 @@ public class 执行逻辑 {
     public static String 执行输出方法1="输出的内容《是》你是对的\n《执行输出方法》";
 
     public static String 执行分割方法= "被分割的对象《是》￥{待处理的对象}\n分割词《是》爱\n《执行分割方法》";
+    public static String 执行判断包含方法= "被判断的对象《是》2\n判断的对象《是》3\n《执行判断包含方法》"+
+            "\n输出的内容《是》￥{判断的结果}\n《执行输出方法》";
+    public static String 执行判断大于方法= "被判断的对象《是》2\n判断的对象《是》3\n《执行判断大于方法》"+
+            "\n输出的内容《是》￥{判断的结果}\n《执行输出方法》";
+    public static String 执行判断小于方法= "被判断的对象《是》2\n判断的对象《是》3\n《执行判断小于方法》"+
+            "\n输出的内容《是》￥{判断的结果}\n《执行输出方法》";
+    public static String 执行判断等于方法= "被判断的对象《是》3\n判断的对象《是》3\n《执行判断等于方法》"+
+            "\n输出的内容《是》￥{判断的结果}\n《执行输出方法》";
+
+    public static String 执行追加方法= "被追加的对象《是》3\n追加的对象《是》2\n《执行追加方法》"+
+            "\n被追加的对象《是》￥{追加的结果}\n追加的对象《是》3\n《执行追加方法》"+
+            "\n输出的内容《是》￥{追加的结果}\n《执行输出方法》";
+    public static String 执行加法方法= "被加数《是》3\n加数《是》2\n《执行加法方法》"+
+            "\n输出的内容《是》￥{相加的结果}\n《执行输出方法》";
+    public static String 执行加法方法1= "被加数《是》${前面的数字}\n加数《是》#{后面的数字}\n《执行加法方法》"+
+            "\n输出的内容《是》￥{相加的结果}\n《执行输出方法》";
+    public static String 执行减法方法= "被减数《是》3\n减数《是》2\n《执行减法方法》"+
+            "\n输出的内容《是》￥{相减的结果}\n《执行输出方法》";
+    public static String 执行乘法方法= "被乘数《是》3\n乘数《是》2\n《执行乘法方法》"+
+            "\n输出的内容《是》￥{相乘的结果}\n《执行输出方法》";
+    public static String 执行除法方法= "被除数《是》3\n除数《是》2\n《执行除法方法》"+
+            "\n输出的内容《是》￥{相除的结果}\n《执行输出方法》";
+
+    public static String 执行新增对象方法= "新增的属性《是》被加数\n新增的属性值《是》2\n《执行新增对象方法》";
+
+    public static String 待处理的对象中第2个字是什么= "查询的对象《是》￥{待处理的对象}\n查询的开始下标《是》1\n查询的结束下标《是》2\n《执行查询对象指定下标方法》"+
+            "\n输出的内容《是》￥{查询的结果}\n《执行输出方法》";
+    public static String 待处理的对象中第3个字是什么= "查询的对象《是》￥{待处理的对象}\n查询的开始下标《是》1\n查询的结束下标《是》3\n《执行查询对象指定下标方法》"+
+            "\n输出的内容《是》￥{查询的结果}\n《执行输出方法》";
 
 
+
+    /**
+     * 判断条件和判断结果要分开处理     */
     @Test
     public void test(){
+        执行逻辑.执行逻辑(执行新增对象方法, null);
+    }
+    public static List<Document> 所有逻辑对象 = new ArrayList<>();
+
+    public static void 执行逻辑(String 逻辑, String 待处理对象){
         //分割逻辑
-        List<String> 逻辑集合 = Arrays.asList(执行分割方法.split("\n"));
-        List<Document> 所有逻辑对象 = new ArrayList<>();
-        Document 待处理的对象 = new Document();
-        待处理的对象.put(Cons.待处理的对象, "123是的我爱你");
-        所有逻辑对象.add(待处理的对象);
+        List<String> 逻辑集合 = Arrays.asList(逻辑.split("\n"));
+        if(待处理对象 != null){
+            Document 待处理的对象 = new Document();
+            待处理的对象.put(Cons.待处理的对象, 待处理对象);
+            所有逻辑对象.add(待处理的对象);
+        }
         //提取动作
         for (int i = 0; i <逻辑集合.size() ; i++) {
             String 当前逻辑句子 = 逻辑集合.get(i);

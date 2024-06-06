@@ -37,7 +37,7 @@ public abstract class 功能抽象<T> implements 功能接口 {
     }
 
     public String 获取最近的属性值(List<Document> list, String key){
-        return 获取最近的属性值(list, key, String.class);
+        return 获取最近的属性值(list, key, Object.class).toString();
     }
 
 
@@ -61,6 +61,9 @@ public abstract class 功能抽象<T> implements 功能接口 {
                     //判断值是否是变量，如果是需要再次查询
                     if (StringUtils.startsWith(value, Cons.左变量标识符) && StringUtils.endsWith(value, Cons.右变量标识符)) {
                         String key2 = StringUtils.substringBetween(value, Cons.左变量标识符, Cons.右变量标识符);
+                        if(StringUtils.equals(key, key2)){
+                            continue;
+                        }
                         return 获取最近的属性值(list, key2, t);
                     }
                     return document.get(key, t);
