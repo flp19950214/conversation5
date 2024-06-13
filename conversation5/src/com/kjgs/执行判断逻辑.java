@@ -13,12 +13,15 @@ import java.util.List;
  *
  * 保存逻辑的存储方式：就和对象放一起
  */
-public class 获取然后执行逻辑 {
+public class 执行判断逻辑 {
 
+    //
+    public static String dd= "查询的对象《是》￥{待处理的对象}\n查询的开始下标《是》1\n查询的结束下标《是》2\n《执行查询对象指定下标方法》"+
+            "\n输出的内容《是》￥{查询的结果}\n《执行输出方法》";
 
     @Test
     public void test2(){
-        String sen = "3加2是什么";
+        String sen = "如果遇到如果，添加一个开始判断的语境";
         for (int i = 0; i < sen.length()-1; i++) {
             Document 查询逻辑条件 = new Document();
             查询逻辑条件.put(Cons.对象, sen.substring(i,i+1));

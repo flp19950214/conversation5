@@ -1,18 +1,21 @@
 package com.kjgs;
 
-import com.kjgs.功能.内置功能.执行追加方法;
-import com.kjgs.功能.内置功能.是;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 问题点：逻辑足够多时，能否生成新逻辑
+ *
+ */
 public class 执行逻辑 {
     @Test
     public void test1(){
@@ -21,7 +24,11 @@ public class 执行逻辑 {
         System.out.println(Arrays.toString(sen.split("\n")));
     }
 
+    //形成逻辑 如果遇到加 那先找到被加数 再找到加数，执行相加方法
+    //小明的名字是小明
+    public static String 小明的名字是小明="保存的对象《是》小明\n保存的属性《是》名字\n保存的属性值《是》小明\n《执行保存方法》";
     public static String 保存逻辑0="保存的对象《是》小明\n保存的属性《是》名字\n保存的属性值《是》小明\n《执行保存方法》";
+    //待处理对象是我爱你
     public static String 保存逻辑3="保存的对象《是》待处理的对象\n保存的属性《是》是\n保存的属性值《是》我爱你\n《执行保存方法》";
     public static String 查询更新逻辑="查询条件的键《是》对象\n查询条件的值《是》你\n《执行查询方法》\n过滤对象是￥{查询结果}\n过滤条件的键《是》年龄\n《执行过滤大于方法》"
             +"循环对象《是》￥{过滤结果}\n循环动作《是》执行更新方法\n更新的主键《是》ObjectId(\"66514c96e5d2a40c245040fe\")\n更新的属性《是》名字\n更新的属性值《是》小明\n《执行循环方法》"
@@ -36,16 +43,16 @@ public class 执行逻辑 {
             "\n过滤的对象《是》￥{过滤的结果}\n过滤的下标《是》0\n《执行过滤指定下标方法》";
     public static String 执行过滤指定范围下标方法="查询的属性《是》对象\n查询的属性值《是》你\n《执行查询方法》" +
             "\n过滤的对象《是》￥{查询的结果}\n过滤的开始下标《是》0\n过滤的结束下标《是》2\n《执行过滤指定范围下标方法》";
-    public static String 执行查询对象指定属性值方法="查询的属性《是》对象\n查询的属性值《是》你\n《执行查询方法》\n过滤的对象《是》￥{查询的结果}\n过滤的属性《是》年龄\n过滤的属性值《是》11\n《执行过滤小于方法》" +
+    public static String 执行查询指定属性值的对象方法="查询的属性《是》对象\n查询的属性值《是》你\n《执行查询方法》\n过滤的对象《是》￥{查询的结果}\n过滤的属性《是》年龄\n过滤的属性值《是》11\n《执行过滤小于方法》" +
             "\n过滤的对象《是》￥{过滤的结果}\n过滤的下标《是》0\n《执行过滤指定下标方法》"+
-            "\n查询的对象《是》￥{过滤的结果}\n查询的属性《是》对象\n《执行查询对象指定属性值方法》";
+            "\n查询的对象《是》￥{过滤的结果}\n查询的属性《是》对象\n《执行查询指定属性值的对象方法》";
     public static String 执行查询集合对象指定属性值方法="查询的属性《是》对象\n查询的属性值《是》你\n《执行查询方法》\n过滤的对象《是》￥{查询的结果}\n过滤的属性《是》年龄\n过滤的属性值《是》11\n《执行过滤小于方法》" +
             "\n过滤的对象《是》￥{查询的结果}\n过滤的开始下标《是》0\n过滤的结束下标《是》2\n《执行过滤指定范围下标方法》"+
             "\n查询的对象《是》￥{过滤的结果}\n查询的属性《是》对象\n《执行查询集合对象指定属性值方法》";
     public static String 执行输出方法=
             "查询的属性《是》对象\n查询的属性值《是》你\n《执行查询方法》\n过滤的对象《是》￥{查询的结果}\n过滤的属性《是》年龄\n过滤的属性值《是》11\n《执行过滤小于方法》" +
                     "\n过滤的对象《是》￥{过滤的结果}\n过滤的下标《是》0\n《执行过滤指定下标方法》"+
-                    "\n查询的对象《是》￥{过滤的结果}\n查询的属性《是》对象\n《执行查询对象指定属性值方法》"+
+                    "\n查询的对象《是》￥{过滤的结果}\n查询的属性《是》对象\n《执行查询指定属性值的对象方法》"+
                     "\n输出的内容《是》￥{查询的结果}\n《执行输出方法》";
     public static String 执行输出方法1="输出的内容《是》你是对的\n《执行输出方法》";
 
@@ -80,35 +87,70 @@ public class 执行逻辑 {
     public static String 待处理的对象中第3个字是什么= "查询的对象《是》￥{待处理的对象}\n查询的开始下标《是》1\n查询的结束下标《是》3\n《执行查询对象指定下标方法》"+
             "\n输出的内容《是》￥{查询的结果}\n《执行输出方法》";
 
+    public static String 查询对象的主键= "查询的对象《是》￥{待处理的对象}\n查询的属性《是》主键\n《执行查询指定属性值的对象方法》"+
+            "\n输出的内容《是》￥{查询的结果}\n《执行输出方法》";
+
 
 
     /**
      * 判断条件和判断结果要分开处理     */
     @Test
     public void test(){
-        执行逻辑.执行逻辑(执行新增对象方法, null);
+
+        执行逻辑.执行逻辑(查询对象的主键, "23");
     }
     public static List<Document> 所有逻辑对象 = new ArrayList<>();
 
-    public static void 执行逻辑(String 逻辑, String 待处理对象){
+    public static void 执行逻辑(String 逻辑, String 待处理的词语){
         //分割逻辑
         List<String> 逻辑集合 = Arrays.asList(逻辑.split("\n"));
-        if(待处理对象 != null){
-            Document 待处理的对象 = new Document();
-            待处理的对象.put(Cons.待处理的对象, 待处理对象);
-            所有逻辑对象.add(待处理的对象);
-        }
+//        if(待处理的词语 != null){
+//            Document 待处理的对象 = new Document();
+//            Document 待处理的对象值 = new Document();
+//            待处理的对象值.put(Cons.主键, new ObjectId().toString());
+//            待处理的对象值.put(Cons.对象, 待处理的词语);
+//            for (int i = 0; i <待处理的词语.length()-1 ; i++) {
+//                待处理的对象值.put(Cons.下标+i, 待处理的词语.substring(i,i+1));
+//            }
+//            待处理的对象.put(Cons.待处理的对象, 待处理的对象值);
+//            所有逻辑对象.add(待处理的对象);
+//        }
+        Document 待处理的对象值 = new Document();
+        待处理的对象值.put(Cons.待处理的对象, 待处理的词语);
+        所有逻辑对象.add(待处理的对象值);
         //提取动作
         for (int i = 0; i <逻辑集合.size() ; i++) {
             String 当前逻辑句子 = 逻辑集合.get(i);
+            查询并迭代逻辑(当前逻辑句子, 待处理的词语);
             String 动作 = StringUtils.substringBetween(当前逻辑句子, Cons.左尖括号, Cons.右尖括号);
+            if(StringUtils.isNotEmpty(动作)){
+                //执行动作
+                try {
+                    功能抽象 功能抽象对象 = (功能抽象) Class.forName("com.kjgs.功能.内置功能." + 动作).newInstance();
+                    功能抽象对象.执行流程(所有逻辑对象, 当前逻辑句子, 动作);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
 
-            //执行动作
-            try {
-                功能抽象 功能抽象对象 = (功能抽象) Class.forName("com.kjgs.功能.内置功能." + 动作).newInstance();
-                功能抽象对象.执行流程(所有逻辑对象, 当前逻辑句子, 动作);
-            }catch (Exception e){
-                e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void test_查询并迭代逻辑(){
+        查询并迭代逻辑("#{查询这个词的类型}", "2");
+    }
+    private static void 查询并迭代逻辑(String 需迭代逻辑, String 待处理的词语){
+        if(StringUtils.startsWith(需迭代逻辑, Cons.左逻辑变量标识符)
+                && StringUtils.endsWith(需迭代逻辑, Cons.右逻辑变量标识符)) {
+            需迭代逻辑 = StringUtils.substringBetween(需迭代逻辑, Cons.左逻辑变量标识符, Cons.右逻辑变量标识符);
+            Document document = new Document();
+            document.put(Cons.对象, 需迭代逻辑);
+            List<Document> select = MongoDao.select(document);
+            for (Document 逻辑对象 : select) {
+                String 逻辑 = 逻辑对象.getString(Cons.处理逻辑);
+                if (StringUtils.isEmpty(逻辑)) continue;
+                执行逻辑.执行逻辑(逻辑, 待处理的词语);
             }
         }
     }

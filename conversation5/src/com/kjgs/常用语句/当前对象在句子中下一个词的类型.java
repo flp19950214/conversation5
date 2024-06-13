@@ -1,0 +1,28 @@
+package com.kjgs.常用语句;
+
+import com.kjgs.执行逻辑;
+import org.bson.Document;
+import org.junit.Test;
+
+public class 当前对象在句子中下一个词的类型 {
+    /**
+     * 判断条件和判断结果要分开处理
+     **/
+    String 判断是否是数字 =
+            "被加数《是》￥{待处理对象在句子中的下标}\n加数《是》1\n《执行加法方法》"+
+            "\n查询的对象《是》￥{待处理对象所在的句子}\n查询的下标《是》￥{相加的结果}\n《执行获取指定下标值方法》" +
+            "\n查询的属性《是》对象\n查询的属性值《是》￥{查询的结果}\n《执行查询方法》" +
+            "\n查询的对象《是》￥{查询的结果}\n查询的属性《是》类型\n《执行查询集合对象指定属性值方法》"  +
+            "\n被判断的对象《是》￥{查询的结果}\n判断的对象《是》数字\n《执行判断集合包含方法》"+
+                    "\n输出的内容《是》￥{判断的结果}\n《执行输出方法》";
+    @Test
+    public void test(){
+        Document document = new Document();
+        document.put("待处理对象所在的句子", "11");
+        执行逻辑.所有逻辑对象.add(document);
+        Document document2 = new Document();
+        document2.put("待处理对象在句子中的下标", 0);
+        执行逻辑.所有逻辑对象.add(document2);
+        执行逻辑.执行逻辑(判断是否是数字, "1");
+    }
+}

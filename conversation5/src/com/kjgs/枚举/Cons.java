@@ -7,6 +7,8 @@ public interface Cons {
     public String 右尖括号 = "》";
     public String 左变量标识符 = "￥{";
     public String 右变量标识符 = "}";
+    public String 左逻辑变量标识符 = "#{";
+    public String 右逻辑变量标识符 = "}";
     public String 上级对象="上级对象";
     public String 对象="对象";
     public String 的对象="的对象";
@@ -31,6 +33,7 @@ public interface Cons {
     public String 主键="主键";
     public String 开始下标="开始下标";
     public String 结束下标="结束下标";
+    public String 下标="下标";
 
     public String 判断条件="判断条件";
     public String 判断条件1="判断条件1";
