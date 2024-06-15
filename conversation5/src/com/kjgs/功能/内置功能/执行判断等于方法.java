@@ -1,12 +1,13 @@
 package com.kjgs.功能.内置功能;
 
 import com.kjgs.功能.功能抽象;
+import com.kjgs.枚举.Cons;
 import org.bson.Document;
 
 public class 执行判断等于方法 extends 功能抽象 {
     public static final String 被判断的对象 = "被判断的对象";
     public static final String 判断的对象 ="判断的对象";
-    public static final String 判断的结果 ="判断的结果";
+    public static final String 判断的结果 = Cons.判断的结果;
 
     @Override
     public void 功能() {

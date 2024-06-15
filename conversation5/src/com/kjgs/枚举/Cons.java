@@ -7,10 +7,10 @@ public interface Cons {
     public String 右尖括号 = "》";
     public String 左变量标识符 = "￥{";
     public String 右变量标识符 = "}";
-    public String 左逻辑变量标识符 = "#{";
-    public String 右逻辑变量标识符 = "}";
     public String 上级对象="上级对象";
     public String 对象="对象";
+    public String 判断的结果="判断的结果";
+    public String 处理逻辑的判断条件="处理逻辑的判断条件";
     public String 的对象="的对象";
     public String 在上级对象中的成分="在上级对象中的成分";
     public String 指向="指向";
@@ -37,8 +37,8 @@ public interface Cons {
 
     public String 判断条件="判断条件";
     public String 判断条件1="判断条件1";
-    public String 判断结果="判断结果";
     public String 待处理的对象="待处理的对象";
+    public String 待处理对象所在句子="待处理对象所在句子";
 
 
     public String 包含="包含";

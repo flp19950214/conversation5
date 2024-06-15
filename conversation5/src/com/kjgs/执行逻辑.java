@@ -96,62 +96,55 @@ public class 执行逻辑 {
      * 判断条件和判断结果要分开处理     */
     @Test
     public void test(){
-
         执行逻辑.执行逻辑(查询对象的主键, "23");
     }
     public static List<Document> 所有逻辑对象 = new ArrayList<>();
 
     public static void 执行逻辑(String 逻辑, String 待处理的词语){
-        //分割逻辑
-        List<String> 逻辑集合 = Arrays.asList(逻辑.split("\n"));
-//        if(待处理的词语 != null){
-//            Document 待处理的对象 = new Document();
-//            Document 待处理的对象值 = new Document();
-//            待处理的对象值.put(Cons.主键, new ObjectId().toString());
-//            待处理的对象值.put(Cons.对象, 待处理的词语);
-//            for (int i = 0; i <待处理的词语.length()-1 ; i++) {
-//                待处理的对象值.put(Cons.下标+i, 待处理的词语.substring(i,i+1));
-//            }
-//            待处理的对象.put(Cons.待处理的对象, 待处理的对象值);
-//            所有逻辑对象.add(待处理的对象);
-//        }
         Document 待处理的对象值 = new Document();
         待处理的对象值.put(Cons.待处理的对象, 待处理的词语);
         所有逻辑对象.add(待处理的对象值);
+        执行逻辑(逻辑);
+    }
+
+    public static void 执行逻辑(String 逻辑){
+        //分割逻辑
+        List<String> 逻辑集合 = Arrays.asList(逻辑.split("\n"));
         //提取动作
         for (int i = 0; i <逻辑集合.size() ; i++) {
             String 当前逻辑句子 = 逻辑集合.get(i);
-            查询并迭代逻辑(当前逻辑句子, 待处理的词语);
             String 动作 = StringUtils.substringBetween(当前逻辑句子, Cons.左尖括号, Cons.右尖括号);
             if(StringUtils.isNotEmpty(动作)){
                 //执行动作
                 try {
                     功能抽象 功能抽象对象 = (功能抽象) Class.forName("com.kjgs.功能.内置功能." + 动作).newInstance();
                     功能抽象对象.执行流程(所有逻辑对象, 当前逻辑句子, 动作);
+                }catch (ClassNotFoundException e){
+                    //不是内置动作，那么就迭代到数据库获取逻辑处理
+                    查询并迭代逻辑(动作);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
             }
-
         }
     }
 
     @Test
     public void test_查询并迭代逻辑(){
-        查询并迭代逻辑("#{查询这个词的类型}", "2");
+        Document 待处理的对象值 = new Document();
+        待处理的对象值.put(Cons.待处理的对象, "2");
+        所有逻辑对象.add(待处理的对象值);
+        查询并迭代逻辑("#{查询这个词的类型}");
     }
-    private static void 查询并迭代逻辑(String 需迭代逻辑, String 待处理的词语){
-        if(StringUtils.startsWith(需迭代逻辑, Cons.左逻辑变量标识符)
-                && StringUtils.endsWith(需迭代逻辑, Cons.右逻辑变量标识符)) {
-            需迭代逻辑 = StringUtils.substringBetween(需迭代逻辑, Cons.左逻辑变量标识符, Cons.右逻辑变量标识符);
-            Document document = new Document();
-            document.put(Cons.对象, 需迭代逻辑);
-            List<Document> select = MongoDao.select(document);
-            for (Document 逻辑对象 : select) {
-                String 逻辑 = 逻辑对象.getString(Cons.处理逻辑);
-                if (StringUtils.isEmpty(逻辑)) continue;
-                执行逻辑.执行逻辑(逻辑, 待处理的词语);
-            }
+
+    private static void 查询并迭代逻辑(String 需迭代逻辑) {
+        Document document = new Document();
+        document.put(Cons.对象, 需迭代逻辑);
+        List<Document> select = MongoDao.select(document);
+        for (Document 逻辑对象 : select) {
+            String 逻辑 = 逻辑对象.getString(Cons.处理逻辑);
+            if (StringUtils.isEmpty(逻辑)) continue;
+            执行逻辑.执行逻辑(逻辑);
         }
     }
 }
