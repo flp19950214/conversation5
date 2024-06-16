@@ -1,10 +1,13 @@
 package com.kjgs.功能;
 
 import com.kjgs.枚举.Cons;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -40,16 +43,35 @@ public abstract class 功能抽象<T> implements 功能接口 {
         return 获取最近的属性值(list, key, Object.class).toString();
     }
 
+    public List 获取所有的属性值(List<Document> list, String key){
+        return 获取所有的属性值(list, key, Object.class);
+    }
 
-//    public List<T> 获取最近的属性值(List<Document> list, String key, List<T> t){
-//        for(int i=list.size()-1; i>=0;i--){
-//            Document document = list.get(i);
-//            if(document.containsKey(key)){
-//                return document.get(key, t);
-//            }
-//        }
-//        return null;
-//    }
+
+    public <T> List<T> 获取所有的属性值(List<Document> list, String key, Class<T> t){
+        List<T> result = new ArrayList<>();
+        for(int i=list.size()-1; i>=0;i--){
+            Document document = list.get(i);
+            if(document.containsKey(key)){
+                try {
+                    String value = document.getString(key);
+                    //判断值是否是变量，如果是需要再次查询
+                    if (StringUtils.startsWith(value, Cons.左变量标识符) && StringUtils.endsWith(value, Cons.右变量标识符)) {
+                        String key2 = StringUtils.substringBetween(value, Cons.左变量标识符, Cons.右变量标识符);
+                        if(StringUtils.equals(key, key2)){
+                            continue;
+                        }
+                        result.add(获取最近的属性值(list, key2, t));
+                    }
+                    result.add(document.get(key, t));
+                }catch (ClassCastException e){
+                    result.add(document.get(key, t));
+                }
+            }
+        }
+        Collections.reverse(result);
+        return result;
+    }
 
     public <T> T 获取最近的属性值(List<Document> list, String key, Class<T> t){
         for(int i=list.size()-1; i>=0;i--){

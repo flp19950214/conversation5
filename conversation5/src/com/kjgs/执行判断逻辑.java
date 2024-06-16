@@ -27,11 +27,10 @@ public class 执行判断逻辑 {
             查询逻辑条件.put(Cons.对象, sen.substring(i,i+1));
             Document 查询逻辑条件2 = new Document();
             查询逻辑条件2.put("$exists", true);
-            查询逻辑条件.put(Cons.判断条件1, 查询逻辑条件2);
+            查询逻辑条件.put(Cons.处理逻辑, 查询逻辑条件2);
             List<Document> select = MongoDao.select(查询逻辑条件);
             for (int j = 0; j <select.size() ; j++) {
-                String 判断条件1的正向结果 = select.get(j).getString("判断条件1的正向结果");
-                执行逻辑.执行逻辑(判断条件1的正向结果, null);
+                执行逻辑.执行逻辑(select.get(j));
             }
         }
     }

@@ -27,24 +27,7 @@ public class 公共逻辑 {
         //执行所有公共逻辑
         List<Document> select = MongoDao.select(Cons.对象, 公共逻辑);
         for(Document document : select){
-            //逻辑有判断条件就先执行判断条件，没有直接执行处理逻辑
-            if(ObjectUtils.isEmpty(document.get(Cons.处理逻辑的判断条件))){
-                //直接执行结果
-                if(ObjectUtils.isNotEmpty(document.get(Cons.处理逻辑))){
-                    执行逻辑.执行逻辑(document.getString(Cons.处理逻辑));
-                }
-            }else{
-                //判断条件的处理结果是true才执行处理逻辑
-                执行逻辑.执行逻辑(document.getString(Cons.处理逻辑的判断条件));
-                功能对象 功能对象 = new 功能对象();
-                String 判断的结果 = 功能对象.获取最近的属性值(执行逻辑.所有逻辑对象, Cons.判断的结果);
-                if(Boolean.parseBoolean(判断的结果)){
-                    //直接执行结果
-                    if(ObjectUtils.isNotEmpty(document.get(Cons.处理逻辑))){
-                        执行逻辑.执行逻辑(document.getString(Cons.处理逻辑));
-                    }
-                }
-            }
+            执行逻辑.执行逻辑(document);
         }
     }
 

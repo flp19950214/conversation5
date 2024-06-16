@@ -1,8 +1,10 @@
 package com.kjgs;
 
+import com.kjgs.功能.功能对象;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -104,8 +106,34 @@ public class 执行逻辑 {
         Document 待处理的对象值 = new Document();
         待处理的对象值.put(Cons.待处理的对象, 待处理的词语);
         所有逻辑对象.add(待处理的对象值);
+
         执行逻辑(逻辑);
     }
+
+    /**
+     * @param document 执行逻辑对象
+     */
+    public static void 执行逻辑(Document document) {
+        //逻辑有判断条件就先执行判断条件，没有直接执行处理逻辑
+        if(ObjectUtils.isEmpty(document.get(Cons.处理逻辑的判断条件))){
+            //直接执行结果
+            if(ObjectUtils.isNotEmpty(document.get(Cons.处理逻辑))){
+                执行逻辑.执行逻辑(document.getString(Cons.处理逻辑));
+            }
+        }else{
+            //判断条件的处理结果是true才执行处理逻辑
+            执行逻辑.执行逻辑(document.getString(Cons.处理逻辑的判断条件));
+            功能对象 功能对象 = new 功能对象();
+            String 判断的结果 = 功能对象.获取最近的属性值(执行逻辑.所有逻辑对象, Cons.判断的结果);
+            if(Boolean.parseBoolean(判断的结果)){
+                //直接执行结果
+                if(ObjectUtils.isNotEmpty(document.get(Cons.处理逻辑))){
+                    执行逻辑.执行逻辑(document.getString(Cons.处理逻辑));
+                }
+            }
+        }
+    }
+
 
     public static void 执行逻辑(String 逻辑){
         //分割逻辑

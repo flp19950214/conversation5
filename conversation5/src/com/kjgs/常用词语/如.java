@@ -18,8 +18,8 @@ public class 如 {
     public void test2(){
         Document document = new Document();
         document.put(Cons.对象,"公共逻辑");
-        document.put(Cons.处理逻辑+1+Cons.的+Cons.判断条件,"￥{判断当前词语能否与后面的词组成词组}");
-        document.put(Cons.处理逻辑+1,"￥{与后面的词合并，生成新的词组}");
+        document.put(Cons.处理逻辑的判断条件,"￥{判断当前词语能否与后面的词组成词组}");
+        document.put(Cons.处理逻辑,"￥{与后面的词合并，生成新的词组}");
         MongoDao.insert(document);
     }
 }
