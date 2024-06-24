@@ -18,6 +18,7 @@ public abstract class 功能抽象<T> implements 功能接口 {
     public String 动作;
     public Document 当前逻辑句子对象;
     public String 当前逻辑句子;
+    public static int 属性在所有对象中的下标 = 0;
 
     public static void main(String[] args) {
         double value = 123.01; // 假设这是你需要格式化的double值
@@ -73,6 +74,14 @@ public abstract class 功能抽象<T> implements 功能接口 {
         return result;
     }
 
+    public <T> T 获取最近的属性值value(List<Document> list, String value, Class<T> t){
+        //判断值是否是变量，如果是需要再次查询
+        if (StringUtils.startsWith(value, Cons.左变量标识符) && StringUtils.endsWith(value, Cons.右变量标识符)) {
+            String key2 = StringUtils.substringBetween(value, Cons.左变量标识符, Cons.右变量标识符);
+            return 获取最近的属性值(list, key2, t);
+        }
+        return (T) value;
+    }
     public <T> T 获取最近的属性值(List<Document> list, String key, Class<T> t){
         for(int i=list.size()-1; i>=0;i--){
             Document document = list.get(i);
@@ -87,8 +96,10 @@ public abstract class 功能抽象<T> implements 功能接口 {
                         }
                         return 获取最近的属性值(list, key2, t);
                     }
+                    属性在所有对象中的下标 = i;
                     return document.get(key, t);
                 }catch (ClassCastException e){
+                    属性在所有对象中的下标 = i;
                     return document.get(key, t);
                 }
             }

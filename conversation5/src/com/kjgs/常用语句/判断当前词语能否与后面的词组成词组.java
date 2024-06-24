@@ -1,6 +1,8 @@
 package com.kjgs.常用语句;
 
 import com.kjgs.执行逻辑;
+import com.kjgs.数据库.MongoDao;
+import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.junit.Test;
 
@@ -10,9 +12,9 @@ public class 判断当前词语能否与后面的词组成词组 {
      **/
     String 判断当前词语能否与后面的词组成词组 =
             "《合并下一个词》"+
-                    "\n查询的属性《是》对象\n查询的属性值《是》￥{追加的结果}\n《执行查询方法》"+
-                    "\n被判断的对象《是》￥{查询的结果}\n《执行判断集合是否为空方法》"+
-                    "\n输出的内容《是》￥{判断的结果}\n《执行输出方法》";
+            "\n查询的属性《是》对象\n查询的属性值《是》￥{追加的结果}\n《执行查询方法》"+
+            "\n被判断的对象《是》￥{查询的结果}\n《执行判断集合是否为空方法》"+
+            "\n输出的内容《是》￥{判断的结果}\n《执行输出方法》";
     @Test
     public void test(){
         Document document = new Document();
@@ -22,5 +24,13 @@ public class 判断当前词语能否与后面的词组成词组 {
         document2.put("待处理对象在句子中的下标", 0);
         执行逻辑.所有逻辑对象.add(document2);
         执行逻辑.执行逻辑(判断当前词语能否与后面的词组成词组, "如果");
+    }
+
+    @Test
+    public void test2(){
+        Document document = new Document();
+        document.put(Cons.对象,"判断当前词语能否与后面的词组成词组");
+        document.put(Cons.处理逻辑,判断当前词语能否与后面的词组成词组);
+        MongoDao.insert(document);
     }
 }

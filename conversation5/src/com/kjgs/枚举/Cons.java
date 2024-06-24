@@ -37,6 +37,7 @@ public interface Cons {
 
     public String 判断条件="判断条件";
     public String 待处理的对象="待处理的对象";
+    public String 待处理的对象的下标="待处理的对象的下标";
     public String 待处理对象所在句子="待处理对象所在句子";
 
 

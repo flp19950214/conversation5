@@ -4,6 +4,7 @@ import com.kjgs.功能.功能对象;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
@@ -102,7 +103,7 @@ public class 执行逻辑 {
     }
     public static List<Document> 所有逻辑对象 = new ArrayList<>();
 
-    public static void 执行逻辑(String 逻辑, String 待处理的词语){
+    public static void  执行逻辑(String 逻辑, String 待处理的词语){
         Document 待处理的对象值 = new Document();
         待处理的对象值.put(Cons.待处理的对象, 待处理的词语);
         所有逻辑对象.add(待处理的对象值);
@@ -169,6 +170,9 @@ public class 执行逻辑 {
         Document document = new Document();
         document.put(Cons.对象, 需迭代逻辑);
         List<Document> select = MongoDao.select(document);
+        if(CollectionUtils.isEmpty(select)){
+            System.out.println("迭代逻辑= '"+需迭代逻辑 + "' 的逻辑是空的");
+        }
         for (Document 逻辑对象 : select) {
             String 逻辑 = 逻辑对象.getString(Cons.处理逻辑);
             if (StringUtils.isEmpty(逻辑)) continue;

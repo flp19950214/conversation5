@@ -1,5 +1,6 @@
 package com.kjgs;
 
+import com.kjgs.功能.功能抽象;
 import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
@@ -21,6 +22,9 @@ public class 执行当前词语相关逻辑 {
         for (int i = 0; i < sen.length()-1; i++) {
             method( sen.substring(i,i+1));
         }
+    }
+
+    public static void method() {
     }
 
     public static void method(String 待处理词语){
