@@ -1,5 +1,6 @@
 package com.kjgs.demo1.controller;
 
+import com.kjgs.demo1.service.FallbackService;
 import com.kjgs.demo1.service.FeignClientImpl;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import java.util.Map;
 public class HealthController {
 
     @Autowired
-    FeignClientImpl feignClientImpl;
+    FallbackService feignClientImpl;
 
     @RequestMapping("/getHealth")
     @HystrixCommand(fallbackMethod = "hystrixReturn")

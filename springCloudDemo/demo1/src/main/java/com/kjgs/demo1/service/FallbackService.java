@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service
+@Service("fallbackService2")
 public class FallbackService implements FeignClientImpl{
 
     @Override
