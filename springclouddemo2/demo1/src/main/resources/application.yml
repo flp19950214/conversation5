@@ -1,0 +1,38 @@
+server:
+  port: 8280
+  servlet:
+    context-path: /demo1
+
+spring:
+  application:
+    name: demo1
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8283/eureka/
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1 #核心线程
+      maxQueueSize: 1 #最大线程
+      maximumSize: 1
+      queueSizeRejectionThreshold: 1 #该参数用来为队列设置拒绝阈值。通过该参数，即使队列没有达到最大值也能拒绝请求。
+  circuitBreaker:
+    enabled: true
+    requestVolumeThreshold: 10
+    sleepWindowInMilliseconds: 10000
+    errorThresholdPercentage: 50
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 100000000   #访问远程服务接口是的默认超时时间，
+            #开启feign后自带的功能，默认1s,太短，所有都要重新设置 。不影响不存在远程调用的接口

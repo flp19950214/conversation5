@@ -1,0 +1,17 @@
+server:
+  port: 8283
+
+spring:
+  application:
+    name: demo-eureka
+
+eureka:
+  server:
+    enable-self-preservation: true
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:8283/eureka/

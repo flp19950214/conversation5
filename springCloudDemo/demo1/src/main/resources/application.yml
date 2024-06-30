@@ -18,6 +18,12 @@ feign:
 
 
 hystrix:
+  threadpool:
+    default:
+      coreSize: 1 #核心线程池
+      maxQueueSize: 2 #最大线程池
+      maximumSize: 1
+      queueSizeRejectionThreshold: 5
   command:
     default:
       execution:
@@ -25,4 +31,4 @@ hystrix:
           enabled: true
         isolation:
           thread:
-            timeoutInMilliseconds: 10000
+            timeoutInMilliseconds: 100000000
