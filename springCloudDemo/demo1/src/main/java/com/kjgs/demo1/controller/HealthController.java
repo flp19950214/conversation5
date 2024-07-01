@@ -2,6 +2,8 @@ package com.kjgs.demo1.controller;
 
 import com.kjgs.demo1.service.FallbackService;
 import com.kjgs.demo1.service.FeignClientImpl;
+import com.netflix.hystrix.HystrixCircuitBreaker;
+import com.netflix.hystrix.HystrixCommandKey;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -18,10 +20,10 @@ public class HealthController {
     FallbackService feignClientImpl;
 
     @RequestMapping("/getHealth")
-    @HystrixCommand(fallbackMethod = "hystrixReturn")
+    @HystrixCommand(commandKey = "test", fallbackMethod = "hystrixReturn")
     public Map getHealth(){
         try {
-            Thread.sleep(6000);
+            Thread.sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -37,6 +39,8 @@ public class HealthController {
     }
 
     public Map hystrixReturn(){
+        HystrixCircuitBreaker circuitBreaker = HystrixCircuitBreaker.Factory.getInstance(HystrixCommandKey.Factory.asKey("test"));
+        System.out.println(circuitBreaker.isOpen());
         Map map = new HashMap();
         map.put("exception","服务异常，请等待");
         return map;
