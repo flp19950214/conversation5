@@ -1,5 +1,5 @@
 server:
-  port: 8283
+  port: 8290
 
 spring:
   application:
@@ -9,7 +9,7 @@ eureka:
   server:
     enable-self-preservation: true
   instance:
-    hostname: localhost
+    hostname: localhost2
   client:
     fetch-registry: false
     register-with-eureka: false
