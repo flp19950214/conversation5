@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: demo-eureka
+  security:
+    user:
+      name: admin
+      password: admin1
 
 eureka:
   server:
