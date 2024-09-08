@@ -13,9 +13,6 @@ public class 执行乘法方法 extends 功能抽象 {
     public static final String 乘数 ="乘数";
     public static final String 相乘的结果 ="相乘的结果";
 
-    @Autowired
-    异步_初始化记录内置功能属性 异步初始化类;
-
     @Override
     public void 初始化记录内置功能属性() {
         内置功能实体 obj = new 内置功能实体();

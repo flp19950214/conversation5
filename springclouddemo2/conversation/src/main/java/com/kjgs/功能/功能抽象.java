@@ -1,9 +1,12 @@
 package com.kjgs.功能;
 
 import com.kjgs.枚举.Cons;
+import com.kjgs.线程池.异步_初始化记录内置功能属性;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,8 +22,17 @@ public abstract class 功能抽象<T> implements 功能接口 {
     public String 当前逻辑句子;
     public static int 属性在所有对象中的下标 = 0;
 
+    @Autowired
+    public 异步_初始化记录内置功能属性 异步初始化类;
+
+    @PostConstruct
+    public void 初始化(){
+        初始化记录内置功能属性();
+    }
+
     public static String getClasName(){
-        return Thread.currentThread().getStackTrace()[1].getClassName();
+        String classPath = new Exception().getStackTrace()[1].getClassName();
+        return classPath.substring(classPath.lastIndexOf(".")+1);
     }
 
     public static void main(String[] args) {

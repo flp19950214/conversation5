@@ -1,15 +1,22 @@
 package com.kjgs.功能.内置功能;
 
 import com.kjgs.功能.功能抽象;
-import com.kjgs.执行逻辑;
+import com.kjgs.实体.内置功能实体;
+import com.kjgs.逻辑流程.执行逻辑;
 import org.bson.Document;
 import org.junit.Test;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class 执行添加对象方法 extends 功能抽象 {
     public static String 添加的属性 = "添加的属性";
     public static String 添加的属性值 = "添加的属性值";
-
+    @Override
+    public void 初始化记录内置功能属性() {
+        内置功能实体 obj = new 内置功能实体();
+        obj.set功能名(getClasName()).set参数名1(添加的属性).set参数名2(添加的属性值);
+        异步初始化类.初始化记录内置功能属性(obj);
+    }
     public void 功能(){
         String 添加的属性 = 获取最近的属性值(所有逻辑对象, this.添加的属性);
         String 添加的属性值 = 获取最近的属性值(所有逻辑对象, this.添加的属性值);

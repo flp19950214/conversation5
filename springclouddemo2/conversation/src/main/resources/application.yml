@@ -12,3 +12,7 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml    #配置mybatis扫描mapper文件xml的路径
+  type-aliases-package: com.kjgs.实体  #对应实体类路径

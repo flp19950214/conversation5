@@ -1,4 +1,4 @@
-package com.kjgs;
+package com.kjgs.逻辑流程;
 
 import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;

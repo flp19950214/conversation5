@@ -8,13 +8,13 @@ import com.kjgs.线程池.异步_初始化记录内置功能属性;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class 执行保存方法 extends 功能抽象 {
     public static final String 保存的对象 = "保存的对象";
     public static final String 保存的属性 = "保存的属性";
     public static final String 保存的属性值 = "保存的属性值";
-    @Autowired
-    异步_初始化记录内置功能属性 异步初始化类;
 
     @Override
     public void 初始化记录内置功能属性() {
