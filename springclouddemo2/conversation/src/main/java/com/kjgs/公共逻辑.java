@@ -1,7 +1,5 @@
 package com.kjgs;
 
-import com.kjgs.功能.功能对象;
-import com.kjgs.功能.功能抽象;
 import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
