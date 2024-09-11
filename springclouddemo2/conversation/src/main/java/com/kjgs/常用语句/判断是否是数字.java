@@ -5,10 +5,13 @@ import com.kjgs.实体.逻辑实体;
 import com.kjgs.常用语句.抽象.逻辑抽象;
 import com.kjgs.逻辑流程.执行逻辑;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class 判断是否是数字 extends 逻辑抽象 {
+    @Autowired
+    private 执行逻辑 执行逻辑;
     /**
      * 判断条件和判断结果要分开处理     */
     String 判断是否是数字 = "￥{查询这个词的类型}\n被判断的对象《是》￥{查询的结果}\n判断的对象《是》数字\n《执行判断等于方法》" +

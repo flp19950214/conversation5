@@ -4,6 +4,8 @@ import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -13,8 +15,10 @@ import java.util.List;
  *
  * 保存逻辑的存储方式：就和对象放一起
  */
+@Service
 public class 执行判断逻辑 {
-
+    @Autowired
+    private 执行逻辑 执行逻辑;
     //
     public static String dd= "查询的对象《是》￥{待处理的对象}\n查询的开始下标《是》1\n查询的结束下标《是》2\n《执行查询对象指定下标方法》"+
             "\n输出的内容《是》￥{查询的结果}\n《执行输出方法》";

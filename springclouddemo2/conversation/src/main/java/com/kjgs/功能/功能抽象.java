@@ -5,6 +5,7 @@ import com.kjgs.线程池.异步_初始化记录内置功能属性;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.text.DecimalFormat;
@@ -12,13 +13,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 public abstract class 功能抽象<T> implements 功能接口 {
     public List<Document> 所有逻辑对象;
-    public Document 当前动作对象;
-    public Document 当前动作;
     public String 动作;
-    public Document 当前逻辑句子对象;
     public String 当前逻辑句子;
     public static int 属性在所有对象中的下标 = 0;
 

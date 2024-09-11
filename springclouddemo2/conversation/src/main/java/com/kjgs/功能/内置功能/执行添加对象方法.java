@@ -5,12 +5,15 @@ import com.kjgs.实体.内置功能实体;
 import com.kjgs.逻辑流程.执行逻辑;
 import org.bson.Document;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class 执行添加对象方法 extends 功能抽象 {
     public static String 添加的属性 = "添加的属性";
     public static String 添加的属性值 = "添加的属性值";
+    @Autowired
+    private 执行逻辑 执行逻辑;
     @Override
     public void 初始化记录内置功能属性() {
         内置功能实体 obj = new 内置功能实体();

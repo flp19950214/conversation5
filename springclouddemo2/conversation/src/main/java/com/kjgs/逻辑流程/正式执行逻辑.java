@@ -5,6 +5,8 @@ import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * 最重要的是：
@@ -12,8 +14,12 @@ import org.junit.Test;
  *
  * 保存逻辑的存储方式：就和对象放一起
  */
+@Service
 public class 正式执行逻辑 {
-
+    @Autowired
+    private 执行逻辑 执行逻辑;
+    @Autowired
+    private 公共逻辑 公共逻辑;
     @Test
     public void test(){
         String sen = "如果";

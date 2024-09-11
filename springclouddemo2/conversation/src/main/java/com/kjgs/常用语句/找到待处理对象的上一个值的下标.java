@@ -7,10 +7,13 @@ import com.kjgs.逻辑流程.执行逻辑;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class 找到待处理对象的上一个值的下标 extends 逻辑抽象 {
+    @Autowired
+    private 执行逻辑 执行逻辑;
     /**
      * 判断条件和判断结果要分开处理     */
     public static final String 找到待处理对象的上一个值的下标 =

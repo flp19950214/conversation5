@@ -5,6 +5,7 @@ import com.kjgs.实体.内置功能实体;
 import com.kjgs.逻辑流程.执行逻辑;
 import org.bson.Document;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,9 @@ public class 执行查询集合指定下标方法 extends 功能抽象 {
     public static final String 查询的集合 = "查询的集合";
     public static final String 查询的下标 = "查询的下标";
     public static final String 查询的结果= "查询的结果";
+
+    @Autowired
+    private 执行逻辑 执行逻辑;
     @Override
     public void 初始化记录内置功能属性() {
         内置功能实体 obj = new 内置功能实体();

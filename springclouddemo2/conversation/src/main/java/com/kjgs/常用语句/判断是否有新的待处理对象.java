@@ -8,10 +8,13 @@ import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class 判断是否有新的待处理对象 extends 逻辑抽象 {
+    @Autowired
+    private 执行逻辑 执行逻辑;
     /**
      * 判断条件和判断结果要分开处理     */
     public static String 判断是否有新的待处理对象 = //下标和内容一样就不是新对象

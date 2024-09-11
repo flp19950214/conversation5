@@ -21,6 +21,7 @@ public class 是 extends 功能抽象 {
         Object vlaue2 = 获取最近的属性值value(所有逻辑对象, value, Object.class);
         document.put(key,vlaue2);
         所有逻辑对象.add(document);
+        System.out.println(所有逻辑对象);
     }
 
 }

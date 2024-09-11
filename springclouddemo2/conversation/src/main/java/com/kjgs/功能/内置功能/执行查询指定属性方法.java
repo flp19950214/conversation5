@@ -5,6 +5,7 @@ import com.kjgs.实体.内置功能实体;
 import com.kjgs.逻辑流程.执行逻辑;
 import org.bson.Document;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,10 @@ public class 执行查询指定属性方法 extends 功能抽象 {
     public static final String 执行查询指定属性方法 =
             "查询的属性《是》待处理的对象\n《执行查询指定属性方法》" +
                     "\n输出的内容《是》￥{查询的结果}\n《执行输出方法》";
+
+    @Autowired
+    private 执行逻辑 执行逻辑;
+
     @Override
     public void 初始化记录内置功能属性() {
         内置功能实体 obj = new 内置功能实体();

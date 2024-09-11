@@ -4,6 +4,8 @@ import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -13,7 +15,10 @@ import java.util.List;
  *
  * 保存逻辑的存储方式：就和对象放一起
  */
+@Service
 public class 执行当前词语相关逻辑 {
+    @Autowired
+    private 执行逻辑 执行逻辑;
 
     @Test
     public void test2(){
@@ -26,7 +31,7 @@ public class 执行当前词语相关逻辑 {
     public static void method() {
     }
 
-    public static void method(String 待处理词语){
+    public void method(String 待处理词语){
         Document 查询逻辑条件 = new Document();
         查询逻辑条件.put(Cons.对象,待处理词语);
         Document 查询逻辑条件2 = new Document();
@@ -35,7 +40,7 @@ public class 执行当前词语相关逻辑 {
         List<Document> select = MongoDao.select(查询逻辑条件);
         for (int j = 0; j <select.size() ; j++) {
             String 判断条件1的正向结果 = select.get(j).getString(Cons.处理逻辑的判断条件);
-            执行逻辑.执行逻辑(判断条件1的正向结果, null);
+            执行逻辑.执行逻辑(判断条件1的正向结果, "");
         }
     }
 }

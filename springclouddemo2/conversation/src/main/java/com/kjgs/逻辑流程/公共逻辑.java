@@ -4,11 +4,16 @@ import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class 公共逻辑 {
     private  final static String 公共逻辑 = "公共逻辑";
+    @Autowired
+    private 执行逻辑 执行逻辑;
     @Test
     public void 公共逻辑test(){
         Document 待处理对象所在句子 = new Document();
@@ -20,7 +25,7 @@ public class 公共逻辑 {
         执行所有公共逻辑();
     }
 
-    public static void 执行所有公共逻辑(){
+    public void 执行所有公共逻辑(){
         //执行所有公共逻辑
         List<Document> select = MongoDao.select(Cons.对象, 公共逻辑);
         for(Document document : select){

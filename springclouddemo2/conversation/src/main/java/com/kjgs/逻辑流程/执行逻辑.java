@@ -9,6 +9,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.junit.Test;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +19,7 @@ import java.util.List;
  * 问题点：逻辑足够多时，能否生成新逻辑
  *
  */
+@Service
 public class 执行逻辑 {
     @Test
     public void test1(){
@@ -98,11 +100,11 @@ public class 执行逻辑 {
      * 判断条件和判断结果要分开处理     */
     @Test
     public void test(){
-        执行逻辑.执行逻辑(查询对象的主键, "23");
+        执行逻辑(查询对象的主键, "23");
     }
-    public static List<Document> 所有逻辑对象 = new ArrayList<>();
+    public List<Document> 所有逻辑对象 = new ArrayList<>();
 
-    public static void  执行逻辑(String 逻辑, String 待处理的词语){
+    public  void  执行逻辑(String 逻辑, String 待处理的词语){
         Document 待处理的对象值 = new Document();
         待处理的对象值.put(Cons.待处理的对象, 待处理的词语);
         所有逻辑对象.add(待处理的对象值);
@@ -113,29 +115,34 @@ public class 执行逻辑 {
     /**
      * @param document 执行逻辑对象
      */
-    public static void 执行逻辑(Document document) {
+    public void 执行逻辑(Document document) {
         //逻辑有判断条件就先执行判断条件，没有直接执行处理逻辑
         if(ObjectUtils.isEmpty(document.get(Cons.处理逻辑的判断条件))){
             //直接执行结果
             if(ObjectUtils.isNotEmpty(document.get(Cons.处理逻辑))){
-                执行逻辑.执行逻辑(document.getString(Cons.处理逻辑));
+                执行逻辑(document.getString(Cons.处理逻辑));
             }
         }else{
             //判断条件的处理结果是true才执行处理逻辑
-            执行逻辑.执行逻辑(document.getString(Cons.处理逻辑的判断条件));
+            执行逻辑(document.getString(Cons.处理逻辑的判断条件));
             功能对象 功能对象 = new 功能对象();
-            String 判断的结果 = 功能对象.获取最近的属性值(执行逻辑.所有逻辑对象, Cons.判断的结果);
+            String 判断的结果 = 功能对象.获取最近的属性值(所有逻辑对象, Cons.判断的结果);
             if(Boolean.parseBoolean(判断的结果)){
                 //直接执行结果
                 if(ObjectUtils.isNotEmpty(document.get(Cons.处理逻辑))){
-                    执行逻辑.执行逻辑(document.getString(Cons.处理逻辑));
+                    执行逻辑(document.getString(Cons.处理逻辑));
                 }
             }
         }
     }
 
 
-    public static void 执行逻辑(String 逻辑){
+    public void 执行逻辑(String 逻辑){
+        执行逻辑(逻辑,所有逻辑对象);
+    }
+
+
+    public void 执行逻辑(String 逻辑,List<Document> 所有逻辑对象){
         //分割逻辑
         List<String> 逻辑集合 = Arrays.asList(逻辑.split("\n"));
         //提取动作
@@ -165,7 +172,7 @@ public class 执行逻辑 {
         查询并迭代逻辑("#{查询这个词的类型}");
     }
 
-    private static void 查询并迭代逻辑(String 需迭代逻辑) {
+    private void 查询并迭代逻辑(String 需迭代逻辑) {
         Document document = new Document();
         document.put(Cons.对象, 需迭代逻辑);
         List<Document> select = MongoDao.select(document);
@@ -175,7 +182,7 @@ public class 执行逻辑 {
         for (Document 逻辑对象 : select) {
             String 逻辑 = 逻辑对象.getString(Cons.处理逻辑);
             if (StringUtils.isEmpty(逻辑)) continue;
-            执行逻辑.执行逻辑(逻辑);
+            执行逻辑(逻辑);
         }
     }
 }

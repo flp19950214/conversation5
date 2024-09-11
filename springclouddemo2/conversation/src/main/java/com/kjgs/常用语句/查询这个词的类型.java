@@ -8,10 +8,14 @@ import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class 查询这个词的类型 extends 逻辑抽象 {
+
+    @Autowired
+    private 执行逻辑 执行逻辑;
     /**
      * 判断条件和判断结果要分开处理     */
     String 查询这个词的类型 = "查询的属性《是》对象\n查询的属性值《是》2\n《执行查询方法》" +

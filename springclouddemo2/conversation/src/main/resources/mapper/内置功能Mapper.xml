@@ -8,4 +8,5 @@
         select * from 内置功能表 where 功能名 = #{功能名}
     </select>
 
+
 </mapper>
