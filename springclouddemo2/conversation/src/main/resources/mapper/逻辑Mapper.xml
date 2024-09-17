@@ -8,7 +8,7 @@
         select * from 逻辑表 where 逻辑名 = #{逻辑名}
     </select>
     <select id="根据多个逻辑名查询List" resultType="String"> <!--传参是对象的话parameterType就写那个对象的路径,这边是int的type-->
-        select 逻辑 from 逻辑表
+        select distinct 逻辑 from 逻辑表
         <where>
             逻辑名 in
             <foreach collection="逻辑名集合" item="item" open="(" close=")" separator=",">

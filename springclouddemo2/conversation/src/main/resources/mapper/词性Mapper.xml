@@ -7,6 +7,8 @@
     <select id="查询词性" resultType="词性实体"> <!--传参是对象的话parameterType就写那个对象的路径,这边是int的type-->
         select * from 词性表  where position(词语 in #{句子});
     </select>
-
+    <select id="查询词语词性" resultType="词性实体"> <!--传参是对象的话parameterType就写那个对象的路径,这边是int的type-->
+        select 词性 from 词性表  where  词语 = #{词语}
+    </select>
 
 </mapper>
