@@ -4,7 +4,7 @@ import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import org.bson.Document;
 
-public class 是 extends 功能抽象 {
+public class 作为 extends 功能抽象 {
     @Override
     public void 初始化记录内置功能属性() {
         内置功能实体 obj = new 内置功能实体();
@@ -18,8 +18,8 @@ public class 是 extends 功能抽象 {
         Object key2 = 获取最近的属性值value(所有逻辑对象, key, Object.class);
         // 找出真正的结果
         String value = 当前逻辑句子.substring(获取当前动作对象结束下标());
-        Object vlaue2 = 获取最近的属性值value(所有逻辑对象, value, Object.class);
-        document.put(key2.toString(),vlaue2);
+        Object value2 = 获取最近的属性值value(所有逻辑对象, value, Object.class);
+        document.put(value2.toString(),key2);
         所有逻辑对象.add(document);
     }
 

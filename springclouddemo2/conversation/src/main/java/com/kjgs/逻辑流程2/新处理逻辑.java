@@ -98,13 +98,6 @@ public class 新处理逻辑 {
             process();
         }
     }
-//    public void process(String 句子) {
-//        int 处理位置temp = 处理位置;
-//        Map<String, List<String>> 获取句子中所有词性 = 获取句子中所有词性(句子);
-//        组装句子中由词性组成的句子(句子, 获取句子中所有词性);
-//        Set<String> 所有逻辑集合 = 根据词性句子找到对应处理逻辑();
-//        执行词性处理逻辑(所有逻辑集合);
-//    }
 
     static ThreadLocal<List<Document>> threadLocal = new ThreadLocal<>();
 
