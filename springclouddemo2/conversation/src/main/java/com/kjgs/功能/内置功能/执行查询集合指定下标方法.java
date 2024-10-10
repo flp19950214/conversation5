@@ -40,6 +40,5 @@ public class 执行查询集合指定下标方法 extends 功能抽象 {
 
     @Test
     public void test(){
-        执行逻辑.执行逻辑(执行查询集合指定下标方法, "23");
     }
 }

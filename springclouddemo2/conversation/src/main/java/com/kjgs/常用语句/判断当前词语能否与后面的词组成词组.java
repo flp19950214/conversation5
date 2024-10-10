@@ -29,7 +29,6 @@ public class 判断当前词语能否与后面的词组成词组 extends 逻辑�
         Document document2 = new Document();
         document2.put("待处理对象在句子中的下标", 0);
         执行逻辑.所有逻辑对象.add(document2);
-        执行逻辑.执行逻辑(判断当前词语能否与后面的词组成词组, "如果");
     }
 
     @Override

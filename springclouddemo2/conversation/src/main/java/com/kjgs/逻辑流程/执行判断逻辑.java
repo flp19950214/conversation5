@@ -34,7 +34,6 @@ public class 执行判断逻辑 {
             查询逻辑条件.put(Cons.处理逻辑, 查询逻辑条件2);
             List<Document> select = MongoDao.select(查询逻辑条件);
             for (int j = 0; j <select.size() ; j++) {
-                执行逻辑.执行逻辑(select.get(j));
             }
         }
     }

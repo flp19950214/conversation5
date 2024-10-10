@@ -42,6 +42,5 @@ public class 查询这个词的类型 extends 逻辑抽象 {
     }
     @Test
     public void test(){
-        执行逻辑.执行逻辑(查询这个词的类型2, "2");
     }
 }

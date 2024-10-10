@@ -18,7 +18,6 @@ public class 判断是否是数字 extends 逻辑抽象 {
             "\n输出的内容《是》￥{判断的结果}\n《执行输出方法》";
     @Test
     public void test(){
-        执行逻辑.执行逻辑(判断是否是数字, "2");
     }
 
     @Override

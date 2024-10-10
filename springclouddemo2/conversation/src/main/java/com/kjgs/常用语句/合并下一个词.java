@@ -31,7 +31,6 @@ public class 合并下一个词 extends 逻辑抽象 {
         Document document2 = new Document();
         document2.put("待处理对象在句子中的下标", 0);
         执行逻辑.所有逻辑对象.add(document2);
-        执行逻辑.执行逻辑(合并下一个词, "如");
     }
     @Override
     public void 初始化记录常用逻辑() {

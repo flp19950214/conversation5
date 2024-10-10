@@ -102,6 +102,8 @@ public interface Cons {
     public String 值="值";
     public String 处理逻辑="处理逻辑";
 
+    public String 分号="；";
+
     //逻辑
     public String 找待处理对象的处理逻辑 = "找待处理对象的处理逻辑";
     public ObjectId 找待处理对象的处理逻辑_id = new ObjectId("101");

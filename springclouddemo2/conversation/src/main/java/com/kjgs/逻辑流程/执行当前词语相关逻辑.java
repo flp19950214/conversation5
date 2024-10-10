@@ -40,7 +40,6 @@ public class 执行当前词语相关逻辑 {
         List<Document> select = MongoDao.select(查询逻辑条件);
         for (int j = 0; j <select.size() ; j++) {
             String 判断条件1的正向结果 = select.get(j).getString(Cons.处理逻辑的判断条件);
-            执行逻辑.执行逻辑(判断条件1的正向结果, "");
         }
     }
 }

@@ -18,8 +18,6 @@ import org.springframework.stereotype.Service;
 public class 正式执行逻辑 {
     @Autowired
     private 执行逻辑 执行逻辑;
-    @Autowired
-    private 公共逻辑 公共逻辑;
     @Test
     public void test(){
         String sen = "如果";
@@ -52,7 +50,6 @@ public class 正式执行逻辑 {
             }else {
                 temp待处理的对象 = 待处理的对象;
             }
-            公共逻辑.执行所有公共逻辑();
             执行当前词语相关逻辑.method();
         }while (true);
     }
