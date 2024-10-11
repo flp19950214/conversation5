@@ -31,5 +31,8 @@ public class 执行过滤指定范围下标方法 extends 功能抽象 {
         Document  过滤的结果对象 =  new Document();
         过滤的结果对象.put(this.过滤的结果, 过滤的结果);
         所有逻辑对象.add(过滤的结果对象);
+
+        动作结果.setLength(0);
+        动作结果.append(过滤的结果);
     }
 }

@@ -36,6 +36,9 @@ public class 执行查询指定属性方法 extends 功能抽象 {
         查询的结果对象.put(this.查询的结果, 查询的结果);
         查询的结果对象.put(this.查询指定属性的结果, 查询的结果);
         所有逻辑对象.add(查询的结果对象);
+
+        动作结果.setLength(0);
+        动作结果.append(查询的结果);
     }
 
     @Test

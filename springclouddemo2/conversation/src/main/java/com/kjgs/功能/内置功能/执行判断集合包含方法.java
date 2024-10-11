@@ -32,5 +32,8 @@ public class 执行判断集合包含方法 extends 功能抽象 {
         Document 判断的结果的对象 = new Document();
         判断的结果的对象.put(this.判断的结果, 判断的结果);
         所有逻辑对象.add(判断的结果的对象);
+
+        动作结果.setLength(0);
+        动作结果.append(判断的结果);
     }
 }

@@ -29,6 +29,9 @@ public class 执行分割方法 extends 功能抽象 {
         Document 分割的结果的对象 = new Document();
         分割的结果的对象.put(this.分割的结果, 分割的结果);
         所有逻辑对象.add(分割的结果的对象);
+
+        动作结果.setLength(0);
+        动作结果.append(分割的结果);
     }
 
 }

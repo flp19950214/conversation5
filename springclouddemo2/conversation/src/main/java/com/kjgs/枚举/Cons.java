@@ -39,6 +39,7 @@ public interface Cons {
     public String 待处理的对象="待处理的对象";
     public String 待处理的对象的下标="待处理的对象的下标";
     public String 待处理对象所在句子="待处理对象所在句子";
+    public String 输入的句子="输入的句子";
 
 
     public String 包含="包含";

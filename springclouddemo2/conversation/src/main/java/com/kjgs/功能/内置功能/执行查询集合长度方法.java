@@ -30,8 +30,12 @@ public class 执行查询集合长度方法 extends 功能抽象 {
     public void 功能() {
         List 查询的集合 = (List) 获取最近的属性值(所有逻辑对象, this.查询的集合,List.class);
         Document  查询的结果对象 =  new Document();
-        查询的结果对象.put(this.查询的结果, 查询的集合.size());
+        Object 查询的结果 = 查询的集合.size();
+        查询的结果对象.put(this.查询的结果, 查询的结果);
         所有逻辑对象.add(查询的结果对象);
+
+        动作结果.setLength(0);
+        动作结果.append(查询的结果);
     }
 
     @Test

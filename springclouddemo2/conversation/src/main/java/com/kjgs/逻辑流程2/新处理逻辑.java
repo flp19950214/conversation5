@@ -122,7 +122,7 @@ public class 新处理逻辑 {
     }
 
 
-    public void 执行逻辑(逻辑实体 逻辑Obj) {
+    public String 执行逻辑(逻辑实体 逻辑Obj) {
         //分割逻辑
         List<String> 逻辑集合 = Arrays.asList(逻辑Obj.逻辑.split(Cons.分号));
         StringBuffer 动作结果 = new StringBuffer();
@@ -150,6 +150,7 @@ public class 新处理逻辑 {
             相乘的结果的对象.put(逻辑Obj.逻辑名, 动作结果.toString());
             执行逻辑.所有逻辑对象.add(相乘的结果的对象);
         }
+        return 动作结果.toString();
     }
 
     @Test
