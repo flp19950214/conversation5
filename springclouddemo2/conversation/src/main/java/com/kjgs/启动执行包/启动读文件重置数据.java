@@ -21,7 +21,8 @@ public class 启动读文件重置数据 implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        String path = "classpath:逻辑数据.sql";
+        jdbcTemplate.execute("delete from `conversation`.`逻辑表`;");
+        String path = "classpath:插入逻辑.sql";
         Resource resource  = resourceLoader.getResource(path);
         try(BufferedReader br =new BufferedReader(new InputStreamReader(resource.getInputStream()))) {
             String line;
@@ -30,7 +31,8 @@ public class 启动读文件重置数据 implements ApplicationRunner {
                 if(line.startsWith("--")){
                     continue;
                 }
-                sb.append(line.trim());
+                sb.append("INSERT INTO `conversation`.`逻辑表`(`逻辑名`, `逻辑`) VALUES ")
+                        .append(line.trim());
                 // 处理可能的多行语句
                 if (line.endsWith(";")) {
                     String sql = sb.toString();
