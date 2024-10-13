@@ -15,7 +15,9 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.junit.Test;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,9 @@ public class 新处理逻辑 {
 
     @Autowired
     private 功能对象 功能对象Impl;
+    @Autowired
+    private ApplicationContext context;
+
 
     /**
      * 基于mysql
@@ -137,9 +142,9 @@ public class 新处理逻辑 {
             for (String 动作 : 动作集合){
                 //执行动作
                 try {
-                    功能抽象 功能抽象对象 = (功能抽象) Class.forName("com.kjgs.功能.内置功能." + 动作).newInstance();
+                    功能抽象 功能抽象对象 = (功能抽象)context.getBean(Class.forName("com.kjgs.功能.内置功能." + 动作));
                     功能抽象对象.执行流程(执行逻辑.所有逻辑对象, 当前逻辑句子, 动作, 动作结果);
-                } catch (ClassNotFoundException e) {
+                } catch (NoSuchBeanDefinitionException | ClassNotFoundException e) {
                     //不是内置动作，那么就迭代到数据库获取逻辑处理
                     查询并迭代逻辑(动作);
                 } catch (Exception e) {

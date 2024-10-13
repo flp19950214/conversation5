@@ -3,7 +3,9 @@ package com.kjgs.功能.内置功能;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import org.bson.Document;
+import org.springframework.stereotype.Service;
 
+@Service
 public class 作为 extends 功能抽象 {
     @Override
     public void 初始化记录内置功能属性() {
