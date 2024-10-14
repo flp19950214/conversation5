@@ -76,11 +76,11 @@ public class 新处理逻辑 {
         组装句子中由词性组成的句子Impl.组装句子中由词性组成的句子(句子, 词语词性集合);
     }
 
-    public Set<逻辑实体> 根据词性句子找到对应处理逻辑() {
+    public List<逻辑实体> 根据词性句子找到对应处理逻辑() {
         if (CollectionUtils.isNotEmpty(组装句子中由词性组成的句子Service.res)) {
             return 逻辑MapperImpl.根据多个逻辑名查询List(组装句子中由词性组成的句子Service.res);
         } else {
-            return new HashSet<>();
+            return new ArrayList<>();
         }
     }
 
@@ -98,8 +98,8 @@ public class 新处理逻辑 {
         执行逻辑.所有逻辑对象.add(待处理的对象的下标);
 
         String 词语 = 句子.substring(处理位置, 处理位置 + 1);
-        Set<String> 词性set = 词性MapperImpl.查询词语词性(词语);
-        Set<逻辑实体> 逻辑set = 逻辑MapperImpl.根据多个逻辑名查询List(词性set);
+        List<String> 词性set = 词性MapperImpl.查询词语词性(词语);
+        List<逻辑实体> 逻辑set = 逻辑MapperImpl.根据多个逻辑名查询List(词性set);
         执行词性处理逻辑(逻辑set);
         // 递归处理，前面的词带出后面的词，紧接着上一个处理的位置，处理后后序的词
         // 怎么看当前处理到哪个位置了呢？  全局静态变量
@@ -110,7 +110,7 @@ public class 新处理逻辑 {
 
     static ThreadLocal<List<Document>> threadLocal = new ThreadLocal<>();
 
-    public void 执行词性处理逻辑(Set<逻辑实体> 所有逻辑集合) {
+    public void 执行词性处理逻辑(List<逻辑实体> 所有逻辑集合) {
 //        threadLocal.set(执行逻辑Impl.所有逻辑对象);
 //        for (String 逻辑 : 所有逻辑集合) {
 //            new Thread(() -> {
@@ -127,10 +127,9 @@ public class 新处理逻辑 {
     }
 
 
-    public String 执行逻辑(逻辑实体 逻辑Obj) {
+    public Object 执行逻辑(逻辑实体 逻辑Obj) {
         //分割逻辑
         List<String> 逻辑集合 = Arrays.asList(逻辑Obj.逻辑.split(Cons.分号));
-        StringBuffer 动作结果 = new StringBuffer();
         //提取动作
         for (int i = 0; i < 逻辑集合.size(); i++) {
             String 当前逻辑句子 = 逻辑集合.get(i);
@@ -143,7 +142,7 @@ public class 新处理逻辑 {
                 //执行动作
                 try {
                     功能抽象 功能抽象对象 = (功能抽象)context.getBean(Class.forName("com.kjgs.功能.内置功能." + 动作));
-                    功能抽象对象.执行流程(执行逻辑.所有逻辑对象, 当前逻辑句子, 动作, 动作结果);
+                   功能抽象对象.执行流程(执行逻辑.所有逻辑对象, 当前逻辑句子, 动作);
                 } catch (NoSuchBeanDefinitionException | ClassNotFoundException e) {
                     //不是内置动作，那么就迭代到数据库获取逻辑处理
                     查询并迭代逻辑(动作);
@@ -152,10 +151,10 @@ public class 新处理逻辑 {
                 }
             }
             Document 相乘的结果的对象 = new Document();
-            相乘的结果的对象.put(逻辑Obj.逻辑名, 动作结果.toString());
+            相乘的结果的对象.put(逻辑Obj.逻辑名, 功能抽象.动作结果);
             执行逻辑.所有逻辑对象.add(相乘的结果的对象);
         }
-        return 动作结果.toString();
+        return 功能抽象.动作结果;
     }
 
     @Test

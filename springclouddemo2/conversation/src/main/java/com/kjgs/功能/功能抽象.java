@@ -15,7 +15,7 @@ import java.util.List;
 public abstract class 功能抽象<T> implements 功能接口 {
     public List<Document> 所有逻辑对象;
     public String 动作;
-    public StringBuffer 动作结果;
+    public static Object 动作结果;
     public String 当前逻辑句子;
     public static int 属性在所有对象中的下标 = 0;
 
@@ -49,11 +49,10 @@ public abstract class 功能抽象<T> implements 功能接口 {
         sb.append(Cons.左尖括号).append(动作名).append(Cons.右尖括号);
         return 当前逻辑句子.indexOf(sb.toString()) + sb.length();
     }
-    public void 执行流程(List<Document> 所有逻辑对象, String 当前逻辑句子, String 动作,StringBuffer 动作结果) {
+    public void 执行流程(List<Document> 所有逻辑对象, String 当前逻辑句子, String 动作) {
         this.所有逻辑对象 = 所有逻辑对象;
         this.动作 = 动作;
         this.当前逻辑句子 = 当前逻辑句子;
-        this.动作结果=动作结果;
         功能();
     }
 

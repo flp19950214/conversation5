@@ -37,14 +37,14 @@ public class TalkController {
     }
 
     @PostMapping("/testLogic")
-    public String testLogic(@RequestBody JSONObject input) {
+    public Object testLogic(@RequestBody JSONObject input) {
         String 句子 = input.getString("句子");
         String 逻辑名 = input.getString("逻辑名");
         Document 输入的句子 = new Document();
         输入的句子.put(Cons.输入的句子, 句子);
         执行逻辑Impl.所有逻辑对象.add(输入的句子);
         逻辑实体 逻辑Obj = 逻辑MapperImpl.queryForObject(逻辑名);
-        String result = 新处理逻辑Impl.执行逻辑(逻辑Obj);
+        Object result = 新处理逻辑Impl.执行逻辑(逻辑Obj);
         return result;
     }
 }

@@ -27,7 +27,6 @@ public class 执行减法方法 extends 功能抽象 {
         相减的结果的对象.put(this.相减的结果, result);
         所有逻辑对象.add(相减的结果的对象);
 
-        动作结果.setLength(0);
-        动作结果.append(result);
+        动作结果=result;
     }
 }

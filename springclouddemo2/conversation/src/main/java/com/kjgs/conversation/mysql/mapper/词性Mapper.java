@@ -9,5 +9,5 @@ import java.util.Set;
 @Repository
 public interface 词性Mapper {
     List<词性实体> 查询词性(String 句子);
-    Set<String> 查询词语词性(String 词语);
+    List<String> 查询词语词性(String 词语);
 }

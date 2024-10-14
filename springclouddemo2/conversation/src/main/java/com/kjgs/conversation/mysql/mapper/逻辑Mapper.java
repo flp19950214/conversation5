@@ -9,5 +9,5 @@ import java.util.Set;
 @Repository
 public interface 逻辑Mapper {
     逻辑实体 queryForObject(String 逻辑名);
-    Set<逻辑实体> 根据多个逻辑名查询List(Set<String> 逻辑名集合);
+    List<逻辑实体> 根据多个逻辑名查询List(List<String> 逻辑名集合);
 }

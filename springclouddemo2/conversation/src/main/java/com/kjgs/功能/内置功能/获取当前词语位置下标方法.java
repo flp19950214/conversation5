@@ -18,7 +18,6 @@ public class 获取当前词语位置下标方法 extends 功能抽象 {
 
     @Override
     public void 功能() {
-       动作结果.setLength(0);
-       动作结果.append(静态变量.处理位置);
+       动作结果=静态变量.处理位置;
     }
 }

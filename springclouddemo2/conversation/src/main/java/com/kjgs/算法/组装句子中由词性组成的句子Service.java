@@ -29,7 +29,7 @@ public class 组装句子中由词性组成的句子Service {
         Set<String> result = new HashSet<>();
         sub(句子, 词语词性集合, 0,  result);
     }
-    public static Set<String> res = new HashSet<>();
+    public static List<String> res = new ArrayList<>();
     public void sub(String 句子, Map<String, List<String>> 词语词性集合, int index,Set<String> 词性句子集合) {
         if(index>=句子.length()){
             res.addAll(词性句子集合);

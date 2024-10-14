@@ -24,11 +24,10 @@ public class 执行查询对象指定下标方法 extends 功能抽象 {
         int 查询的开始下标 = Integer.parseInt(获取最近的属性值(所有逻辑对象, this.查询的开始下标));
         int 查询的结束下标 = Integer.parseInt(获取最近的属性值(所有逻辑对象, this.查询的结束下标));
         Document 查询的结果对象 =  new Document();
-        String 查询的结果 =  查询的对象.substring(查询的开始下标, 查询的结束下标);
-        查询的结果对象.put(this.查询的结果,查询的结果);
+        String result =  查询的对象.substring(查询的开始下标, 查询的结束下标);
+        查询的结果对象.put(this.查询的结果,result);
         所有逻辑对象.add(查询的结果对象);
 
-        动作结果.setLength(0);
-        动作结果.append(查询的结果);
+        动作结果=result;
     }
 }

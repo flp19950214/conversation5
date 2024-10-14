@@ -29,7 +29,6 @@ public class 执行乘法方法 extends 功能抽象 {
         相乘的结果的对象.put(this.相乘的结果,result);
         所有逻辑对象.add(相乘的结果的对象);
 
-        动作结果.setLength(0);
-        动作结果.append(result);
+        动作结果=result;
     }
 }
