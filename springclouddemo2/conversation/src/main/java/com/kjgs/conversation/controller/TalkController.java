@@ -37,6 +37,10 @@ public class TalkController {
 
     @PostMapping("/testLogic")
     public Object testLogic(@RequestBody JSONObject input) {
+        Document 是否执行判断结果 = new Document();
+        是否执行判断结果.put(Cons.是否执行判断结果, "true");
+        执行逻辑Impl.所有逻辑对象.add(是否执行判断结果);
+
         String 句子 = input.getString("句子");
         String 逻辑名 = input.getString("逻辑名");
 

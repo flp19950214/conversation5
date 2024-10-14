@@ -42,7 +42,7 @@ public interface Cons {
     public String 输入的句子="输入的句子";
     public String 当前处理的词语="当前处理的词语";
     public String 当前处理的词语位置="当前处理的词语位置";
-    public String 是否执行当前动作="是否执行当前动作";
+    public String 是否执行判断结果="是否执行判断结果";
 
 
     public String 包含="包含";

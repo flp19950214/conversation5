@@ -44,6 +44,9 @@ public class 新处理逻辑 {
     @Autowired
     private ApplicationContext context;
 
+    @Autowired
+    private 执行逻辑 执行逻辑Impl;
+
 
     /**
      * 基于mysql
@@ -105,9 +108,12 @@ public class 新处理逻辑 {
 //        threadLocal.set(执行逻辑Impl.所有逻辑对象);
 
         for (逻辑实体 逻辑 : 所有逻辑集合) {
-            new Thread(() -> {
-                执行逻辑(逻辑);
-            }).start();
+//            new Thread(() -> {
+            Document 是否执行判断结果 = new Document();
+            是否执行判断结果.put(Cons.是否执行判断结果, "true");
+            执行逻辑Impl.所有逻辑对象.add(是否执行判断结果);
+            执行逻辑(逻辑);
+//            }).start();
         }
     }
 
@@ -123,14 +129,14 @@ public class 新处理逻辑 {
             if (ArrayUtils.isEmpty(动作集合)) {
                 continue;
             }
-            for (String 动作 : 动作集合){
+            for (String 动作 : 动作集合) {
                 //执行动作
                 try {
-                    String 是否执行 = 功能对象Impl.获取最近的属性值(执行逻辑.所有逻辑对象, Cons.是否执行当前动作);
-                    if(StringUtils.equals(是否执行, "false")){
+                    String 是否执行 = 功能对象Impl.获取最近的属性值(执行逻辑.所有逻辑对象, Cons.是否执行判断结果);
+                    if (StringUtils.equals(是否执行, "false")) {
                         continue;
                     }
-                    功能抽象 功能抽象对象 = (功能抽象)context.getBean(Class.forName("com.kjgs.功能.内置功能." + 动作));
+                    功能抽象 功能抽象对象 = (功能抽象) context.getBean(Class.forName("com.kjgs.功能.内置功能." + 动作));
                     功能抽象对象.执行流程(执行逻辑.所有逻辑对象, 当前逻辑句子, 动作);
                 } catch (NoSuchBeanDefinitionException | ClassNotFoundException e) {
                     //不是内置动作，那么就迭代到数据库获取逻辑处理
