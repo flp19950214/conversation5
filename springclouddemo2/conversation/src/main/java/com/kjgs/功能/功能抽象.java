@@ -17,6 +17,7 @@ public abstract class 功能抽象<T> implements 功能接口 {
     public String 动作;
     public static Object 动作结果;
     public String 当前逻辑句子;
+    public boolean 是否执行当前逻辑=true;
     public static int 属性在所有对象中的下标 = 0;
 
     @Autowired
@@ -53,7 +54,9 @@ public abstract class 功能抽象<T> implements 功能接口 {
         this.所有逻辑对象 = 所有逻辑对象;
         this.动作 = 动作;
         this.当前逻辑句子 = 当前逻辑句子;
-        功能();
+        if(是否执行当前逻辑){
+            功能();
+        }
     }
 
     public String 获取最近的属性值(List<Document> list, String key){

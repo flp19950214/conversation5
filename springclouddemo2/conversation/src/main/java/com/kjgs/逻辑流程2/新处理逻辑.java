@@ -10,6 +10,7 @@ import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
 import com.kjgs.算法.组装句子中由词性组成的句子Service;
 import com.kjgs.逻辑流程.执行逻辑;
+import com.kjgs.静态变量;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -84,28 +85,12 @@ public class 新处理逻辑 {
         }
     }
 
-    static int 处理位置 = 0;
 
     public void process() {
-        String 句子 = 功能对象Impl.获取最近的属性值(执行逻辑.所有逻辑对象, Cons.待处理对象所在句子);
-        if (处理位置 >= 句子.length()) {
-            return;
-        }
-        int 处理位置temp = 处理位置;
-
-        Document 待处理的对象的下标 = new Document();
-        待处理的对象的下标.put(Cons.待处理的对象的下标, 1);
-        执行逻辑.所有逻辑对象.add(待处理的对象的下标);
-
-        String 词语 = 句子.substring(处理位置, 处理位置 + 1);
+        String 词语 = 功能对象Impl.获取最近的属性值(执行逻辑.所有逻辑对象, Cons.当前处理的词语);
         List<String> 词性set = 词性MapperImpl.查询词语词性(词语);
         List<逻辑实体> 逻辑set = 逻辑MapperImpl.根据多个逻辑名查询List(词性set);
         执行词性处理逻辑(逻辑set);
-        // 递归处理，前面的词带出后面的词，紧接着上一个处理的位置，处理后后序的词
-        // 怎么看当前处理到哪个位置了呢？  全局静态变量
-        if (处理位置temp != 处理位置) {
-            process();
-        }
     }
 
     static ThreadLocal<List<Document>> threadLocal = new ThreadLocal<>();
@@ -141,8 +126,12 @@ public class 新处理逻辑 {
             for (String 动作 : 动作集合){
                 //执行动作
                 try {
+                    String 是否执行 = 功能对象Impl.获取最近的属性值(执行逻辑.所有逻辑对象, Cons.是否执行当前动作);
+                    if(StringUtils.equals(是否执行, "false")){
+                        continue;
+                    }
                     功能抽象 功能抽象对象 = (功能抽象)context.getBean(Class.forName("com.kjgs.功能.内置功能." + 动作));
-                   功能抽象对象.执行流程(执行逻辑.所有逻辑对象, 当前逻辑句子, 动作);
+                    功能抽象对象.执行流程(执行逻辑.所有逻辑对象, 当前逻辑句子, 动作);
                 } catch (NoSuchBeanDefinitionException | ClassNotFoundException e) {
                     //不是内置动作，那么就迭代到数据库获取逻辑处理
                     查询并迭代逻辑(动作);

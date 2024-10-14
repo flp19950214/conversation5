@@ -2,7 +2,6 @@ package com.kjgs.conversation.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.kjgs.conversation.mysql.mapper.逻辑Mapper;
-import com.kjgs.功能.功能对象;
 import com.kjgs.实体.逻辑实体;
 import com.kjgs.枚举.Cons;
 import com.kjgs.逻辑流程.执行逻辑;
@@ -40,9 +39,19 @@ public class TalkController {
     public Object testLogic(@RequestBody JSONObject input) {
         String 句子 = input.getString("句子");
         String 逻辑名 = input.getString("逻辑名");
+
         Document 输入的句子 = new Document();
         输入的句子.put(Cons.输入的句子, 句子);
         执行逻辑Impl.所有逻辑对象.add(输入的句子);
+        int 处理位置 = 0;
+        Document 当前处理的词语 = new Document();
+        输入的句子.put(Cons.当前处理的词语, 句子.substring(处理位置, 处理位置+1));
+        执行逻辑Impl.所有逻辑对象.add(当前处理的词语);
+
+        Document 当前处理的词语位置 = new Document();
+        输入的句子.put(Cons.当前处理的词语位置, 处理位置);
+        执行逻辑Impl.所有逻辑对象.add(当前处理的词语位置);
+
         逻辑实体 逻辑Obj = 逻辑MapperImpl.queryForObject(逻辑名);
         Object result = 新处理逻辑Impl.执行逻辑(逻辑Obj);
         return result;
