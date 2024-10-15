@@ -141,4 +141,18 @@ public abstract class 功能抽象<T> implements 功能接口 {
         return null;
     }
 
+    public static Document 获取最近的对象(List<Document> list, String key,String key2){
+        for(int i=list.size()-1; i>=0;i--){
+            Document document = list.get(i);
+            if(document.containsKey(key)){
+                if(StringUtils.isNotEmpty(key2)){
+                    if(document.containsKey(key2)){
+                        return document;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
 }

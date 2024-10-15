@@ -43,6 +43,9 @@ public class TalkController {
         Document 输入的句子 = new Document();
         输入的句子.put(Cons.输入的句子, 句子);
         执行逻辑Impl.所有逻辑对象.add(输入的句子);
+        Document 当前处理的句子 = new Document();
+        当前处理的句子.put(Cons.当前处理的句子, 句子);
+        执行逻辑Impl.所有逻辑对象.add(当前处理的句子);
         int 处理位置 = 0;
         Document 当前处理的词语 = new Document();
         当前处理的词语.put(Cons.当前处理的词语, 句子.substring(处理位置, 处理位置+1));

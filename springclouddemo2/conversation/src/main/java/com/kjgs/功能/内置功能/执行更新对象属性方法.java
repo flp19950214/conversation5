@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class 执行更新对象属性方法 extends 功能抽象 {
     public static final String 更新的对象 = "更新的对象";
+    public static final String 更新的对象类型 = "更新的对象类型";
     public static final String 更新的属性 = "更新的属性";
     public static final String 更新的属性值 = "更新的属性值";
     @Override
@@ -19,7 +20,8 @@ public class 执行更新对象属性方法 extends 功能抽象 {
     @Override
     public void 功能() {
         String 更新的对象 = 获取最近的属性值(所有逻辑对象, this.更新的对象);
-        Document 更新的对象Doc = 获取最近的对象(所有逻辑对象, 更新的对象);
+        String 更新的对象类型 = 获取最近的属性值(所有逻辑对象, this.更新的对象类型);
+        Document 更新的对象Doc = 获取最近的对象(所有逻辑对象, 更新的对象,更新的对象类型);
         String 更新的属性 = 获取最近的属性值(所有逻辑对象, this.更新的属性);
         String 更新的属性值 = 获取最近的属性值(所有逻辑对象, this.更新的属性值);
         try{
