@@ -23,13 +23,13 @@ public abstract class 功能抽象<T> implements 功能接口 {
     public 异步_初始化记录内置功能属性 异步初始化类;
 
     @PostConstruct
-    public void 初始化(){
+    public void 初始化() {
         初始化记录内置功能属性();
     }
 
-    public static String getClasName(){
+    public static String getClasName() {
         String classPath = new Exception().getStackTrace()[1].getClassName();
-        return classPath.substring(classPath.lastIndexOf(".")+1);
+        return classPath.substring(classPath.lastIndexOf(".") + 1);
     }
 
     public static void main(String[] args) {
@@ -39,16 +39,18 @@ public abstract class 功能抽象<T> implements 功能接口 {
         System.out.println(formattedValue); // 输出将不包含小数点
     }
 
-    public int 获取当前动作对象开始下标(String 动作名){
+    public int 获取当前动作对象开始下标(String 动作名) {
         StringBuffer sb = new StringBuffer();
         sb.append(Cons.左尖括号).append(动作名).append(Cons.右尖括号);
         return 当前逻辑句子.indexOf(sb.toString());
     }
-    public int 获取当前动作对象结束下标(String 动作名){
+
+    public int 获取当前动作对象结束下标(String 动作名) {
         StringBuffer sb = new StringBuffer();
         sb.append(Cons.左尖括号).append(动作名).append(Cons.右尖括号);
         return 当前逻辑句子.indexOf(sb.toString()) + sb.length();
     }
+
     public void 执行流程(List<Document> 所有逻辑对象, String 当前逻辑句子, String 动作) {
         this.所有逻辑对象 = 所有逻辑对象;
         this.动作 = 动作;
@@ -56,36 +58,36 @@ public abstract class 功能抽象<T> implements 功能接口 {
         功能();
     }
 
-    public String 获取最近的属性值(List<Document> list, String key){
+    public String 获取最近的属性值(List<Document> list, String key) {
         Object 获取最近的属性值 = 获取最近的属性值(list, key, Object.class);
-        if(获取最近的属性值 != null){
+        if (获取最近的属性值 != null) {
             return 获取最近的属性值.toString();
         }
         return null;
     }
 
-    public List 获取所有的属性值(List<Document> list, String key){
+    public List 获取所有的属性值(List<Document> list, String key) {
         return 获取所有的属性值(list, key, Object.class);
     }
 
 
-    public <T> List<T> 获取所有的属性值(List<Document> list, String key, Class<T> t){
+    public <T> List<T> 获取所有的属性值(List<Document> list, String key, Class<T> t) {
         List<T> result = new ArrayList<>();
-        for(int i=list.size()-1; i>=0;i--){
+        for (int i = list.size() - 1; i >= 0; i--) {
             Document document = list.get(i);
-            if(document.containsKey(key)){
+            if (document.containsKey(key)) {
                 try {
                     String value = document.getString(key);
                     //判断值是否是变量，如果是需要再次查询
                     if (StringUtils.startsWith(value, Cons.左变量标识符) && StringUtils.endsWith(value, Cons.右变量标识符)) {
                         String key2 = StringUtils.substringBetween(value, Cons.左变量标识符, Cons.右变量标识符);
-                        if(StringUtils.equals(key, key2)){
+                        if (StringUtils.equals(key, key2)) {
                             continue;
                         }
                         result.add(获取最近的属性值(list, key2, t));
                     }
                     result.add(document.get(key, t));
-                }catch (ClassCastException e){
+                } catch (ClassCastException e) {
                     result.add(document.get(key, t));
                 }
             }
@@ -94,7 +96,7 @@ public abstract class 功能抽象<T> implements 功能接口 {
         return result;
     }
 
-    public <T> T 获取最近的属性值value(List<Document> list, String value, Class<T> t){
+    public <T> T 获取最近的属性值value(List<Document> list, String value, Class<T> t) {
         //判断值是否是变量，如果是需要再次查询
         if (StringUtils.startsWith(value, Cons.左变量标识符) && StringUtils.endsWith(value, Cons.右变量标识符)) {
             String key2 = StringUtils.substringBetween(value, Cons.左变量标识符, Cons.右变量标识符);
@@ -106,23 +108,24 @@ public abstract class 功能抽象<T> implements 功能接口 {
         }
         return (T) value;
     }
-    public <T> T 获取最近的属性值(List<Document> list, String key, Class<T> t){
-        for(int i=list.size()-1; i>=0;i--){
+
+    public <T> T 获取最近的属性值(List<Document> list, String key, Class<T> t) {
+        for (int i = list.size() - 1; i >= 0; i--) {
             Document document = list.get(i);
-            if(document.containsKey(key)){
+            if (document.containsKey(key)) {
                 try {
                     String value = document.getString(key);
                     //判断值是否是变量，如果是需要再次查询
                     if (StringUtils.startsWith(value, Cons.左变量标识符) && StringUtils.endsWith(value, Cons.右变量标识符)) {
                         String key2 = StringUtils.substringBetween(value, Cons.左变量标识符, Cons.右变量标识符);
-                        if(StringUtils.equals(key, key2)){
+                        if (StringUtils.equals(key, key2)) {
                             continue;
                         }
                         return 获取最近的属性值(list, key2, t);
                     }
                     属性在所有对象中的下标 = i;
                     return document.get(key, t);
-                }catch (ClassCastException e){
+                } catch (ClassCastException e) {
                     属性在所有对象中的下标 = i;
                     return document.get(key, t);
                 }
@@ -131,10 +134,10 @@ public abstract class 功能抽象<T> implements 功能接口 {
         return null;
     }
 
-    public static Document 获取最近的对象(List<Document> list, String key){
-        for(int i=list.size()-1; i>=0;i--){
+    public static Document 获取最近的对象(List<Document> list, String key) {
+        for (int i = list.size() - 1; i >= 0; i--) {
             Document document = list.get(i);
-            if(document.containsKey(key)){
+            if (document.containsKey(key)) {
                 return document;
             }
         }
@@ -142,14 +145,14 @@ public abstract class 功能抽象<T> implements 功能接口 {
     }
 
     public static Document 获取最近的对象(List<Document> list, String key, String value) {
-        for(int i=list.size()-1; i>=0;i--){
+        for (int i = list.size() - 1; i >= 0; i--) {
             Document document = list.get(i);
-            if(document.containsKey(key)){
+            if (document.containsKey(key)) {
                 if (StringUtils.isEmpty(value)) {
                     continue;
                 }
                 if (StringUtils.equals(value, document.getString(key))) {
-                        return document;
+                    return document;
                 }
             }
         }
@@ -157,19 +160,23 @@ public abstract class 功能抽象<T> implements 功能接口 {
     }
 
     public static Document 获取最近的对象(List<Document> list, String key, String value, String 对象类型值) {
-        for(int i=list.size()-1; i>=0;i--){
+        for (int i = list.size() - 1; i >= 0; i--) {
             Document document = list.get(i);
-            if(document.containsKey(key)){
+            if (document.containsKey(key)) {
                 if (StringUtils.isEmpty(value)) {
                     continue;
                 }
                 if (!StringUtils.equals(value, document.getString(key))) {
                     continue;
+                } else {
+                    if (StringUtils.isEmpty(对象类型值)) {
+                        return document;
+                    }
                 }
-                if(!document.containsKey(Cons.对象类型)){
+                if (!document.containsKey(Cons.对象类型)) {
                     continue;
                 }
-                if(StringUtils.equals(对象类型值, document.getString(Cons.对象类型))){
+                if (StringUtils.equals(对象类型值, document.getString(Cons.对象类型))) {
                     return document;
                 }
             }
