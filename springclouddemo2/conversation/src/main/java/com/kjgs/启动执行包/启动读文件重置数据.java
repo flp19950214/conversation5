@@ -1,5 +1,6 @@
 package com.kjgs.启动执行包;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Calendar;
 
 @Component
 public class 启动读文件重置数据 implements ApplicationRunner {
@@ -26,17 +28,22 @@ public class 启动读文件重置数据 implements ApplicationRunner {
         Resource resource  = resourceLoader.getResource(path);
         try(BufferedReader br =new BufferedReader(new InputStreamReader(resource.getInputStream()))) {
             String line;
-            StringBuilder sb = new StringBuilder();
             while ((line = br.readLine()) != null) {
-                if(line.startsWith("--")){
+                if(StringUtils.isEmpty(line) || line.startsWith("--")){
                     continue;
                 }
+                StringBuilder sb = new StringBuilder();
                 sb.append("INSERT INTO `conversation`.`逻辑表`(`逻辑名`, `逻辑`) VALUES ")
                         .append(line.trim());
                 // 处理可能的多行语句
                 if (line.endsWith(";")) {
                     String sql = sb.toString();
-                    jdbcTemplate.execute(sql);
+                    try {
+                        jdbcTemplate.execute(sql);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        continue;
+                    }
                     sb.setLength(0);
                 }
             }

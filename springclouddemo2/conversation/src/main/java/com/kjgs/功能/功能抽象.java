@@ -141,14 +141,36 @@ public abstract class 功能抽象<T> implements 功能接口 {
         return null;
     }
 
-    public static Document 获取最近的对象(List<Document> list, String key,String key2){
+    public static Document 获取最近的对象(List<Document> list, String key, String value) {
         for(int i=list.size()-1; i>=0;i--){
             Document document = list.get(i);
             if(document.containsKey(key)){
-                if(StringUtils.isNotEmpty(key2)){
-                    if(document.containsKey(key2)){
+                if (StringUtils.isEmpty(value)) {
+                    continue;
+                }
+                if (StringUtils.equals(value, document.getString(key))) {
                         return document;
-                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public static Document 获取最近的对象(List<Document> list, String key, String value, String 对象类型值) {
+        for(int i=list.size()-1; i>=0;i--){
+            Document document = list.get(i);
+            if(document.containsKey(key)){
+                if (StringUtils.isEmpty(value)) {
+                    continue;
+                }
+                if (!StringUtils.equals(value, document.getString(key))) {
+                    continue;
+                }
+                if(!document.containsKey(Cons.对象类型)){
+                    continue;
+                }
+                if(StringUtils.equals(对象类型值, document.getString(Cons.对象类型))){
+                    return document;
                 }
             }
         }
