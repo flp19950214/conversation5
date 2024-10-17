@@ -2,6 +2,7 @@ package com.kjgs.功能.内置功能;
 
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
+import com.kjgs.枚举.Cons;
 import com.kjgs.逻辑流程.执行逻辑;
 import org.bson.Document;
 import org.junit.Test;
@@ -36,6 +37,7 @@ public class 执行查询集合指定下标方法 extends 功能抽象 {
         Document  查询的结果对象 =  new Document();
         Object 查询的结果 = 查询的集合.get(查询的下标);
         查询的结果对象.put(this.查询的结果, 查询的结果);
+        查询的结果对象.put(Cons.level,level);
         所有逻辑对象.add(查询的结果对象);
 
         动作结果=查询的结果;

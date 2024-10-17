@@ -2,6 +2,7 @@ package com.kjgs.功能.内置功能;
 
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
+import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,7 @@ public class 执行过滤指定下标方法 extends 功能抽象 {
         Document  过滤的结果对象 =  new Document();
         过滤的结果对象.put(this.过滤的结果, 过滤的结果);
         过滤的结果对象.put(this.查询的结果, 过滤的结果);
+        过滤的结果对象.put(Cons.level,level);
         所有逻辑对象.add(过滤的结果对象);
 
         动作结果=过滤的结果;

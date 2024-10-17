@@ -32,6 +32,7 @@ public class 执行保存方法 extends 功能抽象 {
         document.put(Cons.主键, new ObjectId().toString());
         document.put(Cons.对象, 保存的对象);
         document.put(保存的属性, 保存的属性值);
+        document.put(Cons.level,level);
         MongoDao.insert(document);
     }
 }

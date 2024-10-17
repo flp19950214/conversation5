@@ -2,6 +2,7 @@ package com.kjgs.功能.内置功能;
 
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
+import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class 执行获取指定下标值方法 extends 功能抽象 {
         Document 分割的结果的对象 = new Document();
         Object 查询的结果 = StringUtils.substring(查询的对象,查询的下标,查询的下标+1);
         分割的结果的对象.put(this.查询的结果, 查询的结果);
+        分割的结果的对象.put(Cons.level,level);
         所有逻辑对象.add(分割的结果的对象);
 
         动作结果=查询的结果;

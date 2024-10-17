@@ -2,6 +2,7 @@ package com.kjgs.功能.内置功能;
 
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
+import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,7 @@ public class 执行查询集合对象指定属性值方法 extends 功能抽象 
         }
         Document  查询的结果对象 =  new Document();
         查询的结果对象.put(this.查询的结果, 查询的结果);
+        查询的结果对象.put(Cons.level,level);
         所有逻辑对象.add(查询的结果对象);
 
         动作结果=查询的结果;

@@ -2,6 +2,7 @@ package com.kjgs.功能.内置功能;
 
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
+import com.kjgs.枚举.Cons;
 import com.kjgs.线程池.异步_初始化记录内置功能属性;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class 执行乘法方法 extends 功能抽象 {
         Document 相乘的结果的对象 = new Document();
         double result = 被乘数 * 乘数;
         相乘的结果的对象.put(this.相乘的结果,result);
+        相乘的结果的对象.put(Cons.level,level);
         所有逻辑对象.add(相乘的结果的对象);
 
         动作结果=result;

@@ -2,6 +2,7 @@ package com.kjgs.功能.内置功能;
 
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
+import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class 执行追加方法 extends 功能抽象 {
         Document 追加的结果的对象 = new Document();
         Object result = 被追加的对象+追加的对象;
         追加的结果的对象.put(this.追加的结果, result);
+        追加的结果的对象.put(Cons.level,level);
         所有逻辑对象.add(追加的结果的对象);
 
         动作结果=result;

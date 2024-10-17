@@ -29,6 +29,7 @@ public class 执行添加当前词语为句子成分方法 extends 功能抽象 
         document.put(Cons.对象,  词语);
         String 当前处理的词语位置 = 功能对象Impl.获取最近的属性值(执行逻辑.所有逻辑对象, Cons.当前处理的词语位置);
         document.put(Cons.在句子中的下标,  当前处理的词语位置);
+        document.put(Cons.level,level);
         所有逻辑对象.add(document);
     }
 

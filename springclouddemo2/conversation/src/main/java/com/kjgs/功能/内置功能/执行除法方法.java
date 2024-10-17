@@ -2,6 +2,7 @@ package com.kjgs.功能.内置功能;
 
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
+import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class 执行除法方法 extends 功能抽象 {
         Document 相除的结果的对象 = new Document();
         Object result =被除数 / 除数;
         相除的结果的对象.put(this.相除的结果, result);
+        相除的结果的对象.put(Cons.level,level);
         所有逻辑对象.add(相除的结果的对象);
 
         动作结果=result;

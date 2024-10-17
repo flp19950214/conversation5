@@ -47,6 +47,7 @@ public interface Cons {
     public String 对象类型="对象类型";
     public String 句子成分="句子成分";
     public String 在句子中的下标="在句子中的下标";
+    public String level="level";
 
 
     public String 包含="包含";

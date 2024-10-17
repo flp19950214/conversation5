@@ -3,6 +3,7 @@ package com.kjgs.功能.内置功能;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import com.kjgs.数据库.MongoDao;
+import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class 执行更新方法 extends 功能抽象 {
         String 更新的属性值 = 获取最近的属性值(所有逻辑对象, this.更新的属性值);
         Document document = new Document();
         document.put(更新的属性, 更新的属性值);
+        document.put(Cons.level,level);
         MongoDao.update(更新的主键, document);
     }
 }

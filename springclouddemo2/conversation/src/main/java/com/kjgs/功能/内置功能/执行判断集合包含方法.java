@@ -2,6 +2,7 @@ package com.kjgs.功能.内置功能;
 
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
+import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,7 @@ public class 执行判断集合包含方法 extends 功能抽象 {
         }
         Document 判断的结果的对象 = new Document();
         判断的结果的对象.put(this.判断的结果, 判断的结果);
+        判断的结果的对象.put(Cons.level,level);
         所有逻辑对象.add(判断的结果的对象);
 
         动作结果=判断的结果;

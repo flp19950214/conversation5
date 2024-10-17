@@ -117,8 +117,11 @@ public class 新处理逻辑 {
         }
     }
 
-
     public Object 执行逻辑(逻辑实体 逻辑Obj) {
+        return 执行逻辑(逻辑Obj, 0);
+    }
+
+    public Object 执行逻辑(逻辑实体 逻辑Obj, int level) {
         //分割逻辑
         List<String> 逻辑集合 = Arrays.asList(逻辑Obj.逻辑.split(Cons.分号));
         //提取动作
@@ -137,10 +140,10 @@ public class 新处理逻辑 {
                         continue;
                     }
                     功能抽象 功能抽象对象 = (功能抽象) context.getBean(Class.forName("com.kjgs.功能.内置功能." + 动作));
-                    功能抽象对象.执行流程(执行逻辑.所有逻辑对象, 当前逻辑句子, 动作);
+                    功能抽象对象.执行流程(执行逻辑.所有逻辑对象, 当前逻辑句子, 动作,level);
                 } catch (NoSuchBeanDefinitionException | ClassNotFoundException e) {
                     //不是内置动作，那么就迭代到数据库获取逻辑处理
-                    查询并迭代逻辑(动作);
+                    查询并迭代逻辑(动作, level+1);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -159,12 +162,14 @@ public class 新处理逻辑 {
         执行逻辑.所有逻辑对象.add(待处理的对象值);
         查询并迭代逻辑("#{查询这个词的类型}");
     }
-
     private void 查询并迭代逻辑(String 逻辑名) {
+
+    }
+    private void 查询并迭代逻辑(String 逻辑名, int level) {
         逻辑实体 逻辑Obj = 逻辑MapperImpl.queryForObject(逻辑名);
         if (逻辑Obj == null) {
             System.out.println("迭代逻辑= '" + 逻辑名 + "' 的逻辑是空的");
         }
-        执行逻辑(逻辑Obj);
+        执行逻辑(逻辑Obj,level);
     }
 }

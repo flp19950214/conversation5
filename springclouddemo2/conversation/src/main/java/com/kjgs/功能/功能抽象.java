@@ -2,6 +2,7 @@ package com.kjgs.功能;
 
 import com.kjgs.枚举.Cons;
 import com.kjgs.线程池.异步_初始化记录内置功能属性;
+import com.kjgs.静态变量;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ public abstract class 功能抽象<T> implements 功能接口 {
     public String 动作;
     public static Object 动作结果;
     public String 当前逻辑句子;
+    public int level;
     public static int 属性在所有对象中的下标 = 0;
 
     @Autowired
@@ -51,10 +53,12 @@ public abstract class 功能抽象<T> implements 功能接口 {
         return 当前逻辑句子.indexOf(sb.toString()) + sb.length();
     }
 
-    public void 执行流程(List<Document> 所有逻辑对象, String 当前逻辑句子, String 动作) {
+    public void 执行流程(List<Document> 所有逻辑对象, String 当前逻辑句子, String 动作, int level) {
         this.所有逻辑对象 = 所有逻辑对象;
         this.动作 = 动作;
         this.当前逻辑句子 = 当前逻辑句子;
+        this.level=level;
+        静态变量.level=level;
         功能();
     }
 
@@ -113,6 +117,12 @@ public abstract class 功能抽象<T> implements 功能接口 {
         for (int i = list.size() - 1; i >= 0; i--) {
             Document document = list.get(i);
             if (document.containsKey(key)) {
+                if(document.containsKey(Cons.level)){
+                    int level = document.getInteger(Cons.level,0);
+                    if(静态变量.level != level){ // 动作参数 要跟 动作在一个逻辑层级
+                        continue;
+                    }
+                }
                 try {
                     String value = document.getString(key);
                     //判断值是否是变量，如果是需要再次查询

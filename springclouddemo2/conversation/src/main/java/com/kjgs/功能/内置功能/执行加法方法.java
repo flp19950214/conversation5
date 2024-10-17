@@ -2,6 +2,7 @@ package com.kjgs.功能.内置功能;
 
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
+import com.kjgs.枚举.Cons;
 import com.kjgs.静态变量;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ public class 执行加法方法 extends 功能抽象 {
         double result = 被加数 + 加数;
         Document 相加的结果的对象 = new Document();
         相加的结果的对象.put(this.相加的结果, result);
+        相加的结果的对象.put(Cons.level,level);
         所有逻辑对象.add(相加的结果的对象);
 
         动作结果=result;

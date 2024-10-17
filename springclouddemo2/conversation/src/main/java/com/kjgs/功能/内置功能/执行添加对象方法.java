@@ -2,6 +2,7 @@ package com.kjgs.功能.内置功能;
 
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
+import com.kjgs.枚举.Cons;
 import com.kjgs.逻辑流程.执行逻辑;
 import org.bson.Document;
 import org.junit.Test;
@@ -25,6 +26,7 @@ public class 执行添加对象方法 extends 功能抽象 {
         String 添加的属性值 = 获取最近的属性值(所有逻辑对象, this.添加的属性值);
         Document document = new Document();
         document.put(添加的属性, 添加的属性值);
+        document.put(Cons.level,level);
         所有逻辑对象.add(document);
     }
 
