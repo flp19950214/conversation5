@@ -30,10 +30,11 @@ public class 执行判断集合包含方法 extends 功能抽象 {
                 break;
             }
         }
-        Document 判断的结果的对象 = new Document();
-        判断的结果的对象.put(this.判断的结果, 判断的结果);
-        判断的结果的对象.put(Cons.level,level);
-        所有逻辑对象.add(判断的结果的对象);
+
+//        Document 判断的结果的对象 = new Document();
+//        判断的结果的对象.put(this.判断的结果, 判断的结果);
+//        判断的结果的对象.put(Cons.level,level);
+//        所有逻辑对象.add(判断的结果的对象);
 
         动作结果=判断的结果;
     }

@@ -23,11 +23,13 @@ public class 执行判断或者方法 extends 功能抽象 {
         if(判断的结果集合.size()>=2){
             boolean 倒数第二个判断结果 = Boolean.parseBoolean(判断的结果集合.get(判断的结果集合.size()-2).toString());
             boolean 倒数第一个判断结果 = Boolean.parseBoolean(判断的结果集合.get(判断的结果集合.size()-2).toString());
-            Document 判断的结果的对象 = new Document();
             boolean 判断的结果 = 倒数第二个判断结果 || 倒数第一个判断结果;
-            判断的结果的对象.put(this.判断的结果, 判断的结果);
-            判断的结果的对象.put(Cons.level,level);
-            所有逻辑对象.add(判断的结果的对象);
+
+
+//            Document 判断的结果的对象 = new Document();
+//            判断的结果的对象.put(this.判断的结果, 判断的结果);
+//            判断的结果的对象.put(Cons.level,level);
+//            所有逻辑对象.add(判断的结果的对象);
 
             动作结果=判断的结果;
         }

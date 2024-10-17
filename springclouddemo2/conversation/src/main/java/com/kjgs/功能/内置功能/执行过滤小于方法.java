@@ -36,10 +36,11 @@ public class 执行过滤小于方法 extends 功能抽象 {
                 过滤的结果.add(document);
             }
         }
-        Document  过滤的结果对象 =  new Document();
-        过滤的结果对象.put(this.过滤的结果, 过滤的结果);
-        过滤的结果对象.put(Cons.level,level);
-        所有逻辑对象.add(过滤的结果对象);
+
+//        Document  过滤的结果对象 =  new Document();
+//        过滤的结果对象.put(this.过滤的结果, 过滤的结果);
+//        过滤的结果对象.put(Cons.level,level);
+//        所有逻辑对象.add(过滤的结果对象);
 
         动作结果=过滤的结果;
     }

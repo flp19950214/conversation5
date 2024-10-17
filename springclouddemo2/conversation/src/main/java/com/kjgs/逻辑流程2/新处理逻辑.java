@@ -148,10 +148,11 @@ public class 新处理逻辑 {
                     e.printStackTrace();
                 }
             }
-            Document 相乘的结果的对象 = new Document();
-            相乘的结果的对象.put(逻辑Obj.逻辑名, 功能抽象.动作结果);
-            执行逻辑.所有逻辑对象.add(相乘的结果的对象);
         }
+        Document 结果的对象 = new Document();
+        结果的对象.put(逻辑Obj.逻辑名, 功能抽象.动作结果);
+//        结果的对象.put(Cons.level, level);
+        执行逻辑.所有逻辑对象.add(结果的对象);
         return 功能抽象.动作结果;
     }
 

@@ -23,10 +23,11 @@ public class 执行加法方法 extends 功能抽象 {
         double 被加数 = Double.parseDouble(获取最近的属性值(所有逻辑对象, this.被加数));
         double 加数 = Double.parseDouble(获取最近的属性值(所有逻辑对象, this.加数));
         double result = 被加数 + 加数;
-        Document 相加的结果的对象 = new Document();
-        相加的结果的对象.put(this.相加的结果, result);
-        相加的结果的对象.put(Cons.level,level);
-        所有逻辑对象.add(相加的结果的对象);
+
+//        Document 相加的结果的对象 = new Document();
+//        相加的结果的对象.put(this.相加的结果, result);
+//        相加的结果的对象.put(Cons.level,level);
+//        所有逻辑对象.add(相加的结果的对象);
 
         动作结果=result;
     }

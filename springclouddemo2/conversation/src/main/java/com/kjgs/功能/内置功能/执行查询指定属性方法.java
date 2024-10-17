@@ -33,11 +33,12 @@ public class 执行查询指定属性方法 extends 功能抽象 {
     public void 功能() {
         String 查询的属性 = 获取最近的属性值(所有逻辑对象, this.查询的属性);
         List 查询的结果 = 获取所有的属性值(所有逻辑对象,查询的属性);
-        Document  查询的结果对象 =  new Document();
-        查询的结果对象.put(this.查询的结果, 查询的结果);
-        查询的结果对象.put(this.查询指定属性的结果, 查询的结果);
-        查询的结果对象.put(Cons.level,level);
-        所有逻辑对象.add(查询的结果对象);
+
+//        Document  查询的结果对象 =  new Document();
+//        查询的结果对象.put(this.查询的结果, 查询的结果);
+//        查询的结果对象.put(this.查询指定属性的结果, 查询的结果);
+//        查询的结果对象.put(Cons.level,level);
+//        所有逻辑对象.add(查询的结果对象);
 
         动作结果=查询的结果;
     }

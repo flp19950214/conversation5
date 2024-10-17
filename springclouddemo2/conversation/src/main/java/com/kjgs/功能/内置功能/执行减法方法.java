@@ -23,11 +23,11 @@ public class 执行减法方法 extends 功能抽象 {
     public void 功能() {
         double 被减数 = Double.parseDouble(获取最近的属性值(所有逻辑对象, this.被减数));
         double 减数 = Double.parseDouble(获取最近的属性值(所有逻辑对象, this.减数));
-        Document 相减的结果的对象 = new Document();
         double result = 被减数 - 减数;
-        相减的结果的对象.put(this.相减的结果, result);
-        相减的结果的对象.put(Cons.level,level);
-        所有逻辑对象.add(相减的结果的对象);
+//        Document 相减的结果的对象 = new Document();
+//        相减的结果的对象.put(this.相减的结果, result);
+//        相减的结果的对象.put(Cons.level,level);
+//        所有逻辑对象.add(相减的结果的对象);
 
         动作结果=result;
     }

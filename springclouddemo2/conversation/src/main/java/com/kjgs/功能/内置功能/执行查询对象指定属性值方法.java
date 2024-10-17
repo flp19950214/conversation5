@@ -28,10 +28,12 @@ public class 执行查询对象指定属性值方法 extends 功能抽象 {
         String 查询的属性 = 获取最近的属性值(所有逻辑对象, this.查询的属性);
         Document 查询的对象Doc = 获取最近的对象(所有逻辑对象, 查询的对象的键, 查询的对象的值);
         Object 查询的结果 = 查询的对象Doc.get(查询的属性);
-        Document  查询的结果对象 =  new Document();
-        查询的结果对象.put(this.查询的结果, 查询的结果);
-        查询的结果对象.put(Cons.level,level);
-        所有逻辑对象.add(查询的结果对象);
+
+//        Document  查询的结果对象 =  new Document();
+//        查询的结果对象.put(this.查询的结果, 查询的结果);
+//        查询的结果对象.put(Cons.level,level);
+//        所有逻辑对象.add(查询的结果对象);
+
         动作结果=查询的结果;
     }
 }

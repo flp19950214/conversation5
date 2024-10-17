@@ -22,11 +22,12 @@ public class 执行除法方法 extends 功能抽象 {
     public void 功能() {
         double 被除数 = Double.parseDouble(获取最近的属性值(所有逻辑对象, this.被除数));
         double 除数 = Double.parseDouble(获取最近的属性值(所有逻辑对象, this.除数));
-        Document 相除的结果的对象 = new Document();
         Object result =被除数 / 除数;
-        相除的结果的对象.put(this.相除的结果, result);
-        相除的结果的对象.put(Cons.level,level);
-        所有逻辑对象.add(相除的结果的对象);
+
+//        Document 相除的结果的对象 = new Document();
+//        相除的结果的对象.put(this.相除的结果, result);
+//        相除的结果的对象.put(Cons.level,level);
+//        所有逻辑对象.add(相除的结果的对象);
 
         动作结果=result;
     }

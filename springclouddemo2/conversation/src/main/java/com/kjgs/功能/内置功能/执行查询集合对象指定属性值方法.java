@@ -33,10 +33,11 @@ public class 执行查询集合对象指定属性值方法 extends 功能抽象 
                 查询的结果.add(属性值);
             }
         }
-        Document  查询的结果对象 =  new Document();
-        查询的结果对象.put(this.查询的结果, 查询的结果);
-        查询的结果对象.put(Cons.level,level);
-        所有逻辑对象.add(查询的结果对象);
+
+//        Document  查询的结果对象 =  new Document();
+//        查询的结果对象.put(this.查询的结果, 查询的结果);
+//        查询的结果对象.put(Cons.level,level);
+//        所有逻辑对象.add(查询的结果对象);
 
         动作结果=查询的结果;
     }
