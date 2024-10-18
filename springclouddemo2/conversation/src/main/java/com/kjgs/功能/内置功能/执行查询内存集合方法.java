@@ -2,15 +2,16 @@ package com.kjgs.功能.内置功能;
 
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
-import com.kjgs.数据库.MongoDao;
-import com.kjgs.枚举.Cons;
+import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+
 @Service
 // 只查数据库对象  区别于  执行查询指定属性值方法
-public class 执行查询方法 extends 功能抽象 {
+public class 执行查询内存集合方法 extends 功能抽象 {
     public static final String 查询的属性 = "查询的属性";
     public static final String 查询的属性值 = "查询的属性值";
     public static final String 查询的结果= "查询的结果";
@@ -25,15 +26,19 @@ public class 执行查询方法 extends 功能抽象 {
     public void 功能() {
         String 查询的属性 = 获取最近的属性值(所有逻辑对象, this.查询的属性);
         String 查询的属性值 = 获取最近的属性值(所有逻辑对象, this.查询的属性值);
-        Document document = new Document();
-        document.put(查询的属性, 查询的属性值);
-        List<Document> 查询的结果 = MongoDao.select(document);
-
-//        Document  查询的结果对象 =  new Document();
-//        查询的结果对象.put(this.查询的结果, 查询的结果);
-//        查询的结果对象.put(Cons.level,level);
-//        所有逻辑对象.add(查询的结果对象);
-
+        List<Document> 查询的结果 = new ArrayList<>();
+        for (int i = 0; i <所有逻辑对象.size() ; i++) {
+            Document document = (Document) 所有逻辑对象.get(i);
+            if(document.containsKey(查询的属性)){
+                if(查询的属性值!=null){
+                    if(StringUtils.equals(document.getString(查询的属性), 查询的属性值)){
+                        查询的结果.add(document);
+                    }
+                }else{
+                    查询的结果.add(document);
+                }
+            }
+        }
         动作结果=查询的结果;
     }
 }
