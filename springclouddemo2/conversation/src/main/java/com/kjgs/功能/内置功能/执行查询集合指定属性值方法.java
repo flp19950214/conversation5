@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Service
 // 只查内存对象 区别于  执行查询方法
-public class 执行查询集合对象指定属性值方法 extends 功能抽象 {
+public class 执行查询集合指定属性值方法 extends 功能抽象 {
     public static final String 查询的对象 = "查询的对象";
     public static final String 查询的属性 = "查询的属性";
     public static final String 查询的结果= "查询的结果";
