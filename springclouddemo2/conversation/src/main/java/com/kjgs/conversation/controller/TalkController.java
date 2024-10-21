@@ -54,6 +54,10 @@ public class TalkController {
         Document 当前处理的词语位置 = new Document();
         当前处理的词语位置.put(Cons.当前处理的词语位置, 处理位置);
         执行逻辑Impl.所有逻辑对象.add(当前处理的词语位置);
+
+        Document 当前处理的句子成分 = new Document();
+        当前处理的词语位置.put(Cons.当前处理的句子成分, null);
+        执行逻辑Impl.所有逻辑对象.add(当前处理的句子成分);
     }
     @PostMapping("/testLogic")
     public Object testLogic(@RequestBody JSONObject input) {
