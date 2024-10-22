@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 // 只查内存对象 区别于  执行查询方法
 @Service
-public class 执行查询对象指定属性值方法 extends 功能抽象 {
+public class 执行查询对象属性值方法 extends 功能抽象 {
     public static final String 查询的对象 = "查询的对象";
     public static final String 查询的属性 = "查询的属性";
     public static final String 查询的结果= "查询的结果";

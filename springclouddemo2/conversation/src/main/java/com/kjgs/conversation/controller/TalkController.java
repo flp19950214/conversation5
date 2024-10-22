@@ -67,6 +67,10 @@ public class TalkController {
         String 逻辑名 = input.getString("逻辑名");
         逻辑实体 逻辑Obj = 逻辑MapperImpl.queryForObject(逻辑名);
         Object result = 新处理逻辑Impl.执行逻辑(逻辑Obj);
+
+        Document 当前处理逻辑 = new Document();
+        是否执行判断结果.put(Cons.当前处理逻辑, 逻辑Obj.逻辑);
+        执行逻辑Impl.所有逻辑对象.add(当前处理逻辑);
         return result;
     }
 }

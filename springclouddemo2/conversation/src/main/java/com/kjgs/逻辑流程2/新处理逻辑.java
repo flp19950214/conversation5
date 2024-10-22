@@ -112,6 +112,11 @@ public class 新处理逻辑 {
             Document 是否执行判断结果 = new Document();
             是否执行判断结果.put(Cons.是否执行判断结果, "true");
             执行逻辑Impl.所有逻辑对象.add(是否执行判断结果);
+
+            Document 当前处理逻辑 = new Document();
+            是否执行判断结果.put(Cons.当前处理逻辑, 逻辑.逻辑); //只是最外层
+            执行逻辑Impl.所有逻辑对象.add(当前处理逻辑);
+
             执行逻辑(逻辑);
 //            }).start();
         }
