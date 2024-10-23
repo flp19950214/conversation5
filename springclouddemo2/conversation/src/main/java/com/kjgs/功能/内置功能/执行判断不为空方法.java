@@ -7,7 +7,7 @@ import org.bson.Document;
 import org.springframework.stereotype.Service;
 
 @Service
-public class 执行判断是不为空方法 extends 功能抽象 {
+public class 执行判断不为空方法 extends 功能抽象 {
     public static final String 被判断的对象 = "被判断的对象";
     public static final String 判断的结果 ="判断的结果";
     @Override

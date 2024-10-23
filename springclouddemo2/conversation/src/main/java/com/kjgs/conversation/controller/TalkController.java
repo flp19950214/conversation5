@@ -34,7 +34,7 @@ public class TalkController {
         待处理对象所在的句子.put(Cons.待处理对象所在句子, 句子);
         执行逻辑Impl.所有逻辑对象.add(待处理对象所在的句子);
         新处理逻辑Impl.process();
-        return 静态变量.输出结果;
+        return 静态变量.输出的内容;
     }
 
     @PostConstruct
