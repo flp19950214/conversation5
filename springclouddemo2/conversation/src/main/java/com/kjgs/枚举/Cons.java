@@ -46,9 +46,11 @@ public interface Cons {
     public String 当前处理的句子成分="当前处理的句子成分";
     public String 是否执行判断结果="是否执行判断结果";
     public String 当前处理逻辑="当前处理逻辑";
+    public String 当前处理逻辑名="当前处理逻辑名";
     public String 对象类型="对象类型";
     public String 句子成分="句子成分";
     public String 在句子中的下标="在句子中的下标";
+    public String 待执行逻辑="待执行逻辑";
     public String level="level";
 
 
