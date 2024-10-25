@@ -30,16 +30,13 @@ public class TalkController {
     @PostMapping("/talk")
     public String conversation(@RequestBody JSONObject input) {
         String 句子 = input.getString("input");
-        Document 待处理对象所在的句子 = new Document();
-        待处理对象所在的句子.put(Cons.待处理对象所在句子, 句子);
-        执行逻辑Impl.所有逻辑对象.add(待处理对象所在的句子);
+        init(句子);
         新处理逻辑Impl.process();
         return 静态变量.输出的内容;
     }
 
-    @PostConstruct
-    public void init(){
-        String 句子 = "123";
+    public void init(String input){
+        String 句子 = input;
         Document 输入的句子 = new Document();
         输入的句子.put(Cons.输入的句子, 句子);
         执行逻辑Impl.所有逻辑对象.add(输入的句子);
@@ -61,6 +58,7 @@ public class TalkController {
     }
     @PostMapping("/testLogic")
     public Object testLogic(@RequestBody JSONObject input) {
+        init("123");
         Document 是否执行判断结果 = new Document();
         是否执行判断结果.put(Cons.是否执行判断结果, "true");
         执行逻辑Impl.所有逻辑对象.add(是否执行判断结果);
