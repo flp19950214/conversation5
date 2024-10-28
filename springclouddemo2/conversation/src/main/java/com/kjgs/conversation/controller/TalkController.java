@@ -2,6 +2,7 @@ package com.kjgs.conversation.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.kjgs.conversation.mysql.mapper.逻辑Mapper;
+import com.kjgs.conversation.mysql.逻辑Impl;
 import com.kjgs.实体.逻辑实体;
 import com.kjgs.枚举.Cons;
 import com.kjgs.逻辑流程.执行逻辑;
@@ -22,7 +23,7 @@ public class TalkController {
     private 新处理逻辑 新处理逻辑Impl;
 
     @Autowired
-    private 逻辑Mapper 逻辑MapperImpl;
+    private 逻辑Impl 逻辑MapperImpl;
 
     @Autowired
     private 执行逻辑 执行逻辑Impl;

@@ -1,0 +1,37 @@
+package com.kjgs.conversation.mysql;
+
+import com.kjgs.conversation.mysql.mapper.逻辑Mapper;
+import com.kjgs.实体.逻辑实体;
+import com.kjgs.静态变量;
+import org.apache.ibatis.exceptions.TooManyResultsException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Repository
+public class 逻辑Impl{
+
+    @Autowired
+    private 逻辑Mapper 逻辑MapperImpl;
+
+    public 逻辑实体 queryForObject(String 逻辑名) {
+        try{
+            逻辑实体 逻辑Obj = 逻辑MapperImpl.queryForObject(逻辑名);
+            return 逻辑Obj;
+        }catch (TooManyResultsException e1){
+            静态变量.输出的内容 = String.format("%s%s", 逻辑名, "有多个逻辑异常");
+            e1.printStackTrace();
+            throw new RuntimeException(静态变量.输出的内容);
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return null;
+    }
+
+    public List<逻辑实体> 根据多个逻辑名查询List(List<String> 逻辑名集合) {
+        return 逻辑MapperImpl.根据多个逻辑名查询List(逻辑名集合);
+    }
+}

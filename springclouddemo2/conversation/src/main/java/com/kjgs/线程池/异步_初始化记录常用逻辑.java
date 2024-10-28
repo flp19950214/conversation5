@@ -1,6 +1,7 @@
 package com.kjgs.线程池;
 
 import com.kjgs.conversation.mysql.mapper.逻辑Mapper;
+import com.kjgs.conversation.mysql.逻辑Impl;
 import com.kjgs.实体.内置功能实体;
 import com.kjgs.实体.逻辑实体;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class 异步_初始化记录常用逻辑 {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private 逻辑Mapper 逻辑Mapper;
+    private 逻辑Impl 逻辑Mapper;
 
     @Async("AsyncTaskExecutor")
     public void 初始化记录内置功能属性(逻辑实体 obj) {

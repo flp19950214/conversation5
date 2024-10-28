@@ -1,12 +1,11 @@
 package com.kjgs.逻辑流程2;
 
 import com.kjgs.conversation.mysql.mapper.词性Mapper;
-import com.kjgs.conversation.mysql.mapper.逻辑Mapper;
+import com.kjgs.conversation.mysql.逻辑Impl;
 import com.kjgs.功能.功能对象;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.词性实体;
 import com.kjgs.实体.逻辑实体;
-import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
 import com.kjgs.算法.组装句子中由词性组成的句子Service;
 import com.kjgs.逻辑流程.执行逻辑;
@@ -34,7 +33,7 @@ public class 新处理逻辑 {
     private 词性Mapper 词性MapperImpl;
 
     @Autowired
-    private 逻辑Mapper 逻辑MapperImpl;
+    private 逻辑Impl 逻辑MapperImpl;
 
     @Autowired
     private 组装句子中由词性组成的句子Service 组装句子中由词性组成的句子Impl;
@@ -92,7 +91,15 @@ public class 新处理逻辑 {
     public void process() {
         String 词语 = 功能对象Impl.获取最近的属性值(执行逻辑.所有逻辑对象, Cons.当前处理的词语);
         List<String> 词性set = 词性MapperImpl.查询词语词性(词语);
+        if(CollectionUtils.isEmpty(词性set)){
+            静态变量.输出的内容 = String.format("%s%s", 词语, "没有词性异常");
+            return;
+        }
         List<逻辑实体> 逻辑set = 逻辑MapperImpl.根据多个逻辑名查询List(词性set);
+        if(CollectionUtils.isEmpty(逻辑set)){
+            静态变量.输出的内容 = String.format("%s%s", 词性set.get(0), "没有处理逻辑异常");
+            return;
+        }
         执行词性处理逻辑(逻辑set);
     }
 
@@ -163,20 +170,12 @@ public class 新处理逻辑 {
         return 功能抽象.动作结果;
     }
 
-    @Test
-    public void test_查询并迭代逻辑() {
-        Document 待处理的对象值 = new Document();
-        待处理的对象值.put(Cons.待处理的对象, "2");
-        执行逻辑.所有逻辑对象.add(待处理的对象值);
-        查询并迭代逻辑("#{查询这个词的类型}");
-    }
-    private void 查询并迭代逻辑(String 逻辑名) {
-
-    }
     private void 查询并迭代逻辑(String 逻辑名, int level) {
         逻辑实体 逻辑Obj = 逻辑MapperImpl.queryForObject(逻辑名);
         if (逻辑Obj == null) {
-            System.out.println("迭代逻辑= '" + 逻辑名 + "' 的逻辑是空的");
+            String 异常信息 = "迭代逻辑= '" + 逻辑名 + "' 的逻辑是空的";
+            System.out.println(异常信息);
+           throw new RuntimeException(异常信息);
         }
         执行逻辑(逻辑Obj,level);
     }
