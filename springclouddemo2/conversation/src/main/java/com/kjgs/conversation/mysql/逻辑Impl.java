@@ -26,7 +26,6 @@ public class 逻辑Impl{
             throw new RuntimeException(静态变量.输出的内容);
         }catch (Exception e){
             e.printStackTrace();
-
         }
         return null;
     }
