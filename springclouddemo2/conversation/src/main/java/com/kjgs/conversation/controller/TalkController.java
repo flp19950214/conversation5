@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 @RestController()
 public class TalkController {
 
@@ -31,6 +33,7 @@ public class TalkController {
 
     @PostMapping("/talk")
     public String conversation(@RequestBody JSONObject input) {
+        静态变量.执行层级集合 = new ArrayList<>();
         String 句子 = input.getString("input");
         int 处理位置 = -1;
         while (处理位置+1 < 句子.length()) {

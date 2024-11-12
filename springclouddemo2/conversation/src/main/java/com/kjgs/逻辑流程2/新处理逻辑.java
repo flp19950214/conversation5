@@ -140,7 +140,7 @@ public class 新处理逻辑 {
         //提取动作
         for (int i = 0; i < 逻辑集合.size(); i++) {
             String 当前逻辑句子 = 逻辑集合.get(i);
-            System.out.println(level+ " "+当前逻辑句子);
+            静态变量.添加执行层级集合(String.format("%s %s", level, 当前逻辑句子));
             //可能有多个动作
             String[] 动作集合 = StringUtils.substringsBetween(当前逻辑句子, Cons.左尖括号, Cons.右尖括号);
             if (ArrayUtils.isEmpty(动作集合)) {
@@ -168,7 +168,7 @@ public class 新处理逻辑 {
         结果的对象.put(Cons.动作结果, 功能抽象.动作结果);
 //        结果的对象.put(Cons.level, level);
         执行逻辑.所有逻辑对象.add(结果的对象);
-        System.out.println(level+ " 动作结果："+功能抽象.动作结果);
+        静态变量.添加执行层级集合(String.format("%s %s", level, " 动作结果："+功能抽象.动作结果));
         return 功能抽象.动作结果;
     }
 
