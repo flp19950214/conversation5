@@ -29,7 +29,8 @@ public class ToolController {
     //获取所有成分对象
     @PostMapping("/getChengFenObj")
     public List<Document> getChengFenObj(@RequestBody JSONObject input){
-        return 执行逻辑.所有逻辑对象.stream().filter(m -> m.containsValue(Cons.句子成分))
+        return 执行逻辑.所有逻辑对象.stream().filter(m -> m.containsKey(Cons.对象类型) && m.containsValue(Cons.句子成分))
+                .peek(m -> m.remove(Cons._id))
                 .collect(Collectors.toList());
     }
 

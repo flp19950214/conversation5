@@ -181,4 +181,12 @@ public class 新处理逻辑 {
         }
         执行逻辑(逻辑Obj,level);
     }
+
+    private boolean 判断是否有非内置处理逻辑(String 逻辑名){
+        逻辑实体 逻辑Obj = 逻辑MapperImpl.queryForObject(逻辑名);
+        if(逻辑Obj!= null){
+            return true;
+        }
+        return false;
+    }
 }
