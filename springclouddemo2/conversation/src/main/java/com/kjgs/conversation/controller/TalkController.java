@@ -42,7 +42,9 @@ public class TalkController {
             String 词语 = 句子.substring(处理位置,处理位置+1);
             新处理逻辑Impl.init(句子, 处理位置, 词语);
             新处理逻辑Impl.process(词语);
-            处理位置 =(int) Double.parseDouble(功能对象impl.获取最近的属性值(执行逻辑.所有逻辑对象, Cons.当前处理的词语位置));
+            处理位置 =(int) Double.parseDouble(功能对象impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语位置).toString());
+            词语 = 功能对象impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语).toString();
+            处理位置+=词语.length();
             if(处理位置temp == 处理位置){
                 处理位置+=1;
             }
