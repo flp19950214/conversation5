@@ -8,6 +8,7 @@ import java.util.List;
 public class 静态变量 {
     public static String 输出的内容="";
     public static int level=0;
+    public static String uuidLevel="";
     public static String 上一步结果="";
 
     public static List<String> 执行层级集合 = new ArrayList<>();

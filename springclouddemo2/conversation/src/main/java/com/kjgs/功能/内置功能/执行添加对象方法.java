@@ -26,6 +26,7 @@ public class 执行添加对象方法 extends 功能抽象 {
         String 添加的属性值 = 获取最近的属性值(所有逻辑对象, this.添加的属性值);
         Document document = new Document();
         document.put(添加的属性, 添加的属性值);
+        document.put(Cons.uuidLevel,uuidLevel);
         document.put(Cons.level,level);
         所有逻辑对象.add(document);
     }

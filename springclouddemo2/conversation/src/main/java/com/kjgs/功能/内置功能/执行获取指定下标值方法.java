@@ -26,10 +26,6 @@ public class 执行获取指定下标值方法 extends 功能抽象 {
         int 查询的下标 = (int)Double.parseDouble(获取最近的属性值(所有逻辑对象, this.查询的下标));
         Object 查询的结果 = StringUtils.substring(查询的对象,查询的下标,查询的下标+1);
 
-//        Document 分割的结果的对象 = new Document();
-//        分割的结果的对象.put(this.查询的结果, 查询的结果);
-//        分割的结果的对象.put(Cons.level,level);
-//        所有逻辑对象.add(分割的结果的对象);
 
         动作结果=查询的结果;
     }

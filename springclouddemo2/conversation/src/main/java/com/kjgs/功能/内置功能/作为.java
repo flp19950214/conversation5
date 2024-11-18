@@ -23,6 +23,7 @@ public class 作为 extends 功能抽象 {
         String value = 当前逻辑句子.substring(获取当前动作对象结束下标(getClasName()));
         Object value2 = 获取最近的属性值value(所有逻辑对象, value, Object.class);
         document.put(value2.toString(),key2);
+        document.put(Cons.uuidLevel,uuidLevel);
         document.put(Cons.level,level);
         所有逻辑对象.add(document);
     }

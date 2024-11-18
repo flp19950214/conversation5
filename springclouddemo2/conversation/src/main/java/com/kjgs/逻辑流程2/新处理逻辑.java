@@ -87,13 +87,31 @@ public class 新处理逻辑 {
         }
     }
 
+    public void init(String 句子, int 处理位置, String 词语) {
+        Document 输入的句子 = new Document();
+        输入的句子.put(Cons.输入的句子, 句子);
+        执行逻辑Impl.所有逻辑对象.add(输入的句子);
+        Document 当前处理的句子 = new Document();
+        当前处理的句子.put(Cons.当前处理的句子, 句子);
+        执行逻辑Impl.所有逻辑对象.add(当前处理的句子);
 
-    public void process() {
-        String 词语 = 功能对象Impl.获取最近的属性值(执行逻辑.所有逻辑对象, Cons.当前处理的词语);
+        Document 当前处理的词语 = new Document();
+        当前处理的词语.put(Cons.当前处理的词语, 词语);
+        执行逻辑Impl.所有逻辑对象.add(当前处理的词语);
+
+        Document 当前处理的词语位置 = new Document();
+        当前处理的词语位置.put(Cons.当前处理的词语位置, 处理位置);
+        执行逻辑Impl.所有逻辑对象.add(当前处理的词语位置);
+
+        Document 当前处理的句子成分 = new Document();
+        当前处理的词语位置.put(Cons.当前处理的句子成分, new Document());
+        执行逻辑Impl.所有逻辑对象.add(当前处理的句子成分);
+    }
+    public void process(String 词语) {
         List<String> 词性set = 词性MapperImpl.查询词语词性(词语);
         if(CollectionUtils.isEmpty(词性set)){
-            静态变量.输出的内容 = String.format("'%s'%s", 词语, "没有词性异常");
-            return;
+//            静态变量.输出的内容 = String.format("'%s'%s", 词语, "没有词性异常");
+            词性set.add(词语);
         }
         List<逻辑实体> 逻辑set = 逻辑MapperImpl.根据多个逻辑名查询List(词性set);
         if(CollectionUtils.isEmpty(逻辑set)){
@@ -131,10 +149,10 @@ public class 新处理逻辑 {
     }
 
     public Object 执行逻辑(逻辑实体 逻辑Obj) {
-        return 执行逻辑(逻辑Obj, 0);
+        return 执行逻辑(逻辑Obj, UUID.randomUUID().toString(),0);
     }
 
-    public Object 执行逻辑(逻辑实体 逻辑Obj, int level) {
+    public Object 执行逻辑(逻辑实体 逻辑Obj, String uuidLevel, int level) {
         //分割逻辑
         List<String> 逻辑集合 = Arrays.asList(逻辑Obj.逻辑.split(Cons.分号));
         //提取动作
@@ -154,7 +172,7 @@ public class 新处理逻辑 {
                         continue;
                     }
                     功能抽象 功能抽象对象 = (功能抽象) context.getBean(Class.forName("com.kjgs.功能.内置功能." + 动作));
-                    功能抽象对象.执行流程(执行逻辑.所有逻辑对象, 当前逻辑句子, 动作,level);
+                    功能抽象对象.执行流程(执行逻辑.所有逻辑对象, 当前逻辑句子, 动作,uuidLevel, level);
                 } catch (NoSuchBeanDefinitionException | ClassNotFoundException e) {
                     //不是内置动作，那么就迭代到数据库获取逻辑处理
                     查询并迭代逻辑(动作, level+1);
@@ -166,7 +184,6 @@ public class 新处理逻辑 {
         Document 结果的对象 = new Document();
         结果的对象.put(逻辑Obj.逻辑名, 功能抽象.动作结果);
         结果的对象.put(Cons.动作结果, 功能抽象.动作结果);
-//        结果的对象.put(Cons.level, level);
         执行逻辑.所有逻辑对象.add(结果的对象);
         静态变量.添加执行层级集合(String.format("%s %s", level, " 动作结果："+功能抽象.动作结果));
         return 功能抽象.动作结果;
@@ -179,7 +196,7 @@ public class 新处理逻辑 {
             System.out.println(异常信息);
            throw new RuntimeException(异常信息);
         }
-        执行逻辑(逻辑Obj,level);
+        执行逻辑(逻辑Obj,UUID.randomUUID().toString(), level);
     }
 
     private boolean 判断是否有非内置处理逻辑(String 逻辑名){

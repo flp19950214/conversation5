@@ -29,10 +29,6 @@ public class 执行查询数据库集合方法 extends 功能抽象 {
         document.put(查询的属性, 查询的属性值);
         List<Document> 查询的结果 = MongoDao.select(document);
 
-//        Document  查询的结果对象 =  new Document();
-//        查询的结果对象.put(this.查询的结果, 查询的结果);
-//        查询的结果对象.put(Cons.level,level);
-//        所有逻辑对象.add(查询的结果对象);
 
         动作结果=查询的结果;
     }

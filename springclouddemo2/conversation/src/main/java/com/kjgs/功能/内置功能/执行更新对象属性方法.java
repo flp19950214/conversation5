@@ -24,6 +24,7 @@ public class 执行更新对象属性方法 extends 功能抽象 {
         String 更新的属性 = 获取最近的属性值(所有逻辑对象, this.更新的属性);
         String 更新的属性值 = 获取最近的属性值(所有逻辑对象, this.更新的属性值);
         更新的对象.put(更新的属性, 更新的属性值);
+        更新的对象.put(Cons.uuidLevel, uuidLevel);
         更新的对象.put(Cons.level, level);
     }
 }

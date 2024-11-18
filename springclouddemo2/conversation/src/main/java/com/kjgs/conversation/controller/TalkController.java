@@ -34,43 +34,26 @@ public class TalkController {
     @PostMapping("/talk")
     public String conversation(@RequestBody JSONObject input) {
         静态变量.执行层级集合 = new ArrayList<>();
+        执行逻辑.所有逻辑对象 = new ArrayList<>();
         String 句子 = input.getString("input");
-        int 处理位置 = -1;
-        while (处理位置+1 < 句子.length()) {
-            init(句子, 处理位置 + 1);
-            新处理逻辑Impl.process();
-            处理位置 = Integer.parseInt(功能对象impl.获取最近的属性值(执行逻辑.所有逻辑对象, Cons.当前处理的词语位置));
+        int 处理位置 = 0;
+        while (处理位置+1 <= 句子.length()) {
+            int 处理位置temp = 处理位置;
+            String 词语 = 句子.substring(处理位置,处理位置+1);
+            新处理逻辑Impl.init(句子, 处理位置, 词语);
+            新处理逻辑Impl.process(词语);
+            处理位置 =(int) Double.parseDouble(功能对象impl.获取最近的属性值(执行逻辑.所有逻辑对象, Cons.当前处理的词语位置));
+            if(处理位置temp == 处理位置){
+                处理位置+=1;
+            }
         }
         return 静态变量.输出的内容;
     }
 
-    public void init(String input, int 处理位置) {
-        String 句子 = input;
-        Document 输入的句子 = new Document();
-        输入的句子.put(Cons.输入的句子, 句子);
-        执行逻辑Impl.所有逻辑对象.add(输入的句子);
-        Document 当前处理的句子 = new Document();
-        当前处理的句子.put(Cons.当前处理的句子, 句子);
-        执行逻辑Impl.所有逻辑对象.add(当前处理的句子);
-        initWord(句子, 处理位置);
-    }
 
-    public void initWord(String 句子, int 处理位置) {
-        Document 当前处理的词语 = new Document();
-        当前处理的词语.put(Cons.当前处理的词语, 句子.substring(处理位置, 处理位置 + 1));
-        执行逻辑Impl.所有逻辑对象.add(当前处理的词语);
-
-        Document 当前处理的词语位置 = new Document();
-        当前处理的词语位置.put(Cons.当前处理的词语位置, 处理位置);
-        执行逻辑Impl.所有逻辑对象.add(当前处理的词语位置);
-
-        Document 当前处理的句子成分 = new Document();
-        当前处理的词语位置.put(Cons.当前处理的句子成分, new Document());
-        执行逻辑Impl.所有逻辑对象.add(当前处理的句子成分);
-    }
     @PostMapping("/testLogic")
     public Object testLogic(@RequestBody JSONObject input) {
-        init("123", 0);
+        新处理逻辑Impl.init("123", 0,"1");
         Document 是否执行判断结果 = new Document();
         是否执行判断结果.put(Cons.是否执行判断结果, "true");
         执行逻辑Impl.所有逻辑对象.add(是否执行判断结果);

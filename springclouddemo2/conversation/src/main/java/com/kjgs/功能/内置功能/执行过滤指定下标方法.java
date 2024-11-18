@@ -27,11 +27,7 @@ public class 执行过滤指定下标方法 extends 功能抽象 {
         int 过滤的下标 = Integer.parseInt(获取最近的属性值(所有逻辑对象, this.过滤的下标));
         Object 过滤的结果 = 过滤的对象.get(过滤的下标);
 
-//        Document  过滤的结果对象 =  new Document();
-//        过滤的结果对象.put(this.过滤的结果, 过滤的结果);
-//        过滤的结果对象.put(this.查询的结果, 过滤的结果);
-//        过滤的结果对象.put(Cons.level,level);
-//        所有逻辑对象.add(过滤的结果对象);
+
 
         动作结果=过滤的结果;
     }

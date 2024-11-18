@@ -19,6 +19,7 @@ public abstract class 功能抽象<T> implements 功能接口 {
     public static Object 动作结果;
     public String 当前逻辑句子;
     public int level;
+    public String uuidLevel;
     public static int 属性在所有对象中的下标 = 0;
 
     @Autowired
@@ -53,12 +54,14 @@ public abstract class 功能抽象<T> implements 功能接口 {
         return 当前逻辑句子.indexOf(sb.toString()) + sb.length();
     }
 
-    public void 执行流程(List<Document> 所有逻辑对象, String 当前逻辑句子, String 动作, int level) {
+    public void 执行流程(List<Document> 所有逻辑对象, String 当前逻辑句子, String 动作,String uuidLevel, int level) {
         this.所有逻辑对象 = 所有逻辑对象;
         this.动作 = 动作;
         this.当前逻辑句子 = 当前逻辑句子;
+        this.uuidLevel=uuidLevel;
         this.level=level;
         静态变量.level=level;
+        静态变量.uuidLevel=uuidLevel;
         功能();
     }
 
@@ -119,8 +122,9 @@ public abstract class 功能抽象<T> implements 功能接口 {
             Document document = list.get(i);
             if (document.containsKey(key)) {
                 if(document.containsKey(Cons.level)){
+                    String uuidLevel = document.getString(Cons.uuidLevel);
                     int level = document.getInteger(Cons.level,0);
-                    if(静态变量.level != level){ // 动作参数 要跟 动作在一个逻辑层级
+                    if(静态变量.level != level || !静态变量.uuidLevel.equals(uuidLevel)){ // 动作参数 要跟 动作在一个逻辑层级
                         continue;
                     }
                 }
@@ -155,6 +159,16 @@ public abstract class 功能抽象<T> implements 功能接口 {
         return null;
     }
 
+    public static Object 获取最近的属性值NoLevel(List<Document> list, String key) {
+        for (int i = list.size() - 1; i >= 0; i--) {
+            Document document = list.get(i);
+            if (document.containsKey(key)) {
+                return document.get(key);
+            }
+        }
+        return null;
+    }
+
     public static Document 获取最近的对象(List<Document> list, String key, String value) {
         for (int i = list.size() - 1; i >= 0; i--) {
             Document document = list.get(i);
@@ -180,15 +194,15 @@ public abstract class 功能抽象<T> implements 功能接口 {
             if (value == null && 对象类型值 == null) {
                 return document;
             } else if (value == null && 对象类型值 != null) {
-                if (StringUtils.equals(对象类型值, document.getString(Cons.对象类型))) {
+                if (StringUtils.equals(对象类型值, document.get(key).toString())) {
                     return document;
                 }
             } else if (value != null && 对象类型值 == null) {
-                if (StringUtils.equals(value, document.getString(key))) {
+                if (StringUtils.equals(value, document.get(key).toString())) {
                     return document;
                 }
             } else if (value != null && 对象类型值 != null) {
-                if (StringUtils.equals(value, document.getString(key))) {
+                if (StringUtils.equals(value, document.get(key).toString())) {
                     if (StringUtils.equals(对象类型值, document.getString(Cons.对象类型))) {
                         return document;
                     }

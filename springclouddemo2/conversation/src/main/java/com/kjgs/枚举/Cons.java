@@ -52,6 +52,7 @@ public interface Cons {
     public String 在句子中的下标="在句子中的下标";
     public String 待执行逻辑="待执行逻辑";
     public String level="level";
+    public String uuidLevel="uuidLevel";
 
 
     public String 包含="包含";

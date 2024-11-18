@@ -21,10 +21,7 @@ public class 执行判断不为空方法 extends 功能抽象 {
         String 被判断的对象 = 获取最近的属性值(所有逻辑对象, this.被判断的对象);
         boolean 判断的结果 = 被判断的对象 != null && 被判断的对象 !="";
 
-//        Document 判断的结果的对象 = new Document();
-//        判断的结果的对象.put(this.判断的结果, 判断的结果);
-//        判断的结果的对象.put(Cons.level,level);
-//        所有逻辑对象.add(判断的结果的对象);
+
 
         动作结果=判断的结果;
     }
