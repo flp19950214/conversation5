@@ -162,7 +162,9 @@ public class 新处理逻辑 {
             //可能有多个动作
             String[] 动作集合 = StringUtils.substringsBetween(当前逻辑句子, Cons.左尖括号, Cons.右尖括号);
             if (ArrayUtils.isEmpty(动作集合)) {
-                continue;
+                String 异常信息 = String.format("%s='%s'%s","逻辑" ,当前逻辑句子 ,"没有用《》括起来");
+                System.out.println(异常信息);
+                throw new RuntimeException(异常信息);
             }
             for (String 动作 : 动作集合) {
                 //执行动作
