@@ -5,6 +5,7 @@ import com.kjgs.实体.内置功能实体;
 import com.kjgs.实体.逻辑实体;
 import com.kjgs.枚举.Cons;
 import com.kjgs.逻辑流程2.新处理逻辑;
+import org.apache.commons.collections4.CollectionUtils;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,10 @@ public class 执行句子成分逻辑方法 extends 功能抽象 {
             当前处理的词语.put(Cons.当前处理的词语,Cons.对象);
             //执行逻辑
             List<Document> 待执行逻辑List = document.get(Cons.待执行逻辑, List.class);
+            if(CollectionUtils.isEmpty(待执行逻辑List)){
+                System.out.println("没有待执行逻辑。");
+                return;
+            }
             for (int j = 0; j <待执行逻辑List.size() ; j++) {
                 Document 逻辑doc = 待执行逻辑List.get(j);
                 逻辑实体 逻辑Obj = new 逻辑实体();

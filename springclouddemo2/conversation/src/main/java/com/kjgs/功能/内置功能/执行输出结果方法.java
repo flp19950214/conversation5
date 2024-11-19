@@ -3,7 +3,9 @@ package com.kjgs.功能.内置功能;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import com.kjgs.静态变量;
+import org.springframework.stereotype.Service;
 
+@Service
 public class 执行输出结果方法 extends 功能抽象 {
     final static String 输出的内容 = "输出的内容";
     @Override

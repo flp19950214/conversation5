@@ -53,6 +53,9 @@ public interface Cons {
     public String 待执行逻辑="待执行逻辑";
     public String level="level";
     public String uuidLevel="uuidLevel";
+    public String 顶层逻辑="顶层逻辑";
+    public String 异常逻辑="异常逻辑";
+    public String 词语="词语";
 
 
     public String 包含="包含";

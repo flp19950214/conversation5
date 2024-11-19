@@ -19,11 +19,9 @@ public class 执行判断小于方法 extends 功能抽象 {
     }
     @Override
     public void 功能() {
-        String 被判断的对象 = 获取最近的属性值(所有逻辑对象, this.被判断的对象);
-        String 判断的对象 = 获取最近的属性值(所有逻辑对象, this.判断的对象);
-        boolean 判断的结果 = 被判断的对象.compareTo(判断的对象)<0;
-
-
+        double 被判断的对象 = Double.parseDouble(获取最近的属性值(所有逻辑对象, this.被判断的对象));
+        double 判断的对象 = Double.parseDouble(获取最近的属性值(所有逻辑对象, this.判断的对象));
+        boolean 判断的结果 = 被判断的对象<判断的对象;
         动作结果=判断的结果;
     }
 }

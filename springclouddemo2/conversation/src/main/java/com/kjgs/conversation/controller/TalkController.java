@@ -49,6 +49,8 @@ public class TalkController {
                 处理位置+=1;
             }
         }
+        System.out.println("成分划分完毕，再次执行句子中的逻辑");
+        新处理逻辑Impl.二次执行成分逻辑(句子);
         return 静态变量.输出的内容;
     }
 

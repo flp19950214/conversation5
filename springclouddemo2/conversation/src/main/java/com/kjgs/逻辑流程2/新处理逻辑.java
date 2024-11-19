@@ -121,6 +121,20 @@ public class 新处理逻辑 {
         执行词性处理逻辑(逻辑set);
     }
 
+    public void 二次执行成分逻辑(String 句子){
+        List<Document> 所有成分逻辑 = 执行逻辑.所有逻辑对象.stream().filter(m -> m.containsKey(Cons.对象类型) && m.containsValue(Cons.句子成分))
+                .peek(m -> m.remove(Cons._id))
+                .collect(Collectors.toList());
+        执行逻辑.所有逻辑对象.clear();
+        执行逻辑.所有逻辑对象.addAll(所有成分逻辑);
+        for(Document 成分:所有成分逻辑){
+            String 词语 = 成分.getString(Cons.对象);
+            int 处理位置 = (int)Double.parseDouble(成分.getString(Cons.在句子中的下标));
+            init(句子,处理位置,词语);
+            process(词语);
+        }
+    }
+
     static ThreadLocal<List<Document>> threadLocal = new ThreadLocal<>();
 
     public void 执行词性处理逻辑(List<逻辑实体> 所有逻辑集合) {
@@ -158,6 +172,18 @@ public class 新处理逻辑 {
         //提取动作
         for (int i = 0; i < 逻辑集合.size(); i++) {
             String 当前逻辑句子 = 逻辑集合.get(i);
+            if(level==0){//记录顶层逻辑
+                Document 顶层逻辑doc = 功能对象Impl.获取最近的对象(执行逻辑.所有逻辑对象, Cons.顶层逻辑);
+                if(顶层逻辑doc==null){
+                    顶层逻辑doc = new Document();
+                }
+                int 处理位置 =(int) Double.parseDouble(功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语位置).toString());
+                String 词语 = 功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语).toString();
+                顶层逻辑doc.put(Cons.顶层逻辑, 逻辑Obj);
+                顶层逻辑doc.put(Cons.在句子中的下标, 处理位置);
+                顶层逻辑doc.put(Cons.词语, 词语);
+                执行逻辑.所有逻辑对象.add(顶层逻辑doc);
+            }
             静态变量.添加执行层级集合(String.format("%s %s", level, 当前逻辑句子));
             //可能有多个动作
             String[] 动作集合 = StringUtils.substringsBetween(当前逻辑句子, Cons.左尖括号, Cons.右尖括号);
@@ -179,7 +205,12 @@ public class 新处理逻辑 {
                     //不是内置动作，那么就迭代到数据库获取逻辑处理
                     查询并迭代逻辑(动作, level+1);
                 } catch (Exception e) {
+                    //实在报错就记录下来这个逻辑，以及是那个词语触发的，最后再执行
+                    Document 异常逻辑 = new Document();
+                    Document 顶层逻辑doc = 功能对象Impl.获取最近的对象(执行逻辑.所有逻辑对象, Cons.顶层逻辑);
+                    异常逻辑.put(Cons.异常逻辑, 顶层逻辑doc);
                     e.printStackTrace();
+                    break;
                 }
             }
         }
