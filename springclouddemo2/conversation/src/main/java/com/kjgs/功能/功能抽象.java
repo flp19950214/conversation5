@@ -2,6 +2,7 @@ package com.kjgs.功能;
 
 import com.kjgs.枚举.Cons;
 import com.kjgs.线程池.异步_初始化记录内置功能属性;
+import com.kjgs.逻辑流程.执行逻辑;
 import com.kjgs.静态变量;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
@@ -63,6 +64,14 @@ public abstract class 功能抽象<T> implements 功能接口 {
         静态变量.level=level;
         静态变量.uuidLevel=uuidLevel;
         功能();
+        添加动作执行结果();
+    }
+
+    public void 添加动作执行结果(){
+        Document 结果的对象 = new Document();
+        结果的对象.put(动作, 功能抽象.动作结果);
+        结果的对象.put(Cons.动作结果, 功能抽象.动作结果);
+        执行逻辑.所有逻辑对象.add(结果的对象);
     }
 
     public String 获取最近的属性值(List<Document> list, String key) {
