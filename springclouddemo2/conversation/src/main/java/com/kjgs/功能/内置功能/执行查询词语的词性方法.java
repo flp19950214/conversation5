@@ -3,15 +3,11 @@ package com.kjgs.功能.内置功能;
 import com.kjgs.conversation.mysql.mapper.词性Mapper;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
-import com.kjgs.数据库.MongoDao;
-import com.kjgs.枚举.Cons;
-import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
-import java.util.Set;
 
 // 只查数据库对象  区别于  执行查询指定属性值方法
 @Service

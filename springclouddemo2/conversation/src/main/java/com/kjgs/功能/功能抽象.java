@@ -158,7 +158,7 @@ public abstract class 功能抽象<T> implements 功能接口 {
         return null;
     }
 
-    public static Document 获取最近的对象(List<Document> list, String key) {
+    public Document 获取最近的对象(List<Document> list, String key) {
         for (int i = list.size() - 1; i >= 0; i--) {
             Document document = list.get(i);
             if (document.containsKey(key)) {
@@ -168,7 +168,7 @@ public abstract class 功能抽象<T> implements 功能接口 {
         return null;
     }
 
-    public static Object 获取最近的属性值NoLevel(List<Document> list, String key) {
+    public Object 获取最近的属性值NoLevel(List<Document> list, String key) {
         for (int i = list.size() - 1; i >= 0; i--) {
             Document document = list.get(i);
             if (document.containsKey(key)) {
@@ -178,7 +178,7 @@ public abstract class 功能抽象<T> implements 功能接口 {
         return null;
     }
 
-    public static Document 获取最近的对象(List<Document> list, String key, String value) {
+    public Document 获取最近的对象(List<Document> list, String key, String value) {
         for (int i = list.size() - 1; i >= 0; i--) {
             Document document = list.get(i);
             if (document.containsKey(key)) {
@@ -194,7 +194,7 @@ public abstract class 功能抽象<T> implements 功能接口 {
     }
 
     //只对key做强校验
-    public static Document 获取最近的对象(List<Document> list, String key, String value, String 对象类型值) {
+    public Document 获取最近的对象(List<Document> list, String key, String value, String 对象类型值) {
         for (int i = list.size() - 1; i >= 0; i--) {
             Document document = list.get(i);
             if (!document.containsKey(key)) {

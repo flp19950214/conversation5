@@ -27,6 +27,9 @@ public class 执行更新对象属性方法 extends 功能抽象 {
         静态变量.添加执行层级集合(String.format("%s %s", level, " 更新的对象："+更新的对象.toJson()));
         静态变量.添加执行层级集合(String.format("%s %s", level, " 更新的属性："+更新的属性));
         静态变量.添加执行层级集合(String.format("%s %s", level, " 更新的属性值："+更新的属性值));
+        if(更新的对象 == null){
+            更新的对象 = new Document();
+        }
         更新的对象.put(更新的属性, 更新的属性值);
         更新的对象.put(Cons.uuidLevel, uuidLevel);
         更新的对象.put(Cons.level, level);

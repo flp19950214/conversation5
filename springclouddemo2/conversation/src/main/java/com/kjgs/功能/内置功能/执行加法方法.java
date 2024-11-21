@@ -23,9 +23,8 @@ public class 执行加法方法 extends 功能抽象 {
         double 被加数 = Double.parseDouble(获取最近的属性值(所有逻辑对象, this.被加数));
         double 加数 = Double.parseDouble(获取最近的属性值(所有逻辑对象, this.加数));
         double result = 被加数 + 加数;
-
-
-
+        静态变量.添加执行层级集合(String.format("%s %s", level, " 被加数："+被加数));
+        静态变量.添加执行层级集合(String.format("%s %s", level, " 加数："+加数));
         动作结果=result;
     }
 }

@@ -3,6 +3,7 @@ package com.kjgs.功能.内置功能;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import com.kjgs.枚举.Cons;
+import com.kjgs.静态变量;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,8 @@ public class 执行合并方法 extends 功能抽象 {
         String 被合并的对象 = 获取最近的属性值(所有逻辑对象, this.被合并的对象);
         String 合并的对象 = 获取最近的属性值(所有逻辑对象, this.合并的对象);
         Object result = 被合并的对象+合并的对象;
-
+        静态变量.添加执行层级集合(String.format("%s %s", level, " 被合并的对象："+被合并的对象));
+        静态变量.添加执行层级集合(String.format("%s %s", level, " 合并的对象："+合并的对象));
 
         动作结果=result;
     }
