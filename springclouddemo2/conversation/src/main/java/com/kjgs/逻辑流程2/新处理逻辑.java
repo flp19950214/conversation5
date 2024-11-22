@@ -106,14 +106,21 @@ public class 新处理逻辑 {
         当前处理的词语位置.put(Cons.当前处理的句子成分, new Document());
         执行逻辑Impl.所有逻辑对象.add(当前处理的句子成分);
     }
-    public void process(String 词语) {
-        List<String> 词性set =  词性MapperImpl.查询词语词性(词语);
-        //todo
+    public List<String> 获取所有对象中的词语类型(String 词语){
+        List<String> 词性Set = new ArrayList<>();
         for (Document document:执行逻辑.所有逻辑对象){
-            if(document.containsKey(Cons.词语类型) ){
-                词性set.add(document.getString(Cons.词语类型));
+            if(document.containsKey(Cons.词语类型) && document.containsKey(Cons.对象)){
+                if(StringUtils.equals(document.get(Cons.对象).toString(), 词语)){
+                    词性Set.add(document.getString(Cons.词语类型));
+                }
             }
         }
+        return 词性Set;
+    }
+    public void process(String 词语) {
+        List<String> 词性set =  词性MapperImpl.查询词语词性(词语);
+        词性set.addAll(获取所有对象中的词语类型(词语));
+
         if(CollectionUtils.isEmpty(词性set)){
 //            静态变量.输出的内容 = String.format("'%s'%s", 词语, "没有词性异常");
             词性set.add(词语);

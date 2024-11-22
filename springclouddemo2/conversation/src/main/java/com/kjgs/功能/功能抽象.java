@@ -117,20 +117,19 @@ public abstract class 功能抽象<T> implements 功能接口 {
         //判断值是否是变量，如果是需要再次查询
         if (StringUtils.startsWith(value, Cons.左变量标识符) && StringUtils.endsWith(value, Cons.右变量标识符)) {
             String key2 = StringUtils.substringBetween(value, Cons.左变量标识符, Cons.右变量标识符);
-            return 获取最近的属性值(list, key2, t);
+            return 获取最近的属性值(list, key2, t,false);
         }
         if (StringUtils.startsWith(value, Cons.左尖括号) && StringUtils.endsWith(value, Cons.右尖括号)) {
             String key2 = StringUtils.substringBetween(value, Cons.左尖括号, Cons.右尖括号);
-            return 获取最近的属性值(list, key2, t);
+            return 获取最近的属性值(list, key2, t,false);
         }
         return (T) value;
     }
-
-    public <T> T 获取最近的属性值(List<Document> list, String key, Class<T> t) {
+    public <T> T 获取最近的属性值(List<Document> list, String key, Class<T> t, boolean isUseLevel) {
         for (int i = list.size() - 1; i >= 0; i--) {
             Document document = list.get(i);
             if (document.containsKey(key)) {
-                if(document.containsKey(Cons.level)){
+                if(document.containsKey(Cons.level) && isUseLevel){
                     String uuidLevel = document.getString(Cons.uuidLevel);
                     int level = document.getInteger(Cons.level,0);
                     if(静态变量.level != level || !静态变量.uuidLevel.equals(uuidLevel)){ // 动作参数 要跟 动作在一个逻辑层级
@@ -156,6 +155,9 @@ public abstract class 功能抽象<T> implements 功能接口 {
             }
         }
         return null;
+    }
+    public <T> T 获取最近的属性值(List<Document> list, String key, Class<T> t) {
+        return  获取最近的属性值(list, key, t, true);
     }
 
     public Document 获取最近的对象(List<Document> list, String key) {
