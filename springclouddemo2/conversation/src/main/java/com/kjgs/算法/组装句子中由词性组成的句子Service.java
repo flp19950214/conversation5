@@ -8,22 +8,7 @@ import java.util.*;
 
 @Service
 public class 组装句子中由词性组成的句子Service {
-    @Test
-    public void test() {
-        组装句子中由词性组成的句子Service obj = new 组装句子中由词性组成的句子Service();
-        Map<String, List<String>> 词语词性集合 = new HashMap<>();
-//        词语词性集合.put("1",Arrays.asList(new String[]{"数字"}));
-//        词语词性集合.put("1",Arrays.asList(new String[]{"数字"}));
-//        词语词性集合.put("1",Arrays.asList(new String[]{"数字"}));
-//        obj.组装句子中由词性组成的句子("111", 词语词性集合);
 
-        // test2
-        词语词性集合.put("1",Arrays.asList(new String[]{"数字"}));
-        词语词性集合.put("11",Arrays.asList(new String[]{"数字"}));
-        词语词性集合.put("111",Arrays.asList(new String[]{"数字"}));
-        obj.组装句子中由词性组成的句子("111", 词语词性集合);
-        System.out.println(res);
-    }
 
     public void 组装句子中由词性组成的句子(String 句子, Map<String, List<String>> 词语词性集合) {
         Set<String> result = new HashSet<>();

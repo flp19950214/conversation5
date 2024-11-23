@@ -6,6 +6,7 @@ import com.kjgs.功能.功能对象;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.词性实体;
 import com.kjgs.实体.逻辑实体;
+import com.kjgs.数据库.MongoCRUDDao;
 import com.kjgs.枚举.Cons;
 import com.kjgs.算法.组装句子中由词性组成的句子Service;
 import com.kjgs.逻辑流程.执行逻辑;
@@ -29,9 +30,6 @@ public class 新处理逻辑 {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private 词性Mapper 词性MapperImpl;
-
-    @Autowired
     private 逻辑Impl 逻辑MapperImpl;
 
     @Autowired
@@ -45,6 +43,8 @@ public class 新处理逻辑 {
     @Autowired
     private 执行逻辑 执行逻辑Impl;
 
+    @Autowired
+    private MongoCRUDDao mongoCRUDDao;
 
     /**
      * 基于mysql
@@ -58,21 +58,21 @@ public class 新处理逻辑 {
      * 可能组成多个逻辑。大家独立线程，互补干扰。最后应该输出那个结果，有更高级的处理逻辑给出。
      */
 
-    public Map<String, List<String>> 获取句子中所有词性(String 句子) {
-        List<词性实体> 词性集合 = 词性MapperImpl.查询词性(句子);
-        Map<String, List<String>> map = 词性集合.stream()
-                .collect(Collectors.toMap(词性实体::get词语,
-                        s -> {
-                            List<String> 词性List = new ArrayList<>();
-                            词性List.add(s.词性);
-                            return 词性List;
-                        },
-                        (List<String> v1, List<String> v2) -> {
-                            v1.addAll(v2);
-                            return v1;
-                        }));
-        return map;
-    }
+//    public Map<String, List<String>> 获取句子中所有词性(String 句子) {
+//        List<词性实体> 词性集合 = mongoCRUDDao.查询词性(句子);
+//        Map<String, List<String>> map = 词性集合.stream()
+//                .collect(Collectors.toMap(词性实体::get词语,
+//                        s -> {
+//                            List<String> 词性List = new ArrayList<>();
+//                            词性List.add(s.词性);
+//                            return 词性List;
+//                        },
+//                        (List<String> v1, List<String> v2) -> {
+//                            v1.addAll(v2);
+//                            return v1;
+//                        }));
+//        return map;
+//    }
 
     public void 组装句子中由词性组成的句子(String 句子, Map<String, List<String>> 词语词性集合) {
         组装句子中由词性组成的句子Impl.组装句子中由词性组成的句子(句子, 词语词性集合);
@@ -118,7 +118,7 @@ public class 新处理逻辑 {
         return 词性Set;
     }
     public void process(String 词语) {
-        List<String> 词性set =  词性MapperImpl.查询词语词性(词语);
+        List<String> 词性set =  mongoCRUDDao.查询词语词性(词语);
         词性set.addAll(获取所有对象中的词语类型(词语));
 
         if(CollectionUtils.isEmpty(词性set)){

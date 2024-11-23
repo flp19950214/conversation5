@@ -25,6 +25,7 @@ public class 执行查询集合指定属性值方法 extends 功能抽象 {
     public void 功能() {
         List<Document> 查询的对象 = (List<Document>)获取最近的属性值(所有逻辑对象, this.查询的对象, List.class);
         String 查询的属性 = 获取最近的属性值(所有逻辑对象, this.查询的属性);
+
         List 查询的结果 = new ArrayList<>();
         for (int i = 0; i <查询的对象.size() ; i++) {
             Document document = 查询的对象.get(i);

@@ -6,9 +6,17 @@ server:
 spring:
   application:
     name: conversation
+  data:
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+#      username: root
+#      password: 123
+      database: kjgs2
+
 
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/conversation
+    url: jdbc:mysql://127.0.0.1:3306/conversation?characterEncoding=UTF-8&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
