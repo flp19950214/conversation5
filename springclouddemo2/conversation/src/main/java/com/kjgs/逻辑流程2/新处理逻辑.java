@@ -209,7 +209,10 @@ public class 新处理逻辑 {
                 //执行动作
                 try {
                     String 是否执行 = 功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.是否执行判断结果).toString();
-                    if (StringUtils.equals(是否执行, "false")) {
+                    if(StringUtils.equals(动作, Cons.对是否执行判断结果取反)){
+                        是否执行 = "true";
+                    }
+                    if (StringUtils.equals(是否执行, "false") ) {
                         continue;
                     }
                     功能抽象 功能抽象对象 = (功能抽象) context.getBean(Class.forName("com.kjgs.功能.内置功能." + 动作));
