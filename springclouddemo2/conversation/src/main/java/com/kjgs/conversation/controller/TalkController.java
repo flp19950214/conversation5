@@ -37,17 +37,15 @@ public class TalkController {
         执行逻辑.所有逻辑对象 = new ArrayList<>();
         String 句子 = input.getString("input");
         int 处理位置 = 0;
+        int 处理结束位置 = 1;
         while (处理位置+1 <= 句子.length()) {
-            int 处理位置temp = 处理位置;
-            String 词语 = 句子.substring(处理位置,处理位置+1);
-            新处理逻辑Impl.init(句子, 处理位置, 词语);
+            String 词语 = 句子.substring(处理位置,处理结束位置);
+            新处理逻辑Impl.init(句子, 处理位置, 处理结束位置, 词语);
             新处理逻辑Impl.process(词语);
-            处理位置 =(int) Double.parseDouble(功能对象impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语位置).toString());
-            词语 = 功能对象impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语).toString();
-            处理位置+=词语.length();
-            if(处理位置temp == 处理位置){
-                处理位置+=1;
-            }
+
+            //开启下一轮
+            处理位置 = 处理结束位置;
+            处理结束位置 =(int) Double.parseDouble(功能对象impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语结束位置).toString());
         }
         System.out.println("成分划分完毕，再次执行句子中的逻辑");
         新处理逻辑Impl.二次执行成分逻辑(句子);
@@ -57,7 +55,7 @@ public class TalkController {
 
     @PostMapping("/testLogic")
     public Object testLogic(@RequestBody JSONObject input) {
-        新处理逻辑Impl.init("123", 0,"1");
+        新处理逻辑Impl.init("123", 0,1,"1");
         Document 是否执行判断结果 = new Document();
         是否执行判断结果.put(Cons.是否执行判断结果, "true");
         执行逻辑Impl.所有逻辑对象.add(是否执行判断结果);

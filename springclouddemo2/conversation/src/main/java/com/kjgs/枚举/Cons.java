@@ -43,6 +43,7 @@ public interface Cons {
     public String 当前处理的句子="当前处理的句子";
     public String 当前处理的词语="当前处理的词语";
     public String 当前处理的词语位置="当前处理的词语位置";
+    public String 当前处理的词语结束位置="当前处理的词语结束位置";
     public String 当前处理的句子成分="当前处理的句子成分";
     public String 是否执行判断结果="是否执行判断结果";
     public String 对是否执行判断结果取反="对是否执行判断结果取反";
@@ -51,6 +52,7 @@ public interface Cons {
     public String 对象类型="对象类型";
     public String 句子成分="句子成分";
     public String 在句子中的下标="在句子中的下标";
+    public String 在句子中的结束下标="在句子中的结束下标";
     public String 待执行逻辑="待执行逻辑";
     public String level="level";
     public String uuidLevel="uuidLevel";

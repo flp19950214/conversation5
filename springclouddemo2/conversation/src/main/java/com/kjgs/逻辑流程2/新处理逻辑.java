@@ -86,7 +86,7 @@ public class 新处理逻辑 {
         }
     }
 
-    public void init(String 句子, int 处理位置, String 词语) {
+    public void init(String 句子, int 处理位置, int 处理结束位置, String 词语) {
         Document 输入的句子 = new Document();
         输入的句子.put(Cons.输入的句子, 句子);
         执行逻辑Impl.所有逻辑对象.add(输入的句子);
@@ -101,6 +101,10 @@ public class 新处理逻辑 {
         Document 当前处理的词语位置 = new Document();
         当前处理的词语位置.put(Cons.当前处理的词语位置, 处理位置);
         执行逻辑Impl.所有逻辑对象.add(当前处理的词语位置);
+
+        Document 当前处理的词语结束位置 = new Document();
+        当前处理的词语结束位置.put(Cons.当前处理的词语结束位置, 处理结束位置);
+        执行逻辑Impl.所有逻辑对象.add(当前处理的词语结束位置);
 
         Document 当前处理的句子成分 = new Document();
         当前处理的词语位置.put(Cons.当前处理的句子成分, new Document());
@@ -143,7 +147,8 @@ public class 新处理逻辑 {
         for(Document 成分:所有成分逻辑){
             String 词语 = 成分.getString(Cons.对象);
             int 处理位置 = (int)Double.parseDouble(成分.getString(Cons.在句子中的下标));
-            init(句子,处理位置,词语);
+            int 处理结束位置 = (int)Double.parseDouble(成分.getString(Cons.在句子中的结束下标));
+            init(句子,处理位置,处理结束位置,词语);
             process(词语);
         }
     }
@@ -191,9 +196,11 @@ public class 新处理逻辑 {
                     顶层逻辑doc = new Document();
                 }
                 int 处理位置 =(int) Double.parseDouble(功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语位置).toString());
+                int 处理结束位置 =(int) Double.parseDouble(功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语结束位置).toString());
                 String 词语 = 功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语).toString();
                 顶层逻辑doc.put(Cons.顶层逻辑, 逻辑Obj);
                 顶层逻辑doc.put(Cons.在句子中的下标, 处理位置);
+                顶层逻辑doc.put(Cons.在句子中的结束下标, 处理结束位置);
                 顶层逻辑doc.put(Cons.词语, 词语);
                 执行逻辑.所有逻辑对象.add(顶层逻辑doc);
             }
