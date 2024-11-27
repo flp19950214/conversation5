@@ -39,13 +39,14 @@ public class TalkController {
         int 处理位置 = 0;
         int 处理结束位置 = 1;
         while (处理结束位置 <= 句子.length()) {
+            System.out.println("本次处理结束位置:"+处理结束位置);
             String 词语 = 句子.substring(处理位置,处理结束位置);
             新处理逻辑Impl.init(句子, 处理位置, 处理结束位置, 词语);
             新处理逻辑Impl.process(词语);
 
             //开启下一轮
-            处理位置 = 处理结束位置;
             处理结束位置 =(int) Double.parseDouble(功能对象impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语结束位置).toString());
+            处理位置 = 处理结束位置;
             处理结束位置++;
         }
         System.out.println("成分划分完毕，再次执行句子中的逻辑");

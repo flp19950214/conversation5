@@ -1,5 +1,6 @@
 package com.kjgs;
 
+import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -14,6 +15,9 @@ public class 静态变量 {
     public static List<String> 执行层级集合 = new ArrayList<>();
 
     public static void 添加执行层级集合(String line){
+        if(StringUtils.isEmpty(line)){
+            return;
+        }
         try{
             //前面加\t格式化
             int num = Integer.parseInt(line.substring(0, line.indexOf(" ")));
