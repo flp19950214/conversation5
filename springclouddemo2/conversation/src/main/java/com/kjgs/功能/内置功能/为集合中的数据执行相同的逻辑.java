@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Service
 public class 为集合中的数据执行相同的逻辑 extends 功能抽象 {
-    public static final String 执行的集合 = "执行的集合";
+    public static final String 数据的集合 = "数据的集合";
     public static final String 执行的逻辑 = "执行的逻辑";
 
     @Autowired
@@ -21,19 +21,20 @@ public class 为集合中的数据执行相同的逻辑 extends 功能抽象 {
     @Override
     public void 初始化记录内置功能属性() {
         内置功能实体 obj = new 内置功能实体();
-        obj.set功能名(getClasName()).set参数名1(执行的集合)
-                .set参数名2(执行的逻辑).;
+        obj.set功能名(getClasName()).set参数名1(数据的集合)
+                .set参数名2(执行的逻辑);
         异步初始化类.初始化记录内置功能属性(obj);
     }
 
     @Override
     public void 功能() {
-        List 执行的集合 = 获取所有的属性值(所有逻辑对象, this.执行的集合);
+        List 数据的集合 = 获取所有的属性值(所有逻辑对象, this.数据的集合);
         String 执行的逻辑 = 获取最近的属性值(所有逻辑对象, this.执行的逻辑);
-        逻辑实体 逻辑Obj = new 逻辑实体();
-        逻辑Obj.set逻辑(执行的逻辑);
-        逻辑Obj.set逻辑名();
-        新处理逻辑Impl.执行逻辑(逻辑Obj, UUID.randomUUID().toString(),level);
-
+        for(Object obj:数据的集合){
+            逻辑实体 逻辑Obj = new 逻辑实体();
+            逻辑Obj.set逻辑(执行的逻辑);
+            逻辑Obj.set逻辑名(obj.toString());
+            新处理逻辑Impl.执行逻辑(逻辑Obj, UUID.randomUUID().toString(),level);
+        }
     }
 }
