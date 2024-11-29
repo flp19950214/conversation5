@@ -2,7 +2,6 @@ package com.kjgs.数据库;
 
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Repository
@@ -28,7 +28,16 @@ public class MongoCRUDDao {
         return new ArrayList(list.stream().filter(m -> m.containsKey(Cons.词语类型)).map(m -> m.get(Cons.词语类型)).collect(Collectors.toSet()));
     }
 
-    //保存
+
+    public List<Document> 条件查询(Document document) {
+        Query query = new Query();
+        for (Map.Entry entry : document.entrySet()) {
+            query.addCriteria(Criteria.where(entry.getKey().toString()).is(entry.getValue()));
+        }
+        return mongoTemplate.find(query, Document.class, doc);
+    }
+
+    //查询测试
     public List<Document> queryTest(){
         //查询字段name为张三的数据（多条件查询）
         Query query = Query.query(Criteria.where(Cons.词语).is(1))

@@ -29,7 +29,12 @@ public class MongoContoller {
         return mongoCRUDDao.查询词语词性(input.get(Cons.词语));
     }
 
-    //保存
+    @RequestMapping("/queryByCond")
+    public List<Document> 条件查询(@RequestBody Document document){
+        return mongoCRUDDao.条件查询(document);
+    }
+
+    //查询测试
     @RequestMapping("/queryTest")
     public List<Document> queryTest(){
         return mongoCRUDDao.queryTest();
