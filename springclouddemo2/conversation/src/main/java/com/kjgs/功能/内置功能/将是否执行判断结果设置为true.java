@@ -7,7 +7,7 @@ import org.bson.Document;
 import org.springframework.stereotype.Service;
 
 @Service
-public class 对是否执行判断结果取反 extends 功能抽象 {
+public class 将是否执行判断结果设置为true extends 功能抽象 {
     @Override
     public void 初始化记录内置功能属性() {
         内置功能实体 obj = new 内置功能实体();
@@ -18,9 +18,7 @@ public class 对是否执行判断结果取反 extends 功能抽象 {
     @Override
     public void 功能() {
         Document 获取最近的对象 = 获取最近的对象(所有逻辑对象, Cons.是否执行判断结果);
-        boolean 判断的结果 = Boolean.parseBoolean(获取最近的属性值(所有逻辑对象, Cons.是否执行判断结果));
-        判断的结果 = !判断的结果;
-        获取最近的对象.put(Cons.是否执行判断结果, 判断的结果);
-        动作结果=判断的结果;
+        获取最近的对象.put(Cons.是否执行判断结果, true);
+        动作结果=true;
     }
 }
