@@ -53,5 +53,6 @@ public class 执行句子成分逻辑方法 extends 功能抽象 {
                 新处理逻辑Impl.执行逻辑(逻辑Obj );
             }
         }
+        动作结果=null;
     }
 }

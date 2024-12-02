@@ -3,11 +3,13 @@ package com.kjgs.功能.内置功能;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import com.kjgs.实体.逻辑实体;
+import com.kjgs.枚举.Cons;
 import com.kjgs.逻辑流程2.新处理逻辑;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,16 +32,23 @@ public class 为集合中的数据执行相同的逻辑 extends 功能抽象 {
 
     @Override
     public void 功能() {
-        List 数据的集合 = 获取所有的属性值(所有逻辑对象, this.数据的集合);
+        List 数据的集合 = (List) 获取最近的属性值(所有逻辑对象, this.数据的集合, List.class);
         String 执行的逻辑 = 获取最近的属性值(所有逻辑对象, this.执行的逻辑);
         String 功能的参数 = 获取最近的属性值(所有逻辑对象, this.功能的参数);
-        for(Object obj:数据的集合){
-            Document document = new Document();
-            document.put(功能的参数, obj);
+        List 动作结果 = new ArrayList();
+        for(int i=0;i<数据的集合.size();i++){
+            Document document = 生成当前层级对象();
+            document.put(功能的参数, 数据的集合.get(i));
+            所有逻辑对象.add(document);
             逻辑实体 逻辑Obj = new 逻辑实体();
-            逻辑Obj.set逻辑(执行的逻辑);
-            逻辑Obj.set逻辑名(obj.toString());
-            新处理逻辑Impl.执行逻辑(逻辑Obj, UUID.randomUUID().toString(),level);
+            逻辑Obj.set逻辑(String.format("《%s》", 执行的逻辑));
+            逻辑Obj.set逻辑名( 数据的集合.get(i).toString());
+
+            新处理逻辑Impl.执行逻辑(逻辑Obj, uuidLevel,level);
+
+            String 动作结果Temp = 获取最近的属性值(所有逻辑对象, Cons.动作结果);
+            动作结果.add(动作结果Temp);
         }
+        this.动作结果=动作结果;
     }
 }

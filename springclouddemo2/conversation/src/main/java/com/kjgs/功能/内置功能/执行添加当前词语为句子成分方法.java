@@ -41,5 +41,7 @@ public class 执行添加当前词语为句子成分方法 extends 功能抽象 
         Document 当前处理的句子成分 =(Document)获取最近的属性值(所有逻辑对象, Cons.当前处理的句子成分, Document.class);
         当前处理的句子成分.put(Cons.当前处理的句子成分,  成分对象);
         所有逻辑对象.add(当前处理的句子成分);
+
+        动作结果=null;
     }
 }

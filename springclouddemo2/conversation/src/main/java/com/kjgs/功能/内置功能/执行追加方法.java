@@ -23,9 +23,6 @@ public class 执行追加方法 extends 功能抽象 {
         String 被追加的对象 = 获取最近的属性值(所有逻辑对象, this.被追加的对象);
         String 追加的对象 = 获取最近的属性值(所有逻辑对象, this.追加的对象);
         Object result = 被追加的对象+追加的对象;
-
-
-
         动作结果=result;
     }
 }

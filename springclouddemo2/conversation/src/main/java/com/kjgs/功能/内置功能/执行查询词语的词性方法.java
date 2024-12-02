@@ -4,6 +4,7 @@ import com.kjgs.conversation.mysql.mapper.词性Mapper;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import com.kjgs.数据库.MongoCRUDDao;
+import com.kjgs.静态变量;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +40,7 @@ public class 执行查询词语的词性方法 extends 功能抽象 {
     @Override
     public void 功能() {
         String 查询的词语 = 获取最近的属性值(所有逻辑对象, this.查询的词语);
+        静态变量.添加执行层级集合(String.format("%s %s", level, " 查询的词语："+查询的词语));
         List<String> 查询的结果 = mongoCRUDDao.查询词语词性(查询的词语);
         动作结果=查询的结果;
     }

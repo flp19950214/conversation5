@@ -35,5 +35,7 @@ public class 执行保存方法 extends 功能抽象 {
         document.put(Cons.uuidLevel,uuidLevel);
         document.put(Cons.level,level);
         MongoDao.insert(document);
+
+        动作结果=null;
     }
 }

@@ -28,6 +28,8 @@ public class 执行新增集合元素方法 extends 功能抽象 {
         List 新增的集合 = (List) 获取最近的属性值(所有逻辑对象, this.新增的集合,List.class);
         Object 新增的元素 = 获取最近的属性值(所有逻辑对象, this.新增的元素, Object.class);
         新增的集合.add(新增的元素);
+
+        动作结果=null;
     }
 
     @Test

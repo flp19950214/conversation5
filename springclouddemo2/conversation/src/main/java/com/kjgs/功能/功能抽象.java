@@ -23,6 +23,13 @@ public abstract class 功能抽象<T> implements 功能接口 {
     public String uuidLevel;
     public static int 属性在所有对象中的下标 = 0;
 
+    public Document 生成当前层级对象(){
+        Document document = new Document();
+        document.put("level", level);
+        document.put("uuidLevel", uuidLevel);
+        return document;
+    }
+
     @Autowired
     public 异步_初始化记录内置功能属性 异步初始化类;
 

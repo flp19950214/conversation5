@@ -26,6 +26,7 @@ public class 是 extends 功能抽象 {
         document.put(Cons.uuidLevel,uuidLevel);
         document.put(Cons.level,level);
         所有逻辑对象.add(document);
+        动作结果=null;
     }
 
 }

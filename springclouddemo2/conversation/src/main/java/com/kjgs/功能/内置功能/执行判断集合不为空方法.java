@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class 执行判断集合是否为空方法 extends 功能抽象 {
+public class 执行判断集合不为空方法 extends 功能抽象 {
     public static final String 被判断的对象 = "被判断的对象";
     public static final String 判断的结果 ="判断的结果";
     @Override
@@ -21,10 +21,7 @@ public class 执行判断集合是否为空方法 extends 功能抽象 {
     @Override
     public void 功能() {
         List 被判断的对象 =  (List)获取最近的属性值(所有逻辑对象, this.被判断的对象, List.class);
-        boolean 判断的结果 = CollectionUtils.isEmpty(被判断的对象);
-
-
-
+        boolean 判断的结果 = !CollectionUtils.isEmpty(被判断的对象);
         动作结果=判断的结果;
     }
 }
