@@ -28,6 +28,6 @@ public class 执行更新方法 extends 功能抽象 {
         document.put(Cons.uuidLevel,uuidLevel);
         document.put(Cons.level,level);
         MongoDao.update(更新的主键, document);
-        动作结果=null;
+
     }
 }

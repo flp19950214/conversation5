@@ -36,6 +36,6 @@ public class 为一个词语执行集合中所有逻辑 extends 功能抽象 {
             逻辑Obj.set逻辑名(待处理的词语);
             新处理逻辑Impl.执行逻辑(逻辑Obj, UUID.randomUUID().toString(),level);
         }
-        动作结果=null;
+
     }
 }

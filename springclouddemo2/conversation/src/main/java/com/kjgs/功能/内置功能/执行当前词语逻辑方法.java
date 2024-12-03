@@ -35,6 +35,6 @@ public class 执行当前词语逻辑方法 extends 功能抽象 {
         //查询最新的逻辑
         新处理逻辑Impl.process(词语);
 
-        动作结果=null;
+
     }
 }
