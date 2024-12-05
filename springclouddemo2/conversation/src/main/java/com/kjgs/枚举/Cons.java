@@ -59,6 +59,7 @@ public interface Cons {
     public String 异常逻辑="异常逻辑";
     public String 词语="词语";
     public String 词语类型="词语类型";
+    public String 未知词="未知词";
 
 
     public String 包含="包含";

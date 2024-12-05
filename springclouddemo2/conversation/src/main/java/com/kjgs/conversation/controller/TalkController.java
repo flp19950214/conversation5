@@ -49,6 +49,7 @@ public class TalkController {
             处理位置 = 处理结束位置;
             处理结束位置++;
         }
+        //todo 多次执行 添加逻辑 如果句子的成分对象不再有变化就终止执行
         System.out.println("成分划分完毕，再次执行句子中的逻辑");
         新处理逻辑Impl.二次执行成分逻辑(句子);
         return 静态变量.输出的内容;

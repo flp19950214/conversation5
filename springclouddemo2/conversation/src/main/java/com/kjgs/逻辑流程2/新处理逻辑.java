@@ -15,6 +15,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -134,8 +135,19 @@ public class 新处理逻辑 {
         }
         List<逻辑实体> 逻辑set = 逻辑MapperImpl.根据多个逻辑名查询List(词性set);
         if(CollectionUtils.isEmpty(逻辑set)){
+            //没有处理逻辑 就记录为未知词
+            Document 成分对象 = new Document();
+            成分对象.put(Cons._id, new ObjectId());
+            成分对象.put(Cons.对象类型, Cons.句子成分);
+            成分对象.put(Cons.词语, 词语);
+            成分对象.put(Cons.词语类型, Cons.未知词);
+            String 当前处理的词语位置 =功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语位置)+"";
+            成分对象.put(Cons.在句子中的下标, 当前处理的词语位置);
+            成分对象.put(Cons.在句子中的结束下标, 当前处理的词语位置+词语.length());
+            执行逻辑Impl.所有逻辑对象.add(成分对象);
             静态变量.输出的内容 = String.format("'%s'%s", 词性set.get(0), "没有处理逻辑异常");
             静态变量.添加执行层级集合(String.format("'%s'%s", 词性set.get(0), "没有处理逻辑异常"));
+            System.out.println(静态变量.输出的内容);
             return;
         }
         执行词性处理逻辑(逻辑set);
