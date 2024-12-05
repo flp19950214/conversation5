@@ -33,7 +33,7 @@ public class 执行当前词语相关逻辑 {
 
     public void method(String 待处理词语){
         Document 查询逻辑条件 = new Document();
-        查询逻辑条件.put(Cons.对象,待处理词语);
+        查询逻辑条件.put(Cons.词语,待处理词语);
         Document 查询逻辑条件2 = new Document();
         查询逻辑条件2.put("$exists", true);
         查询逻辑条件.put(Cons.处理逻辑, 查询逻辑条件2);

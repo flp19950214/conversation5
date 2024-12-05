@@ -38,11 +38,4 @@ public class 合并下一个词 extends 逻辑抽象 {
         obj.set逻辑名(功能抽象.getClasName()).set逻辑(合并下一个词);
         异步初始化类.初始化记录内置功能属性(obj);
     }
-    @Test
-    public void test2(){
-        Document document = new Document();
-        document.put(Cons.对象,"合并下一个词");
-        document.put(Cons.处理逻辑,合并下一个词);
-        MongoDao.insert(document);
-    }
 }

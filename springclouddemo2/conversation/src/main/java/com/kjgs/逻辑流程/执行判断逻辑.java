@@ -28,7 +28,7 @@ public class 执行判断逻辑 {
         String sen = "如果遇到如果，添加一个开始判断的语境";
         for (int i = 0; i < sen.length()-1; i++) {
             Document 查询逻辑条件 = new Document();
-            查询逻辑条件.put(Cons.对象, sen.substring(i,i+1));
+            查询逻辑条件.put(Cons.词语, sen.substring(i,i+1));
             Document 查询逻辑条件2 = new Document();
             查询逻辑条件2.put("$exists", true);
             查询逻辑条件.put(Cons.处理逻辑, 查询逻辑条件2);

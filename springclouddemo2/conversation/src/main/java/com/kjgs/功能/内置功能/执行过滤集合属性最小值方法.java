@@ -25,12 +25,23 @@ public class 执行过滤集合属性最小值方法 extends 功能抽象 {
         List<Document> 过滤的对象 = (List<Document>)获取最近的属性值(所有逻辑对象, this.过滤的对象, List.class);
         String 过滤的属性 = 获取最近的属性值(所有逻辑对象, this.过滤的属性);
 
+        double minValue= Double.MAX_VALUE;
+        for (int i = 0; i <过滤的对象.size() ; i++) {
+            Document document = 过滤的对象.get(i);
+            if(document.containsKey(过滤的属性)){
+                double tempValue = document.getDouble(document.get(过滤的属性));
+                minValue = Math.min(minValue, tempValue);
+            }
+        }
         List<Document> 过滤的结果 = new ArrayList<>();
         for (int i = 0; i <过滤的对象.size() ; i++) {
             Document document = 过滤的对象.get(i);
-           if(document.get(过滤的属性) != null){
-               过滤的结果.add(document);
-           }
+            if(document.containsKey(过滤的属性)){
+                double tempValue = document.getDouble(document.get(过滤的属性));
+                if(tempValue == minValue){
+                    过滤的结果.add(document);
+                }
+            }
         }
 
         动作结果=过滤的结果;

@@ -113,8 +113,8 @@ public class 新处理逻辑 {
     public List<String> 获取所有对象中的词语类型(String 词语){
         List<String> 词性Set = new ArrayList<>();
         for (Document document:执行逻辑.所有逻辑对象){
-            if(document.containsKey(Cons.词语类型) && document.containsKey(Cons.对象)){
-                if(StringUtils.equals(document.get(Cons.对象).toString(), 词语)){
+            if(document.containsKey(Cons.词语类型) && document.containsKey(Cons.词语)){
+                if(StringUtils.equals(document.get(Cons.词语).toString(), 词语)){
                     词性Set.add(document.getString(Cons.词语类型));
                 }
             }
@@ -122,6 +122,9 @@ public class 新处理逻辑 {
         return 词性Set;
     }
     public void process(String 词语) {
+        if(词语==null){
+            return;
+        }
         List<String> 词性set =  mongoCRUDDao.查询词语词性(词语);
         词性set.addAll(获取所有对象中的词语类型(词语));
 
@@ -145,7 +148,7 @@ public class 新处理逻辑 {
         执行逻辑.所有逻辑对象.clear();
         执行逻辑.所有逻辑对象.addAll(所有成分逻辑);
         for(Document 成分:所有成分逻辑){
-            String 词语 = 成分.getString(Cons.对象);
+            String 词语 = 成分.getString(Cons.词语);
             int 处理位置 = (int)Double.parseDouble(成分.getString(Cons.在句子中的下标));
             int 处理结束位置 = (int)Double.parseDouble(成分.getString(Cons.在句子中的结束下标));
             init(句子,处理位置,处理结束位置,词语);

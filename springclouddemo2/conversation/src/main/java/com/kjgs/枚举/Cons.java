@@ -8,7 +8,6 @@ public interface Cons {
     public String 左变量标识符 = "￥{";
     public String 右变量标识符 = "}";
     public String 上级对象唯一标识="上级对象唯一标识";
-    public String 对象="对象";
     public String 判断的结果="判断的结果";
     public String 处理逻辑的判断条件="处理逻辑的判断条件";
     public String 的对象="的对象";

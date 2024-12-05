@@ -30,7 +30,7 @@ public class 执行保存方法 extends 功能抽象 {
         String 保存的属性值 = 获取最近的属性值(所有逻辑对象, this.保存的属性值);
         Document document = new Document();
         document.put(Cons.主键, new ObjectId().toString());
-        document.put(Cons.对象, 保存的对象);
+        document.put(Cons.词语, 保存的对象);
         document.put(保存的属性, 保存的属性值);
         document.put(Cons.uuidLevel,uuidLevel);
         document.put(Cons.level,level);

@@ -38,7 +38,7 @@ public class 执行句子成分逻辑方法 extends 功能抽象 {
             Document 当前处理的词语结束位置 = 获取最近的对象(所有逻辑对象, Cons.当前处理的词语结束位置);
             当前处理的词语结束位置.put(Cons.当前处理的词语结束位置,document.getString(Cons.在句子中的结束下标));
             Document 当前处理的词语 = 获取最近的对象(所有逻辑对象, Cons.当前处理的词语);
-            当前处理的词语.put(Cons.当前处理的词语,Cons.对象);
+            当前处理的词语.put(Cons.当前处理的词语,Cons.词语);
             //执行逻辑
             List<Document> 待执行逻辑List = document.get(Cons.待执行逻辑, List.class);
             if(CollectionUtils.isEmpty(待执行逻辑List)){

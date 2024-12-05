@@ -46,7 +46,7 @@ public class 判断是否有新的待处理对象 extends 逻辑抽象 {
     @Test
     public void test2(){
         Document document = new Document();
-        document.put(Cons.对象,"判断是否有新的待处理对象");
+        document.put(Cons.词语,"判断是否有新的待处理对象");
         document.put(Cons.处理逻辑,判断是否有新的待处理对象);
         MongoDao.insert(document);
     }

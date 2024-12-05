@@ -29,7 +29,7 @@ public class 执行添加当前词语为句子成分方法 extends 功能抽象 
         成分对象.put(Cons._id, new ObjectId());
         成分对象.put(Cons.对象类型, Cons.句子成分);
         String 词语 = (String) 功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语);
-        成分对象.put(Cons.对象,  词语);
+        成分对象.put(Cons.词语,  词语);
         String 当前处理的词语位置 =功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语位置)+"";
         String 当前处理的词语结束位置 =功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语结束位置)+"";
         成分对象.put(Cons.在句子中的下标,  当前处理的词语位置);

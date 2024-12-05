@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -21,6 +22,9 @@ public class MongoCRUDDao {
     private MongoTemplate mongoTemplate;
 
     public List 查询词语词性(Object 词语){
+        if(词语==null){
+            return Collections.emptyList();
+        }
         Query query = Query.query(Criteria.where(Cons.词语).in(词语,词语.toString()));
 //                .is(词语))
 //                .with(Sort.by(Sort.Direction.DESC,"_id"));

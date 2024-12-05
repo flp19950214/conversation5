@@ -17,7 +17,7 @@ public class Mongo获取判断逻辑 extends MongoBaseDao {
         查询对象.put(Cons.词性, Cons.反向判断词);
         Document jsonObject = new Document();
         jsonObject.put("$regex", "否");
-        查询对象.put(Cons.对象,jsonObject);
+        查询对象.put(Cons.词语,jsonObject);
         System.out.println(正则查询判断逻辑(查询对象));
     }
     public static List<Document> 正则查询判断逻辑(String input) {
@@ -25,7 +25,7 @@ public class Mongo获取判断逻辑 extends MongoBaseDao {
         查询对象.put(Cons.在上级对象中的成分, Cons.判断条件);
         Document jsonObject = new Document();
         jsonObject.put("$regex", input);
-        查询对象.put(Cons.对象,jsonObject);
+        查询对象.put(Cons.词语,jsonObject);
         return 正则查询判断逻辑(查询对象);
     }
     public static List<Document> 正则查询判断逻辑(Document 查询对象) {
