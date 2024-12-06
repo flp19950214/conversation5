@@ -60,6 +60,7 @@ public interface Cons {
     public String 词语="词语";
     public String 词语类型="词语类型";
     public String 未知词="未知词";
+    public String 句子成分集合="句子成分集合";
 
 
     public String 包含="包含";

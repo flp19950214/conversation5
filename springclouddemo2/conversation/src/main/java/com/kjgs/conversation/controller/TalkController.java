@@ -2,6 +2,7 @@ package com.kjgs.conversation.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.kjgs.conversation.mysql.逻辑Impl;
+import com.kjgs.conversation.service.TalkService;
 import com.kjgs.功能.功能对象;
 import com.kjgs.实体.逻辑实体;
 import com.kjgs.枚举.Cons;
@@ -31,6 +32,9 @@ public class TalkController {
     @Autowired
     private 功能对象 功能对象impl;
 
+    @Autowired
+    private TalkService talkService;
+
     @PostMapping("/talk")
     public String conversation(@RequestBody JSONObject input) {
         静态变量.执行层级集合 = new ArrayList<>();
@@ -49,9 +53,15 @@ public class TalkController {
             处理位置 = 处理结束位置;
             处理结束位置++;
         }
-        //todo 多次执行 添加逻辑 如果句子的成分对象不再有变化就终止执行
-        System.out.println("成分划分完毕，再次执行句子中的逻辑");
-        新处理逻辑Impl.二次执行成分逻辑(句子);
+
+        //判断句子成分是否还有变化  没有变化了也就不用再反复执行了
+        boolean 是否继续反复处理句子 = talkService.是否继续反复处理句子();
+        if(是否继续反复处理句子){
+            //被动记录句子成分集合
+            talkService.记录所有的句子成分到内存中();
+            System.out.println("成分划分完毕，再次执行句子中的逻辑");
+            新处理逻辑Impl.二次执行成分逻辑(句子);
+        }
         return 静态变量.输出的内容;
     }
 

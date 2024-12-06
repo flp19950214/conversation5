@@ -19,6 +19,5 @@ public class 将是否执行判断结果设置为true extends 功能抽象 {
     public void 功能() {
         Document 获取最近的对象 = 获取最近的对象(所有逻辑对象, Cons.是否执行判断结果);
         获取最近的对象.put(Cons.是否执行判断结果, true);
-        动作结果=true;
     }
 }
