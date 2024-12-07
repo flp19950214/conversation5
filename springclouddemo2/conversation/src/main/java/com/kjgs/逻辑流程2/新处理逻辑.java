@@ -145,26 +145,24 @@ public class 新处理逻辑 {
             成分对象.put(Cons.在句子中的下标, 当前处理的词语位置);
             成分对象.put(Cons.在句子中的结束下标, 当前处理的词语位置+词语.length());
             执行逻辑Impl.所有逻辑对象.add(成分对象);
-            静态变量.输出的内容 = String.format("'%s'%s", 词性set.get(0), "没有处理逻辑异常");
+            静态变量.输出的内容 =String.format("'%s'%s", 词性set.get(0), "没有处理逻辑异常");
             静态变量.添加执行层级集合(String.format("'%s'%s", 词性set.get(0), "没有处理逻辑异常"));
-            System.out.println(静态变量.输出的内容);
             return;
         }
         执行词性处理逻辑(逻辑set);
     }
 
     public void 二次执行成分逻辑(String 句子){
-        List<Document> 所有成分逻辑 = 执行逻辑.所有逻辑对象.stream().filter(m -> m.containsKey(Cons.对象类型) && m.containsValue(Cons.句子成分))
-                .peek(m -> m.remove(Cons._id))
-                .collect(Collectors.toList());
-        执行逻辑.所有逻辑对象.clear();
-        执行逻辑.所有逻辑对象.addAll(所有成分逻辑);
-        for(Document 成分:所有成分逻辑){
-            String 词语 = 成分.getString(Cons.词语);
-            int 处理位置 = (int)Double.parseDouble(成分.getString(Cons.在句子中的下标));
-            int 处理结束位置 = (int)Double.parseDouble(成分.getString(Cons.在句子中的结束下标));
-            init(句子,处理位置,处理结束位置,词语);
-            process(词语);
+        for(Document 成分:静态变量.上一层句子成分集合){
+            try {
+                String 词语 = 成分.getString(Cons.词语);
+                int 处理位置 = (int) Double.parseDouble(成分.getString(Cons.在句子中的下标));
+                int 处理结束位置 = (int) Double.parseDouble(成分.getString(Cons.在句子中的结束下标));
+                init(句子, 处理位置, 处理结束位置, 词语);
+                process(词语);
+            }catch (Exception e){
+                continue;
+            }
         }
     }
 

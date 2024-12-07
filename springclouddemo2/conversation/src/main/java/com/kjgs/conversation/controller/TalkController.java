@@ -1,5 +1,6 @@
 package com.kjgs.conversation.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.kjgs.conversation.mysql.逻辑Impl;
 import com.kjgs.conversation.service.TalkService;
@@ -9,6 +10,7 @@ import com.kjgs.枚举.Cons;
 import com.kjgs.逻辑流程.执行逻辑;
 import com.kjgs.逻辑流程2.新处理逻辑;
 import com.kjgs.静态变量;
+import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController()
 public class TalkController {
@@ -55,13 +59,19 @@ public class TalkController {
         }
 
         //判断句子成分是否还有变化  没有变化了也就不用再反复执行了
-        boolean 是否继续反复处理句子 = talkService.是否继续反复处理句子();
-        if(是否继续反复处理句子){
-            //被动记录句子成分集合
-            talkService.记录所有的句子成分到内存中();
+        List<Document> 所有成分逻辑 = 执行逻辑.所有逻辑对象.stream().filter(m -> m.containsKey(Cons.对象类型) && m.containsValue(Cons.句子成分))
+                .peek(m -> m.remove(Cons._id))
+                .collect(Collectors.toList());
+        执行逻辑.所有逻辑对象.clear();
+        执行逻辑.所有逻辑对象.addAll(所有成分逻辑);
+        while(!StringUtils.equals(JSON.toJSONString(所有成分逻辑), JSON.toJSONString(静态变量.上一层句子成分集合))){
+            静态变量.上一层句子成分集合 = 所有成分逻辑;
             System.out.println("成分划分完毕，再次执行句子中的逻辑");
             新处理逻辑Impl.二次执行成分逻辑(句子);
         }
+
+        //执行输出逻辑
+        talkService.执行输出结果逻辑();
         return 静态变量.输出的内容;
     }
 

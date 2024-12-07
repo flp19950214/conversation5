@@ -39,4 +39,12 @@ public class TalkService {
         输入的句子.put(Cons.对象类型, Cons.句子成分);
         执行逻辑Impl.所有逻辑对象.add(输入的句子);
     }
+
+    public String 执行输出结果逻辑(){
+        //被动记录句子成分集合
+        String 逻辑名 = "执行输出结果逻辑";
+        逻辑实体 逻辑Obj = 逻辑MapperImpl.queryForObject(逻辑名);
+        Object result = 新处理逻辑Impl.执行逻辑(逻辑Obj);
+        return result.toString();
+    }
 }
