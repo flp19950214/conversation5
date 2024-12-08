@@ -259,7 +259,7 @@ public class 新处理逻辑 {
     }
 
     private void 查询并迭代逻辑(String 逻辑名, int level) {
-        逻辑实体 逻辑Obj = 逻辑MapperImpl.queryForObject(逻辑名);
+        逻辑实体 逻辑Obj = 逻辑MapperImpl.根据逻辑名查询单个处理逻辑(逻辑名);
         if (逻辑Obj == null) {
             String 异常信息 = "迭代逻辑= '" + 逻辑名 + "' 的逻辑是空的";
             System.out.println(异常信息);
@@ -269,7 +269,7 @@ public class 新处理逻辑 {
     }
 
     private boolean 判断是否有非内置处理逻辑(String 逻辑名){
-        逻辑实体 逻辑Obj = 逻辑MapperImpl.queryForObject(逻辑名);
+        逻辑实体 逻辑Obj = 逻辑MapperImpl.根据逻辑名查询单个处理逻辑(逻辑名);
         if(逻辑Obj!= null){
             return true;
         }

@@ -49,6 +49,10 @@ public class MongoCRUDDao {
         List<Document> list = mongoTemplate.find(query, Document.class,doc);
         return list;
     }
+
+    public void 保存对象(Document document){
+        mongoTemplate.save(document,doc);
+    }
     //保存
     public void saveTest(){
         Document document0 = new Document();

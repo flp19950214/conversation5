@@ -24,7 +24,7 @@ public class TalkService {
     public boolean 是否继续反复处理句子(){
         //判断句子成分是否还有变换
         String 逻辑名 = "是否继续反复处理句子";
-        逻辑实体 逻辑Obj = 逻辑MapperImpl.queryForObject(逻辑名);
+        逻辑实体 逻辑Obj = 逻辑MapperImpl.根据逻辑名查询单个处理逻辑(逻辑名);
         Object result = 新处理逻辑Impl.执行逻辑(逻辑Obj);
         return Boolean.parseBoolean(result.toString());
     }
@@ -32,7 +32,7 @@ public class TalkService {
     public void 记录所有的句子成分到内存中(){
         //被动记录句子成分集合
         String 逻辑名 = "获取所有的句子成分";
-        逻辑实体 逻辑Obj = 逻辑MapperImpl.queryForObject(逻辑名);
+        逻辑实体 逻辑Obj = 逻辑MapperImpl.根据逻辑名查询单个处理逻辑(逻辑名);
         Object result = 新处理逻辑Impl.执行逻辑(逻辑Obj);
         Document 输入的句子 = new Document();
         输入的句子.put(Cons.句子成分集合, result);
@@ -43,7 +43,7 @@ public class TalkService {
     public String 执行输出结果逻辑(){
         //被动记录句子成分集合
         String 逻辑名 = "执行输出结果逻辑";
-        逻辑实体 逻辑Obj = 逻辑MapperImpl.queryForObject(逻辑名);
+        逻辑实体 逻辑Obj = 逻辑MapperImpl.根据逻辑名查询单个处理逻辑(逻辑名);
         Object result = 新处理逻辑Impl.执行逻辑(逻辑Obj);
         return result.toString();
     }
