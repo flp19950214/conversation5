@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Repository
@@ -31,7 +32,15 @@ public class MongoCRUDDao {
         List<Document> list = mongoTemplate.find(query, Document.class,doc);
         return new ArrayList(list.stream().filter(m -> m.containsKey(Cons.词语类型)).map(m -> m.get(Cons.词语类型)).collect(Collectors.toSet()));
     }
-
+    public List 左匹配查询(String 属性, String 属性值){
+        if(属性==null || 属性值==null){
+            return Collections.emptyList();
+        }
+        Pattern compile = Pattern.compile("^" + 属性值.toString() + ".*$");
+        Query query=new Query(Criteria.where(属性).is(compile));
+        List<Document> list = mongoTemplate.find(query, Document.class,doc);
+        return list;
+    }
 
     public List<Document> 条件查询(Document document) {
         Query query = new Query();

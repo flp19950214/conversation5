@@ -37,9 +37,11 @@ public class 为集合中的数据执行相同的逻辑 extends 功能抽象 {
         String 功能的参数 = 获取最近的属性值(所有逻辑对象, this.功能的参数);
         List 动作结果 = new ArrayList();
         for(int i=0;i<数据的集合.size();i++){
-            Document document = 生成当前层级对象();
-            document.put(功能的参数, 数据的集合.get(i));
-            所有逻辑对象.add(document);
+            if(功能的参数 != null){
+                Document document = 生成当前层级对象();
+                document.put(功能的参数, 数据的集合.get(i));
+                所有逻辑对象.add(document);
+            }
             逻辑实体 逻辑Obj = new 逻辑实体();
             逻辑Obj.set逻辑(String.format("《%s》", 执行的逻辑));
             逻辑Obj.set逻辑名( 数据的集合.get(i).toString());
