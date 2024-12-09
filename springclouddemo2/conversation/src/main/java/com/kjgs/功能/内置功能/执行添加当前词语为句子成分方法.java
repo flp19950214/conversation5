@@ -51,7 +51,8 @@ public class 执行添加当前词语为句子成分方法 extends 功能抽象 
             静态变量.添加执行层级集合(String.format("%s %s", level, " 添加的词语结束位置："+当前处理的词语结束位置));
             所有逻辑对象.add(成分对象);
         }
-        Document 当前处理的句子成分 =(Document)获取最近的属性值(所有逻辑对象, Cons.当前处理的句子成分, Document.class);
+//        Document 当前处理的句子成分 =(Document)获取最近的属性值(所有逻辑对象, Cons.当前处理的句子成分, Document.class);
+        Document 当前处理的句子成分 = new Document();
         当前处理的句子成分.put(Cons.当前处理的句子成分,  成分对象);
         所有逻辑对象.add(当前处理的句子成分);
 

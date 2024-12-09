@@ -161,6 +161,7 @@ public class 新处理逻辑 {
                 init(句子, 处理位置, 处理结束位置, 词语);
                 process(词语);
             }catch (Exception e){
+                e.printStackTrace();
                 continue;
             }
         }

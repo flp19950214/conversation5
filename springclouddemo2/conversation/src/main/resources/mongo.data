@@ -4,3 +4,11 @@ db.getCollection('kjgsDoc2').insert(
  "相似于":"1"
  }
  )
+
+ db.getCollection('kjgsDoc2').insert(
+  {
+  "词语":"511",
+  "词语类型":"数字",
+  "相似于":"1"
+  }
+  )
