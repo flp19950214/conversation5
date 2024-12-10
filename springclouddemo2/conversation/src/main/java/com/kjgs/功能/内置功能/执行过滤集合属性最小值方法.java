@@ -28,8 +28,8 @@ public class 执行过滤集合属性最小值方法 extends 功能抽象 {
         double minValue= Double.MAX_VALUE;
         for (int i = 0; i <过滤的对象.size() ; i++) {
             Document document = 过滤的对象.get(i);
-            if(document.containsKey(过滤的属性)){
-                double tempValue = document.getDouble(document.get(过滤的属性));
+            if(document.containsKey(过滤的属性) && document.get(过滤的属性) != null){
+                double tempValue = Double.parseDouble(document.getString(过滤的属性));
                 minValue = Math.min(minValue, tempValue);
             }
         }
@@ -37,7 +37,7 @@ public class 执行过滤集合属性最小值方法 extends 功能抽象 {
         for (int i = 0; i <过滤的对象.size() ; i++) {
             Document document = 过滤的对象.get(i);
             if(document.containsKey(过滤的属性)){
-                double tempValue = document.getDouble(document.get(过滤的属性));
+                double tempValue = Double.parseDouble(document.getString(过滤的属性));
                 if(tempValue == minValue){
                     过滤的结果.add(document);
                 }

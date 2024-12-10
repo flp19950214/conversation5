@@ -24,8 +24,12 @@ public class 执行查询字符长度方法 extends 功能抽象 {
     }
     @Override
     public void 功能() {
-        int 字符长度 =获取最近的属性值(所有逻辑对象, this.查询的字符).length();
-        Object 查询的结果 = 字符长度;
+        String 字符串 = 获取最近的属性值(所有逻辑对象, this.查询的字符);
+        Object 查询的结果=null;
+        if(字符串 != null){
+            int 字符长度 =字符串.length();
+            查询的结果 = 字符长度;
+        }
         动作结果=查询的结果;
     }
 

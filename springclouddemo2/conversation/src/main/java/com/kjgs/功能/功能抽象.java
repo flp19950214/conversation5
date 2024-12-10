@@ -111,7 +111,7 @@ public abstract class 功能抽象<T> implements 功能接口 {
                     }
                     result.add(document.get(key, t));
                 } catch (ClassCastException e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
                     result.add(document.get(key, t));
                 }
             }

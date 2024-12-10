@@ -143,10 +143,10 @@ public class 新处理逻辑 {
             成分对象.put(Cons.词语类型, Cons.未知词);
             String 当前处理的词语位置 =功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语位置)+"";
             成分对象.put(Cons.在句子中的下标, 当前处理的词语位置);
-            成分对象.put(Cons.在句子中的结束下标, 当前处理的词语位置+词语.length());
+            成分对象.put(Cons.在句子中的结束下标, (int)Double.parseDouble(当前处理的词语位置)+词语.length());
             执行逻辑Impl.所有逻辑对象.add(成分对象);
-            静态变量.输出的内容 =String.format("'%s'%s", 词性set.get(0), "没有处理逻辑异常");
-            静态变量.添加执行层级集合(String.format("'%s'%s", 词性set.get(0), "没有处理逻辑异常"));
+            静态变量.输出的内容 =String.format("%s '%s'%s", 1 ,词性set.get(0), "没有处理逻辑异常");
+            静态变量.添加执行层级集合(String.format("%s '%s'%s", 1, 词性set.get(0), "没有处理逻辑异常"));
             return;
         }
         执行词性处理逻辑(逻辑set);
@@ -157,7 +157,7 @@ public class 新处理逻辑 {
             try {
                 String 词语 = 成分.getString(Cons.词语);
                 int 处理位置 = (int) Double.parseDouble(成分.getString(Cons.在句子中的下标));
-                int 处理结束位置 = (int) Double.parseDouble(成分.getString(Cons.在句子中的结束下标));
+                int 处理结束位置 = (int) Double.parseDouble(成分.get(Cons.在句子中的结束下标).toString());
                 init(句子, 处理位置, 处理结束位置, 词语);
                 process(词语);
             }catch (Exception e){
@@ -222,7 +222,7 @@ public class 新处理逻辑 {
             //可能有多个动作
             String[] 动作集合 = StringUtils.substringsBetween(当前逻辑句子, Cons.左尖括号, Cons.右尖括号);
             if (ArrayUtils.isEmpty(动作集合)) {
-                String 异常信息 = String.format("%s='%s'%s","逻辑" ,当前逻辑句子 ,"没有用《》括起来");
+                String 异常信息 = String.format("%s='%s '%s","逻辑" ,当前逻辑句子 ,"没有用《》括起来");
                 System.out.println(异常信息);
                 throw new RuntimeException(异常信息);
             }
