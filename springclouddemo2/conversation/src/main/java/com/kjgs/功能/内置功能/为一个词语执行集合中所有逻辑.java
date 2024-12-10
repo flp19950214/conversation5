@@ -32,6 +32,9 @@ public class 为一个词语执行集合中所有逻辑 extends 功能抽象 {
         String 待处理的词语 = 获取最近的属性值(所有逻辑对象, this.待处理的词语);
         for(Object 逻辑: 待执行的逻辑集合){
             逻辑实体 逻辑Obj = new 逻辑实体();
+            if(逻辑.toString().equals("[]")){
+                continue;
+            }
             逻辑Obj.set逻辑(逻辑.toString());
             逻辑Obj.set逻辑名(待处理的词语);
             新处理逻辑Impl.执行逻辑(逻辑Obj, UUID.randomUUID().toString(),level);

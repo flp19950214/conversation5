@@ -48,7 +48,7 @@ public class 为集合中的数据执行相同的逻辑 extends 功能抽象 {
 
             新处理逻辑Impl.执行逻辑(逻辑Obj, uuidLevel,level);
 
-            Object 获取最近的属性值 = 获取最近的属性值(所有逻辑对象, Cons.动作结果, List.class);
+            Object 获取最近的属性值 = 获取最近的属性值(所有逻辑对象, Cons.动作结果, Object.class);
             动作结果.add(获取最近的属性值);
         }
         this.动作结果=动作结果;
