@@ -130,7 +130,6 @@ public class 新处理逻辑 {
         词性set.addAll(获取所有对象中的词语类型(词语));
 
         if(CollectionUtils.isEmpty(词性set)){
-//            静态变量.输出的内容 = String.format("'%s'%s", 词语, "没有词性异常");
             词性set.add(词语);
         }
         List<逻辑实体> 逻辑set = 逻辑MapperImpl.根据多个逻辑名查询List(词性set);
@@ -145,8 +144,9 @@ public class 新处理逻辑 {
             成分对象.put(Cons.在句子中的下标, 当前处理的词语位置);
             成分对象.put(Cons.在句子中的结束下标, (int)Double.parseDouble(当前处理的词语位置)+词语.length());
             执行逻辑Impl.所有逻辑对象.add(成分对象);
-            静态变量.输出的内容 =String.format("%s '%s'%s", 1 ,词性set.get(0), "没有处理逻辑异常");
-            静态变量.添加执行层级集合(String.format("%s '%s'%s", 1, 词性set.get(0), "没有处理逻辑异常"));
+            String 输出结果 = String.format("%s '%s'%s", 1 ,词性set.get(0), "没有处理逻辑异常");
+            静态变量.输出的内容.add(输出结果);
+            静态变量.添加执行层级集合(输出结果);
             return;
         }
         执行词性处理逻辑(逻辑set);
