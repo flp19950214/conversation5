@@ -6,6 +6,7 @@ import com.kjgs.数据库.MongoCRUDDao;
 import com.kjgs.数据库.MongoDao;
 import com.kjgs.枚举.Cons;
 import com.kjgs.线程池.异步_初始化记录内置功能属性;
+import com.kjgs.静态变量;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class 执行入库方法 extends 功能抽象 {
         String 保存的对象 = 获取最近的属性值(所有逻辑对象, this.保存的对象);
         String 保存的属性 = 获取最近的属性值(所有逻辑对象, this.保存的属性);
         String 保存的属性值 = 获取最近的属性值(所有逻辑对象, this.保存的属性值);
+        静态变量.添加执行层级集合(String.format("%s %s", level, " 保存的对象："+保存的对象.toString()));
+        静态变量.添加执行层级集合(String.format("%s %s", level, " 保存的属性："+保存的属性));
+        静态变量.添加执行层级集合(String.format("%s %s", level, " 保存的属性值："+保存的属性值));
         Document document = new Document();
         document.put(Cons.词语, 保存的对象);
         document.put(保存的属性, 保存的属性值);

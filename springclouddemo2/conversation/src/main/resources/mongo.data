@@ -12,3 +12,11 @@ db.getCollection('kjgsDoc2').insert(
   "相似于":"1"
   }
   )
+
+
+ db.getCollection('kjgsDoc2').insert(
+  {
+  "词语":"相似于",
+  "词语类型":"相似于"
+  }
+  )
