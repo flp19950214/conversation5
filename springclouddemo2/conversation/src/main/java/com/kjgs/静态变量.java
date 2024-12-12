@@ -8,7 +8,7 @@ import java.util.List;
 
 public class 静态变量 {
     public static List<Document> 上一层句子成分集合 = new ArrayList<>();
-    public static String 输出的内容="";
+    public static List<String> 输出的内容= new ArrayList<>();
     public static int level=0;
     public static String uuidLevel="";
     public static String 上一步结果="";

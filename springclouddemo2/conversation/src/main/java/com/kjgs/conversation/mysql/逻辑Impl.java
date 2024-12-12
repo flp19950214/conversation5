@@ -21,9 +21,8 @@ public class 逻辑Impl{
             逻辑实体 逻辑Obj = 逻辑MapperImpl.根据逻辑名查询单个处理逻辑(逻辑名);
             return 逻辑Obj;
         }catch (TooManyResultsException e1){
-            静态变量.输出的内容 = String.format("%s %s", 逻辑名, "有多个逻辑异常");
+            静态变量.输出的内容.add(String.format("%s %s", 逻辑名, "有多个逻辑异常"));
             e1.printStackTrace();
-            throw new RuntimeException(静态变量.输出的内容);
         }catch (Exception e){
             e.printStackTrace();
         }

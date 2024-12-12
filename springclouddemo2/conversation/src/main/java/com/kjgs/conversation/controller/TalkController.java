@@ -40,7 +40,7 @@ public class TalkController {
     private TalkService talkService;
 
     @PostMapping("/talk")
-    public String conversation(@RequestBody JSONObject input) {
+    public Object conversation(@RequestBody JSONObject input) {
         静态变量.执行层级集合 = new ArrayList<>();
         执行逻辑.所有逻辑对象 = new ArrayList<>();
         String 句子 = input.getString("input");
@@ -66,6 +66,8 @@ public class TalkController {
         执行逻辑.所有逻辑对象.addAll(所有成分逻辑);
         while(!StringUtils.equals(JSON.toJSONString(所有成分逻辑), JSON.toJSONString(静态变量.上一层句子成分集合))){
             静态变量.上一层句子成分集合 = 所有成分逻辑;
+            //清空输出内容
+            静态变量.输出的内容.clear();
             System.out.println("成分划分完毕，再次执行句子中的逻辑");
             新处理逻辑Impl.二次执行成分逻辑(句子);
         }
