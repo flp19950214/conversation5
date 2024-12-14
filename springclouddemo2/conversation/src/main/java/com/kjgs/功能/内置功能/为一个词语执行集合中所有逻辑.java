@@ -4,8 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import com.kjgs.实体.逻辑实体;
+import com.kjgs.枚举.Cons;
+import com.kjgs.逻辑流程.执行逻辑;
 import com.kjgs.逻辑流程2.新处理逻辑;
 import com.kjgs.静态变量;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +38,8 @@ public class 为一个词语执行集合中所有逻辑 extends 功能抽象 {
         静态变量.添加执行层级集合(String.format("%s %s", level, " 待执行的逻辑集合："+ JSON.toJSONString(待执行的逻辑集合)));
         静态变量.添加执行层级集合(String.format("%s %s", level, " 待处理的词语："+ 待处理的词语));
         for(逻辑实体 逻辑: 待执行的逻辑集合){
+            Document 获取最近的对象 = 获取最近的对象(所有逻辑对象, Cons.是否执行判断结果);
+            获取最近的对象.put(Cons.是否执行判断结果, true);
             逻辑实体 逻辑Obj = new 逻辑实体();
             if(逻辑.toString().equals("[]")){
                 continue;

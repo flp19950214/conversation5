@@ -61,11 +61,16 @@ public class 执行添加当前词语为句子成分方法 extends 功能抽象 
 
     public Document 成分句子去重(String 词语, String 当前处理的词语位置,String 当前处理的词语结束位置){
 
-        return (Document)所有逻辑对象.stream()
-                .filter(m -> StringUtils.equals(((Document) m).getString(Cons.对象类型), Cons.句子成分))
-                .filter(m -> StringUtils.equals(((Document) m).getString(Cons.词语), 词语))
-                .filter(m -> StringUtils.equals(((Document) m).getString(Cons.在句子中的下标), 当前处理的词语位置))
-                .filter(m -> StringUtils.equals(((Document) m).getString(Cons.在句子中的结束下标), 当前处理的词语结束位置))
-                .findFirst().orElse(null);
+        try{
+            return (Document)所有逻辑对象.stream()
+                    .filter(m -> StringUtils.equals(((Document) m).getString(Cons.对象类型), Cons.句子成分))
+                    .filter(m -> StringUtils.equals(((Document) m).getString(Cons.词语), 词语))
+                    .filter(m -> StringUtils.equals(((Document) m).getString(Cons.在句子中的下标), 当前处理的词语位置))
+                    .filter(m -> StringUtils.equals(((Document) m).getString(Cons.在句子中的结束下标), 当前处理的词语结束位置))
+                    .findFirst().orElse(null);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

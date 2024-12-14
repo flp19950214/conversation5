@@ -39,4 +39,11 @@ public class 逻辑实体 {
     public int hashCode() {
         return Objects.hash(逻辑名, 逻辑);
     }
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        sb.append("'").append(逻辑名).append("','").append(逻辑).append("'");
+        return sb.toString();
+    }
+
 }

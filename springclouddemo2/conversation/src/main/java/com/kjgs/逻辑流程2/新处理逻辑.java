@@ -2,6 +2,7 @@ package com.kjgs.逻辑流程2;
 
 import com.kjgs.conversation.mysql.mapper.词性Mapper;
 import com.kjgs.conversation.mysql.逻辑Impl;
+import com.kjgs.功能.内置功能.执行获取当前逻辑链路方法;
 import com.kjgs.功能.功能对象;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.词性实体;
@@ -190,7 +191,7 @@ public class 新处理逻辑 {
     }
 
     public Object 执行逻辑(逻辑实体 逻辑Obj, String uuidLevel, int level) {
-        //记录执行逻辑链路
+        if(检测是否有递归逻辑(逻辑Obj)) return null;
         记录逻辑链路(逻辑Obj, level);
         //分割逻辑
         List<String> 逻辑集合 = Arrays.asList(逻辑Obj.逻辑.split(Cons.分号));
@@ -222,7 +223,6 @@ public class 新处理逻辑 {
                     Document 顶层逻辑doc = 功能对象Impl.获取最近的对象(执行逻辑.所有逻辑对象, Cons.顶层逻辑);
                     异常逻辑.put(Cons.异常逻辑, 顶层逻辑doc);
                     e.printStackTrace();
-//                    break;
                 }
             }
         }
@@ -234,7 +234,27 @@ public class 新处理逻辑 {
         return 功能抽象.动作结果;
     }
 
+    @Autowired
+    private 执行获取当前逻辑链路方法 执行获取当前逻辑链路方法impl;
+
+    private boolean 检测是否有递归逻辑(逻辑实体 逻辑Obj){
+        //当前逻辑链路 已存在当前处理逻辑，并且包含调用执行逻辑的方法
+        List<Document> 当前逻辑链路 = 执行获取当前逻辑链路方法impl.method();
+        long count = 当前逻辑链路.stream()
+                .filter(m ->StringUtils.contains(逻辑Obj.逻辑, "《执行当前词语逻辑方法》")
+                        && StringUtils.equals(m.getString(Cons.逻辑), 逻辑Obj.逻辑)
+                        && StringUtils.equals(m.getString(Cons.逻辑名), 逻辑Obj.逻辑名)
+                        )
+                .count();
+        if(count > 0){
+            String 异常信息 = String.format("%s='%s '%s","逻辑" ,逻辑Obj.toString() ,"存在死循环逻辑, SKIP");
+            System.out.println(异常信息);
+            return true;
+        }
+        return false;
+    }
     private void 检测格式不对的逻辑(String[] 动作集合, String 当前逻辑句子){
+        //没用《》括起来的
         if (ArrayUtils.isEmpty(动作集合)) {
             String 异常信息 = String.format("%s='%s '%s","逻辑" ,当前逻辑句子 ,"没有用《》括起来");
             System.out.println(异常信息);

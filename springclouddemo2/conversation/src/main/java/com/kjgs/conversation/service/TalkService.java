@@ -1,6 +1,7 @@
 package com.kjgs.conversation.service;
 
 import com.kjgs.conversation.mysql.逻辑Impl;
+import com.kjgs.功能.功能对象;
 import com.kjgs.实体.逻辑实体;
 import com.kjgs.枚举.Cons;
 import com.kjgs.逻辑流程.执行逻辑;
@@ -20,6 +21,9 @@ public class TalkService {
 
     @Autowired
     private 执行逻辑 执行逻辑Impl;
+
+    @Autowired
+    private 功能对象 功能对象Impl;
 
     public boolean 是否继续反复处理句子(){
         //判断句子成分是否还有变换
@@ -41,6 +45,8 @@ public class TalkService {
     }
 
     public String 执行输出结果逻辑(){
+        Document 获取最近的对象 = 功能对象Impl.获取最近的对象(执行逻辑Impl.所有逻辑对象, Cons.是否执行判断结果);
+        获取最近的对象.put(Cons.是否执行判断结果, true);
         //被动记录句子成分集合
         String 逻辑名 = "执行输出结果逻辑";
         逻辑实体 逻辑Obj = 逻辑MapperImpl.根据逻辑名查询单个处理逻辑(逻辑名);

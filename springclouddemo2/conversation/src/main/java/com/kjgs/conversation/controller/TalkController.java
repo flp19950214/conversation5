@@ -70,7 +70,9 @@ public class TalkController {
             静态变量.上一层句子成分集合 = 所有成分逻辑;
             //清空输出内容
             静态变量.输出的内容.clear();
-            System.out.println("成分划分完毕，再次执行句子中的逻辑");
+            String str = "成分划分完毕，再次执行句子中的逻辑";
+            System.err.println(str);
+            静态变量.添加执行层级集合(String.format("%s %s", 0, str));
             新处理逻辑Impl.二次执行成分逻辑(句子);
         }
 

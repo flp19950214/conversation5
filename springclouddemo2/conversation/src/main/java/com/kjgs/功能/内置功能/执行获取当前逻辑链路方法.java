@@ -27,6 +27,11 @@ public class 执行获取当前逻辑链路方法 extends 功能抽象 {
 
     @Override
     public void 功能() {
+        List<Document> result = method();
+        动作结果 = result;
+    }
+
+    public List<Document> method(){
         List<Document> result = new ArrayList<>();
         if (CollectionUtils.isNotEmpty(静态变量.逻辑实体执行链路)) {
             for (int i = 静态变量.逻辑实体执行链路.size() - 1; i >= 0; i--) {
@@ -41,7 +46,7 @@ public class 执行获取当前逻辑链路方法 extends 功能抽象 {
                 }
             }
         }
-        动作结果 = result;
+        return result;
     }
 
     @Test
