@@ -47,4 +47,5 @@ public class TalkService {
         Object result = 新处理逻辑Impl.执行逻辑(逻辑Obj);
         return result.toString();
     }
+
 }

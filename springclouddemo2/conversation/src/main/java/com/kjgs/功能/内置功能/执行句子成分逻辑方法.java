@@ -50,7 +50,7 @@ public class 执行句子成分逻辑方法 extends 功能抽象 {
                 逻辑实体 逻辑Obj = new 逻辑实体();
                 逻辑Obj.set逻辑(逻辑doc.getString(Cons.当前处理逻辑));
                 逻辑Obj.set逻辑名(逻辑doc.getString(Cons.当前处理逻辑名));
-                新处理逻辑Impl.执行逻辑(逻辑Obj );
+                新处理逻辑Impl.执行逻辑(逻辑Obj, level);
             }
         }
 

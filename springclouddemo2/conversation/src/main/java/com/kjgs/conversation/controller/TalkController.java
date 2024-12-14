@@ -42,6 +42,8 @@ public class TalkController {
     @PostMapping("/talk")
     public Object conversation(@RequestBody JSONObject input) {
         静态变量.执行层级集合 = new ArrayList<>();
+        静态变量.逻辑实体执行链路 = new ArrayList<>();
+        静态变量.逻辑执行链路 = new ArrayList<>();
         执行逻辑.所有逻辑对象 = new ArrayList<>();
         String 句子 = input.getString("input");
         int 处理位置 = 0;
@@ -50,7 +52,7 @@ public class TalkController {
             System.out.println("本次处理结束位置:"+处理结束位置);
             String 词语 = 句子.substring(处理位置,处理结束位置);
             新处理逻辑Impl.init(句子, 处理位置, 处理结束位置, 词语);
-            新处理逻辑Impl.process(词语);
+            新处理逻辑Impl.process(词语, 0);
 
             //开启下一轮
             处理结束位置 =(int) Double.parseDouble(功能对象impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语结束位置).toString());

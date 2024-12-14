@@ -1,5 +1,6 @@
 package com.kjgs;
 
+import com.kjgs.实体.逻辑层级实体;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 
@@ -12,6 +13,8 @@ public class 静态变量 {
     public static int level=0;
     public static String uuidLevel="";
     public static String 上一步结果="";
+    public static List<逻辑层级实体> 逻辑实体执行链路=new ArrayList<>();
+    public static List<String> 逻辑执行链路=new ArrayList<>();
 
     public static List<String> 执行层级集合 = new ArrayList<>();
 

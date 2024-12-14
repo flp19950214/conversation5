@@ -1,9 +1,11 @@
 package com.kjgs.功能.内置功能;
 
+import com.alibaba.fastjson.JSON;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import com.kjgs.实体.逻辑实体;
 import com.kjgs.逻辑流程2.新处理逻辑;
+import com.kjgs.静态变量;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,16 +30,18 @@ public class 为一个词语执行集合中所有逻辑 extends 功能抽象 {
 
     @Override
     public void 功能() {
-        List 待执行的逻辑集合 = 获取所有的属性值(所有逻辑对象, this.待执行的逻辑集合);
+        List<逻辑实体> 待执行的逻辑集合 = (List) 获取最近的属性值(所有逻辑对象, this.待执行的逻辑集合, List.class);
         String 待处理的词语 = 获取最近的属性值(所有逻辑对象, this.待处理的词语);
-        for(Object 逻辑: 待执行的逻辑集合){
+        静态变量.添加执行层级集合(String.format("%s %s", level, " 待执行的逻辑集合："+ JSON.toJSONString(待执行的逻辑集合)));
+        静态变量.添加执行层级集合(String.format("%s %s", level, " 待处理的词语："+ 待处理的词语));
+        for(逻辑实体 逻辑: 待执行的逻辑集合){
             逻辑实体 逻辑Obj = new 逻辑实体();
             if(逻辑.toString().equals("[]")){
                 continue;
             }
-            逻辑Obj.set逻辑(逻辑.toString());
+            逻辑Obj.set逻辑(逻辑.逻辑);
             逻辑Obj.set逻辑名(待处理的词语);
-            新处理逻辑Impl.执行逻辑(逻辑Obj, UUID.randomUUID().toString(),level);
+            新处理逻辑Impl.执行逻辑(逻辑, UUID.randomUUID().toString(),level);
         }
 
     }

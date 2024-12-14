@@ -52,6 +52,8 @@ public interface Cons {
     public String 句子成分="句子成分";
     public String 在句子中的下标="在句子中的下标";
     public String 在句子中的结束下标="在句子中的结束下标";
+    public String 逻辑="逻辑";
+    public String 逻辑名="逻辑名";
     public String 待执行逻辑="待执行逻辑";
     public String level="level";
     public String uuidLevel="uuidLevel";

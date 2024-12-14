@@ -6,6 +6,7 @@ import com.kjgs.功能.功能对象;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.词性实体;
 import com.kjgs.实体.逻辑实体;
+import com.kjgs.实体.逻辑层级实体;
 import com.kjgs.数据库.MongoCRUDDao;
 import com.kjgs.枚举.Cons;
 import com.kjgs.算法.组装句子中由词性组成的句子Service;
@@ -122,7 +123,7 @@ public class 新处理逻辑 {
         }
         return 词性Set;
     }
-    public void process(String 词语) {
+    public void process(String 词语, int level) {
         if(词语==null){
             return;
         }
@@ -149,7 +150,7 @@ public class 新处理逻辑 {
             静态变量.添加执行层级集合(输出结果);
             return;
         }
-        执行词性处理逻辑(逻辑set);
+        执行词性处理逻辑(逻辑set, level);
     }
 
     public void 二次执行成分逻辑(String 句子){
@@ -159,7 +160,7 @@ public class 新处理逻辑 {
                 int 处理位置 = (int) Double.parseDouble(成分.getString(Cons.在句子中的下标));
                 int 处理结束位置 = (int) Double.parseDouble(成分.get(Cons.在句子中的结束下标).toString());
                 init(句子, 处理位置, 处理结束位置, 词语);
-                process(词语);
+                process(词语,0);
             }catch (Exception e){
                 e.printStackTrace();
                 continue;
@@ -169,63 +170,37 @@ public class 新处理逻辑 {
 
     static ThreadLocal<List<Document>> threadLocal = new ThreadLocal<>();
 
-    public void 执行词性处理逻辑(List<逻辑实体> 所有逻辑集合) {
-//        threadLocal.set(执行逻辑Impl.所有逻辑对象);
-//        for (String 逻辑 : 所有逻辑集合) {
-//            new Thread(() -> {
-//                执行逻辑Impl.执行逻辑(逻辑, threadLocal.get() == null ? new ArrayList<>() : threadLocal.get());
-//            }).start();
-//        }
-//        threadLocal.set(执行逻辑Impl.所有逻辑对象);
-
+    public void 执行词性处理逻辑(List<逻辑实体> 所有逻辑集合, int level) {
         for (逻辑实体 逻辑 : 所有逻辑集合) {
-//            new Thread(() -> {
             Document 是否执行判断结果 = new Document();
             是否执行判断结果.put(Cons.是否执行判断结果, "true");
             执行逻辑Impl.所有逻辑对象.add(是否执行判断结果);
-
             Document 当前处理逻辑 = new Document();
             是否执行判断结果.put(Cons.当前处理逻辑, 逻辑.逻辑); //只是最外层
             是否执行判断结果.put(Cons.当前处理逻辑名, 逻辑.逻辑名); //只是最外层
             执行逻辑Impl.所有逻辑对象.add(当前处理逻辑);
-
-            执行逻辑(逻辑);
-//            }).start();
+            执行逻辑(逻辑,level);
         }
     }
-
+    public Object 执行逻辑(逻辑实体 逻辑Obj, int level) {
+        return 执行逻辑(逻辑Obj, UUID.randomUUID().toString(),level);
+    }
     public Object 执行逻辑(逻辑实体 逻辑Obj) {
         return 执行逻辑(逻辑Obj, UUID.randomUUID().toString(),0);
     }
 
     public Object 执行逻辑(逻辑实体 逻辑Obj, String uuidLevel, int level) {
+        //记录执行逻辑链路
+        记录逻辑链路(逻辑Obj, level);
         //分割逻辑
         List<String> 逻辑集合 = Arrays.asList(逻辑Obj.逻辑.split(Cons.分号));
         //提取动作
         for (int i = 0; i < 逻辑集合.size(); i++) {
             String 当前逻辑句子 = 逻辑集合.get(i);
-            if(level==0){//记录顶层逻辑
-                Document 顶层逻辑doc = 功能对象Impl.获取最近的对象(执行逻辑.所有逻辑对象, Cons.顶层逻辑);
-                if(顶层逻辑doc==null){
-                    顶层逻辑doc = new Document();
-                }
-                int 处理位置 =(int) Double.parseDouble(功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语位置).toString());
-                int 处理结束位置 =(int) Double.parseDouble(功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语结束位置).toString());
-                String 词语 = 功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语).toString();
-                顶层逻辑doc.put(Cons.顶层逻辑, 逻辑Obj);
-                顶层逻辑doc.put(Cons.在句子中的下标, 处理位置);
-                顶层逻辑doc.put(Cons.在句子中的结束下标, 处理结束位置);
-                顶层逻辑doc.put(Cons.词语, 词语);
-                执行逻辑.所有逻辑对象.add(顶层逻辑doc);
-            }
             静态变量.添加执行层级集合(String.format("%s %s", level, 当前逻辑句子));
             //可能有多个动作
             String[] 动作集合 = StringUtils.substringsBetween(当前逻辑句子, Cons.左尖括号, Cons.右尖括号);
-            if (ArrayUtils.isEmpty(动作集合)) {
-                String 异常信息 = String.format("%s='%s '%s","逻辑" ,当前逻辑句子 ,"没有用《》括起来");
-                System.out.println(异常信息);
-                throw new RuntimeException(异常信息);
-            }
+            检测格式不对的逻辑(动作集合, 当前逻辑句子);
             for (String 动作 : 动作集合) {
                 //执行动作
                 try {
@@ -257,6 +232,28 @@ public class 新处理逻辑 {
         执行逻辑.所有逻辑对象.add(结果的对象);
         静态变量.添加执行层级集合(String.format("%s %s", level, " 动作结果："+功能抽象.动作结果));
         return 功能抽象.动作结果;
+    }
+
+    private void 检测格式不对的逻辑(String[] 动作集合, String 当前逻辑句子){
+        if (ArrayUtils.isEmpty(动作集合)) {
+            String 异常信息 = String.format("%s='%s '%s","逻辑" ,当前逻辑句子 ,"没有用《》括起来");
+            System.out.println(异常信息);
+            throw new RuntimeException(异常信息);
+        }
+    }
+
+    private void 记录逻辑链路(逻辑实体 逻辑Obj,int level){
+        if(逻辑Obj==null){
+            return;
+        }
+        逻辑层级实体 model = new 逻辑层级实体();
+        model.逻辑 = 逻辑Obj.逻辑;
+        model.逻辑名=逻辑Obj.逻辑名;
+        model.level = level;
+        String 逻辑层级实体String = model.toString();
+        静态变量.逻辑实体执行链路.add(model);
+        静态变量.逻辑执行链路.add(逻辑层级实体String);
+        System.out.println(逻辑层级实体String);
     }
 
     private void 查询并迭代逻辑(String 逻辑名, int level) {
