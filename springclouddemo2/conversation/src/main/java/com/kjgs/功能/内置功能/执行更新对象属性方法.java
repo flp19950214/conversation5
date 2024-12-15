@@ -23,7 +23,7 @@ public class 执行更新对象属性方法 extends 功能抽象 {
     public void 功能() {
         Document 更新的对象 = (Document) 获取最近的属性值(所有逻辑对象, this.更新的对象, Document.class);
         String 更新的属性 = 获取最近的属性值(所有逻辑对象, this.更新的属性);
-        String 更新的属性值 = 获取最近的属性值(所有逻辑对象, this.更新的属性值);
+        Object 更新的属性值 = 获取最近的属性值(所有逻辑对象, this.更新的属性值,Object.class);
         静态变量.添加执行层级集合(String.format("%s %s", level, " 更新的对象："+更新的对象.toJson()));
         静态变量.添加执行层级集合(String.format("%s %s", level, " 更新的属性："+更新的属性));
         静态变量.添加执行层级集合(String.format("%s %s", level, " 更新的属性值："+更新的属性值));

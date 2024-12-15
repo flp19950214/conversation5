@@ -44,6 +44,13 @@ public class TalkService {
         执行逻辑Impl.所有逻辑对象.add(输入的句子);
     }
 
+    public String 记录当前输入句子(){
+        String 逻辑名 = "记录当前输入句子";
+        逻辑实体 逻辑Obj = 逻辑MapperImpl.根据逻辑名查询单个处理逻辑(逻辑名);
+        Object result = 新处理逻辑Impl.执行逻辑(逻辑Obj);
+        return result.toString();
+    }
+
     public String 执行输出结果逻辑(){
         Document 获取最近的对象 = 功能对象Impl.获取最近的对象(执行逻辑Impl.所有逻辑对象, Cons.是否执行判断结果);
         获取最近的对象.put(Cons.是否执行判断结果, true);

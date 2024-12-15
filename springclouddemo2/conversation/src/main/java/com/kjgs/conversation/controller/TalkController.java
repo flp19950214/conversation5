@@ -51,7 +51,7 @@ public class TalkController {
         while (处理结束位置 <= 句子.length()) {
             System.out.println("本次处理结束位置:"+处理结束位置);
             String 词语 = 句子.substring(处理位置,处理结束位置);
-            新处理逻辑Impl.init(句子, 处理位置, 处理结束位置, 词语);
+            新处理逻辑Impl.init(句子, 处理位置, 处理结束位置, 词语, false);
             新处理逻辑Impl.process(词语, 0);
 
             //开启下一轮
@@ -76,7 +76,7 @@ public class TalkController {
             新处理逻辑Impl.二次执行成分逻辑(句子);
         }
 
-        //执行输出逻辑
+        talkService.记录当前输入句子();
         talkService.执行输出结果逻辑();
         return 静态变量.输出的内容;
     }
@@ -84,7 +84,7 @@ public class TalkController {
 
     @PostMapping("/testLogic")
     public Object testLogic(@RequestBody JSONObject input) {
-        新处理逻辑Impl.init("123", 0,1,"1");
+        新处理逻辑Impl.init("123", 0,1,"1", false);
         Document 是否执行判断结果 = new Document();
         是否执行判断结果.put(Cons.是否执行判断结果, "true");
         执行逻辑Impl.所有逻辑对象.add(是否执行判断结果);

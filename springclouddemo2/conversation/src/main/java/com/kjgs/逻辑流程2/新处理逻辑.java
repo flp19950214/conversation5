@@ -89,7 +89,7 @@ public class 新处理逻辑 {
         }
     }
 
-    public void init(String 句子, int 处理位置, int 处理结束位置, String 词语) {
+    public void init(String 句子, int 处理位置, int 处理结束位置, String 词语, boolean 是否是成分) {
         Document 输入的句子 = new Document();
         输入的句子.put(Cons.输入的句子, 句子);
         执行逻辑Impl.所有逻辑对象.add(输入的句子);
@@ -108,10 +108,11 @@ public class 新处理逻辑 {
         Document 当前处理的词语结束位置 = new Document();
         当前处理的词语结束位置.put(Cons.当前处理的词语结束位置, 处理结束位置);
         执行逻辑Impl.所有逻辑对象.add(当前处理的词语结束位置);
-
-        Document 当前处理的句子成分 = new Document();
-        当前处理的词语位置.put(Cons.当前处理的句子成分, new Document());
-        执行逻辑Impl.所有逻辑对象.add(当前处理的句子成分);
+        if(!是否是成分){
+            Document 当前处理的句子成分 = new Document();
+            当前处理的句子成分.put(Cons.当前处理的句子成分, new Document());
+            执行逻辑Impl.所有逻辑对象.add(当前处理的句子成分);
+        }
     }
     public List<String> 获取所有对象中的词语类型(String 词语){
         List<String> 词性Set = new ArrayList<>();
@@ -160,7 +161,10 @@ public class 新处理逻辑 {
                 String 词语 = 成分.getString(Cons.词语);
                 int 处理位置 = (int) Double.parseDouble(成分.getString(Cons.在句子中的下标));
                 int 处理结束位置 = (int) Double.parseDouble(成分.get(Cons.在句子中的结束下标).toString());
-                init(句子, 处理位置, 处理结束位置, 词语);
+                Document 当前处理的句子成分 = new Document();
+                当前处理的句子成分.put(Cons.当前处理的句子成分, 成分);
+                执行逻辑Impl.所有逻辑对象.add(当前处理的句子成分);
+                init(句子, 处理位置, 处理结束位置, 词语, true);
                 process(词语,0);
             }catch (Exception e){
                 e.printStackTrace();
