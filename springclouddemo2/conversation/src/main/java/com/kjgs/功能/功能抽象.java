@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 public abstract class 功能抽象<T> implements 功能接口 {
-    public List<Document> 所有逻辑对象;
+    public List<Document> 所有逻辑对象 = new ArrayList<>();
     public String 动作;
     public static Object 动作结果;
     public String 当前逻辑句子;

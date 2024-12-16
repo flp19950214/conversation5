@@ -28,8 +28,6 @@ public class 执行过滤指定下标方法 extends 功能抽象 {
         Object 过滤的结果=null;
         if(过滤的下标>=0 && 过滤的下标<过滤的对象.size()){
             过滤的结果 = 过滤的对象.get(过滤的下标);
-        }else{
-            return;
         }
         动作结果=过滤的结果;
     }

@@ -3,6 +3,7 @@ package com.kjgs.功能.内置功能;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import com.kjgs.枚举.Cons;
+import com.kjgs.静态变量;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,7 @@ public class 执行过滤小于方法 extends 功能抽象 {
         List<Document> 过滤的对象 = (List<Document>)获取最近的属性值(所有逻辑对象, this.过滤的对象, List.class);
         String 过滤的属性 = 获取最近的属性值(所有逻辑对象, this.过滤的属性);
         double 过滤的属性值 = Double.parseDouble(获取最近的属性值(所有逻辑对象, this.过滤的属性值));
+        静态变量.添加执行层级集合(String.format("%s %s", level, " 过滤的属性值："+ 过滤的属性值));
 
         List<Document> 过滤的结果 = new ArrayList<>();
         for (int i = 0; i <过滤的对象.size() ; i++) {
