@@ -195,6 +195,7 @@ public class 新处理逻辑 {
     }
 
     public Object 执行逻辑(逻辑实体 逻辑Obj, String uuidLevel, int level) {
+        if(逻辑Obj == null)return null;
         if(检测是否有递归逻辑(逻辑Obj)) return null;
         记录逻辑链路(逻辑Obj, level);
         //分割逻辑
@@ -242,6 +243,9 @@ public class 新处理逻辑 {
     private 执行获取当前逻辑链路方法 执行获取当前逻辑链路方法impl;
 
     private boolean 检测是否有递归逻辑(逻辑实体 逻辑Obj){
+        if(逻辑Obj==null){
+            return false;
+        }
         //当前逻辑链路 已存在当前处理逻辑，并且包含调用执行逻辑的方法
         List<Document> 当前逻辑链路 = 执行获取当前逻辑链路方法impl.method();
         long count = 当前逻辑链路.stream()

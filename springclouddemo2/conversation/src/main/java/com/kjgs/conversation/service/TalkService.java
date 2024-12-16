@@ -48,6 +48,9 @@ public class TalkService {
         String 逻辑名 = "记录当前输入句子";
         逻辑实体 逻辑Obj = 逻辑MapperImpl.根据逻辑名查询单个处理逻辑(逻辑名);
         Object result = 新处理逻辑Impl.执行逻辑(逻辑Obj);
+        if(result==null){
+            return null;
+        }
         return result.toString();
     }
 

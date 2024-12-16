@@ -27,7 +27,7 @@ public class 执行当前词语逻辑方法 extends 功能抽象 {
 
     @Override
     public void 功能() {
-        String 词语 =(String) 获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语);
+        String 词语 =获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语)+"";
         String 句子 =(String) 获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的句子);
         int 处理位置 =(int)Double.parseDouble(获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语位置).toString());
         int 处理结束位置 =(int)Double.parseDouble(获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语结束位置).toString());
