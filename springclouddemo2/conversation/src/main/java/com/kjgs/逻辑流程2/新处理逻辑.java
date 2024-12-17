@@ -10,6 +10,7 @@ import com.kjgs.实体.逻辑实体;
 import com.kjgs.实体.逻辑层级实体;
 import com.kjgs.数据库.MongoCRUDDao;
 import com.kjgs.枚举.Cons;
+import com.kjgs.算法.工具;
 import com.kjgs.算法.组装句子中由词性组成的句子Service;
 import com.kjgs.逻辑流程.执行逻辑;
 import com.kjgs.静态变量;
@@ -145,7 +146,7 @@ public class 新处理逻辑 {
             成分对象.put(Cons.词语类型, Cons.未知词);
             String 当前处理的词语位置 =功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语位置)+"";
             成分对象.put(Cons.在句子中的下标, 当前处理的词语位置);
-            成分对象.put(Cons.在句子中的结束下标, (int)Double.parseDouble(当前处理的词语位置)+词语.length());
+            成分对象.put(Cons.在句子中的结束下标, 工具.strDdoubleToInt(当前处理的词语位置)+词语.length());
             执行逻辑Impl.所有逻辑对象.add(成分对象);
             String 输出结果 = String.format("%s '%s'%s", 1 ,词性set.get(0), "没有处理逻辑异常");
             静态变量.输出的内容.add(输出结果);
@@ -281,7 +282,7 @@ public class 新处理逻辑 {
         String 逻辑层级实体String = model.toString();
         静态变量.逻辑实体执行链路.add(model);
         静态变量.逻辑执行链路.add(逻辑层级实体String);
-        System.out.println(逻辑层级实体String);
+//        System.out.println(逻辑层级实体String);
     }
 
     private void 查询并迭代逻辑(String 逻辑名, int level) {

@@ -3,6 +3,7 @@ package com.kjgs.功能.内置功能;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import com.kjgs.枚举.Cons;
+import com.kjgs.算法.工具;
 import com.kjgs.逻辑流程.执行逻辑;
 import org.bson.Document;
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class 执行查询集合指定下标方法 extends 功能抽象 {
     @Override
     public void 功能() {
         List 查询的集合 = (List) 获取最近的属性值(所有逻辑对象, this.查询的集合,List.class);
-        Integer 查询的下标 = (int)Double.parseDouble(获取最近的属性值(所有逻辑对象, this.查询的下标));
+        Integer 查询的下标 = 工具.strDdoubleToInt(获取最近的属性值(所有逻辑对象, this.查询的下标));
         Object 查询的结果=null;
         if(查询的集合.size()>查询的下标){
             查询的结果 = 查询的集合.get(查询的下标);

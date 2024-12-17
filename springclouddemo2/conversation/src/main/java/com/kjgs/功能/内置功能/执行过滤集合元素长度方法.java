@@ -2,6 +2,7 @@ package com.kjgs.功能.内置功能;
 
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
+import com.kjgs.算法.工具;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class 执行过滤集合元素长度方法 extends 功能抽象 {
     @Override
     public void 功能() {
         List 过滤的对象 = (List)获取最近的属性值(所有逻辑对象, this.过滤的对象, List.class);
-        int 过滤的长度 = (int)Double.parseDouble(获取最近的属性值(所有逻辑对象, this.过滤的长度));
+        int 过滤的长度 = 工具.strDdoubleToInt(获取最近的属性值(所有逻辑对象, this.过滤的长度));
         List 过滤的结果 = new ArrayList();
         for (int i = 0; i <过滤的对象.size() ; i++) {
             if(过滤的对象.get(i).toString().length() == 过滤的长度){

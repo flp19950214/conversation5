@@ -32,6 +32,7 @@ public class 静态变量 {
             }
             sb.append(line);
             执行层级集合.add(sb.toString());
+            System.out.println(sb.toString());
         }catch (Exception e){
             e.printStackTrace();
         }

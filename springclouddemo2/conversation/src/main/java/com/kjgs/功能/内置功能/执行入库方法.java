@@ -36,6 +36,9 @@ public class 执行入库方法 extends 功能抽象 {
         静态变量.添加执行层级集合(String.format("%s %s", level, " 保存的对象："+保存的对象.toString()));
         静态变量.添加执行层级集合(String.format("%s %s", level, " 保存的属性："+保存的属性));
         静态变量.添加执行层级集合(String.format("%s %s", level, " 保存的属性值："+保存的属性值));
+        if(保存的对象 ==null || 保存的属性 ==null || 保存的属性值 == null){
+            return;
+        }
         Document document = new Document();
         document.put(Cons.词语, 保存的对象);
         document.put(保存的属性, 保存的属性值);

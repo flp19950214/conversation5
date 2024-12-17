@@ -26,10 +26,10 @@ public class 执行查询集合长度方法 extends 功能抽象 {
     @Override
     public void 功能() {
         List 查询的集合 = (List) 获取最近的属性值(所有逻辑对象, this.查询的集合,List.class);
-        Object 查询的结果 = 查询的集合.size();
-
-
-
+        int 查询的结果 = 0;
+        if(查询的集合 != null){
+            查询的结果 = 查询的集合.size();
+        }
         动作结果=查询的结果;
     }
 

@@ -47,12 +47,14 @@ public class 循环执行某个逻辑 extends 功能抽象 {
         if(StringUtils.isNotEmpty(循环元素的下标偏移逻辑)){
             循环元素的下标偏移逻辑Obj = 逻辑impl.根据逻辑名查询单个处理逻辑(循环元素的下标偏移逻辑);
         }
+        Object result = null;
         while(是否继续循环){
-            this.动作结果 = 新处理逻辑Impl.执行逻辑(待循环的逻辑Obj, UUID.randomUUID().toString(), level);
+            result = 新处理逻辑Impl.执行逻辑(待循环的逻辑Obj, UUID.randomUUID().toString(), level);
             if(循环元素的下标偏移逻辑Obj!=null){
                 新处理逻辑Impl.执行逻辑(循环元素的下标偏移逻辑Obj, UUID.randomUUID().toString(), level);
             }
             是否继续循环 = (boolean)新处理逻辑Impl.执行逻辑(是否继续循环的判断逻辑Obj, UUID.randomUUID().toString(), level);
         };
+        动作结果 = result;
     }
 }

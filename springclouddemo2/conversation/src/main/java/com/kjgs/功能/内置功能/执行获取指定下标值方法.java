@@ -3,6 +3,7 @@ package com.kjgs.功能.内置功能;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import com.kjgs.枚举.Cons;
+import com.kjgs.算法.工具;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class 执行获取指定下标值方法 extends 功能抽象 {
     @Override
     public void 功能() {
         String 查询的对象 = 获取最近的属性值(所有逻辑对象, this.查询的对象);
-        int 查询的下标 = (int)Double.parseDouble(获取最近的属性值(所有逻辑对象, this.查询的下标));
+        int 查询的下标 = 工具.strDdoubleToInt(获取最近的属性值(所有逻辑对象, this.查询的下标));
         Object 查询的结果 = StringUtils.substring(查询的对象,查询的下标,查询的下标+1);
 
 

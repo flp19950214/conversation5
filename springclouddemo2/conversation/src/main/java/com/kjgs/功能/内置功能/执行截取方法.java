@@ -2,6 +2,7 @@ package com.kjgs.功能.内置功能;
 
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
+import com.kjgs.算法.工具;
 import com.kjgs.静态变量;
 import org.springframework.stereotype.Service;
 
@@ -25,10 +26,10 @@ public class 执行截取方法 extends 功能抽象 {
         int 截取的开始下标int = 0;
         int 截取的结束下标int = 被截取的对象.length();
         if(截取的开始下标!=null){
-            截取的开始下标int=(int)Double.parseDouble(截取的开始下标);
+            截取的开始下标int= 工具.strDdoubleToInt(截取的开始下标);
         }
         if(截取的结束下标!=null){
-            截取的结束下标int=(int)Double.parseDouble(截取的结束下标);
+            截取的结束下标int=工具.strDdoubleToInt(截取的结束下标);
         }
         Object result = 被截取的对象.substring(截取的开始下标int, 截取的结束下标int);
         动作结果=result;
