@@ -7,6 +7,7 @@ import com.kjgs.conversation.service.TalkService;
 import com.kjgs.功能.功能对象;
 import com.kjgs.实体.逻辑实体;
 import com.kjgs.枚举.Cons;
+import com.kjgs.算法.工具;
 import com.kjgs.逻辑流程.执行逻辑;
 import com.kjgs.逻辑流程2.新处理逻辑;
 import com.kjgs.静态变量;
@@ -55,7 +56,12 @@ public class TalkController {
             新处理逻辑Impl.process(词语, 0);
 
             //开启下一轮
-            处理结束位置 =(int) Double.parseDouble(功能对象impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语结束位置).toString());
+            Object 当前处理的词语结束位置 = 功能对象impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语结束位置);
+            try{
+                处理结束位置 = 工具.strDdoubleToInt(当前处理的词语结束位置);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             处理位置 = 处理结束位置;
             处理结束位置++;
         }
