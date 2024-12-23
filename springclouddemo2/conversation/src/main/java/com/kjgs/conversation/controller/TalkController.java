@@ -13,6 +13,7 @@ import com.kjgs.逻辑流程2.新处理逻辑;
 import com.kjgs.静态变量;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,6 +40,47 @@ public class TalkController {
 
     @Autowired
     private TalkService talkService;
+
+    @PostMapping("/process")
+    public Object process(@RequestBody JSONObject input){
+        //区分输入的句子和处理的句子
+        String 句子 = input.getString("input");
+        Document 当前处理的句子 = new Document();
+        当前处理的句子.put(Cons.输入的句子, 句子);
+        执行逻辑Impl.所有逻辑对象.add(当前处理的句子);
+        Document 输入的句子的词语集合 = new Document();
+        String[] 句子元素集合 = 句子.split("");
+        输入的句子的词语集合.put(Cons.输入的句子的词语集合, 句子元素集合);
+        执行逻辑Impl.所有逻辑对象.add(输入的句子的词语集合);
+        if(StringUtils.isEmpty(句子)){
+            return "输入是空的";
+        }
+        //给每个词添加成句子成分
+        for (int i = 0; i < 句子元素集合.length; i++) {
+            String item = 句子元素集合[i];
+            Document 成分对象 = new Document();
+            成分对象.put(Cons._id, new ObjectId());
+            成分对象.put(Cons.对象类型, Cons.句子成分);
+            成分对象.put(Cons.词语, item);
+            成分对象.put(Cons.在句子中的下标, i);
+            成分对象.put(Cons.在句子中的结束下标, 工具.strDdoubleToInt(i)+1);
+            执行逻辑Impl.所有逻辑对象.add(成分对象);
+        }
+        //获取所有对象中下一个成分对象作为处理的词语
+        int index = 0;
+
+        for (int i = index; i < 执行逻辑Impl.所有逻辑对象.size();) {
+            Document document = 执行逻辑Impl.所有逻辑对象.get(i);
+            if(!document.keySet().contains(Cons.句子成分)){
+                continue;
+            }
+            Document 当前处理的词语 = new Document();
+            当前处理的词语.put(Cons.当前处理的句子成分, document);
+            执行逻辑Impl.所有逻辑对象.add(当前处理的词语);
+
+        }
+    }
+
 
     @PostMapping("/talk")
     public Object conversation(@RequestBody JSONObject input) {

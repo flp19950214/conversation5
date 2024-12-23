@@ -230,4 +230,14 @@ public abstract class 功能抽象<T> implements 功能接口 {
         return null;
     }
 
+    public List<Document> 获取包含某个属性的对象(List<Document> list, String key){
+        List<Document> result = new ArrayList<>();
+        for (Document document : list){
+            if(document.keySet().contains(key)){
+                result.add(document);
+            }
+        }
+        return result;
+    }
+
 }

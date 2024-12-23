@@ -38,15 +38,13 @@ public class 执行过滤集合对象方法 extends 功能抽象 {
                     过滤的结果.add(document);
                 }
             }
-        }
-        if(StringUtils.isEmpty(过滤的属性) && StringUtils.isNotEmpty(过滤的属性值)){
+        }else if(StringUtils.isEmpty(过滤的属性) && StringUtils.isNotEmpty(过滤的属性值)){
             for(Document document : 过滤的对象){
                 if(document.containsValue(过滤的属性值)){
                     过滤的结果.add(document);
                 }
             }
-        }
-        if(StringUtils.isNotEmpty(过滤的属性) && StringUtils.isNotEmpty(过滤的属性值)){
+        }else if(StringUtils.isNotEmpty(过滤的属性) && StringUtils.isNotEmpty(过滤的属性值)){
             for(Document document : 过滤的对象){
                 for(Map.Entry entry: document.entrySet()){
                     if(StringUtils.equals(entry.getKey().toString(),过滤的属性)
