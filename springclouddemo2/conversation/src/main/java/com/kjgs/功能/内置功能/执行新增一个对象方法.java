@@ -21,9 +21,9 @@ public class 执行新增一个对象方法 extends 功能抽象 {
     }
     @Override
     public void 功能() {
-        String 新增的对象值 = 获取最近的属性值(所有逻辑对象, this.新增的对象值);
+        Object 新增的对象值 = 获取最近的属性值(所有逻辑对象, this.新增的对象值, Object.class);
         String 新增的对象属性 = 获取最近的属性值(所有逻辑对象, this.新增的对象属性);
-        String 新增的对象属性值 = 获取最近的属性值(所有逻辑对象, this.新增的对象属性值);
+        Object 新增的对象属性值 = 获取最近的属性值(所有逻辑对象, this.新增的对象属性值, Object.class);
         Document 新增的对象 = new Document();
         新增的对象.put(Cons.词语, 新增的对象值);
         新增的对象.put(新增的对象属性, 新增的对象属性值);

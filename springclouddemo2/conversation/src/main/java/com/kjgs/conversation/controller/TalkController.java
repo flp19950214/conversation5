@@ -85,6 +85,7 @@ public class TalkController {
                 continue;
             }
             新处理逻辑Impl.processNew(词语, 0);
+            document.put(Cons.是否是当前处理的句子成分, false);
             index++;
         }
         talkService.执行输出结果逻辑();
