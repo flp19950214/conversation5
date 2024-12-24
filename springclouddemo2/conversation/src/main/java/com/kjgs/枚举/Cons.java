@@ -47,6 +47,7 @@ public interface Cons {
     public String 当前处理的词语位置="当前处理的词语位置";
     public String 当前处理的词语结束位置="当前处理的词语结束位置";
     public String 当前处理的句子成分="当前处理的句子成分";
+    public String 是否是当前处理的句子成分="是否是当前处理的句子成分";
     public String 是否执行判断结果="是否执行判断结果";
     public String 将是否执行判断结果设置为true="将是否执行判断结果设置为true";
     public String 当前处理逻辑="当前处理逻辑";

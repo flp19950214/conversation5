@@ -126,6 +126,16 @@ public class 新处理逻辑 {
         }
         return 词性Set;
     }
+    public void processNew(String 词语, int level) {
+        List<String> 词性set =  mongoCRUDDao.查询词语词性(词语);
+        词性set.addAll(获取所有对象中的词语类型(词语));
+        if(CollectionUtils.isEmpty(词性set)){
+            词性set.add(词语);
+        }
+        List<逻辑实体> 逻辑set = 逻辑MapperImpl.根据多个逻辑名查询List(词性set);
+        执行词性处理逻辑(逻辑set, level);
+    }
+
     public void process(String 词语, int level) {
         if(词语==null){
             return;

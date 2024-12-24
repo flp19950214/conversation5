@@ -6,6 +6,7 @@ import com.kjgs.conversation.mysql.逻辑Impl;
 import com.kjgs.conversation.service.TalkService;
 import com.kjgs.功能.功能对象;
 import com.kjgs.实体.逻辑实体;
+import com.kjgs.数据库.MongoCRUDDao;
 import com.kjgs.枚举.Cons;
 import com.kjgs.算法.工具;
 import com.kjgs.逻辑流程.执行逻辑;
@@ -41,18 +42,21 @@ public class TalkController {
     @Autowired
     private TalkService talkService;
 
+    @Autowired
+    private MongoCRUDDao mongoCRUDDao;
+
     @PostMapping("/process")
-    public Object process(@RequestBody JSONObject input){
-        //区分输入的句子和处理的句子
+    public Object process(@RequestBody JSONObject input) {
         String 句子 = input.getString("input");
         Document 当前处理的句子 = new Document();
         当前处理的句子.put(Cons.输入的句子, 句子);
+        mongoCRUDDao.保存对象(当前处理的句子);
         执行逻辑Impl.所有逻辑对象.add(当前处理的句子);
         Document 输入的句子的词语集合 = new Document();
         String[] 句子元素集合 = 句子.split("");
         输入的句子的词语集合.put(Cons.输入的句子的词语集合, 句子元素集合);
         执行逻辑Impl.所有逻辑对象.add(输入的句子的词语集合);
-        if(StringUtils.isEmpty(句子)){
+        if (StringUtils.isEmpty(句子)) {
             return "输入是空的";
         }
         //给每个词添加成句子成分
@@ -63,22 +67,28 @@ public class TalkController {
             成分对象.put(Cons.对象类型, Cons.句子成分);
             成分对象.put(Cons.词语, item);
             成分对象.put(Cons.在句子中的下标, i);
-            成分对象.put(Cons.在句子中的结束下标, 工具.strDdoubleToInt(i)+1);
+            成分对象.put(Cons.在句子中的结束下标, 工具.strDdoubleToInt(i) + 1);
             执行逻辑Impl.所有逻辑对象.add(成分对象);
         }
         //获取所有对象中下一个成分对象作为处理的词语
         int index = 0;
-
-        for (int i = index; i < 执行逻辑Impl.所有逻辑对象.size();) {
+        for (int i = index; i < 执行逻辑Impl.所有逻辑对象.size(); ) {
             Document document = 执行逻辑Impl.所有逻辑对象.get(i);
-            if(!document.keySet().contains(Cons.句子成分)){
+            if (!document.keySet().contains(Cons.句子成分)) {
                 continue;
             }
-            Document 当前处理的词语 = new Document();
-            当前处理的词语.put(Cons.当前处理的句子成分, document);
-            执行逻辑Impl.所有逻辑对象.add(当前处理的词语);
+            document.put(Cons.是否是当前处理的句子成分, true);
 
+            //处理词语
+            String 词语 = document.getString(Cons.词语);
+            if (StringUtils.isEmpty(词语)) {
+                continue;
+            }
+            新处理逻辑Impl.processNew(词语, 0);
+            index++;
         }
+        talkService.执行输出结果逻辑();
+        return 静态变量.输出的内容;
     }
 
 
@@ -92,16 +102,16 @@ public class TalkController {
         int 处理位置 = 0;
         int 处理结束位置 = 1;
         while (处理结束位置 <= 句子.length()) {
-            System.out.println("本次处理结束位置:"+处理结束位置);
-            String 词语 = 句子.substring(处理位置,处理结束位置);
+            System.out.println("本次处理结束位置:" + 处理结束位置);
+            String 词语 = 句子.substring(处理位置, 处理结束位置);
             新处理逻辑Impl.init(句子, 处理位置, 处理结束位置, 词语, false);
             新处理逻辑Impl.process(词语, 0);
 
             //开启下一轮
             Object 当前处理的词语结束位置 = 功能对象impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.当前处理的词语结束位置);
-            try{
+            try {
                 处理结束位置 = 工具.strDdoubleToInt(当前处理的词语结束位置);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             处理位置 = 处理结束位置;
@@ -114,7 +124,7 @@ public class TalkController {
                 .collect(Collectors.toList());
         执行逻辑.所有逻辑对象.clear();
         执行逻辑.所有逻辑对象.addAll(所有成分逻辑);
-        while(!StringUtils.equals(JSON.toJSONString(所有成分逻辑), JSON.toJSONString(静态变量.上一层句子成分集合))){
+        while (!StringUtils.equals(JSON.toJSONString(所有成分逻辑), JSON.toJSONString(静态变量.上一层句子成分集合))) {
             静态变量.上一层句子成分集合 = 所有成分逻辑;
             //清空输出内容
             静态变量.输出的内容.clear();
@@ -132,7 +142,7 @@ public class TalkController {
 
     @PostMapping("/testLogic")
     public Object testLogic(@RequestBody JSONObject input) {
-        新处理逻辑Impl.init("123", 0,1,"1", false);
+        新处理逻辑Impl.init("123", 0, 1, "1", false);
         Document 是否执行判断结果 = new Document();
         是否执行判断结果.put(Cons.是否执行判断结果, "true");
         执行逻辑Impl.所有逻辑对象.add(是否执行判断结果);
