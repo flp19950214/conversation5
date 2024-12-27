@@ -24,7 +24,7 @@ public class 启动读文件重置数据 implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         jdbcTemplate.execute("truncate `conversation`.`逻辑表`;");
-        for (int i = 1; i <= 2; i++) {
+        for (int i = 3; i <= 3; i++) {
             String path = String.format("classpath:插入逻辑_%s.sql", i);
             Resource resource  = resourceLoader.getResource(path);
             try(BufferedReader br =new BufferedReader(new InputStreamReader(resource.getInputStream()))) {

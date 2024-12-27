@@ -47,6 +47,10 @@ public class TalkController {
 
     @PostMapping("/process")
     public Object process(@RequestBody JSONObject input) {
+        静态变量.执行层级集合 = new ArrayList<>();
+        静态变量.逻辑实体执行链路 = new ArrayList<>();
+        静态变量.逻辑执行链路 = new ArrayList<>();
+        执行逻辑.所有逻辑对象 = new ArrayList<>();
         String 句子 = input.getString("input");
         Document 当前处理的句子 = new Document();
         当前处理的句子.put(Cons.输入的句子, 句子);
@@ -71,10 +75,10 @@ public class TalkController {
             执行逻辑Impl.所有逻辑对象.add(成分对象);
         }
         //获取所有对象中下一个成分对象作为处理的词语
-        int index = 0;
-        for (int i = index; i < 执行逻辑Impl.所有逻辑对象.size(); ) {
+        for (int i = 0; i < 执行逻辑Impl.所有逻辑对象.size(); ) {
             Document document = 执行逻辑Impl.所有逻辑对象.get(i);
-            if (!document.keySet().contains(Cons.句子成分)) {
+            if (!document.containsValue(Cons.句子成分)) {
+                i++;
                 continue;
             }
             document.put(Cons.是否是当前处理的句子成分, true);
@@ -82,11 +86,12 @@ public class TalkController {
             //处理词语
             String 词语 = document.getString(Cons.词语);
             if (StringUtils.isEmpty(词语)) {
+                i++;
                 continue;
             }
             新处理逻辑Impl.processNew(词语, 0);
             document.put(Cons.是否是当前处理的句子成分, false);
-            index++;
+            i++;
         }
         talkService.执行输出结果逻辑();
         return 静态变量.输出的内容;
