@@ -45,6 +45,11 @@ public class TalkController {
     @Autowired
     private MongoCRUDDao mongoCRUDDao;
 
+    /**
+     * 新策略，压力给到输出逻辑
+     * 遍历每个词的逻辑，主要做分词功能
+     * 最后执行输出逻辑，这将是个很长很长的判断
+     */
     @PostMapping("/process")
     public Object process(@RequestBody JSONObject input) {
         静态变量.执行层级集合 = new ArrayList<>();
@@ -73,25 +78,9 @@ public class TalkController {
             成分对象.put(Cons.在句子中的下标, i);
             成分对象.put(Cons.在句子中的结束下标, 工具.strDdoubleToInt(i) + 1);
             执行逻辑Impl.所有逻辑对象.add(成分对象);
-        }
-        //获取所有对象中下一个成分对象作为处理的词语
-        for (int i = 0; i < 执行逻辑Impl.所有逻辑对象.size(); ) {
-            Document document = 执行逻辑Impl.所有逻辑对象.get(i);
-            if (!document.containsValue(Cons.句子成分)) {
-                i++;
-                continue;
-            }
-            document.put(Cons.是否是当前处理的句子成分, true);
-
-            //处理词语
-            String 词语 = document.getString(Cons.词语);
-            if (StringUtils.isEmpty(词语)) {
-                i++;
-                continue;
-            }
-            新处理逻辑Impl.processNew(词语, 0);
-            document.put(Cons.是否是当前处理的句子成分, false);
-            i++;
+            成分对象.put(Cons.是否是当前处理的句子成分, true);
+            新处理逻辑Impl.processNew(item, 0);
+            成分对象.put(Cons.是否是当前处理的句子成分, false);
         }
         talkService.执行输出结果逻辑();
         return 静态变量.输出的内容;
