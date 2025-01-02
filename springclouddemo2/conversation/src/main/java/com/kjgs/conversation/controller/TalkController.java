@@ -3,6 +3,7 @@ package com.kjgs.conversation.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.kjgs.conversation.mysql.逻辑Impl;
+import com.kjgs.conversation.service.Service逻辑处理;
 import com.kjgs.conversation.service.TalkService;
 import com.kjgs.功能.功能对象;
 import com.kjgs.实体.逻辑实体;
@@ -45,6 +46,21 @@ public class TalkController {
     @Autowired
     private MongoCRUDDao mongoCRUDDao;
 
+    @Autowired
+    private Service逻辑处理 service逻辑处理;
+
+    /**
+     * 新策略
+     * 分词逻辑 动作逻辑 输出逻辑
+     *  处理句子 和 处理逻辑
+     * @param input
+     * @return
+     */
+    @PostMapping("/process1")
+    public Object process1(@RequestBody JSONObject input) {
+        return process(input);
+    }
+
     /**
      * 新策略，压力给到输出逻辑
      * 遍历每个词的逻辑，主要做分词功能
@@ -79,7 +95,7 @@ public class TalkController {
             成分对象.put(Cons.在句子中的结束下标, 工具.strDdoubleToInt(i) + 1);
             执行逻辑Impl.所有逻辑对象.add(成分对象);
             成分对象.put(Cons.是否是当前处理的句子成分, true);
-            新处理逻辑Impl.processNew(item, 0);
+            service逻辑处理.process(item);
             成分对象.put(Cons.是否是当前处理的句子成分, false);
         }
         talkService.执行输出结果逻辑();

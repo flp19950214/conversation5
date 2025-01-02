@@ -7,6 +7,7 @@ public class 逻辑实体 {
     public Integer 下标;
     public String 逻辑名;//唯一主键
     public String 逻辑;
+    public String 逻辑类型;// 分词逻辑 动作逻辑 输出逻辑
 
     public 逻辑实体(){
 

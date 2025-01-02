@@ -39,6 +39,7 @@ public interface Cons {
     public String 待处理的对象的下标="待处理的对象的下标";
     public String 待处理对象所在句子="待处理对象所在句子";
     public String 输入的句子="输入的句子";
+    public String 输入的逻辑句子="输入的逻辑句子";
     public String 输入的句子的词语集合="输入的句子的词语集合";
     public String 处理的句子="处理的句子";
     public String 处理的句子的词语集合="处理的句子的词语集合";
@@ -54,6 +55,7 @@ public interface Cons {
     public String 当前处理逻辑名="当前处理逻辑名";
     public String 对象类型="对象类型";
     public String 句子成分="句子成分";
+    public String 逻辑句子成分="逻辑句子成分";
     public String 在句子中的下标="在句子中的下标";
     public String 在句子中的结束下标="在句子中的结束下标";
     public String 逻辑="逻辑";
