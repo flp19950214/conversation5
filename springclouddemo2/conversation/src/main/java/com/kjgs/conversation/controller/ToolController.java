@@ -1,6 +1,7 @@
 package com.kjgs.conversation.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.kjgs.conversation.service.ToolService;
 import com.kjgs.功能.功能对象;
 import com.kjgs.枚举.Cons;
 import com.kjgs.逻辑流程.执行逻辑;
@@ -29,9 +30,7 @@ public class ToolController {
     //获取所有成分对象
     @PostMapping("/getChengFenObj")
     public List<Document> getChengFenObj(@RequestBody JSONObject input){
-        return 执行逻辑.所有逻辑对象.stream().filter(m -> m.containsKey(Cons.对象类型) && m.containsValue(Cons.句子成分))
-                .peek(m -> m.remove(Cons._id))
-                .collect(Collectors.toList());
+        return ToolService.获取句子成分集合();
     }
 
 

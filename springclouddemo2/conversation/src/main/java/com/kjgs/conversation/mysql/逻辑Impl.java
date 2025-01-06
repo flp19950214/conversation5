@@ -42,4 +42,7 @@ public class 逻辑Impl{
     public List<逻辑实体> 根据多个逻辑名查询List(List<String> 逻辑名集合) {
         return 逻辑MapperImpl.根据多个逻辑名查询List(逻辑名集合);
     }
+    public List<逻辑实体> 根据逻辑名和逻辑类型查询(List<String> 逻辑名集合, String 逻辑类型) {
+        return 逻辑MapperImpl.根据逻辑名和逻辑类型查询(逻辑名集合, 逻辑类型);
+    }
 }

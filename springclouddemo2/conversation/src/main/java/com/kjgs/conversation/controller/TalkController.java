@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.kjgs.conversation.mysql.逻辑Impl;
 import com.kjgs.conversation.service.Service逻辑处理;
 import com.kjgs.conversation.service.TalkService;
+import com.kjgs.conversation.service.ToolService;
 import com.kjgs.功能.功能对象;
 import com.kjgs.实体.逻辑实体;
 import com.kjgs.数据库.MongoCRUDDao;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.tools.Tool;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -94,11 +96,33 @@ public class TalkController {
             成分对象.put(Cons.在句子中的下标, i);
             成分对象.put(Cons.在句子中的结束下标, 工具.strDdoubleToInt(i) + 1);
             执行逻辑Impl.所有逻辑对象.add(成分对象);
+
+        }
+        //执行分词逻辑
+        List<Document> 句子成分集合 = ToolService.获取句子成分集合();
+        for (int i = 0; i < 句子成分集合.size(); i++) {
+            Document 成分对象 = 句子成分集合.get(i);
             成分对象.put(Cons.是否是当前处理的句子成分, true);
-            service逻辑处理.process(item);
+            service逻辑处理.process(成分对象.getString(Cons.词语), Cons.分词逻辑);
             成分对象.put(Cons.是否是当前处理的句子成分, false);
         }
-        talkService.执行输出结果逻辑();
+        //执行动作逻辑
+        句子成分集合 = ToolService.获取句子成分集合();
+        for (int i = 0; i < 句子成分集合.size(); i++) {
+            Document 成分对象 = 句子成分集合.get(i);
+            成分对象.put(Cons.是否是当前处理的句子成分, true);
+            service逻辑处理.process(成分对象.getString(Cons.词语), Cons.动作逻辑);
+            成分对象.put(Cons.是否是当前处理的句子成分, false);
+        }
+        //执行输出逻辑
+        句子成分集合 = ToolService.获取句子成分集合();
+        for (int i = 0; i < 句子成分集合.size(); i++) {
+            Document 成分对象 = 句子成分集合.get(i);
+            成分对象.put(Cons.是否是当前处理的句子成分, true);
+            service逻辑处理.process(成分对象.getString(Cons.词语), Cons.输出逻辑);
+            成分对象.put(Cons.是否是当前处理的句子成分, false);
+        }
+//        talkService.执行输出结果逻辑();
         return 静态变量.输出的内容;
     }
 
