@@ -8,23 +8,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-h
+
 @Service
 public class ToolService {
 
     public static List<Document> 获取句子成分集合(){
         return 执行逻辑.所有逻辑对象.stream()
-                .filter(m -> m.containsKey(Cons.对象类型) && m.containsValue(Cons.句子成分))
-                .collect(Collectors.toList());
-    }
-
-
-    public static List<Document> 获取句子的成分集合(){
-        return 执行逻辑.所有逻辑对象.stream()
                 .filter(m -> m.containsKey(Cons.对象类型)
                         && StringUtils.equals(m.getString(Cons.对象类型),Cons.句子成分))
                 .collect(Collectors.toList());
     }
+
     public static List<Document> 获取逻辑句子的成分集合(){
         return 执行逻辑.所有逻辑对象.stream()
                 .filter(m -> m.containsKey(Cons.对象类型)
