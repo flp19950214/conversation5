@@ -226,6 +226,7 @@ public class 新处理逻辑 {
                     if (StringUtils.equals(是否执行, "false") ) {
                         continue;
                     }
+
                     功能抽象 功能抽象对象 = (功能抽象) context.getBean(Class.forName("com.kjgs.功能.内置功能." + 动作));
                     功能抽象对象.执行流程(执行逻辑.所有逻辑对象, 当前逻辑句子, 动作,uuidLevel, level);
                 } catch (NoSuchBeanDefinitionException | ClassNotFoundException e) {

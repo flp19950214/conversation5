@@ -41,7 +41,7 @@ public class Service逻辑处理 {
 
         for (逻辑实体 逻辑实例 : 逻辑set){
             //判断逻辑是否有二级逻辑
-            if(StringUtils.startsWith(逻辑实例.逻辑, "《") && StringUtils.endsWith(逻辑实例.逻辑, "》")){
+            if(StringUtils.contains(逻辑实例.逻辑, "《")){
                 //可以直接处理
                 新处理逻辑.执行逻辑(逻辑实例, UUID.randomUUID().toString(),0);
             }else{
@@ -100,7 +100,7 @@ public class Service逻辑处理 {
         List<逻辑实体> 逻辑set = 逻辑MapperImpl.根据多个逻辑名查询List(词性set);
         for (逻辑实体 逻辑实例 : 逻辑set){
             //判断逻辑是否有二级逻辑
-            if(StringUtils.startsWith(逻辑实例.逻辑, "《") && StringUtils.endsWith(逻辑实例.逻辑, "》")){
+            if(StringUtils.contains(逻辑实例.逻辑, "《")){
                 //可以直接处理
                 新处理逻辑.执行逻辑(逻辑实例, UUID.randomUUID().toString(),0);
             }
