@@ -40,15 +40,16 @@ public class Service逻辑处理 {
         List<逻辑实体> 逻辑set = 逻辑MapperImpl.根据逻辑名和逻辑类型查询(词性set, 逻辑类型);
 
         for (逻辑实体 逻辑实例 : 逻辑set){
+            Document 当前处理的逻辑句子 = new Document();
+            当前处理的逻辑句子.put(Cons.当前处理的逻辑句子, 逻辑实例.逻辑);
+            当前处理的逻辑句子.put(Cons.是否是当前处理的逻辑句子, true);
+            执行逻辑Impl.所有逻辑对象.add(当前处理的逻辑句子);
             //判断逻辑是否有二级逻辑
             if(StringUtils.contains(逻辑实例.逻辑, "《")){
                 //可以直接处理
                 新处理逻辑.执行逻辑(逻辑实例, UUID.randomUUID().toString(),0);
             }else{
                 //走分析并处理逻辑流程
-                Document 输入的逻辑句子 = new Document();
-                输入的逻辑句子.put(Cons.输入的逻辑句子, 逻辑实例.逻辑);
-                执行逻辑Impl.所有逻辑对象.add(输入的逻辑句子);
                 String[] 逻辑集合 = 逻辑实例.逻辑.split("");
                 //给每个逻辑词添加成逻辑成分
                 for (int i = 0; i < 逻辑集合.length; i++) {
@@ -60,8 +61,6 @@ public class Service逻辑处理 {
                     成分对象.put(Cons.在句子中的下标, i);
                     成分对象.put(Cons.在句子中的结束下标, 工具.strDdoubleToInt(i) + 1);
                     执行逻辑Impl.所有逻辑对象.add(成分对象);
-                    //可以直接处理
-                    新处理逻辑.执行逻辑(逻辑实例, UUID.randomUUID().toString(),0);
                 }
 
                 //执行分词逻辑
@@ -89,6 +88,7 @@ public class Service逻辑处理 {
                     成分对象.put(Cons.是否是当前处理的句子成分, false);
                 }
             }
+            当前处理的逻辑句子.put(Cons.是否是当前处理的逻辑句子, false);
         }
     }
 

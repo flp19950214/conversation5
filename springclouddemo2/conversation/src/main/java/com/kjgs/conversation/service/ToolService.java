@@ -12,6 +12,13 @@ import java.util.stream.Collectors;
 @Service
 public class ToolService {
 
+    public static Document 获取当前逻辑句子对象(){
+        return 执行逻辑.所有逻辑对象.stream()
+                .filter(m -> m.containsKey(Cons.当前处理的逻辑句子)
+                        && StringUtils.equals(m.getString(Cons.是否是当前处理的逻辑句子),Boolean.TRUE.toString()))
+               .findFirst().orElse(null);
+    }
+
     public static List<Document> 获取句子成分集合(){
         return 执行逻辑.所有逻辑对象.stream()
                 .filter(m -> m.containsKey(Cons.对象类型)
