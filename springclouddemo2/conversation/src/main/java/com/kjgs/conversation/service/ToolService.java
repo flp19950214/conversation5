@@ -2,6 +2,8 @@ package com.kjgs.conversation.service;
 
 import com.kjgs.枚举.Cons;
 import com.kjgs.逻辑流程.执行逻辑;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,7 @@ public class ToolService {
     public static Document 获取当前逻辑句子对象(){
         return 执行逻辑.所有逻辑对象.stream()
                 .filter(m -> m.containsKey(Cons.当前处理的逻辑句子)
-                        && StringUtils.equals(m.getString(Cons.是否是当前处理的逻辑句子),Boolean.TRUE.toString()))
+                        && BooleanUtils.isTrue(m.getBoolean(Cons.是否是当前处理的逻辑句子)))
                .findFirst().orElse(null);
     }
 
@@ -35,9 +37,9 @@ public class ToolService {
     public static Document 获取当前句子成分(){
         return 执行逻辑.所有逻辑对象.stream()
                 .filter(m -> m.containsKey(Cons.对象类型)
-                        && StringUtils.equals(m.getString(Cons.句子成分), Cons.句子成分))
+                        && StringUtils.equals(m.getString(Cons.对象类型), Cons.句子成分))
                 .filter(m -> m.containsKey(Cons.是否是当前处理的句子成分)
-                        && StringUtils.equals(m.getString(Cons.是否是当前处理的句子成分), "true"))
+                        && BooleanUtils.isTrue(m.getBoolean(Cons.是否是当前处理的句子成分)))
                 .findFirst().orElse(null);
     }
     public static Document 获取当前逻辑句子成分(){
@@ -45,7 +47,7 @@ public class ToolService {
                 .filter(m -> m.containsKey(Cons.对象类型)
                         && StringUtils.equals(m.getString(Cons.逻辑句子成分), Cons.逻辑句子成分))
                 .filter(m -> m.containsKey(Cons.是否是当前处理的句子成分)
-                        && StringUtils.equals(m.getString(Cons.是否是当前处理的句子成分), "true"))
+                        && BooleanUtils.isTrue(m.getBoolean(Cons.是否是当前处理的句子成分)))
                 .findFirst().orElse(null);
     }
     public static String 获取当前逻辑句子成分的词语(){

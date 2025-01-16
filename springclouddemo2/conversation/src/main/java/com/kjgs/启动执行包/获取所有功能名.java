@@ -38,15 +38,14 @@ public class 获取所有功能名 {
 
         while (resources.hasMoreElements()) {
             URL resource = resources.nextElement();
-            directories.add(new File(resource.getFile()));
+            directories.add(new File(java.net.URLDecoder.decode(resource.getFile(),"utf-8")));
         }
 
         ArrayList<String> classNames = new ArrayList<>();
         for (File directory : directories) {
             for (File file : directory.listFiles()) {
                 if (file.getName().endsWith(".class")) {
-                    String className = packageName + '.' + file.getName().substring(0, file.getName().length() - 6);
-                    classNames.add(className);
+                    classNames.add( file.getName().substring(0, file.getName().length() - 6));
                 }
             }
         }
@@ -54,15 +53,20 @@ public class 获取所有功能名 {
         return classNames;
     }
 
+
     public static void main(String[] args) {
+        List<String> classNames = null;
         try {
-            List<String> classNames = getClassNamesForPackage("com.example.mypackage");
-            for (String className : classNames) {
-                System.out.println(className);
-            }
-        } catch (ClassNotFoundException | IOException e) {
+            classNames = getClassNamesForPackage("com.kjgs.功能.内置功能");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        for (String className : classNames) {
+                System.out.println(className);
+            }
+
     }
 
 }
