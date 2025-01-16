@@ -24,7 +24,7 @@ public class 启动读文件重置数据 implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         jdbcTemplate.execute("truncate `conversation`.`逻辑表`;");
-        for (int i = 3; i <= 3; i++) {
+        for (int i = 4; i <= 4; i++) {
             String path = String.format("classpath:插入逻辑_%s.sql", i);
             Resource resource  = resourceLoader.getResource(path);
             try(BufferedReader br =new BufferedReader(new InputStreamReader(resource.getInputStream()))) {
@@ -34,7 +34,7 @@ public class 启动读文件重置数据 implements ApplicationRunner {
                         continue;
                     }
                     StringBuilder sb = new StringBuilder();
-                    sb.append("INSERT INTO `conversation`.`逻辑表`(`逻辑名`, `逻辑`) VALUES ")
+                    sb.append("INSERT INTO `conversation`.`逻辑表`(`逻辑名`, `逻辑`,`逻辑类型`) VALUES ")
                             .append(line.trim());
                     // 处理可能的多行语句
                     if (line.endsWith(";")) {

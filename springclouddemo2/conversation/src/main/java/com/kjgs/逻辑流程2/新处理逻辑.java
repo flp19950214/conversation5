@@ -5,6 +5,7 @@ import com.kjgs.conversation.mysql.逻辑Impl;
 import com.kjgs.功能.内置功能.执行获取当前逻辑链路方法;
 import com.kjgs.功能.功能对象;
 import com.kjgs.功能.功能抽象;
+import com.kjgs.启动执行包.获取所有功能名;
 import com.kjgs.实体.词性实体;
 import com.kjgs.实体.逻辑实体;
 import com.kjgs.实体.逻辑层级实体;
@@ -219,19 +220,26 @@ public class 新处理逻辑 {
             for (String 动作 : 动作集合) {
                 //执行动作
                 try {
-                    String 是否执行 = 功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.是否执行判断结果).toString();
-                    if(StringUtils.equals(动作, Cons.将是否执行判断结果设置为true)){
+                    Object 是否执行 = 功能对象Impl.获取最近的属性值NoLevel(执行逻辑.所有逻辑对象, Cons.是否执行判断结果);
+                    if(是否执行==null || StringUtils.equals(动作, Cons.将是否执行判断结果设置为true)){
                         是否执行 = "true";
                     }
-                    if (StringUtils.equals(是否执行, "false") ) {
+                    if (StringUtils.equals(是否执行.toString(), "false") ) {
                         continue;
                     }
+                    if(获取所有功能名.整合功能名集合.contains(动作)){
+                        功能抽象 功能抽象对象 = (功能抽象) context.getBean(Class.forName("com.kjgs.功能.整合功能." + 动作));
+                        功能抽象对象.执行流程(执行逻辑.所有逻辑对象, 当前逻辑句子, 动作,uuidLevel, level);
+                    }else if (获取所有功能名.内置功能名集合.contains(动作)){
+                        功能抽象 功能抽象对象 = (功能抽象) context.getBean(Class.forName("com.kjgs.功能.内置功能." + 动作));
+                        功能抽象对象.执行流程(执行逻辑.所有逻辑对象, 当前逻辑句子, 动作,uuidLevel, level);
+                    }else {
+                        查询并迭代逻辑(动作, level+1);
+                    }
 
-                    功能抽象 功能抽象对象 = (功能抽象) context.getBean(Class.forName("com.kjgs.功能.内置功能." + 动作));
-                    功能抽象对象.执行流程(执行逻辑.所有逻辑对象, 当前逻辑句子, 动作,uuidLevel, level);
-                } catch (NoSuchBeanDefinitionException | ClassNotFoundException e) {
-                    //不是内置动作，那么就迭代到数据库获取逻辑处理
-                    查询并迭代逻辑(动作, level+1);
+//                } catch (NoSuchBeanDefinitionException | ClassNotFoundException e) {
+//                    //不是内置动作，那么就迭代到数据库获取逻辑处理
+//                    查询并迭代逻辑(动作, level+1);
                 } catch (Exception e) {
                     //实在报错就记录下来这个逻辑，以及是那个词语触发的，最后再执行
                     Document 异常逻辑 = new Document();

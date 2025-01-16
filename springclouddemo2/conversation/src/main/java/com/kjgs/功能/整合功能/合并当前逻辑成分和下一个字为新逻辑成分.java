@@ -8,6 +8,8 @@ import com.kjgs.静态变量;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @Service
 public class 合并当前逻辑成分和下一个字为新逻辑成分  extends 功能抽象 {
 
