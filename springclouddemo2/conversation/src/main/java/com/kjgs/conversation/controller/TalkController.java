@@ -51,6 +51,8 @@ public class TalkController {
     @Autowired
     private Service逻辑处理 service逻辑处理;
 
+
+    public static String 成分执行阶段 = null;
     /**
      * 新策略
      * 分词逻辑 动作逻辑 输出逻辑
@@ -98,8 +100,20 @@ public class TalkController {
             执行逻辑Impl.所有逻辑对象.add(成分对象);
 
         }
-        //执行分词逻辑
+
+// 在成分变化的地方加上是否改变的标识符，如果有改变就还需要循环执行
+        //执行词性逻辑
         List<Document> 句子成分集合 = ToolService.获取句子成分集合();
+        成分执行阶段 =  Cons.词性逻辑;
+        for (int i = 0; i < 句子成分集合.size(); i++) {
+            Document 成分对象 = 句子成分集合.get(i);
+            成分对象.put(Cons.是否是当前处理的句子成分, true);
+            service逻辑处理.process(成分对象.getString(Cons.词语), Cons.词性逻辑);
+            成分对象.put(Cons.是否是当前处理的句子成分, false);
+        }
+        //执行分词逻辑
+        成分执行阶段 =  Cons.分词逻辑;
+        句子成分集合 = ToolService.获取句子成分集合();
         for (int i = 0; i < 句子成分集合.size(); i++) {
             Document 成分对象 = 句子成分集合.get(i);
             成分对象.put(Cons.是否是当前处理的句子成分, true);
@@ -107,6 +121,7 @@ public class TalkController {
             成分对象.put(Cons.是否是当前处理的句子成分, false);
         }
         //执行动作逻辑
+        成分执行阶段 =  Cons.动作逻辑;
         句子成分集合 = ToolService.获取句子成分集合();
         for (int i = 0; i < 句子成分集合.size(); i++) {
             Document 成分对象 = 句子成分集合.get(i);
@@ -115,6 +130,7 @@ public class TalkController {
             成分对象.put(Cons.是否是当前处理的句子成分, false);
         }
         //执行输出逻辑
+        成分执行阶段 =  Cons.输出逻辑;
         句子成分集合 = ToolService.获取句子成分集合();
         for (int i = 0; i < 句子成分集合.size(); i++) {
             Document 成分对象 = 句子成分集合.get(i);

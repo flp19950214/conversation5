@@ -33,6 +33,9 @@ public class Service逻辑处理 {
     @Autowired
     private 执行逻辑 执行逻辑Impl;
 
+    public static String 逻辑成分执行阶段 = null;
+
+
     public void process(String 词语, String 逻辑类型){
         List<String> 词性set =  mongoCRUDDao.查询词语词性(词语);
         词性set.add(词语);
@@ -40,15 +43,18 @@ public class Service逻辑处理 {
         List<逻辑实体> 逻辑set = 逻辑MapperImpl.根据逻辑名和逻辑类型查询(词性set, 逻辑类型);
 
         for (逻辑实体 逻辑实例 : 逻辑set){
-            Document 当前处理的逻辑句子 = new Document();
-            当前处理的逻辑句子.put(Cons.当前处理的逻辑句子, 逻辑实例.逻辑);
-            当前处理的逻辑句子.put(Cons.是否是当前处理的逻辑句子, true);
-            执行逻辑Impl.所有逻辑对象.add(当前处理的逻辑句子);
             //判断逻辑是否有二级逻辑
             if(StringUtils.contains(逻辑实例.逻辑, "《")){
                 //可以直接处理
                 新处理逻辑.执行逻辑(逻辑实例, UUID.randomUUID().toString(),0);
             }else{
+                if(StringUtils.equals(逻辑实例.逻辑, ToolService.获取当前逻辑句子())){
+                    continue;
+                }
+                Document 当前处理的逻辑句子 = new Document();
+                当前处理的逻辑句子.put(Cons.当前处理的逻辑句子, 逻辑实例.逻辑);
+                当前处理的逻辑句子.put(Cons.是否是当前处理的逻辑句子, true);
+                执行逻辑Impl.所有逻辑对象.add(当前处理的逻辑句子);
                 //走分析并处理逻辑流程
                 String[] 逻辑集合 = 逻辑实例.逻辑.split("");
                 //给每个逻辑词添加成逻辑成分
@@ -63,8 +69,17 @@ public class Service逻辑处理 {
                     执行逻辑Impl.所有逻辑对象.add(成分对象);
                 }
 
-                //执行分词逻辑
                 List<Document> 句子成分集合 = ToolService.获取逻辑句子的成分集合();
+                逻辑成分执行阶段 =  Cons.词性逻辑;
+                for (int i = 0; i < 句子成分集合.size(); i++) {
+                    Document 成分对象 = 句子成分集合.get(i);
+                    成分对象.put(Cons.是否是当前处理的句子成分, true);
+                    process(成分对象.getString(Cons.词语), Cons.词性逻辑);
+                    成分对象.put(Cons.是否是当前处理的句子成分, false);
+                }
+                //执行分词逻辑
+                逻辑成分执行阶段 =  Cons.分词逻辑;
+                句子成分集合 = ToolService.获取逻辑句子的成分集合();
                 for (int i = 0; i < 句子成分集合.size(); i++) {
                     Document 成分对象 = 句子成分集合.get(i);
                     成分对象.put(Cons.是否是当前处理的句子成分, true);
@@ -72,6 +87,7 @@ public class Service逻辑处理 {
                     成分对象.put(Cons.是否是当前处理的句子成分, false);
                 }
                 //执行动作逻辑
+                逻辑成分执行阶段 =  Cons.动作逻辑;
                 句子成分集合 = ToolService.获取逻辑句子的成分集合();
                 for (int i = 0; i < 句子成分集合.size(); i++) {
                     Document 成分对象 = 句子成分集合.get(i);
@@ -80,6 +96,7 @@ public class Service逻辑处理 {
                     成分对象.put(Cons.是否是当前处理的句子成分, false);
                 }
                 //执行输出逻辑
+                逻辑成分执行阶段 =  Cons.输出逻辑;
                 句子成分集合 = ToolService.获取逻辑句子的成分集合();
                 for (int i = 0; i < 句子成分集合.size(); i++) {
                     Document 成分对象 = 句子成分集合.get(i);
@@ -87,8 +104,8 @@ public class Service逻辑处理 {
                     process(成分对象.getString(Cons.词语), Cons.输出逻辑);
                     成分对象.put(Cons.是否是当前处理的句子成分, false);
                 }
+                当前处理的逻辑句子.put(Cons.是否是当前处理的逻辑句子, false);
             }
-            当前处理的逻辑句子.put(Cons.是否是当前处理的逻辑句子, false);
         }
     }
 
