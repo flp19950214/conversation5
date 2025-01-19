@@ -31,7 +31,7 @@ public class 合并当前逻辑成分和下一个字为新逻辑成分  extends 
         成分对象.put(Cons.词语, 获取当前逻辑句子成分.get(Cons.词语)+前逻辑句子成分的下一个字);
         成分对象.put(Cons.在句子中的下标, 获取当前逻辑句子成分.getInteger(Cons.在句子中的下标));
         成分对象.put(Cons.在句子中的结束下标,  获取当前逻辑句子成分.getInteger(Cons.在句子中的结束下标) + 1);
-        静态变量.添加执行层级集合(String.format("%s %s", level, " 合并当前逻辑成分和下一个字为新逻辑成分的结果："+ JSON.toJSONString(成分对象)));
+        静态变量.添加执行层级集合(String.format("%s %s", level, " 新合成逻辑成分的结果："+ JSON.toJSONString(成分对象)));
         所有逻辑对象.add(成分对象);
         this.动作结果=成分对象;
     }

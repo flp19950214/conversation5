@@ -22,7 +22,7 @@ public class 执行查询逻辑成分方法 extends 功能抽象 {
 
     @Override
     public void 功能() {
-        List<Document> 逻辑句子的成分集合 = ToolService.获取逻辑句子的成分集合();
+        List<Document> 逻辑句子的成分集合 = ToolService.获取逻辑句子的成分集合(level);
         List<Document> 句子成分集合 = ToolService.获取句子成分集合();
         Document 逻辑句子的成分 = ToolService.获取当前逻辑句子成分();
         int 在句子中的下标 = 逻辑句子的成分.getInteger(Cons.在句子中的下标);

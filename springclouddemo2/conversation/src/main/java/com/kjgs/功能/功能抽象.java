@@ -139,7 +139,9 @@ public abstract class 功能抽象<T> implements 功能接口 {
                 if(document.containsKey(Cons.level) && isUseLevel){
                     String uuidLevel = document.getString(Cons.uuidLevel);
                     int level = document.getInteger(Cons.level,0);
-                    if(静态变量.level != level || !静态变量.uuidLevel.equals(uuidLevel)){ // 动作参数 要跟 动作在一个逻辑层级
+                    if(静态变量.level != level
+//                            || !静态变量.uuidLevel.equals(uuidLevel)
+                    ){ // 动作参数 要跟 动作在一个逻辑层级
                         continue;
                     }
                 }
