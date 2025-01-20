@@ -1,23 +1,18 @@
 package com.kjgs.conversation.service;
 
-import com.alibaba.fastjson.JSON;
 import com.kjgs.conversation.mysql.逻辑Impl;
-import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.逻辑实体;
 import com.kjgs.数据库.MongoCRUDDao;
 import com.kjgs.枚举.Cons;
 import com.kjgs.算法.工具;
 import com.kjgs.逻辑流程.执行逻辑;
 import com.kjgs.逻辑流程2.新处理逻辑;
-import com.kjgs.静态变量;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,15 +40,10 @@ public class Service逻辑处理 {
         List<逻辑实体> 逻辑set = 逻辑MapperImpl.根据逻辑名和逻辑类型查询(词性set, 逻辑类型);
 
         for (逻辑实体 逻辑实例 : 逻辑set){
+
             //判断逻辑是否有二级逻辑
             if(StringUtils.contains(逻辑实例.逻辑, "《")){
                 //可以直接处理
-                Document 当前处理的逻辑句子 = new Document();
-                当前处理的逻辑句子.put(Cons.当前处理的逻辑句子, 逻辑实例.逻辑);
-                当前处理的逻辑句子.put(Cons.是否是当前处理的逻辑句子, true);
-                当前处理的逻辑句子.put(Cons.level, level);
-                当前处理的逻辑句子.put(Cons.uuidLevel, uuidLevel);
-                执行逻辑Impl.所有逻辑对象.add(当前处理的逻辑句子);
                 新处理逻辑.执行逻辑(逻辑实例, uuidLevel,level);
             }else{
                 if(StringUtils.equals(逻辑实例.逻辑, ToolService.获取当前逻辑句子())){
@@ -61,6 +51,12 @@ public class Service逻辑处理 {
                 }
                 int level2 = level+1;
                 String uuidLevel2=UUID.randomUUID().toString();
+                Document 当前处理的逻辑句子 = new Document();
+                当前处理的逻辑句子.put(Cons.当前处理的逻辑句子, 逻辑实例.逻辑);
+                当前处理的逻辑句子.put(Cons.是否是当前处理的逻辑句子, true);
+                当前处理的逻辑句子.put(Cons.level, level2);
+                当前处理的逻辑句子.put(Cons.uuidLevel, uuidLevel2);
+                执行逻辑Impl.所有逻辑对象.add(当前处理的逻辑句子);
                 //走分析并处理逻辑流程
                 String[] 逻辑集合 = 逻辑实例.逻辑.split("");
                 //给每个逻辑词添加成逻辑成分
@@ -87,7 +83,9 @@ public class Service逻辑处理 {
                     process(成分对象.getString(Cons.词语), Cons.输出逻辑, level2, uuidLevel2);
                     成分对象.put(Cons.是否是当前处理的句子成分, false);
                 }
+                当前处理的逻辑句子.put(Cons.是否是当前处理的逻辑句子, false);
             }
+
         }
     }
 
