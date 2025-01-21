@@ -5,7 +5,7 @@ import com.kjgs.功能.功能抽象;
 import org.springframework.stereotype.Service;
 
 @Service
-public class 获取当前逻辑句子成分 extends 功能抽象 {
+public class  获取当前逻辑句子成分 extends 功能抽象 {
 
     @Override
     public void 初始化记录内置功能属性() {

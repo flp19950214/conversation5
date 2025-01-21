@@ -97,7 +97,15 @@ public class Service逻辑处理 {
                 Document 当前处理的逻辑句子 = ToolService.获取当前逻辑句子对象(uuIdLevel2);
                 当前处理的逻辑句子.put(Cons.是否是当前处理的逻辑句子, false);
                 if(!StringUtils.equals(old, 成分new)){
-                    process(词语, 逻辑类型, 0, uuIdLevel2);
+                    for (int i = 0; i < 句子成分集合new.size(); i++) {
+                        Document 成分对象 = 句子成分集合new.get(i);
+                        成分对象.put(Cons.是否是当前处理的句子成分, true);
+                        process(成分对象.getString(Cons.词语), Cons.词性逻辑, level2, uuIdLevel2);
+                        process(成分对象.getString(Cons.词语), Cons.分词逻辑, level2, uuIdLevel2);
+                        process(成分对象.getString(Cons.词语), Cons.动作逻辑, level2, uuIdLevel2);
+                        process(成分对象.getString(Cons.词语), Cons.输出逻辑, level2, uuIdLevel2);
+                        成分对象.put(Cons.是否是当前处理的句子成分, false);
+                    }
                 }
             }
         }

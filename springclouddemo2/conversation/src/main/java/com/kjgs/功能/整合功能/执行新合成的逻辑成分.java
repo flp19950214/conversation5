@@ -28,12 +28,10 @@ public class 执行新合成的逻辑成分  extends 功能抽象 {
         所有逻辑对象.add(是否执行判断结果);
         Document 成分对象 = (Document) 获取最近的属性值(所有逻辑对象, this.新合成的逻辑成分, Document.class);
         成分对象.put(Cons.是否是当前处理的句子成分, true);
-        int levelNew = level;
-        String uuidLevelNew = UUID.randomUUID().toString();
-        service逻辑处理.process(成分对象.getString(Cons.词语), Cons.词性逻辑, levelNew, uuidLevelNew);
-        service逻辑处理.process(成分对象.getString(Cons.词语), Cons.分词逻辑, levelNew, uuidLevelNew);
-        service逻辑处理.process(成分对象.getString(Cons.词语), Cons.动作逻辑, levelNew, uuidLevelNew);
-        service逻辑处理.process(成分对象.getString(Cons.词语), Cons.输出逻辑, levelNew, uuidLevelNew);
+        service逻辑处理.process(成分对象.getString(Cons.词语), Cons.词性逻辑, level, uuidLevel);
+        service逻辑处理.process(成分对象.getString(Cons.词语), Cons.分词逻辑, level, uuidLevel);
+        service逻辑处理.process(成分对象.getString(Cons.词语), Cons.动作逻辑, level, uuidLevel);
+        service逻辑处理.process(成分对象.getString(Cons.词语), Cons.输出逻辑, level, uuidLevel);
         成分对象.put(Cons.是否是当前处理的句子成分, false);
     }
 }

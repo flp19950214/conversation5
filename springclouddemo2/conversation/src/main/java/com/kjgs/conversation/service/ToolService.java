@@ -98,7 +98,7 @@ public class ToolService {
                 .filter(m -> m.containsKey(Cons.对象类型)
                         && StringUtils.equals(m.getString(Cons.对象类型), Cons.逻辑句子成分))
                 .filter(m -> m.containsKey(Cons.是否是当前处理的句子成分)
-//                        && BooleanUtils.isTrue(m.getBoolean(Cons.是否是当前处理的句子成分))
+                        && BooleanUtils.isTrue(m.getBoolean(Cons.是否是当前处理的句子成分))
                 )
                 .reduce((a,b) -> b).orElse(null);
     }
