@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.tools.Tool;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController()
@@ -101,6 +102,8 @@ public class TalkController {
 
         }
 
+        int level = 0;
+        String uuidLevel = UUID.randomUUID().toString();
 // 在成分变化的地方加上是否改变的标识符，如果有改变就还需要循环执行
         //执行词性逻辑
         List<Document> 句子成分集合 = ToolService.获取句子成分集合();
@@ -108,7 +111,7 @@ public class TalkController {
         for (int i = 0; i < 句子成分集合.size(); i++) {
             Document 成分对象 = 句子成分集合.get(i);
             成分对象.put(Cons.是否是当前处理的句子成分, true);
-            service逻辑处理.process(成分对象.getString(Cons.词语), Cons.词性逻辑);
+            service逻辑处理.process(成分对象.getString(Cons.词语), Cons.词性逻辑, level, uuidLevel);
             成分对象.put(Cons.是否是当前处理的句子成分, false);
         }
         //执行分词逻辑
@@ -117,7 +120,7 @@ public class TalkController {
         for (int i = 0; i < 句子成分集合.size(); i++) {
             Document 成分对象 = 句子成分集合.get(i);
             成分对象.put(Cons.是否是当前处理的句子成分, true);
-            service逻辑处理.process(成分对象.getString(Cons.词语), Cons.分词逻辑);
+            service逻辑处理.process(成分对象.getString(Cons.词语), Cons.分词逻辑, level, uuidLevel);
             成分对象.put(Cons.是否是当前处理的句子成分, false);
         }
         //执行动作逻辑
@@ -126,7 +129,7 @@ public class TalkController {
         for (int i = 0; i < 句子成分集合.size(); i++) {
             Document 成分对象 = 句子成分集合.get(i);
             成分对象.put(Cons.是否是当前处理的句子成分, true);
-            service逻辑处理.process(成分对象.getString(Cons.词语), Cons.动作逻辑);
+            service逻辑处理.process(成分对象.getString(Cons.词语), Cons.动作逻辑, level, uuidLevel);
             成分对象.put(Cons.是否是当前处理的句子成分, false);
         }
         //执行输出逻辑
@@ -135,7 +138,7 @@ public class TalkController {
         for (int i = 0; i < 句子成分集合.size(); i++) {
             Document 成分对象 = 句子成分集合.get(i);
             成分对象.put(Cons.是否是当前处理的句子成分, true);
-            service逻辑处理.process(成分对象.getString(Cons.词语), Cons.输出逻辑);
+            service逻辑处理.process(成分对象.getString(Cons.词语), Cons.输出逻辑, level, uuidLevel);
             成分对象.put(Cons.是否是当前处理的句子成分, false);
         }
 //        talkService.执行输出结果逻辑();

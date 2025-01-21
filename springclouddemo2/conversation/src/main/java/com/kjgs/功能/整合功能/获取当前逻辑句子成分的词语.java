@@ -20,7 +20,7 @@ public class 获取当前逻辑句子成分的词语 extends 功能抽象 {
      */
     @Override
     public void 功能() {
-        动作结果=ToolService.获取当前逻辑句子成分的词语();
+        动作结果=ToolService.获取当前逻辑句子成分的词语(uuidLevel);
         静态变量.添加执行层级集合(String.format("%s %s", level, " 当前逻辑句子成分的词语："+动作结果));
     }
 

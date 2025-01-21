@@ -20,7 +20,7 @@ public class 获取当前逻辑成分后面最近一个词性是目标词语的�
     @Override
     public void 功能() {
         String 目标词语 = 获取最近的属性值(所有逻辑对象, this.目标词语);
-        int 当前逻辑句子成分的结束下标 = ToolService.获取当前逻辑句子成分的结束下标();
+        int 当前逻辑句子成分的结束下标 = ToolService.获取当前逻辑句子成分的结束下标(uuidLevel);
         Document 当前逻辑后面一个目标成分 = 执行逻辑.所有逻辑对象.stream()
                 .filter(m -> m.containsKey(Cons.对象类型)
                         && StringUtils.equals(m.getString(Cons.对象类型), Cons.逻辑句子成分))

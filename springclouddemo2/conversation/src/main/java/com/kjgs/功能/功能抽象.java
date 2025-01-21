@@ -179,6 +179,7 @@ public abstract class 功能抽象<T> implements 功能接口 {
         return null;
     }
 
+
     public Object 获取最近的属性值NoLevel(List<Document> list, String key) {
         for (int i = list.size() - 1; i >= 0; i--) {
             Document document = list.get(i);

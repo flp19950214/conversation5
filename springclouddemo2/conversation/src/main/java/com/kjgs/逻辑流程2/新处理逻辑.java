@@ -234,7 +234,7 @@ public class 新处理逻辑 {
                         功能抽象 功能抽象对象 = (功能抽象) context.getBean(Class.forName("com.kjgs.功能.内置功能." + 动作));
                         功能抽象对象.执行流程(执行逻辑.所有逻辑对象, 当前逻辑句子, 动作,uuidLevel, level);
                     }else {
-                        查询并迭代逻辑(动作, level+1);
+                        查询并迭代逻辑(动作, uuidLevel,level+1);
                     }
 
 //                } catch (NoSuchBeanDefinitionException | ClassNotFoundException e) {
@@ -302,14 +302,14 @@ public class 新处理逻辑 {
 //        System.out.println(逻辑层级实体String);
     }
 
-    private void 查询并迭代逻辑(String 逻辑名, int level) {
+    private void 查询并迭代逻辑(String 逻辑名,String uuidLevel, int level) {
         逻辑实体 逻辑Obj = 逻辑MapperImpl.根据逻辑名查询单个处理逻辑(逻辑名);
         if (逻辑Obj == null) {
             String 异常信息 = "迭代逻辑= '" + 逻辑名 + "' 的逻辑是空的";
             System.out.println(异常信息);
            throw new RuntimeException(异常信息);
         }
-        执行逻辑(逻辑Obj,UUID.randomUUID().toString(), level);
+        执行逻辑(逻辑Obj,uuidLevel, level);
     }
 
     private boolean 判断是否有非内置处理逻辑(String 逻辑名){

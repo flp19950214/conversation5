@@ -18,7 +18,7 @@ public class 获取当前逻辑句子对象 extends 功能抽象 {
      */
     @Override
     public void 功能() {
-        动作结果=ToolService.获取当前逻辑句子对象();
+        动作结果=ToolService.获取当前逻辑句子对象(uuidLevel);
     }
 
 

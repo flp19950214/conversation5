@@ -18,7 +18,7 @@ public class 获取当前逻辑句子成分 extends 功能抽象 {
      */
     @Override
     public void 功能() {
-        动作结果=ToolService.获取当前逻辑句子成分();
+        动作结果=ToolService.获取当前逻辑句子成分(uuidLevel);
     }
 
 
