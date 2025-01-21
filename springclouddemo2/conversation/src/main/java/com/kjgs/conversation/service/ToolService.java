@@ -35,12 +35,12 @@ public class ToolService {
                 .collect(Collectors.toList());
     }
 
-    public static List<Document> 获取逻辑句子的成分集合(int level){
+    public static List<Document> 获取逻辑句子的成分集合(String uuidLevel){
         return 执行逻辑.所有逻辑对象.stream()
                 .filter(m -> m.containsKey(Cons.对象类型)
                         && StringUtils.equals(m.getString(Cons.对象类型),Cons.逻辑句子成分))
-                .filter(m -> m.containsKey(Cons.level)
-                        && m.getInteger(Cons.level).equals(level))
+                .filter(m -> m.containsKey(Cons.uuidLevel)
+                        && m.getInteger(Cons.uuidLevel).equals(uuidLevel))
                 .collect(Collectors.toList());
     }
     public static Document 获取当前句子成分(){

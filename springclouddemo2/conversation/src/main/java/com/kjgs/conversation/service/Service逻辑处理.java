@@ -1,5 +1,6 @@
 package com.kjgs.conversation.service;
 
+import com.alibaba.fastjson2.JSON;
 import com.kjgs.conversation.mysql.逻辑Impl;
 import com.kjgs.实体.逻辑实体;
 import com.kjgs.数据库.MongoCRUDDao;
@@ -13,6 +14,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.tools.Tool;
 import java.util.List;
 import java.util.UUID;
 
@@ -73,7 +75,7 @@ public class Service逻辑处理 {
                     执行逻辑Impl.所有逻辑对象.add(成分对象);
                 }
 
-                List<Document> 句子成分集合 = ToolService.获取逻辑句子的成分集合(level2);
+                List<Document> 句子成分集合 = ToolService.获取逻辑句子的成分集合(uuidLevel2);
                 for (int i = 0; i < 句子成分集合.size(); i++) {
                     Document 成分对象 = 句子成分集合.get(i);
                     成分对象.put(Cons.是否是当前处理的句子成分, true);
@@ -84,6 +86,7 @@ public class Service逻辑处理 {
                     成分对象.put(Cons.是否是当前处理的句子成分, false);
                 }
                 当前处理的逻辑句子.put(Cons.是否是当前处理的逻辑句子, false);
+
             }
 
         }
