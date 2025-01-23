@@ -33,5 +33,6 @@ public class 执行新合成的逻辑成分  extends 功能抽象 {
         service逻辑处理.process(成分对象.getString(Cons.词语), Cons.动作逻辑, level, uuidLevel);
         service逻辑处理.process(成分对象.getString(Cons.词语), Cons.输出逻辑, level, uuidLevel);
         成分对象.put(Cons.是否是当前处理的句子成分, false);
+
     }
 }

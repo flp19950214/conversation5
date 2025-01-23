@@ -9,16 +9,14 @@ import com.kjgs.静态变量;
 import javafx.util.Pair;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class 执行查询逻辑成分方法 extends 功能抽象 {
+public class 执行查询句子成分方法 extends 功能抽象 {
 
     @Override
     public void 初始化记录内置功能属性() {
@@ -32,22 +30,21 @@ public class 执行查询逻辑成分方法 extends 功能抽象 {
      */
     @Override
     public void 功能() {
-        List<Document> 逻辑句子的成分集合 = ToolService.获取逻辑句子的成分集合(uuidLevel);
-        Document 逻辑句子的成分 = ToolService.获取当前逻辑句子成分(uuidLevel);
+        List<Document> 句子成分集合 = ToolService.获取句子成分集合();
+        Document 逻辑句子的成分 = ToolService.获取当前句子成分();
         int 在句子中的下标 = 逻辑句子的成分.getInteger(Cons.在句子中的下标);
+        int 在句子中的结束下标 = 逻辑句子的成分.getInteger(Cons.在句子中的结束下标);
         //获取当前处理逻辑的方位属性
         String 方位属性 = 逻辑句子的成分.getString(Cons.方位属性);
         List<Document> filterResult = new ArrayList<>();
         if(StringUtils.equals(方位属性, Cons.向前)){
-            filterResult = 逻辑句子的成分集合.stream()
+            filterResult = 句子成分集合.stream()
                     .filter(m -> m.getInteger(Cons.在句子中的下标) < 在句子中的下标)
                     .collect(Collectors.toList());
         }else if(StringUtils.equals(方位属性, Cons.向后)){
-            filterResult = 逻辑句子的成分集合.stream()
+            filterResult = 句子成分集合.stream()
                     .filter(m -> m.getInteger(Cons.在句子中的下标) > 在句子中的下标)
                     .collect(Collectors.toList());
-        }else{
-            filterResult = 逻辑句子的成分集合;
         }
 
         //获取查询属性键值对
@@ -64,9 +61,6 @@ public class 执行查询逻辑成分方法 extends 功能抽象 {
 
         动作结果 = filterResult;
         静态变量.添加执行层级集合(String.format("%s %s", level, " 执行查询句子成分结果："+ JSON.toJSONString(动作结果)));
-
     }
-
-
 
 }

@@ -29,6 +29,10 @@ public class 获取当前逻辑句子成分的下一个字 extends 功能抽象 
     public String 下一个字(){
         int 当前逻辑句子成分的结束下标 = ToolService.获取当前逻辑句子成分的结束下标(uuidLevel);
         String 当前处理的逻辑句子 = ToolService.获取当前逻辑句子(uuidLevel);
+
+        if(当前处理的逻辑句子 == null || 当前处理的逻辑句子.length()>=当前逻辑句子成分的结束下标){
+            return null;
+        }
         return 当前处理的逻辑句子.substring(当前逻辑句子成分的结束下标,当前逻辑句子成分的结束下标+1);
     }
 }

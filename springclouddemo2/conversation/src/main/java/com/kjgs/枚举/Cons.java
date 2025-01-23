@@ -80,6 +80,10 @@ public interface Cons {
     public String 向前="向前";
     public String 向后="向后";
 
+    public String 查询条件="查询条件";
+    public String 查询条件的键="查询条件的键";
+    public String 查询条件的值="查询条件的值";
+
 
     public String 包含="包含";
     public String 新增="新增";

@@ -5,6 +5,7 @@ import com.kjgs.功能.功能抽象;
 import com.kjgs.枚举.Cons;
 import com.kjgs.逻辑流程.执行逻辑;
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
@@ -124,5 +125,31 @@ public class ToolService {
             return 获取当前逻辑句子成分.getInteger(Cons.在句子中的结束下标);
         }
         return -1;
+    }
+
+    public static int 获取当前句子成分的结束下标(){
+        Document 获取当前逻辑句子成分 = 获取当前句子成分();
+        if(获取当前逻辑句子成分 != null){
+            return 获取当前逻辑句子成分.getInteger(Cons.在句子中的结束下标);
+        }
+        return -1;
+    }
+
+    public static Document 获取集合中结束下标最大的一条(List<Document> 集合){
+        if(CollectionUtils.isEmpty(集合)){
+            return null;
+        }
+        int max=0;
+        Document result=集合.get(0);
+        for(Document document:集合){
+            if(!document.containsKey(Cons.在句子中的结束下标)){
+                continue;
+            }
+            if(document.getInteger(Cons.在句子中的结束下标)>max){
+                max = document.getInteger(Cons.在句子中的结束下标);
+                result = document;
+            }
+        }
+        return result;
     }
 }
