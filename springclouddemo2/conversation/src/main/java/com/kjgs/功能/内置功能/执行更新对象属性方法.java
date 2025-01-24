@@ -1,5 +1,6 @@
 package com.kjgs.功能.内置功能;
 
+import com.alibaba.fastjson.JSON;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import com.kjgs.枚举.Cons;
@@ -24,7 +25,9 @@ public class 执行更新对象属性方法 extends 功能抽象 {
         Document 更新的对象 = (Document) 获取最近的属性值(所有逻辑对象, this.更新的对象, Document.class);
         String 更新的属性 = 获取最近的属性值(所有逻辑对象, this.更新的属性);
         Object 更新的属性值 = 获取最近的属性值(所有逻辑对象, this.更新的属性值,Object.class);
-        静态变量.添加执行层级集合(String.format("%s %s", level, " 更新的对象："+更新的对象.toJson()));
+        if(更新的对象!= null){
+            静态变量.添加执行层级集合(String.format("%s %s", level, " 更新的对象："+ JSON.toJSONString(更新的对象)));
+        }
         静态变量.添加执行层级集合(String.format("%s %s", level, " 更新的属性："+更新的属性));
         静态变量.添加执行层级集合(String.format("%s %s", level, " 更新的属性值："+更新的属性值));
         if(更新的对象 == null){

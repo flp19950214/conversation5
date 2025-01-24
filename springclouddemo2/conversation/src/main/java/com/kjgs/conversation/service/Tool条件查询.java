@@ -12,12 +12,15 @@ import java.util.stream.Collectors;
 public class Tool条件查询 {
 
     public static List<Document> 过滤键值对(List<Document> filterResult, Pair 查询条件Pair){
-        String key = 查询条件Pair.getKey().toString();
+        Object key = 查询条件Pair.getKey();
         Object value = 查询条件Pair.getValue();
-        if(StringUtils.isNotEmpty(key)){
-            filterResult = filterResult.stream()
-                    .filter(m -> m.keySet().contains(key))
-                    .collect(Collectors.toList());
+        if(key!=null){
+            String keyStr = key.toString();
+            if(StringUtils.isNotEmpty(keyStr)){
+                filterResult = filterResult.stream()
+                        .filter(m -> m.keySet().contains(key))
+                        .collect(Collectors.toList());
+            }
         }
         if(value !=null){
             filterResult = filterResult.stream()

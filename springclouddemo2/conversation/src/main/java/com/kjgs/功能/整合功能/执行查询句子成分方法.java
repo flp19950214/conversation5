@@ -31,9 +31,11 @@ public class 执行查询句子成分方法 extends 功能抽象 {
     @Override
     public void 功能() {
         List<Document> 句子成分集合 = ToolService.获取句子成分集合();
-        Document 逻辑句子的成分 = ToolService.获取当前句子成分();
-        int 在句子中的下标 = 逻辑句子的成分.getInteger(Cons.在句子中的下标);
-        int 在句子中的结束下标 = 逻辑句子的成分.getInteger(Cons.在句子中的结束下标);
+        // 注意这里是当前逻辑成分的查询条件 取查 句子的成分集合
+        Document 逻辑句子的成分 = ToolService.获取当前逻辑句子成分(uuidLevel);
+        Document 当前句子的成分 = ToolService.获取当前句子成分();
+        int 在句子中的下标 = 当前句子的成分.getInteger(Cons.在句子中的下标);
+        int 在句子中的结束下标 = 当前句子的成分.getInteger(Cons.在句子中的结束下标);
         //获取当前处理逻辑的方位属性
         String 方位属性 = 逻辑句子的成分.getString(Cons.方位属性);
         List<Document> filterResult = new ArrayList<>();

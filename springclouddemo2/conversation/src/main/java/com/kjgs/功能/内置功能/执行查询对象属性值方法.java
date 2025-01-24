@@ -3,6 +3,7 @@ package com.kjgs.功能.内置功能;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import com.kjgs.枚举.Cons;
+import com.kjgs.静态变量;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +28,7 @@ public class 执行查询对象属性值方法 extends 功能抽象 {
             String 查询的属性 = 获取最近的属性值(所有逻辑对象, this.查询的属性);
             查询的结果 = 查询的对象.get(查询的属性);
         }
+        静态变量.添加执行层级集合(String.format("%s %s", level, " 执行查询对象属性值方法："+查询的结果));
         动作结果=查询的结果;
-
-
     }
 }

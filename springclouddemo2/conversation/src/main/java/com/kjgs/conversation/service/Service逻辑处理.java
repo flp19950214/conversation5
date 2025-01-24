@@ -96,7 +96,8 @@ public class Service逻辑处理 {
                 String 成分new = JSON.toJSONString(句子成分集合new);
                 Document 当前处理的逻辑句子 = ToolService.获取当前逻辑句子对象(uuIdLevel2);
                 当前处理的逻辑句子.put(Cons.是否是当前处理的逻辑句子, false);
-                if(!StringUtils.equals(old, 成分new)){
+                while (!StringUtils.equals(old, 成分new)){
+                    old = 成分new;
                     for (int i = 0; i < 句子成分集合new.size(); i++) {
                         Document 成分对象 = 句子成分集合new.get(i);
                         成分对象.put(Cons.是否是当前处理的句子成分, true);
@@ -106,6 +107,8 @@ public class Service逻辑处理 {
                         process(成分对象.getString(Cons.词语), Cons.输出逻辑, level2, uuIdLevel2);
                         成分对象.put(Cons.是否是当前处理的句子成分, false);
                     }
+                    List<Document> 句子成分集合new2 = ToolService.获取逻辑句子的成分集合(uuIdLevel2);
+                    成分new = JSON.toJSONString(句子成分集合new2);
                 }
             }
         }

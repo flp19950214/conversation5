@@ -28,6 +28,7 @@ public interface Cons {
     public String 名字="名字";
     public String 名称="名称";
     public String 词性="词性";
+    public String 代词="代词";
     public String 句型="句型";
     public String 主键="主键";
     public String 开始下标="开始下标";
@@ -67,6 +68,7 @@ public interface Cons {
     public String 顶层逻辑="顶层逻辑";
     public String 异常逻辑="异常逻辑";
     public String 词语="词语";
+    public String 代词组成成分="代词组成成分";
     public String 词性逻辑="词性逻辑";
     public String 分词逻辑="分词逻辑";
     public String 动作逻辑="动作逻辑";
@@ -83,6 +85,9 @@ public interface Cons {
     public String 查询条件="查询条件";
     public String 查询条件的键="查询条件的键";
     public String 查询条件的值="查询条件的值";
+
+    public String 目标对象="目标对象";
+    public String 目标词语="目标词语";
 
 
     public String 包含="包含";
