@@ -1,5 +1,6 @@
 package com.kjgs.conversation2.func;
 
+import com.kjgs.conversation.mysql.mapper.逻辑Mapper;
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
 import com.kjgs.枚举.Cons;
@@ -24,9 +25,11 @@ public class 如 extends FuncAbstract {
         if (!"果".equals(指定下标的逻辑成分.getString(Cons.词语))) {
             return;
         }
-        //满足条件
-        //1,表示判断句
-        //2,合并果，创建新成分，删除旧成分
-        //3,
+        //满足条件 合并果，创建新成分，删除旧成分
+        逻辑成分.put(Cons.词语, 逻辑成分.getString(Cons.词语) + 指定下标的逻辑成分.getString(Cons.词语));
+        逻辑成分.put(Cons.结束下标, 指定下标的逻辑成分.getInteger(Cons.结束下标));
+        Tool.删除指定下标的逻辑成分(指定下标的逻辑成分.getInteger(Cons.下标));
+        //1,表示判断句， 找到后面表示肯定的 赋值为肯定句，找到表示否定的 赋值为否定句
+        Tool.赋值后面所有逻辑成分的句型(下标, Cons.假设句);
     }
 }
