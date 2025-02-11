@@ -1,6 +1,5 @@
 package com.kjgs.conversation2.func;
 
-import com.kjgs.conversation.mysql.mapper.逻辑Mapper;
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
 import com.kjgs.枚举.Cons;
@@ -8,7 +7,7 @@ import org.bson.Document;
 import org.springframework.stereotype.Service;
 
 @Service
-public class 如 extends FuncAbstract {
+public class 句 extends FuncAbstract {
 
     public void 功能() {
         分词();
@@ -22,7 +21,7 @@ public class 如 extends FuncAbstract {
         if (指定下标的逻辑成分 == null) {
             return;
         }
-        if (!"果".equals(指定下标的逻辑成分.getString(Cons.词语))) {
+        if (!"子".equals(指定下标的逻辑成分.getString(Cons.词语))) {
             return;
         }
         //满足条件 合并果，创建新成分，删除旧成分
@@ -31,4 +30,8 @@ public class 如 extends FuncAbstract {
         Tool.删除指定下标的逻辑成分(指定下标的逻辑成分.getInteger(Cons.下标));
     }
 
+    public void 以如开头并且下一个词是果() {
+        //1,表示判断句， 找到后面表示肯定的 赋值为肯定句，找到表示否定的 赋值为否定句
+        Tool.赋值后面所有逻辑成分的句型(下标, Cons.假设句);
+    }
 }
