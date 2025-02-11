@@ -5,6 +5,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 
 public class Tool {
+    public static Document 指定下标前面的逻辑成分(int 下标){
+        return 静态引用.逻辑句子的成分集合.stream()
+                .filter (m -> m.getInteger(Cons.下标) == 下标)
+                .findFirst().orElse(null);
+    }
+    public static Document 指定下标后面的逻辑成分(int 下标){
+        return 静态引用.逻辑句子的成分集合.stream()
+                .filter (m -> m.getInteger(Cons.下标) == 下标)
+                .findFirst().orElse(null);
+    }
     public static Document 指定下标的逻辑成分(int 下标){
         return 静态引用.逻辑句子的成分集合.stream()
                 .filter (m -> m.getInteger(Cons.下标) == 下标)
