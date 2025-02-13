@@ -1,7 +1,9 @@
 package com.kjgs.conversation2;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.kjgs.枚举.Cons;
+import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class TalkController {
+import java.util.List;
+import java.util.stream.Collectors;
+
+@RestController()
+public class TalkController2 {
 
     @Autowired
     private InvokeLuoji invokeLuoji;
@@ -34,10 +39,23 @@ public class TalkController {
             成分对象.put(Cons.在句子中的结束下标, i + 1);
             静态引用.输入句子的成分集合.add(成分对象);
         }
+        List<Document> 输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
+        处理逻辑();
+        String before = JSON.toJSONString(输入句子的成分集合Temp);
+        String after = JSON.toJSONString(静态引用.输入句子的成分集合);
+        while (!StringUtils.equals(before, after)){
+            输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
+            处理逻辑();
+            before = JSON.toJSONString(输入句子的成分集合Temp);
+            after = JSON.toJSONString(静态引用.输入句子的成分集合);
+        }
+        return null;
+    }
 
+    public void 处理逻辑(){
         for (int j = 0; j <静态引用.输入句子的成分集合.size() ; j++) {
             Document 句子成分 = 静态引用.输入句子的成分集合.get(j);
-            String 逻辑句子 = "如果";
+            String 逻辑句子 = "如果句子以是数字结尾，那就记录成处理逻辑";
             静态引用.逻辑句子对象 = new Document();
             静态引用.逻辑句子对象.put(Cons._id, new ObjectId());
             静态引用.逻辑句子对象.put(Cons.词语, 逻辑句子);
@@ -50,8 +68,8 @@ public class TalkController {
                 成分对象.put(Cons._id, new ObjectId());
                 成分对象.put(Cons.父id, 静态引用.逻辑句子对象.get(Cons._id));
                 成分对象.put(Cons.词语, item);
-                成分对象.put(Cons.在句子中的下标, i);
-                成分对象.put(Cons.在句子中的结束下标, i + 1);
+                成分对象.put(Cons.下标, i);
+                成分对象.put(Cons.结束下标, i + 1);
                 静态引用.逻辑句子的成分集合.add(成分对象);
             }
             //开始处理每个逻辑成分
@@ -62,7 +80,7 @@ public class TalkController {
             }
         }
 
-
-        return null;
+        List<Document> 输入句子的成分集合 = 静态引用.输入句子的成分集合;
+        List<Document> 逻辑句子的成分集合 = 静态引用.逻辑句子的成分集合;
     }
 }

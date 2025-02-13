@@ -18,11 +18,13 @@ public class 获取所有功能名 {
 
     public static List<String> 内置功能名集合 = new ArrayList<>();
     public static List<String> 整合功能名集合 = new ArrayList<>();
+    public static List<String> funcList = new ArrayList<>();
 
     public static void getMethods() {
         try {
             内置功能名集合 = getClassNamesForPackage("com.kjgs.功能.内置功能");
             整合功能名集合 = getClassNamesForPackage("com.kjgs.功能.整合功能");
+            funcList = getClassNamesForPackage("com.kjgs.conversation2.func");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

@@ -4,7 +4,9 @@ import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
+import org.springframework.stereotype.Service;
 
+@Service
 public class 当 extends FuncAbstract {
 
     public void 功能() {

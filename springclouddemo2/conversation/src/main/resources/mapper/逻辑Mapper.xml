@@ -29,4 +29,16 @@
             </foreach>
         </where>
     </select>
+
+    <select id = "模糊查询逻辑" resultType="String">
+        select 逻辑 from 逻辑表2
+        <where>
+            <if test="逻辑 != null and 逻辑 !=''">
+                逻辑 like concat('%', #{逻辑}, '%')
+            </if>
+        </where>
+    </select>
+    <insert id="保存逻辑">
+        insert into 逻辑表2 (逻辑) values (#{逻辑})
+    </insert>
 </mapper>
