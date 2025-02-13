@@ -10,7 +10,7 @@ public class 句子 extends FuncAbstract {
 
     }
 
-    public void 找到代指对象(){
+    public void 赋值代指对象(){
         //特指当前输入的句子
         逻辑成分.put(Cons.指向id, 静态引用.输入的句子对象.get(Cons._id));
     }

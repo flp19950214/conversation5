@@ -31,6 +31,8 @@ public interface Cons {
     public String 词性="词性";
     public String 代词="代词";
     public String 句型="句型";
+    public String 句型的下标="句型的下标";
+    public String 句型的结束下标="句型的结束下标";
     public String 主键="主键";
     public String 开始下标="开始下标";
     public String 结束下标="结束下标";
@@ -140,6 +142,7 @@ public interface Cons {
     public String 疑问句="疑问句";
     public String 假设句="假设句";
     public String 陈述句="陈述句";
+    public String 肯定句="肯定句";
     public String 否定句="否定句";
     public String 假设陈述句="假设陈述句";
     //词性种类

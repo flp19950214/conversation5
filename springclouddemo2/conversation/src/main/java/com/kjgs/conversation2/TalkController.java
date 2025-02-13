@@ -20,7 +20,8 @@ public class TalkController {
         String 输入的句子 = input.getString("input");
         静态引用.输入的句子对象 = new Document();
         静态引用.输入的句子对象.put(Cons._id, new ObjectId());
-        静态引用.输入的句子对象.put(Cons.输入的句子, 输入的句子);
+        静态引用.输入的句子对象.put(Cons.词语, 输入的句子);
+        静态引用.输入的句子对象.put(Cons.词语类型, Cons.输入的句子);
         String[] 输入的句子元素集合 = 输入的句子.split("");
         //给每个词添加成句子成分
         for (int i = 0; i < 输入的句子元素集合.length; i++) {
@@ -39,7 +40,8 @@ public class TalkController {
             String 逻辑句子 = "如果";
             静态引用.逻辑句子对象 = new Document();
             静态引用.逻辑句子对象.put(Cons._id, new ObjectId());
-            静态引用.逻辑句子对象.put(Cons.逻辑句子, 逻辑句子);
+            静态引用.逻辑句子对象.put(Cons.词语, 逻辑句子);
+            静态引用.逻辑句子对象.put(Cons.词语类型, Cons.逻辑句子);
             String[] 逻辑句子元素集合 = 逻辑句子.split("");
             //给每个词添加成句子成分
             for (int i = 0; i < 逻辑句子元素集合.length; i++) {
