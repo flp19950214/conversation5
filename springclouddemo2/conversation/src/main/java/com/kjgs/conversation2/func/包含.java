@@ -7,7 +7,7 @@ import org.bson.Document;
 import org.springframework.stereotype.Service;
 
 @Service
-public class 中有 extends FuncAbstract {
+public class 包含 extends FuncAbstract {
     @Override
     public void 功能() {
         判断句的包含动作();
