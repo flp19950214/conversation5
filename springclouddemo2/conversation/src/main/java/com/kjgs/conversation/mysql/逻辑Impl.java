@@ -45,4 +45,11 @@ public class 逻辑Impl{
     public List<逻辑实体> 根据逻辑名和逻辑类型查询(List<String> 逻辑名集合, String 逻辑类型) {
         return 逻辑MapperImpl.根据逻辑名和逻辑类型查询(逻辑名集合, 逻辑类型);
     }
+
+
+    public void 保存逻辑(String 逻辑){
+        if(逻辑MapperImpl.查询逻辑(逻辑) ==0){
+            逻辑MapperImpl.保存逻辑(逻辑);
+        }
+    }
 }

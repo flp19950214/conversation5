@@ -1,9 +1,11 @@
 package com.kjgs.conversation2;
 
+import com.kjgs.枚举.Cons;
 import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class 静态引用 {
     public static Document 输入的句子对象;

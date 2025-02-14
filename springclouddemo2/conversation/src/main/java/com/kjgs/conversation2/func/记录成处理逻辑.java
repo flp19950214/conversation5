@@ -1,6 +1,7 @@
 package com.kjgs.conversation2.func;
 
 import com.kjgs.conversation.mysql.mapper.逻辑Mapper;
+import com.kjgs.conversation.mysql.逻辑Impl;
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
 import com.kjgs.枚举.Cons;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class 记录成处理逻辑 extends FuncAbstract {
 
     @Autowired
-    private 逻辑Mapper 逻辑MapperImpl;
+    private 逻辑Impl 逻辑impl;
 
     @Override
     public void 功能() {
@@ -27,6 +28,6 @@ public class 记录成处理逻辑 extends FuncAbstract {
         if(StringUtils.isEmpty(指定下标前面的逻辑成分.getString(Cons.词语))){
             return;
         }
-        逻辑MapperImpl.保存逻辑(指定下标前面的逻辑成分.getString(Cons.词语));
+        逻辑impl.保存逻辑(指定下标前面的逻辑成分.getString(Cons.词语));
     }
 }

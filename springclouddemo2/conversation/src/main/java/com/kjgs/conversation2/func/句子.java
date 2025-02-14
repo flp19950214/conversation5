@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 public class 句子 extends FuncAbstract {
     @Override
     public void 功能() {
-
+        赋值代指对象();
     }
 
     public void 赋值代指对象(){
         //特指当前输入的句子
-        逻辑成分.put(Cons.指向id, 静态引用.输入的句子对象.get(Cons._id));
+        逻辑成分.put(Cons.指向id, 静态引用.输入的句子对象);
     }
 }

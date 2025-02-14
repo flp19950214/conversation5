@@ -11,8 +11,9 @@ import org.springframework.stereotype.Service;
 public class 以 extends FuncAbstract {
     @Override
     public void 功能() {
-
+        判断句中以某某结尾();
     }
+    //判断功能
     public void 判断句中以某某结尾(){
         if(!逻辑成分.containsKey(Cons.句型)) {
             return;

@@ -14,9 +14,6 @@ public class 记 extends FuncAbstract {
     }
 
     public void 分词_记录成处理逻辑(){
-        if (下标 != 0) {
-            return;
-        }
         Document 指定下标的逻辑成分 = Tool.指定下标的逻辑成分(结束下标);
         if (指定下标的逻辑成分 == null) {
             return;

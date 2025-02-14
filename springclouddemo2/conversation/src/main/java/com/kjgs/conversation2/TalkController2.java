@@ -40,22 +40,24 @@ public class TalkController2 {
             静态引用.输入句子的成分集合.add(成分对象);
         }
         List<Document> 输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
-        处理逻辑();
+        处理句子();
         String before = JSON.toJSONString(输入句子的成分集合Temp);
         String after = JSON.toJSONString(静态引用.输入句子的成分集合);
         while (!StringUtils.equals(before, after)){
             输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
-            处理逻辑();
+            处理句子();
             before = JSON.toJSONString(输入句子的成分集合Temp);
             after = JSON.toJSONString(静态引用.输入句子的成分集合);
         }
+        List<Document> 输入句子的成分集合 = 静态引用.输入句子的成分集合;
+        List<Document> 逻辑句子的成分集合 = 静态引用.逻辑句子的成分集合;
         return null;
     }
 
-    public void 处理逻辑(){
+    public void 处理句子(){
         for (int j = 0; j <静态引用.输入句子的成分集合.size() ; j++) {
             Document 句子成分 = 静态引用.输入句子的成分集合.get(j);
-            String 逻辑句子 = "如果句子以是数字结尾，那就记录成处理逻辑";
+            String 逻辑句子 = "如果句子以是数字结尾，那就句子记录成处理逻辑";
             静态引用.逻辑句子对象 = new Document();
             静态引用.逻辑句子对象.put(Cons._id, new ObjectId());
             静态引用.逻辑句子对象.put(Cons.词语, 逻辑句子);
@@ -70,17 +72,27 @@ public class TalkController2 {
                 成分对象.put(Cons.词语, item);
                 成分对象.put(Cons.下标, i);
                 成分对象.put(Cons.结束下标, i + 1);
-                静态引用.逻辑句子的成分集合.add(成分对象);
+                Tool.添加逻辑成分(成分对象);
             }
-            //开始处理每个逻辑成分
-            for (int i = 0; i < 静态引用.逻辑句子的成分集合.size() ; i++) {
-                Document 逻辑成分 = 静态引用.逻辑句子的成分集合.get(i);
-                String 动作 = 逻辑成分.getString(Cons.词语);
-                invokeLuoji.执行逻辑(动作, 逻辑成分, 句子成分);
+            String before = JSON.toJSONString(静态引用.逻辑句子的成分集合);
+            处理逻辑(句子成分);
+            String after = JSON.toJSONString(静态引用.逻辑句子的成分集合);
+            while (!StringUtils.equals(before,after)){
+                before = after;
+                处理逻辑(句子成分);
+                after = JSON.toJSONString(静态引用.逻辑句子的成分集合);
             }
+
         }
 
-        List<Document> 输入句子的成分集合 = 静态引用.输入句子的成分集合;
-        List<Document> 逻辑句子的成分集合 = 静态引用.逻辑句子的成分集合;
     }
+    public void 处理逻辑(Document 句子成分){
+        //开始处理每个逻辑成分
+        for (int i = 0; i < 静态引用.逻辑句子的成分集合.size() ; i++) {
+            Document 逻辑成分 = 静态引用.逻辑句子的成分集合.get(i);
+            String 动作 = 逻辑成分.getString(Cons.词语);
+            invokeLuoji.执行逻辑(动作, 逻辑成分, 句子成分);
+        }
+    }
+
 }

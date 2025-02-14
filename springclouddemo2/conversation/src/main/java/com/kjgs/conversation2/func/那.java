@@ -14,15 +14,11 @@ public class 那 extends FuncAbstract {
     }
 
     public void 分词(){
-        if (下标 != 0) {
-            return;
-        }
         Document 指定下标的逻辑成分 = Tool.指定下标的逻辑成分(结束下标);
         if (指定下标的逻辑成分 == null) {
             return;
         }
-        if (!"就".equals(指定下标的逻辑成分.getString(Cons.词语))
-            || !"么".equals(指定下标的逻辑成分.getString(Cons.词语))) {
+        if (!"就".equals(指定下标的逻辑成分.getString(Cons.词语))) {
             return;
         }
         //满足条件 合并果，创建新成分，删除旧成分

@@ -14,9 +14,6 @@ public class 句 extends FuncAbstract {
     }
 
     public void 分词(){
-        if (下标 != 0) {
-            return;
-        }
         Document 指定下标的逻辑成分 = Tool.指定下标的逻辑成分(结束下标);
         if (指定下标的逻辑成分 == null) {
             return;

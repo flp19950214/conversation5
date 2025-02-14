@@ -14,5 +14,6 @@ public interface 逻辑Mapper {
     List<逻辑实体> 根据逻辑名和逻辑类型查询(List<String> 逻辑名集合, String 逻辑类型);
 
     List<String> 模糊查询逻辑(String 逻辑);
+    int 查询逻辑(String 逻辑);
     int 保存逻辑(String 逻辑);
 }

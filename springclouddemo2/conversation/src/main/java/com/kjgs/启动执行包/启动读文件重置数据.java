@@ -1,5 +1,6 @@
 package com.kjgs.启动执行包;
 
+import com.kjgs.conversation2.启动执行初始化数据;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -21,8 +22,13 @@ public class 启动读文件重置数据 implements ApplicationRunner {
     @Autowired
     private ResourceLoader resourceLoader;
 
+    @Autowired
+    启动执行初始化数据 启动执行初始化数据Impl;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        启动执行初始化数据Impl.init();
+
         jdbcTemplate.execute("truncate `conversation`.`逻辑表`;");
         for (int i = 4; i <= 4; i++) {
             String path = String.format("classpath:插入逻辑_%s.sql", i);

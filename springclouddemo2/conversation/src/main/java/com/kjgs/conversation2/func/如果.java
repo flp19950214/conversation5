@@ -14,6 +14,6 @@ public class 如果  extends FuncAbstract {
     }
 
     public void 赋值后面所有逻辑成分的句型() {
-      Tool.赋值后面所有逻辑成分的句型(下标, Cons.陈述句);
+      Tool.赋值后面所有逻辑成分的句型(下标, Cons.假设句);
     }
 }

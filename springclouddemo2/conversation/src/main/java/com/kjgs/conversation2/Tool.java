@@ -6,6 +6,8 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Tool {
     public static Document 指定下标前面的逻辑成分(int 下标){
@@ -46,10 +48,17 @@ public class Tool {
         return 代词的最终指向(result);
     }
     public static void 删除指定范围下标的逻辑成分(int 下标,int 结束下标){
-        for (int i = 0; i < 结束下标; i++) {
+        for (int i = 下标; i < 结束下标; i++) {
             删除指定下标的逻辑成分(i);
         }
 
+    }
+    public static void 添加逻辑成分(Document document){
+        //先删除再增加
+        if(document != null && document.getInteger(Cons.下标) != null){
+            删除指定下标的逻辑成分(document.getInteger(Cons.下标));
+            静态引用.逻辑句子的成分集合.add(document);
+        }
     }
     public static void 删除指定下标的逻辑成分(int 下标){
         for (int i = 0; i < 静态引用.逻辑句子的成分集合.size(); i++) {
@@ -65,7 +74,7 @@ public class Tool {
             if(document.getInteger(Cons.下标) >= 开始下标 && document.getInteger(Cons.下标) <= 结束下标){
                 document.put(Cons.句型, 句型);
                 document.put(Cons.句型的下标, 开始下标);
-                document.put(Cons.句型的结束下标, 开始下标);
+                document.put(Cons.句型的结束下标, 结束下标);
             }
         }
     }
