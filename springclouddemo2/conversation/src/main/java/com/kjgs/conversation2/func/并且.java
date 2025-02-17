@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class 并且 extends FuncAbstract {
     @Override
     public void 功能() {
-
+        对前面一个成分和后面一个成分取并();
     }
 
     public void 对前面一个成分和后面一个成分取并(){
@@ -30,7 +30,7 @@ public class 并且 extends FuncAbstract {
         }
         boolean result = 指定下标前面的逻辑成分.getBoolean(Cons.判断的结果) && 指定下标后面的逻辑成分.getBoolean(Cons.判断的结果);
         Tool.赋值指定范围的逻辑成分的判断结果(指定下标前面的逻辑成分.getInteger(Cons.句型的下标),
-                    指定下标前面的逻辑成分.getInteger(Cons.句型的结束下标), result);
+                    指定下标后面的逻辑成分.getInteger(Cons.句型的结束下标), result);
 
     }
 }

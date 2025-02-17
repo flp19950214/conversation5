@@ -98,8 +98,8 @@ public class Tool {
     }
 
     public static Document 代词的最终指向(Document document){
-        if(document != null && document.containsKey(Cons.指向id)){
-            Document document1 = document.get(Cons.指向id, Document.class);
+        if(document != null && document.containsKey(Cons.指向)){
+            Document document1 = document.get(Cons.指向, Document.class);
             return 代词的最终指向(document1);
         }else{
             return document;

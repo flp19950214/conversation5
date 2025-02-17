@@ -39,6 +39,6 @@ public class 以 extends FuncAbstract {
         }
         boolean result = 指定下标前面的逻辑成分.getString(Cons.词语).endsWith(指定下标后面的逻辑成分.getString(Cons.词语));
         Tool.赋值指定范围的逻辑成分的判断结果(指定下标前面的逻辑成分.getInteger(Cons.句型的下标),
-                指定下标前面的逻辑成分.getInteger(Cons.句型的结束下标), result);
+                指定下标后面的逻辑成分.getInteger(Cons.句型的结束下标), result);
     }
 }
