@@ -49,7 +49,6 @@ public class 后面 extends FuncAbstract {
         新句子成分.put(Cons.词语, substring);
         新句子成分.put(Cons.下标, 句子下标);
         新句子成分.put(Cons.结束下标, 句子下标 + num);
-        静态引用.输入句子的成分集合.add(新句子成分);
 
         逻辑成分.put(Cons.指向,新句子成分);
     }
