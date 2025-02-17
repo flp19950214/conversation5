@@ -10,6 +10,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Tool {
+    public static Document 指定下标前面包含判断结果的逻辑成分(int 下标){
+        //过滤出小于下标的，然后排序，找出第一条
+        Document result =  静态引用.逻辑句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标) && m.containsKey(Cons.判断的结果))
+                .filter (m -> m.getInteger(Cons.下标) < 下标)
+                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
+                .findFirst().orElse(null);
+        return 代词的最终指向(result);
+    }
+    public static Document 指定下标后面包含判断结果的逻辑成分(int 下标){
+        //过滤出小于下标的，然后排序，找出第一条
+        Document result =  静态引用.逻辑句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标) && m.containsKey(Cons.判断的结果))
+                .filter (m -> m.getInteger(Cons.下标) < 下标)
+                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
+                .findFirst().orElse(null);
+        return 代词的最终指向(result);
+    }
     public static Document 指定下标前面的逻辑成分(int 下标){
         //过滤出小于下标的，然后排序，找出第一条
         Document result =  静态引用.逻辑句子的成分集合.stream()
