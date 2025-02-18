@@ -13,6 +13,7 @@ public interface Cons {
     public String 的对象="的对象";
     public String 在上级对象中的成分="在上级对象中的成分";
     public String 指向="指向";
+    public String 子成分="子成分";
     public String 指向id="指向id";
     public String 未知属性="未知属性";
     public String 属性="属性";
@@ -31,8 +32,6 @@ public interface Cons {
     public String 词性="词性";
     public String 代词="代词";
     public String 句型="句型";
-    public String 句型的下标="句型的下标";
-    public String 句型的结束下标="句型的结束下标";
     public String 主键="主键";
     public String 开始下标="开始下标";
     public String 结束下标="结束下标";
@@ -72,6 +71,7 @@ public interface Cons {
     public String 顶层逻辑="顶层逻辑";
     public String 异常逻辑="异常逻辑";
     public String 词语="词语";
+    public String 别名="别名";
     public String 代词组成成分="代词组成成分";
     public String 词性逻辑="词性逻辑";
     public String 分词逻辑="分词逻辑";

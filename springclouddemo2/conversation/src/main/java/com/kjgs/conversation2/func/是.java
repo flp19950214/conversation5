@@ -16,23 +16,17 @@ public class 是 extends FuncAbstract {
 
     public void 判断句的包含动作(){
         // 是判断句
-        String 逻辑句型 = 逻辑成分.getString(Cons.句型);
-        if(!StringUtils.equals(逻辑句型, Cons.假设句)){
+        Object 句型 = Tool.往前找指定的键值(下标, Cons.句型);
+        if(句型 == null || !StringUtils.equals(Cons.假设句, 句型.toString())){
             return;
         }
-
         Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
         Document 指定下标后面的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);
         if(指定下标前面的逻辑成分 == null || 指定下标后面的逻辑成分 == null){
             return;
         }
-        if(指定下标前面的逻辑成分.getBoolean(Cons.句型的下标) == null
-                || 指定下标后面的逻辑成分.getBoolean(Cons.句型的结束下标) == null){
-            return;
-        }
         //前面一个成分等于后面一个成分
         boolean result = 指定下标前面的逻辑成分.getString(Cons.词语).equals(指定下标后面的逻辑成分.getString(Cons.词语));
-        Tool.赋值指定范围的逻辑成分的判断结果(指定下标前面的逻辑成分.getInteger(Cons.句型的下标),
-                指定下标后面的逻辑成分.getInteger(Cons.句型的结束下标), result);
+        Tool.赋值判断结果(逻辑成分, result);
     }
 }

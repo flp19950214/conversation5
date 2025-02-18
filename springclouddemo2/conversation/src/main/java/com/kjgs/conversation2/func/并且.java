@@ -25,13 +25,8 @@ public class 并且 extends FuncAbstract {
                 || 指定下标后面的逻辑成分.getBoolean(Cons.判断的结果) == null){
             return;
         }
-        if(指定下标前面的逻辑成分.getBoolean(Cons.句型的下标) == null
-                || 指定下标后面的逻辑成分.getBoolean(Cons.句型的结束下标) == null){
-            return;
-        }
         boolean result = 指定下标前面的逻辑成分.getBoolean(Cons.判断的结果) && 指定下标后面的逻辑成分.getBoolean(Cons.判断的结果);
-        Tool.赋值指定范围的逻辑成分的判断结果(指定下标前面的逻辑成分.getInteger(Cons.句型的下标),
-                    指定下标后面的逻辑成分.getInteger(Cons.句型的结束下标), result);
+        Tool.赋值判断结果(逻辑成分, result);
 
     }
 }

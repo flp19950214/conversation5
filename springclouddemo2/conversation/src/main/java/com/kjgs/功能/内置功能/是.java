@@ -6,7 +6,7 @@ import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class 是 extends 功能抽象 {
     @Override
     public void 初始化记录内置功能属性() {

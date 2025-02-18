@@ -12,13 +12,15 @@ public class 以 extends FuncAbstract {
     @Override
     public void 功能() {
         判断句中以某某结尾();
+        判断句中以某某开头();
     }
     //判断功能
     public void 判断句中以某某结尾(){
         if(!逻辑成分.containsKey(Cons.句型)) {
             return;
         }
-        if(StringUtils.equals(Cons.假设句, 逻辑成分.getString(Cons.句型))){
+        Object 句型 = Tool.往前找指定的键值(下标, Cons.句型);
+        if(句型 == null || !StringUtils.equals(Cons.假设句, 句型.toString())){
             return;
         }
         Document 指定下标的下下一个逻辑成分 = Tool.指定下标的下下一个逻辑成分(下标);
@@ -38,7 +40,35 @@ public class 以 extends FuncAbstract {
             return;
         }
         boolean result = 指定下标前面的逻辑成分.getString(Cons.词语).endsWith(指定下标后面的逻辑成分.getString(Cons.词语));
-        Tool.赋值指定范围的逻辑成分的判断结果(指定下标前面的逻辑成分.getInteger(Cons.句型的下标),
-                指定下标后面的逻辑成分.getInteger(Cons.句型的结束下标), result);
+        Tool.赋值判断结果(逻辑成分, result);
+    }
+
+    //判断功能
+    public void 判断句中以某某开头(){
+        if(!逻辑成分.containsKey(Cons.句型)) {
+            return;
+        }
+        Object 句型 = Tool.往前找指定的键值(下标, Cons.句型);
+        if(句型 == null || !StringUtils.equals(Cons.假设句, 句型.toString())){
+            return;
+        }
+        Document 指定下标的下下一个逻辑成分 = Tool.指定下标的下下一个逻辑成分(下标);
+        if(指定下标的下下一个逻辑成分 == null){
+            return;
+        }
+        if(!StringUtils.equals(指定下标的下下一个逻辑成分.getString(Cons.词语), "开头")){
+            return;
+        }
+        Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
+        Document 指定下标后面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
+        if(指定下标前面的逻辑成分 == null || 指定下标后面的逻辑成分 == null){
+            return;
+        }
+        if(指定下标前面的逻辑成分.getString(Cons.词语) == null
+                || 指定下标后面的逻辑成分.getString(Cons.词语) == null){
+            return;
+        }
+        boolean result = 指定下标前面的逻辑成分.getString(Cons.词语).startsWith(指定下标后面的逻辑成分.getString(Cons.词语));
+        Tool.赋值判断结果(逻辑成分, result);
     }
 }

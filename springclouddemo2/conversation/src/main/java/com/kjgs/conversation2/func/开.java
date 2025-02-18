@@ -7,7 +7,7 @@ import org.bson.Document;
 import org.springframework.stereotype.Service;
 
 @Service
-public class 句 extends FuncAbstract {
+public class 开 extends FuncAbstract {
 
     public void 功能() {
         分词();
@@ -18,7 +18,7 @@ public class 句 extends FuncAbstract {
         if (指定下标的逻辑成分 == null) {
             return;
         }
-        if (!"子".equals(指定下标的逻辑成分.getString(Cons.词语))) {
+        if (!"头".equals(指定下标的逻辑成分.getString(Cons.词语))) {
             return;
         }
         //满足条件 合并果，创建新成分，删除旧成分
@@ -26,4 +26,5 @@ public class 句 extends FuncAbstract {
         逻辑成分.put(Cons.结束下标, 指定下标的逻辑成分.getInteger(Cons.结束下标));
         Tool.删除指定下标的逻辑成分(指定下标的逻辑成分.getInteger(Cons.下标));
     }
+
 }

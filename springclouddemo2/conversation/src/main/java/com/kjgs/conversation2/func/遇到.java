@@ -20,11 +20,8 @@ public class 遇到 extends FuncAbstract {
         if(指定下标后面的逻辑成分 == null){
             return;
         }
-        if(指定下标后面的逻辑成分.getBoolean(Cons.句型的结束下标) == null){
-            return;
-        }
+
         boolean result = StringUtils.equals(句子词语, 指定下标后面的逻辑成分.getString(Cons.词语));
-        Tool.赋值指定范围的逻辑成分的判断结果(0,
-                指定下标后面的逻辑成分.getInteger(Cons.句型的结束下标), result);
+        Tool.赋值判断结果(逻辑成分, result);
     }
 }
