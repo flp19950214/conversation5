@@ -13,6 +13,11 @@ import java.util.List;
 public class 合并为 extends FuncAbstract {
     @Override
     public void 功能() {
+
+    }
+
+    @Override
+    public void 判断结果是true时执行(){
         合并为几个词();
     }
 

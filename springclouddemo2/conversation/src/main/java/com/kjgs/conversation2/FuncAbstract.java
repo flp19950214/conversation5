@@ -23,6 +23,14 @@ public abstract class FuncAbstract {
         this.句子成分 = 句子成分;
         赋值常用字段();
         功能();
+        boolean 判断结果 = Tool.往前找判断结果(下标);
+        if(判断结果){
+            判断结果是true时执行();
+        }
+    }
+
+    public void 判断结果是true时执行(){
+
     }
 
     protected void 赋值常用字段(){

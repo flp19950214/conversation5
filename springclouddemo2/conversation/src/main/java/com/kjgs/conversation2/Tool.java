@@ -5,6 +5,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 
 public class Tool {
+    public static boolean 往前找判断结果(int 下标){
+        Object 判断的结果 = 往前找指定的键值(下标, Cons.判断的结果);
+        if(判断的结果 != null){
+            return (Boolean) 判断的结果;
+        }
+        return false;
+    }
     public static Object 往前找指定的键值(int 下标, String key){
         //过滤出小于下标的，然后排序，找出第一条
         Document result =  静态引用.逻辑句子的成分集合.stream()

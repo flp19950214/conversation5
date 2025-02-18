@@ -18,9 +18,16 @@ public class 记录成处理逻辑 extends FuncAbstract {
 
     @Override
     public void 功能() {
+
+    }
+
+    @Override
+    public void 判断结果是true时执行(){
         找到前面一个成分保存成逻辑();
     }
+
     public void 找到前面一个成分保存成逻辑(){
+
         Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
         if(指定下标前面的逻辑成分 == null){
             return;

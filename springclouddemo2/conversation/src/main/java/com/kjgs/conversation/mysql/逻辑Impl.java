@@ -49,6 +49,7 @@ public class 逻辑Impl{
 
     public void 保存逻辑(String 逻辑){
         if(逻辑MapperImpl.查询逻辑(逻辑) ==0){
+            System.out.println("保存逻辑："+逻辑);
             逻辑MapperImpl.保存逻辑(逻辑);
         }
     }
