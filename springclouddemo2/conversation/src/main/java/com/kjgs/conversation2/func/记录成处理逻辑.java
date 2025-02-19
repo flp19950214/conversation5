@@ -27,7 +27,10 @@ public class 记录成处理逻辑 extends FuncAbstract {
     }
 
     public void 找到前面一个成分保存成逻辑(){
-
+        boolean 判断结果 = Tool.往前找判断结果(下标);
+        if(!判断结果){
+           return;
+        }
         Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
         if(指定下标前面的逻辑成分 == null){
             return;

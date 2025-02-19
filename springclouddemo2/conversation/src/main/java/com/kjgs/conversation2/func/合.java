@@ -19,6 +19,9 @@ public class 合 extends FuncAbstract {
             return;
         }
         int 结束下标 =  下标+2;
+        if(结束下标 > 逻辑句子.length()){
+            return;
+        }
         String 记录成处理逻辑 = 逻辑句子.substring(下标, 结束下标);
         if (!"合并为".equals(记录成处理逻辑)) {
             return;

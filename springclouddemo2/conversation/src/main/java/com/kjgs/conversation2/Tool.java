@@ -5,6 +5,27 @@ import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 
 public class Tool {
+    public static Document 指定词语的句子成分(String 词语){
+        Document result =  静态引用.输入句子的成分集合.stream()
+                .filter (m -> StringUtils.equals(m.getString(Cons.词语), 词语))
+                .findFirst().orElse(null);
+        return 代词的最终指向(result);
+    }
+    public static Document 指定词语的逻辑成分(String 词语){
+        Document result =  静态引用.逻辑句子的成分集合.stream()
+                .filter (m -> StringUtils.equals(m.getString(Cons.词语), 词语))
+                .findFirst().orElse(null);
+        return 代词的最终指向(result);
+    }
+    public static Document 往后找指定词语的逻辑成分(int 下标, String 词语){
+        Document result =  静态引用.逻辑句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter (m -> m.getInteger(Cons.下标) > 下标)
+                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
+                .filter (m -> StringUtils.equals(m.getString(Cons.词语), 词语))
+                .findFirst().orElse(null);
+        return 代词的最终指向(result);
+    }
     public static boolean 往前找判断结果(int 下标){
         Object 判断的结果 = 往前找指定的键值(下标, Cons.判断的结果);
         if(判断的结果 != null){
@@ -15,7 +36,7 @@ public class Tool {
     public static Object 往前找指定的键值(int 下标, String key){
         //过滤出小于下标的，然后排序，找出第一条
         Document result =  静态引用.逻辑句子的成分集合.stream()
-                .filter(m -> m.containsKey(Cons.下标) && m.containsKey(Cons.判断的结果))
+                .filter(m -> m.containsKey(Cons.下标))
                 .filter (m -> m.getInteger(Cons.下标) < 下标)
                 .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
                 .filter(m -> m.containsKey(key))
@@ -45,7 +66,7 @@ public class Tool {
         //过滤出小于下标的，然后排序，找出第一条
         Document result =  静态引用.逻辑句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标) && m.containsKey(Cons.判断的结果))
-                .filter (m -> m.getInteger(Cons.下标) < 下标)
+                .filter (m -> m.getInteger(Cons.下标) > 下标)
                 .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
@@ -81,12 +102,7 @@ public class Tool {
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
     }
-    public static Document 指定词语的逻辑成分(String 词语){
-        Document result =  静态引用.逻辑句子的成分集合.stream()
-                .filter (m -> StringUtils.equals(m.getString(Cons.词语), 词语))
-                .findFirst().orElse(null);
-        return 代词的最终指向(result);
-    }
+
     public static void 删除指定范围下标的句子成分(int 下标,int 结束下标){
         for (int i = 下标; i < 结束下标; i++) {
             删除指定下标的句子成分(i);

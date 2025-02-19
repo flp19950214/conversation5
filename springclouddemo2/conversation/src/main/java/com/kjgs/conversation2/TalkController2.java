@@ -53,14 +53,16 @@ public class TalkController2 {
         do{
             输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
             for (int i = 0; i <所有逻辑.size() ; i++) {
+                静态引用.逻辑句子的成分集合.clear();
                 处理句子(所有逻辑.get(i));
             }
             before = JSON.toJSONString(输入句子的成分集合Temp);
             after = JSON.toJSONString(静态引用.输入句子的成分集合);
+            System.out.println(JSON.toJSONString(Tool.指定词语的逻辑成分("如果")));
         }while (!StringUtils.equals(before, after));
 
-        List<Document> 输入句子的成分集合 = 静态引用.输入句子的成分集合;
-        List<Document> 逻辑句子的成分集合 = 静态引用.逻辑句子的成分集合;
+        System.out.println("最终的句子成分：");
+        System.out.println(after);
         return null;
     }
 
@@ -92,7 +94,10 @@ public class TalkController2 {
                 处理逻辑(句子成分);
                 after = JSON.toJSONString(静态引用.逻辑句子的成分集合);
             }
-
+            List<Document> 输入句子的成分集合 = 静态引用.输入句子的成分集合;
+            Document 逻辑句子对象 = 静态引用.逻辑句子对象;
+            Document 输入的句子对象 = 静态引用.输入的句子对象;
+            List<Document> 逻辑句子的成分集合 = 静态引用.逻辑句子的成分集合;
         }
 
     }
