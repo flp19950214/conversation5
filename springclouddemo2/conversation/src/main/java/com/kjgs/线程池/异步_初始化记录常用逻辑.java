@@ -21,14 +21,14 @@ public class 异步_初始化记录常用逻辑 {
 
     @Async("AsyncTaskExecutor")
     public void 初始化记录内置功能属性(逻辑实体 obj) {
-        // 存在就更新，否则就新增，
-        逻辑实体 逻辑实体 = 逻辑Mapper.根据逻辑名查询单个处理逻辑(obj.逻辑名);
-        if (逻辑实体 == null) {
-            String insertSql = "insert into 逻辑表 (逻辑名,逻辑) values(?,?)";
-            jdbcTemplate.update(insertSql, obj.逻辑名, obj.逻辑);
-        } else if (逻辑实体 != null && !逻辑实体.equals(obj)) {
-            String updateSql = "update  逻辑表 set 逻辑 = ? where 逻辑名 = ?";
-            jdbcTemplate.update(updateSql, obj.逻辑, obj.逻辑名);
-        }
+//        // 存在就更新，否则就新增，
+//        逻辑实体 逻辑实体 = 逻辑Mapper.根据逻辑名查询单个处理逻辑(obj.逻辑名);
+//        if (逻辑实体 == null) {
+//            String insertSql = "insert into 逻辑表 (逻辑名,逻辑) values(?,?)";
+//            jdbcTemplate.update(insertSql, obj.逻辑名, obj.逻辑);
+//        } else if (逻辑实体 != null && !逻辑实体.equals(obj)) {
+//            String updateSql = "update  逻辑表 set 逻辑 = ? where 逻辑名 = ?";
+//            jdbcTemplate.update(updateSql, obj.逻辑, obj.逻辑名);
+//        }
     }
 }

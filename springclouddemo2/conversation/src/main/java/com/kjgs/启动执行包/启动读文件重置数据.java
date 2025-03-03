@@ -28,36 +28,36 @@ public class 启动读文件重置数据 implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         启动执行初始化数据Impl.init();
-
-        jdbcTemplate.execute("truncate `conversation`.`逻辑表`;");
-        for (int i = 4; i <= 4; i++) {
-            String path = String.format("classpath:插入逻辑_%s.sql", i);
-            Resource resource  = resourceLoader.getResource(path);
-            try(BufferedReader br =new BufferedReader(new InputStreamReader(resource.getInputStream()))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    if(StringUtils.isEmpty(line) || line.startsWith("--")){
-                        continue;
-                    }
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("INSERT INTO `conversation`.`逻辑表`(`逻辑名`, `逻辑`,`逻辑类型`) VALUES ")
-                            .append(line.trim());
-                    // 处理可能的多行语句
-                    if (line.endsWith(";")) {
-                        String sql = sb.toString();
-                        try {
-                            jdbcTemplate.execute(sql);
-                        }catch (Exception e){
-                            e.printStackTrace();
-                            continue;
-                        }
-                        sb.setLength(0);
-                    }
-                }
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
+//
+//        jdbcTemplate.execute("truncate `conversation`.`逻辑表`;");
+//        for (int i = 4; i <= 4; i++) {
+//            String path = String.format("classpath:插入逻辑_%s.sql", i);
+//            Resource resource  = resourceLoader.getResource(path);
+//            try(BufferedReader br =new BufferedReader(new InputStreamReader(resource.getInputStream()))) {
+//                String line;
+//                while ((line = br.readLine()) != null) {
+//                    if(StringUtils.isEmpty(line) || line.startsWith("--")){
+//                        continue;
+//                    }
+//                    StringBuilder sb = new StringBuilder();
+//                    sb.append("INSERT INTO `conversation`.`逻辑表`(`逻辑名`, `逻辑`,`逻辑类型`) VALUES ")
+//                            .append(line.trim());
+//                    // 处理可能的多行语句
+//                    if (line.endsWith(";")) {
+//                        String sql = sb.toString();
+//                        try {
+//                            jdbcTemplate.execute(sql);
+//                        }catch (Exception e){
+//                            e.printStackTrace();
+//                            continue;
+//                        }
+//                        sb.setLength(0);
+//                    }
+//                }
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
+//        }
 
     }
 }

@@ -18,8 +18,8 @@ public class 启动执行类 implements ApplicationRunner {
      */
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        String input = "被加数是2";
-//        新处理逻辑.process(input);
-        获取所有功能名.getMethods();
+//        String input = "被加数是2";
+////        新处理逻辑.process(input);
+//        获取所有功能名.getMethods();
     }
 }
