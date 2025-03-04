@@ -62,6 +62,7 @@ public class TalkController2 {
         }while (!StringUtils.equals(before, after));
 
         System.out.println("最终的句子成分：");
+        System.out.println(静态引用.输入句子的成分集合);
         System.out.println(after);
         return null;
     }

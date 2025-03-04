@@ -47,7 +47,7 @@ public class 以 extends FuncAbstract {
         Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
         //获取以和结尾之间的内容
         String betweenContent = 逻辑句子.substring(结束下标, 词语是结尾的成分.getInteger(Cons.下标));
-        boolean result = 指定下标前面的逻辑成分.getString(Cons.词语).endsWith(betweenContent);
+        boolean result = 指定下标前面的逻辑成分.getString(Cons.词语).startsWith(betweenContent);
         Tool.赋值判断结果(逻辑成分, result);
         Tool.赋值判断结果(词语是结尾的成分, result);
     }
