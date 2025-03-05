@@ -22,23 +22,14 @@ public class 和 extends FuncAbstract {
         if(指定下标前面的逻辑成分 == null || 指定下标后面的逻辑成分 == null){
             return;
         }
-        //满足条件 合并果，创建新成分，删除旧成分
-        Document 新逻辑成分 = new Document();
-        新逻辑成分.put(Cons.词语, 指定下标前面的逻辑成分.getString(Cons.词语)
-                + 逻辑成分.getString(Cons.词语) + 指定下标后面的逻辑成分.getString(Cons.词语));
-        新逻辑成分.put(Cons.下标, 指定下标前面的逻辑成分.getInteger(Cons.下标));
-        新逻辑成分.put(Cons.结束下标, 指定下标后面的逻辑成分.getInteger(Cons.结束下标));
-        Tool.删除指定下标的逻辑成分(指定下标前面的逻辑成分.getInteger(Cons.下标));
-        Tool.删除指定下标的逻辑成分(下标);
-        Tool.删除指定下标的逻辑成分(指定下标后面的逻辑成分.getInteger(Cons.下标));
 
-        添加指向(新逻辑成分, 指定下标前面的逻辑成分, 指定下标后面的逻辑成分);
+        添加指向(逻辑成分, 指定下标前面的逻辑成分, 指定下标后面的逻辑成分);
     }
 
     public void 添加指向(Document 新逻辑成分, Document 指定下标前面的逻辑成分,Document 指定下标后面的逻辑成分){
         List<Document> 多成分 = new ArrayList<>();
         多成分.add(指定下标前面的逻辑成分);
         多成分.add(指定下标后面的逻辑成分);
-        新逻辑成分.put(Cons.子成分, 多成分);
+        新逻辑成分.put(Cons.并列集合, 多成分);
     }
 }

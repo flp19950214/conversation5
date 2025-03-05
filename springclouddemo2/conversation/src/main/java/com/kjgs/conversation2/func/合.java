@@ -18,7 +18,7 @@ public class 合 extends FuncAbstract {
         if (指定下标的逻辑成分 == null) {
             return;
         }
-        int 结束下标 =  下标+2;
+        int 结束下标 =  下标+3;
         if(结束下标 > 逻辑句子.length()){
             return;
         }

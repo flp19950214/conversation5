@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class 当 extends FuncAbstract {
 
     public void 功能() {
-
+        分词();
     }
 
     public void 分词(){
@@ -18,7 +18,7 @@ public class 当 extends FuncAbstract {
         if (指定下标的逻辑成分 == null) {
             return;
         }
-        int 结束下标 =  下标+2;
+        int 结束下标 =  下标+3;
         String 记录成处理逻辑 = 逻辑句子.substring(下标, 结束下标);
         if (!"当前词".equals(记录成处理逻辑)) {
             return;

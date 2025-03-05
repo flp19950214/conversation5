@@ -18,14 +18,18 @@ public class 合并为 extends FuncAbstract {
 
     @Override
     public void 判断结果是true时执行(){
+        boolean 判断结果 = Tool.往前找判断结果(下标);
+        if(!判断结果){
+            return;
+        }
         合并为几个词();
     }
 
     public void 合并为几个词(){
-        Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
+        Document 指定下标前面的包含并列集合的逻辑成分 = Tool.指定下标前面包含某key的逻辑成分(下标, Cons.并列集合);
         Document 指定下标后面的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);
         Document 指定下标的下下一个逻辑成分 = Tool.指定下标的下下一个逻辑成分(下标);
-        if(指定下标前面的逻辑成分 == null || 指定下标后面的逻辑成分 == null || 指定下标的下下一个逻辑成分==null){
+        if(指定下标前面的包含并列集合的逻辑成分 == null || 指定下标后面的逻辑成分 == null || 指定下标的下下一个逻辑成分==null){
             return;
         }
         if(StringUtils.isEmpty(指定下标后面的逻辑成分.getString(Cons.词语)) ||
@@ -36,16 +40,17 @@ public class 合并为 extends FuncAbstract {
             return;
         }
         //满足条件 合并前面的多对象成分
-        Document 合并结果 = 合并上一个成分的子对象(指定下标前面的逻辑成分);
+        Document 合并结果 = 合并前面成分中的并列对象(指定下标前面的包含并列集合的逻辑成分);
         if(合并结果 != null){
             逻辑成分.put(Cons.动作结果, 合并结果.get(Cons.词语));
         }
     }
-    public Document 合并上一个成分的子对象(Document 指定下标前面的逻辑成分){
-        if(!指定下标前面的逻辑成分.containsKey(Cons.子成分)){
+    public Document 合并前面成分中的并列对象(Document 指定下标前面的包含并列集合的逻辑成分){
+        if(!指定下标前面的包含并列集合的逻辑成分.containsKey(Cons.并列集合)){
             return null;
         }
-        List<Document> 子成分 = 指定下标前面的逻辑成分.get(Cons.子成分, List.class);
+        List<Document> 子成分 = 指定下标前面的包含并列集合的逻辑成分.get(Cons.并列集合, List.class);
+        Tool.刷新集合中代词的最终指向(子成分);
         StringBuffer 词语 = new StringBuffer();
         for(Document document:子成分){
             词语.append(document.getString(Cons.词语));

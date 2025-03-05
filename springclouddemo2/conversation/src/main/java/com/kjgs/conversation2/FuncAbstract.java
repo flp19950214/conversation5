@@ -31,8 +31,8 @@ public abstract class FuncAbstract {
     }
 
     protected void 赋值常用字段(){
-        句子下标 = 句子成分.getInteger(Cons.在句子中的下标);
-        句子结束下标 = 句子成分.getInteger(Cons.在句子中的结束下标);
+        句子下标 = 句子成分.getInteger(Cons.下标);
+        句子结束下标 = 句子成分.getInteger(Cons.结束下标);
         句子词语 = 句子成分.getString(Cons.词语);
         句子 = 静态引用.输入的句子对象.getString(Cons.词语);
 

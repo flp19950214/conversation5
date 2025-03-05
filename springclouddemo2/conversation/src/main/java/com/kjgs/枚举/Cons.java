@@ -13,8 +13,8 @@ public interface Cons {
     public String 的对象="的对象";
     public String 在上级对象中的成分="在上级对象中的成分";
     public String 指向="指向";
-    public String 子成分="子成分";
     public String 指向id="指向id";
+    public String 并列集合="并列集合";
     public String 未知属性="未知属性";
     public String 属性="属性";
     public String 动作句型="动作句型";

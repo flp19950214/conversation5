@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,7 @@ public class TalkController2 {
         静态引用.输入的句子对象.put(Cons._id, new ObjectId());
         静态引用.输入的句子对象.put(Cons.词语, 输入的句子);
         静态引用.输入的句子对象.put(Cons.词语类型, Cons.输入的句子);
+        静态引用.输入句子的成分集合.clear();
         String[] 输入的句子元素集合 = 输入的句子.split("");
         //给每个词添加成句子成分
         for (int i = 0; i < 输入的句子元素集合.length; i++) {
@@ -40,12 +42,18 @@ public class TalkController2 {
             成分对象.put(Cons._id, new ObjectId());
             成分对象.put(Cons.父id, 静态引用.输入的句子对象.get(Cons._id));
             成分对象.put(Cons.词语, item);
-            成分对象.put(Cons.在句子中的下标, i);
-            成分对象.put(Cons.在句子中的结束下标, i + 1);
+            成分对象.put(Cons.下标, i);
+            成分对象.put(Cons.结束下标, i + 1);
             静态引用.输入句子的成分集合.add(成分对象);
         }
+
         //查询所有逻辑
-        List<String> 所有逻辑 = 逻辑MapperImpl.查询所有逻辑();
+//        List<String> 所有逻辑 = 逻辑MapperImpl.查询所有逻辑();
+        //测试指定逻辑
+        List<String> 所有逻辑 = new ArrayList(){{
+            add("如果遇到等，并且后面1个字是于，那就把当前词和后面1个字合并为1个词");
+//            add("后后");
+        }};
 
         List<Document> 输入句子的成分集合Temp;
         String before;
@@ -58,7 +66,7 @@ public class TalkController2 {
             }
             before = JSON.toJSONString(输入句子的成分集合Temp);
             after = JSON.toJSONString(静态引用.输入句子的成分集合);
-            System.out.println(JSON.toJSONString(Tool.指定词语的逻辑成分("如果")));
+//            System.out.println(JSON.toJSONString(Tool.指定词语的逻辑成分("如果")));
         }while (!StringUtils.equals(before, after));
 
         System.out.println("最终的句子成分：");

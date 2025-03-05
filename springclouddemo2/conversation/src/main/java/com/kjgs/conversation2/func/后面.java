@@ -41,14 +41,14 @@ public class 后面 extends FuncAbstract {
     }
 
     public void 找到后面某个字并赋值指向(Document 逻辑成分, int num){
-        if(句子下标 + num > 句子.length()){
+        if(句子下标 + num + 1> 句子.length()){
             return;
         }
-        String substring = 句子.substring(句子下标, 句子下标 + num);
+        String substring = 句子.substring(句子下标+num, 句子下标 + num +1);
         Document 新句子成分 = new Document();
         新句子成分.put(Cons.词语, substring);
-        新句子成分.put(Cons.下标, 句子下标);
-        新句子成分.put(Cons.结束下标, 句子下标 + num);
+        新句子成分.put(Cons.下标, 句子下标+num);
+        新句子成分.put(Cons.结束下标, 句子下标 + num +1);
 
         逻辑成分.put(Cons.指向,新句子成分);
     }
