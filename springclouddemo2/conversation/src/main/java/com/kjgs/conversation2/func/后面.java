@@ -44,9 +44,13 @@ public class 后面 extends FuncAbstract {
         if(句子下标 + num + 1> 句子.length()){
             return;
         }
-        String substring = 句子.substring(句子下标+num, 句子下标 + num +1);
+
         Document 新句子成分 = new Document();
-        新句子成分.put(Cons.词语, substring);
+        StringBuffer 词语 = new StringBuffer();
+        for (int i = 1; i <= num ; i++) {
+            词语.append(句子.substring(句子下标+i, 句子下标 + i +1));
+        }
+        新句子成分.put(Cons.词语, 词语.toString());
         新句子成分.put(Cons.下标, 句子下标+num);
         新句子成分.put(Cons.结束下标, 句子下标 + num +1);
 

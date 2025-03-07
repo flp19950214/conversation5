@@ -48,12 +48,12 @@ public class TalkController2 {
         }
 
         //查询所有逻辑
-//        List<String> 所有逻辑 = 逻辑MapperImpl.查询所有逻辑();
+        List<String> 所有逻辑 = 逻辑MapperImpl.查询所有逻辑();
         //测试指定逻辑
-        List<String> 所有逻辑 = new ArrayList(){{
-            add("如果遇到等，并且后面1个字是于，那就把当前词和后面1个字合并为1个词");
-//            add("后后");
-        }};
+//        List<String> 所有逻辑 = new ArrayList(){{
+//            add("如果遇到等，并且后面1个字是于，那就把当前词和后面1个字合并为1个词");
+////            add("后后");
+//        }};
 
         List<Document> 输入句子的成分集合Temp;
         String before;
