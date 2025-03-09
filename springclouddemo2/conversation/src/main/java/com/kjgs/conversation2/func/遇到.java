@@ -22,6 +22,12 @@ public class 遇到 extends FuncAbstract {
         }
 
         boolean result = StringUtils.equals(句子词语, 指定下标后面的逻辑成分.getString(Cons.词语));
+        if(result==false){
+            if(结束下标+句子词语.length()<=逻辑句子.length()){
+                String 跟句子词语长度相同 = 逻辑句子.substring(结束下标, 结束下标+句子词语.length());
+                 result = StringUtils.equals(句子词语, 跟句子词语长度相同);
+            }
+        }
         Tool.赋值判断结果(逻辑成分, result);
     }
 }

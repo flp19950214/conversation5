@@ -56,11 +56,13 @@ public class 合并为 extends FuncAbstract {
             词语.append(document.getString(Cons.词语));
         }
         Document 新句子成分 = new Document();
-        新句子成分.put(Cons.词语, 词语);
+        新句子成分.put(Cons.词语, 词语.toString());
         int 下标 = 子成分.get(0).getInteger(Cons.下标);
         int 结束下标 = 子成分.get(子成分.size()-1).getInteger(Cons.结束下标);
         新句子成分.put(Cons.下标, 下标);
         新句子成分.put(Cons.结束下标, 结束下标);
+        //校验词语 要跟下标和结束下标的长度相匹配
+        新句子成分.put(Cons.词语, 新句子成分.getString(Cons.词语).substring(0,结束下标-下标));
 
         Tool.删除指定范围下标的句子成分(下标, 结束下标);
         Tool.添加句子成分(新句子成分);

@@ -48,12 +48,13 @@ public class TalkController2 {
         }
 
         //查询所有逻辑
-        List<String> 所有逻辑 = 逻辑MapperImpl.查询所有逻辑();
-        //测试指定逻辑
-//        List<String> 所有逻辑 = new ArrayList(){{
+//        List<String> 所有逻辑 = 逻辑MapperImpl.查询所有逻辑();
+//        测试指定逻辑
+        List<String> 所有逻辑 = new ArrayList(){{
 //            add("如果遇到等，并且后面1个字是于，那就把当前词和后面1个字合并为1个词");
-////            add("后后");
-//        }};
+            add("如果遇到合，并且后面1个字是并，那就把当前词和后面1个字合并为1个词");
+            add("如果遇到合并，并且后面1个字是为，那就把当前词和后面1个字合并为1个词");
+        }};
 
         List<Document> 输入句子的成分集合Temp;
         String before;
@@ -68,7 +69,6 @@ public class TalkController2 {
             after = JSON.toJSONString(静态引用.输入句子的成分集合);
 //            System.out.println(JSON.toJSONString(Tool.指定词语的逻辑成分("如果")));
         }while (!StringUtils.equals(before, after));
-
         System.out.println("最终的句子成分：");
         System.out.println(静态引用.输入句子的成分集合);
         System.out.println(after);
