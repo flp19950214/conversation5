@@ -47,14 +47,15 @@ public class TalkController2 {
             静态引用.输入句子的成分集合.add(成分对象);
         }
 
-        //查询所有逻辑
-//        List<String> 所有逻辑 = 逻辑MapperImpl.查询所有逻辑();
+        List<String> 所有逻辑 = 逻辑MapperImpl.查询所有逻辑();
+//        重置输入句子成分();
+//        //查询所有逻辑
 //        测试指定逻辑
-        List<String> 所有逻辑 = new ArrayList(){{
+//        List<String> 所有逻辑 = new ArrayList(){{
 //            add("如果遇到等，并且后面1个字是于，那就把当前词和后面1个字合并为1个词");
-            add("如果遇到合，并且后面1个字是并，那就把当前词和后面1个字合并为1个词");
-            add("如果遇到合并，并且后面1个字是为，那就把当前词和后面1个字合并为1个词");
-        }};
+//            add("如果遇到合，并且后面1个字是并，那就把当前词和后面1个字合并为1个词");
+//            add("如果遇到合并，并且后面1个字是为，那就把当前词和后面1个字合并为1个词");
+//        }};
 
         List<Document> 输入句子的成分集合Temp;
         String before;
@@ -117,6 +118,24 @@ public class TalkController2 {
             String 动作 = 逻辑成分.getString(Cons.词语);
             invokeLuoji.执行逻辑(动作, 逻辑成分, 句子成分);
         }
+    }
+
+    public void 重置输入句子成分(){
+        静态引用.输入句子的成分集合.clear();
+        Document 成分对象 = new Document();
+        成分对象.put(Cons._id, new ObjectId());
+        成分对象.put(Cons.父id, 静态引用.输入的句子对象.get(Cons._id));
+        成分对象.put(Cons.词语, "合并");
+        成分对象.put(Cons.下标, 0);
+        成分对象.put(Cons.结束下标, 2);
+        静态引用.输入句子的成分集合.add(成分对象);
+        Document 成分对象2 = new Document();
+        成分对象2.put(Cons._id, new ObjectId());
+        成分对象2.put(Cons.父id, 静态引用.输入的句子对象.get(Cons._id));
+        成分对象2.put(Cons.词语, "为");
+        成分对象2.put(Cons.下标, 2);
+        成分对象2.put(Cons.结束下标, 3);
+        静态引用.输入句子的成分集合.add(成分对象2);
     }
 
 }
