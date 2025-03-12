@@ -25,6 +25,10 @@ public class 是 extends FuncAbstract {
         if(指定下标前面的逻辑成分 == null || 指定下标后面的逻辑成分 == null){
             return;
         }
+        //前面也是是 当前词不作为动词处理
+        if(StringUtils.equals(指定下标前面的逻辑成分.getString(Cons.词语), "是")){
+            return;
+        }
         //前面一个成分等于后面一个成分
         boolean result = 指定下标前面的逻辑成分.getString(Cons.词语).equals(指定下标后面的逻辑成分.getString(Cons.词语));
 //        if(result==false){
