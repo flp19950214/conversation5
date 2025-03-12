@@ -82,6 +82,15 @@ public class Tool {
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
     }
+    public static Document 指定下标前面的逻辑成分_无迭代(int 下标){
+        //过滤出小于下标的，然后排序，找出第一条
+        Document result =  静态引用.逻辑句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter (m -> m.getInteger(Cons.下标) < 下标)
+                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
+                .findFirst().orElse(null);
+        return result;
+    }
     public static Document 指定下标前面的逻辑成分(int 下标){
         //过滤出小于下标的，然后排序，找出第一条
         Document result =  静态引用.逻辑句子的成分集合.stream()

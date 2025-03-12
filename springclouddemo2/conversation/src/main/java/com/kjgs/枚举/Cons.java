@@ -71,6 +71,7 @@ public interface Cons {
     public String 顶层逻辑="顶层逻辑";
     public String 异常逻辑="异常逻辑";
     public String 词语="词语";
+    public String 当前词="当前词";
     public String 别名="别名";
     public String 代词组成成分="代词组成成分";
     public String 词性逻辑="词性逻辑";

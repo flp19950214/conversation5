@@ -15,6 +15,14 @@ public class 后面 extends FuncAbstract {
         后面几个字();
     }
 
+    public void 当前词后面(){
+        Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分_无迭代(下标);
+        if(StringUtils.equals(Cons.当前词, 指定下标前面的逻辑成分.getString(Cons.词语))){
+            逻辑成分.put(Cons.归属对象, 指定下标前面的逻辑成分);
+            找到后面某个字并赋值指向(逻辑成分, 句子.length() - 句子结束下标);
+        }
+    }
+
     public void 后面几个字(){
         Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
         Document 指定下标后面的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);

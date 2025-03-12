@@ -28,6 +28,9 @@ public class 记录 extends FuncAbstract {
     public void 找到逻辑后面的所有内容记录成逻辑(){
         String 逻辑后面的内容 = 逻辑句子.substring(结束下标);
         // 如果遇到当前词、这个词就替换成
-        逻辑后面的内容.replaceAll(Cons.当前词)
+        逻辑后面的内容.replaceAll("当前词",句子词语);
+        逻辑后面的内容.replaceAll("这个词",句子词语);
+        //保持逻辑
+        逻辑impl.保存逻辑(逻辑后面的内容);
     }
 }
