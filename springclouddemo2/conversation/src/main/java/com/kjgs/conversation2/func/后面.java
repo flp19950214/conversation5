@@ -13,6 +13,7 @@ public class 后面 extends FuncAbstract {
     @Override
     public void 功能() {
         后面几个字();
+        当前词后面();
     }
 
     public void 当前词后面(){

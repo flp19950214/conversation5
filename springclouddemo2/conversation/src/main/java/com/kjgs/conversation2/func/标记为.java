@@ -27,7 +27,7 @@ public class 标记为 extends FuncAbstract {
 
     public void 标记对象属性值(){
         Document 指定前面下标的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
-        Document 指定后面下标的逻辑成分 = Tool.指定下标后面的逻辑成分(结束下标);
+        Document 指定后面下标的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);
         if(指定前面下标的逻辑成分 == null || 指定后面下标的逻辑成分 == null){
            return;
         }

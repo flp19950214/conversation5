@@ -23,6 +23,10 @@ public class 记录成处理逻辑 extends FuncAbstract {
 
     @Override
     public void 判断结果是true时执行(){
+        boolean 判断结果 = Tool.往前找判断结果(下标);
+        if(!判断结果){
+            return;
+        }
         找到前面一个成分保存成逻辑();
     }
 
