@@ -26,6 +26,8 @@ public class TalkController2 {
     @Autowired
     private 逻辑Mapper 逻辑MapperImpl;
 
+    final int max = 10;
+
     @PostMapping("/process3")
     public Object process(@RequestBody JSONObject input) {
         String 输入的句子 = input.getString("input");
@@ -57,12 +59,16 @@ public class TalkController2 {
 //            add("如果遇到合并，并且后面1个字是为，那就把当前词和后面1个字合并为1个词");
 //            add("如果当前词后面是是数字，那就记录如果遇到当前词，那就标记当前词的词性为数字");
             add("如果遇到1，那就标记当前词的词性为数字");
+            add("如果当前词的词性是数字，并且后面1个成分是加，那就把当前词作为后面1个成分的被加数");
+            add("如果当前词是加，并且后面1个成分的词性是数字，那就把后面1个成分作为当前词的加数");
         }};
 
         List<Document> 输入句子的成分集合Temp;
         String before;
         String after;
+        int loopN=0;
         do{
+            loopN++;
             输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
             for (int i = 0; i <所有逻辑.size() ; i++) {
                 静态引用.逻辑句子的成分集合.clear();
@@ -71,7 +77,7 @@ public class TalkController2 {
             before = JSON.toJSONString(输入句子的成分集合Temp);
             after = JSON.toJSONString(静态引用.输入句子的成分集合);
 //            System.out.println(JSON.toJSONString(Tool.指定词语的逻辑成分("如果")));
-        }while (!StringUtils.equals(before, after));
+        }while (!StringUtils.equals(before, after) && loopN<max);
         System.out.println("最终的句子成分：");
         System.out.println(静态引用.输入句子的成分集合);
         System.out.println(after);
@@ -101,7 +107,9 @@ public class TalkController2 {
             String before = JSON.toJSONString(静态引用.逻辑句子的成分集合);
             处理逻辑(句子成分);
             String after = JSON.toJSONString(静态引用.逻辑句子的成分集合);
-            while (!StringUtils.equals(before,after)){
+            int loopN=0;
+            while (!StringUtils.equals(before,after) && loopN<10){
+                loopN++;
                 before = after;
                 处理逻辑(句子成分);
                 after = JSON.toJSONString(静态引用.逻辑句子的成分集合);

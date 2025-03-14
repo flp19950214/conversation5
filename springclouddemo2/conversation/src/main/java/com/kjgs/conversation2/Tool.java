@@ -7,6 +7,16 @@ import org.bson.Document;
 import java.util.List;
 
 public class Tool {
+    public static Document 往后找归属对象(int 下标, Document 下一个成分){
+        Document result =  静态引用.逻辑句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter (m -> m.getInteger(Cons.下标) > 下标)
+                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
+                .filter (m -> m.containsKey(Cons.归属对象))
+                .filter(m -> m.get(Cons.归属对象)==下一个成分)
+                .findFirst().orElse(null);
+        return result;
+    }
     public static Document 指定词语的句子成分(String 词语){
         Document result =  静态引用.输入句子的成分集合.stream()
                 .filter (m -> StringUtils.equals(m.getString(Cons.词语), 词语))
@@ -100,6 +110,14 @@ public class Tool {
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
     }
+    public static Document 指定下标后面的逻辑成分_无迭代(int 下标){
+        Document result =  静态引用.逻辑句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter (m -> m.getInteger(Cons.下标) > 下标)
+                .sorted((a,b) -> a.getInteger(Cons.下标) -  b.getInteger(Cons.下标))
+                .findFirst().orElse(null);
+        return result;
+    }
     public static Document 指定下标后面的逻辑成分(int 下标){
         Document result =  静态引用.逻辑句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标))
@@ -170,6 +188,15 @@ public class Tool {
         if(document != null && document.containsKey(Cons.指向)){
             Document document1 = document.get(Cons.指向, Document.class);
             return 代词的最终指向(document1);
+        }else{
+            return document;
+        }
+    }
+
+    public static Document 最终的归属对象(Document document){
+        if(document != null && document.containsKey(Cons.归属对象)){
+            Document document1 = document.get(Cons.归属对象, Document.class);
+            return 最终的归属对象(document1);
         }else{
             return document;
         }
