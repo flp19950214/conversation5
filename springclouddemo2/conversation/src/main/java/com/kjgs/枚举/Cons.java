@@ -13,6 +13,7 @@ public interface Cons {
     public String 的对象="的对象";
     public String 在上级对象中的成分="在上级对象中的成分";
     public String 指向="指向";
+    public String 集合类型="集合类型";
     public String 指向id="指向id";
     public String 并列集合="并列集合";
     public String 未知属性="未知属性";
@@ -26,6 +27,8 @@ public interface Cons {
     public String 是否执行动作="是否执行动作";
     public String 动作结果="动作结果";
     public String 查询结果="查询结果";
+    public String 被加数="被加数";
+    public String 加数="加数";
     public String 姓名="姓名";
     public String 名字="名字";
     public String 名称="名称";
@@ -59,6 +62,8 @@ public interface Cons {
     public String 当前处理逻辑名="当前处理逻辑名";
     public String 对象类型="对象类型";
     public String 句子成分="句子成分";
+    public String 成分="成分";
+    public String 所有="所有";
     public String 逻辑句子成分="逻辑句子成分";
     public String 在句子中的下标="在句子中的下标";
     public String 在句子中的结束下标="在句子中的结束下标";

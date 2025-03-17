@@ -4,6 +4,7 @@ import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tool {
@@ -164,6 +165,40 @@ public class Tool {
             删除指定下标的逻辑成分(document.getInteger(Cons.下标));
             静态引用.逻辑句子的成分集合.add(document);
         }
+    }
+    public static boolean 判断集合对象中是否包含某属性(List<Document> 集合数据, String 属性){
+        if(集合数据 != null && 集合数据.size()>0){
+            for (Document ele:集合数据) {
+                if(ele.containsKey(属性)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public static boolean 对象是否是集合类型(Document 对象){
+        if(对象 != null && 对象.containsKey(Cons.集合类型)
+                && 对象.keySet().size()==1){
+            return true;
+        }
+        return false;
+    }
+    public static Document 新建一个对象存放集合类型(List<Document> 集合数据){
+        Document document = new Document();
+        document.put(Cons.集合类型, 集合数据);
+        return document;
+    }
+    public static List<Document> 获取指定范围下标的句子成分(int start, int end){
+        List<Document> result = new ArrayList<>();
+        for (int i = 0; i < 静态引用.输入句子的成分集合.size(); i++) {
+            Document document = 静态引用.输入句子的成分集合.get(i);
+            if(document != null && document.getInteger(Cons.下标) !=null
+                    && document.getInteger(Cons.下标) >=start
+                    && document.getInteger(Cons.下标) <end ){
+                result.add(静态引用.输入句子的成分集合.get(i));
+            }
+        }
+        return result;
     }
     public static void 删除指定下标的句子成分(int 下标){
         for (int i = 0; i < 静态引用.输入句子的成分集合.size(); i++) {
