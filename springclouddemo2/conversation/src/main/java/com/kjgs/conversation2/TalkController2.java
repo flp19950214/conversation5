@@ -79,6 +79,7 @@ public class TalkController2 {
 //            System.out.println(JSON.toJSONString(Tool.指定词语的逻辑成分("如果")));
         }while (!StringUtils.equals(before, after) && loopN<max);
         System.out.println("最终的句子成分：");
+        System.out.println(静态引用.逻辑句子的成分集合);
         System.out.println(静态引用.输入句子的成分集合);
         System.out.println(after);
         return 静态引用.输出内容;

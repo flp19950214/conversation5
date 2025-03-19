@@ -43,6 +43,7 @@ public class 合并为 extends FuncAbstract {
         Document 合并结果 = 合并前面成分中的并列对象(指定下标前面的包含并列集合的逻辑成分);
         if(合并结果 != null){
             逻辑成分.put(Cons.动作结果, 合并结果.get(Cons.词语));
+            逻辑成分.put(Cons.合并的结果, 合并结果);
         }
     }
     public Document 合并前面成分中的并列对象(Document 指定下标前面的包含并列集合的逻辑成分){

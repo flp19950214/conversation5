@@ -82,6 +82,9 @@ public class 后面 extends FuncAbstract {
         Document 新句子成分 = new Document();
         StringBuffer 词语 = new StringBuffer();
         for (int i = 0; i < num ; i++) {
+            if( 句子结束下标 + i +1 > 句子.length()){
+                return;
+            }
             词语.append(句子.substring(句子结束下标+i, 句子结束下标 + i +1));
         }
         新句子成分.put(Cons.词语, 词语.toString());

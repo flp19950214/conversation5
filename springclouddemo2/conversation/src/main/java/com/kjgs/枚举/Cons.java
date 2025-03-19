@@ -26,6 +26,7 @@ public interface Cons {
     public String 是否是新对象="是否是新对象";
     public String 是否执行动作="是否执行动作";
     public String 动作结果="动作结果";
+    public String 合并的结果="合并的结果";
     public String 查询结果="查询结果";
     public String 被加数="被加数";
     public String 加数="加数";
