@@ -4,6 +4,7 @@ import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
 import com.kjgs.conversation2.静态引用;
 import com.kjgs.枚举.Cons;
+import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,19 @@ public class 输出 extends FuncAbstract {
         if( 指定后面下标的逻辑成分 == null){
            return;
         }
-        静态引用.输出内容 = 指定后面下标的逻辑成分.getString(Cons.词语);
+        Document 属性对象 = Tool.往后找归属对象(下标, 指定后面下标的逻辑成分);
+        String result ="";
+        if(属性对象!=null){
+            String 属性 = 属性对象.get(Cons.词语).toString();
+            if(StringUtils.equals(属性, Cons.值)){
+                result = 指定后面下标的逻辑成分.get(Cons.词语).toString();
+            }else{
+                result = 指定后面下标的逻辑成分.get(属性).toString();
+            }
+        }else{
+            result = 指定后面下标的逻辑成分.get(Cons.词语).toString();
+        }
+        静态引用.输出内容 = result;
     }
 
 

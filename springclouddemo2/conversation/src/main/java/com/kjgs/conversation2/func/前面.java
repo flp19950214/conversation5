@@ -2,6 +2,7 @@ package com.kjgs.conversation2.func;
 
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
+import com.kjgs.conversation2.静态引用;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
@@ -13,10 +14,62 @@ import java.util.List;
 public class 前面 extends FuncAbstract {
     @Override
     public void 功能() {
+        前面几个字();
         前面所有成分();
-//        前面几个成分();
+        前面几个成分();
+        前面几个属性是();
     }
+    public void 前面几个属性是(){//eg：前面1个属性是动作结果
+        Document 指定下标后面的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);
+        Document 指定下标的下下一个逻辑成分 = Tool.指定下标的下下一个逻辑成分(下标);
+        Document 指定下标的下下下一个逻辑成分 = Tool.指定下标的下下下一个逻辑成分(下标);
+        if(指定下标后面的逻辑成分 == null || 指定下标的下下一个逻辑成分==null
+            || 指定下标的下下下一个逻辑成分 == null){
+            return;
+        }
+        if(StringUtils.isEmpty(指定下标后面的逻辑成分.getString(Cons.词语)) ||
+                !指定下标后面的逻辑成分.getString(Cons.词语).matches("-?\\d+(\\.\\d+)?")){
+            return;
+        }
+        if(!StringUtils.equals(指定下标的下下一个逻辑成分.getString(Cons.词语), "个属性是")){
+            return;
+        }
+        //满足条件 合并果，创建新成分，删除旧成分
+        逻辑成分.put(Cons.词语, 逻辑成分.getString(Cons.词语) + 指定下标后面的逻辑成分.getString(Cons.词语)
+                + 指定下标的下下一个逻辑成分.getString(Cons.词语)
+                + 指定下标的下下下一个逻辑成分.getString(Cons.词语)
+        );
+        逻辑成分.put(Cons.结束下标, 指定下标的下下下一个逻辑成分.getInteger(Cons.结束下标));
+        Tool.删除指定下标的逻辑成分(指定下标后面的逻辑成分.getInteger(Cons.下标));
+        Tool.删除指定下标的逻辑成分(指定下标的下下一个逻辑成分.getInteger(Cons.下标));
+        Tool.删除指定下标的逻辑成分(指定下标的下下下一个逻辑成分.getInteger(Cons.下标));
+        int 量词 = Integer.parseInt(指定下标后面的逻辑成分.getString(Cons.词语));
+        String 属性 = 指定下标的下下下一个逻辑成分.getString(Cons.词语);
+        找到前面某个属性并赋值指向(逻辑成分, 属性, 量词);
+    }
+    public void 前面几个字(){
+        Document 指定下标后面的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);
+        Document 指定下标的下下一个逻辑成分 = Tool.指定下标的下下一个逻辑成分(下标);
+        if(指定下标后面的逻辑成分 == null || 指定下标的下下一个逻辑成分==null){
+            return;
+        }
+        if(StringUtils.isEmpty(指定下标后面的逻辑成分.getString(Cons.词语)) ||
+                !指定下标后面的逻辑成分.getString(Cons.词语).matches("-?\\d+(\\.\\d+)?")){
+            return;
+        }
+        if(!StringUtils.equals(指定下标的下下一个逻辑成分.getString(Cons.词语), "个字")){
+            return;
+        }
+        //满足条件 合并果，创建新成分，删除旧成分
+        逻辑成分.put(Cons.词语, 逻辑成分.getString(Cons.词语) + 指定下标后面的逻辑成分.getString(Cons.词语)
+                + 指定下标的下下一个逻辑成分.getString(Cons.词语));
+        逻辑成分.put(Cons.结束下标, 指定下标的下下一个逻辑成分.getInteger(Cons.结束下标));
+        Tool.删除指定下标的逻辑成分(指定下标后面的逻辑成分.getInteger(Cons.下标));
+        Tool.删除指定下标的逻辑成分(指定下标的下下一个逻辑成分.getInteger(Cons.下标));
+        int 量词 = Integer.parseInt(指定下标后面的逻辑成分.getString(Cons.词语));
 
+        找到前面某个字并赋值指向(逻辑成分, 量词);
+    }
     public void 前面所有成分(){
         Document 指定下标后面的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);
         Document 指定下标的下下一个逻辑成分 = Tool.指定下标的下下一个逻辑成分(下标);
@@ -40,10 +93,9 @@ public class 前面 extends FuncAbstract {
     }
 
     public void 前面几个成分(){
-        Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
         Document 指定下标后面的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);
         Document 指定下标的下下一个逻辑成分 = Tool.指定下标的下下一个逻辑成分(下标);
-        if(指定下标前面的逻辑成分 == null || 指定下标后面的逻辑成分 == null || 指定下标的下下一个逻辑成分==null){
+        if(指定下标后面的逻辑成分 == null || 指定下标的下下一个逻辑成分==null){
             return;
         }
         if(StringUtils.isEmpty(指定下标后面的逻辑成分.getString(Cons.词语)) ||
@@ -61,7 +113,7 @@ public class 前面 extends FuncAbstract {
         Tool.删除指定下标的逻辑成分(指定下标的下下一个逻辑成分.getInteger(Cons.下标));
         int 量词 = Integer.parseInt(指定下标后面的逻辑成分.getString(Cons.词语));
 
-        找到后面某个字并赋值指向(逻辑成分, 量词);
+        找到前面某个字并赋值指向(逻辑成分, 量词);
     }
 
     public void 找到前面所有成分并赋值指向(Document 逻辑成分){
@@ -69,19 +121,34 @@ public class 前面 extends FuncAbstract {
         逻辑成分.put(Cons.指向,Tool.新建一个对象存放集合类型(指定范围下标的句子成分));
     }
 
-    public void 找到后面某个字并赋值指向(Document 逻辑成分, int num){
+    public void 找到前面某个属性并赋值指向(Document 逻辑成分,String 属性, int num){
+        Document 新句子成分 = new Document();
+        新句子成分.put(Cons.词语, "");
+        逻辑成分.put(Cons.指向,新句子成分);
+        List<Document> 指定范围下标的句子成分 = Tool.获取指定范围下标的句子成分(0, 句子下标);
+        for (Document document: 指定范围下标的句子成分) {
+            if(document.containsKey(属性)){
+                新句子成分.put(Cons.词语, document.get(属性));
+                逻辑成分.put(Cons.指向,新句子成分);
+                return;
+            }
+        }
+    }
+    public void 找到前面某个字并赋值指向(Document 逻辑成分, int num){
         if(句子下标 + num + 1> 句子.length()){
             return;
         }
-
         Document 新句子成分 = new Document();
         StringBuffer 词语 = new StringBuffer();
-        for (int i = 0; i < num ; i++) {
-            词语.append(句子.substring(句子结束下标+i, 句子结束下标 + i +1));
+        for (int i = num; i >0 ; i--) {
+            if(句子下标-i<0){
+                return;
+            }
+            词语.append(句子.substring(句子下标-i,句子下标-i+1));
         }
         新句子成分.put(Cons.词语, 词语.toString());
-        新句子成分.put(Cons.下标, 句子结束下标);
-        新句子成分.put(Cons.结束下标, 句子结束下标 + num );
+        新句子成分.put(Cons.下标, 句子下标-num);
+        新句子成分.put(Cons.结束下标, 句子下标);
 
         逻辑成分.put(Cons.指向,新句子成分);
     }

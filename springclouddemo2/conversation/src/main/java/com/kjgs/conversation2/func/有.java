@@ -3,6 +3,7 @@ package com.kjgs.conversation2.func;
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
 import com.kjgs.枚举.Cons;
+import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +23,8 @@ public class 有 extends FuncAbstract {
         if(指定下标前面的逻辑成分 == null || 指定下标后面的逻辑成分 == null){
             return;
         }
-        boolean result = 指定下标前面的逻辑成分.getString(Cons.词语)
-                .contains(指定下标后面的逻辑成分.getString(Cons.词语));
+        boolean result = StringUtils.contains(指定下标前面的逻辑成分.getString(Cons.词语)
+                , (指定下标后面的逻辑成分.getString(Cons.词语)));
         Tool.赋值判断结果(逻辑成分, result);
     }
 
@@ -35,7 +36,7 @@ public class 有 extends FuncAbstract {
         || 指定下标的下下一个逻辑成分 == null){
             return;
         }
-        if(!指定下标的下下一个逻辑成分.containsKey(Cons.属性)){
+        if(!StringUtils.equals(指定下标的下下一个逻辑成分.getString(Cons.词语), Cons.属性)){
             return;
         }
         boolean result = false;

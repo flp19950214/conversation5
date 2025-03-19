@@ -135,6 +135,17 @@ public class Tool {
         }
         return 代词的最终指向(result);
     }
+    public static Document 指定下标的下下下一个逻辑成分(int 下标){
+        Document 指定下标后面的逻辑成分 = 指定下标后面的逻辑成分(下标);
+        Document 指定下标的下下下一个逻辑成分 = null;
+        if(指定下标后面的逻辑成分 != null){
+            Document 指定下标的下下一个逻辑成分 = 指定下标后面的逻辑成分(指定下标后面的逻辑成分.getInteger(Cons.下标));
+            if(指定下标的下下一个逻辑成分 != null){
+                指定下标的下下下一个逻辑成分 = 指定下标后面的逻辑成分(指定下标的下下一个逻辑成分.getInteger(Cons.下标));
+            }
+        }
+        return 代词的最终指向(指定下标的下下下一个逻辑成分);
+    }
     public static Document 指定下标的逻辑成分(int 下标){
         Document result =  静态引用.逻辑句子的成分集合.stream()
                 .filter (m -> m.getInteger(Cons.下标) == 下标)
