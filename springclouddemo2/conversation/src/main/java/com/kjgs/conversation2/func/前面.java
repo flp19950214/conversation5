@@ -149,6 +149,7 @@ public class 前面 extends FuncAbstract {
         新句子成分.put(Cons.词语, 词语.toString());
         新句子成分.put(Cons.下标, 句子下标-num);
         新句子成分.put(Cons.结束下标, 句子下标);
+        新句子成分.put(Cons.是否是句子成分, true);
 
         逻辑成分.put(Cons.指向,新句子成分);
     }

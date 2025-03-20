@@ -46,6 +46,7 @@ public class TalkController2 {
             成分对象.put(Cons.词语, item);
             成分对象.put(Cons.下标, i);
             成分对象.put(Cons.结束下标, i + 1);
+            成分对象.put(Cons.是否是句子成分, true);
             静态引用.输入句子的成分集合.add(成分对象);
         }
 

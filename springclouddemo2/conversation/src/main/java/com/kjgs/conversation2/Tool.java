@@ -39,12 +39,13 @@ public class Tool {
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
     }
+    // 因为遵从 逻辑中只有并且 没有或者的理念 所有只要有一个判断结果为false 就为false
     public static boolean 往前找判断结果(int 下标){
-        Object 判断的结果 = 往前找指定的键值(下标, Cons.判断的结果);
-        if(判断的结果 != null){
-            return (Boolean) 判断的结果;
-        }
-        return false;
+        boolean 判断的结果 =静态引用.逻辑句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.判断的结果))
+                .filter(m -> !m.getBoolean(Cons.判断的结果))
+                .count()>0?false:true;
+        return 判断的结果;
     }
     public static Object 往前找指定的键值(int 下标, String key){
         //过滤出小于下标的，然后排序，找出第一条
@@ -137,6 +138,14 @@ public class Tool {
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
     }
+    public static Document 指定下标后面一个句子成分(int 下标){
+        Document result =  静态引用.输入句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter (m -> m.getInteger(Cons.下标) > 下标)
+                .sorted((a,b) -> a.getInteger(Cons.下标) -  b.getInteger(Cons.下标))
+                .findFirst().orElse(null);
+        return 代词的最终指向(result);
+    }
     public static Document 指定下标的下下一个逻辑成分(int 下标){
         Document 指定下标后面的逻辑成分 = 指定下标后面的逻辑成分(下标);
         Document result = null;
@@ -175,8 +184,11 @@ public class Tool {
     }
     public static void 添加句子成分(Document document){
         //先删除再增加
-        if(document != null && document.getInteger(Cons.下标) != null){
+        if(document != null && document.getInteger(Cons.下标) != null
+            && document.containsKey(Cons.是否是句子成分)
+                && document.getBoolean(Cons.是否是句子成分)){
             删除指定下标的句子成分(document.getInteger(Cons.下标));
+            document.put(Cons.是否是句子成分, true);
             静态引用.输入句子的成分集合.add(document);
         }
     }
@@ -184,6 +196,7 @@ public class Tool {
         //先删除再增加
         if(document != null && document.getInteger(Cons.下标) != null){
             删除指定下标的逻辑成分(document.getInteger(Cons.下标));
+            document.put(Cons.是否是句子成分, false);
             静态引用.逻辑句子的成分集合.add(document);
         }
     }
@@ -239,6 +252,13 @@ public class Tool {
         }
     }
 
+    public static boolean 判断是否是句子成分(Document document){
+        if(document.containsKey(Cons.是否是句子成分) &&
+            document.getBoolean(Cons.是否是句子成分)){
+            return true;
+        }
+        return false;
+    }
 
     public static Document 代词的最终指向(Document document){
         if(document != null && document.containsKey(Cons.指向)){

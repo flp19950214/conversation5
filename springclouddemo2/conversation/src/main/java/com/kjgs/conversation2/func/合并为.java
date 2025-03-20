@@ -56,12 +56,19 @@ public class 合并为 extends FuncAbstract {
         for(Document document:子成分){
             词语.append(document.getString(Cons.词语));
         }
+        //合并 新句子成分的 对象要都是句子成分
+        //子成分中包含非句子成分就不能合并新句子成分
+        if(子成分.stream().filter(m -> !m.containsKey(Cons.是否是句子成分)
+            || m.getBoolean(Cons.是否是句子成分)==false).count()>0){
+            return null;
+        }
         Document 新句子成分 = new Document();
         新句子成分.put(Cons.词语, 词语.toString());
         int 下标 = 子成分.get(0).getInteger(Cons.下标);
         int 结束下标 = 子成分.get(子成分.size()-1).getInteger(Cons.结束下标);
         新句子成分.put(Cons.下标, 下标);
         新句子成分.put(Cons.结束下标, 结束下标);
+        新句子成分.put(Cons.是否是句子成分, true);
         //校验词语 要跟下标和结束下标的长度相匹配
         if(新句子成分.getString(Cons.词语).length() > 结束下标-下标 ){
             新句子成分.put(Cons.词语, 新句子成分.getString(Cons.词语).substring(0,结束下标-下标));
