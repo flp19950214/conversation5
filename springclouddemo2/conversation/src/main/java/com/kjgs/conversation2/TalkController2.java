@@ -80,6 +80,7 @@ public class TalkController2 {
             before = JSON.toJSONString(输入句子的成分集合Temp);
             after = JSON.toJSONString(静态引用.输入句子的成分集合);
         }while (!StringUtils.equals(before, after) && loopN<max);
+        //最后再检查一次
         int loopN2=0;
         do{
             loopN2++;
