@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.kjgs.conversation.mysql.mapper.逻辑Mapper;
 import com.kjgs.conversation.mysql.逻辑Impl;
+import com.kjgs.conversation2.func.句子;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
@@ -26,7 +27,7 @@ public class TalkController2 {
     @Autowired
     private 逻辑Mapper 逻辑MapperImpl;
 
-    final int max = 10;
+    final int max = 30;
 
     @PostMapping("/process3")
     public Object process(@RequestBody JSONObject input) {
@@ -55,11 +56,12 @@ public class TalkController2 {
         //查询所有逻辑
         //测试指定逻辑
 //        List<String> 所有逻辑 = new ArrayList(){{
-////            add("如果遇到等，并且后面1个字是于，那就把当前词和后面1个字合并为1个词");
-////            add("如果遇到合，并且后面1个字是并，那就把当前词和后面1个字合并为1个词");
-////            add("如果遇到合并，并且后面1个字是为，那就把当前词和后面1个字合并为1个词");
-////            add("如果当前词后面是是数字，那就记录如果遇到当前词，那就标记当前词的词性为数字");
+//            add("如果遇到等，并且后面1个字是于，那就把当前词和后面1个字合并为1个词");
+//            add("如果遇到合，并且后面1个字是并，那就把当前词和后面1个字合并为1个词");
+//            add("如果遇到合并，并且后面1个字是为，那就把当前词和后面1个字合并为1个词");
+//            add("如果当前词后面是是数字，那就记录如果遇到当前词，那就标记当前词的词性为数字");
 //            add("如果遇到1，那就标记当前词的词性为数字");
+//            add("如果遇到一，那就把当前词转义为1");
 //            add("如果当前词的词性是数字，并且后面1个成分是加，那就把当前词作为后面1个成分的被加数");
 //            add("如果当前词是加，并且后面1个成分的词性是数字，那就把后面1个成分作为当前词的加数");
 //        }};
@@ -77,8 +79,18 @@ public class TalkController2 {
             }
             before = JSON.toJSONString(输入句子的成分集合Temp);
             after = JSON.toJSONString(静态引用.输入句子的成分集合);
-//            System.out.println(JSON.toJSONString(Tool.指定词语的逻辑成分("如果")));
         }while (!StringUtils.equals(before, after) && loopN<max);
+        int loopN2=0;
+        do{
+            loopN2++;
+            输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
+            for (int i = 0; i <所有逻辑.size() ; i++) {
+                静态引用.逻辑句子的成分集合.clear();
+                处理句子(所有逻辑.get(i));
+            }
+            before = JSON.toJSONString(输入句子的成分集合Temp);
+            after = JSON.toJSONString(静态引用.输入句子的成分集合);
+        }while (!StringUtils.equals(before, after) && loopN2<max);
         System.out.println("最终的句子成分：");
         System.out.println(静态引用.逻辑句子的成分集合);
         System.out.println(静态引用.输入句子的成分集合);
@@ -124,6 +136,7 @@ public class TalkController2 {
 
     }
     public void 处理逻辑(Document 句子成分){
+        句子成分 = Tool.代词的最终指向(句子成分);
         //开始处理每个逻辑成分
         for (int i = 0; i < 静态引用.逻辑句子的成分集合.size() ; i++) {
             Document 逻辑成分 = 静态引用.逻辑句子的成分集合.get(i);
