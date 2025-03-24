@@ -118,6 +118,7 @@ public class Tool {
         Document result =  静态引用.逻辑句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标))
                 .filter (m -> m.getInteger(Cons.下标) < 下标)
+                .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
                 .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
@@ -126,6 +127,7 @@ public class Tool {
         Document result =  静态引用.逻辑句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标))
                 .filter (m -> m.getInteger(Cons.下标) > 下标)
+                .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
                 .sorted((a,b) -> a.getInteger(Cons.下标) -  b.getInteger(Cons.下标))
                 .findFirst().orElse(null);
         return result;
@@ -134,6 +136,7 @@ public class Tool {
         Document result =  静态引用.逻辑句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标))
                 .filter (m -> m.getInteger(Cons.下标) > 下标)
+                .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
                 .sorted((a,b) -> a.getInteger(Cons.下标) -  b.getInteger(Cons.下标))
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
@@ -142,9 +145,18 @@ public class Tool {
         Document result =  静态引用.输入句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标))
                 .filter (m -> m.getInteger(Cons.下标) > 下标)
+                .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
                 .sorted((a,b) -> a.getInteger(Cons.下标) -  b.getInteger(Cons.下标))
                 .findFirst().orElse(null);
-        return 代词的最终指向(result);
+        Document result2 = 代词的最终指向(result);
+        if(对象是否是无用词(result2)){
+            return 指定下标后面一个句子成分(下标+1);
+        }
+        return result2;
+    }
+
+    public static boolean 对象是否是无用词(Document m){
+        return !(!m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"));
     }
     public static Document 指定下标的下下一个逻辑成分(int 下标){
         Document 指定下标后面的逻辑成分 = 指定下标后面的逻辑成分(下标);

@@ -13,6 +13,7 @@ public interface Cons {
     public String 的对象="的对象";
     public String 在上级对象中的成分="在上级对象中的成分";
     public String 指向="指向";
+    public String 空格="空格";
     public String 集合类型="集合类型";
     public String 指向id="指向id";
     public String 并列集合="并列集合";
@@ -41,6 +42,7 @@ public interface Cons {
     public String 开始下标="开始下标";
     public String 结束下标="结束下标";
     public String 下标="下标";
+    public String 是否是无用词="是否是无用词";
 
     public String 判断条件="判断条件";
     public String 待处理的对象="待处理的对象";
