@@ -31,6 +31,7 @@ public class TalkController2 {
 
     @PostMapping("/process3")
     public Object process(@RequestBody JSONObject input) {
+        静态引用.输出内容=null;
         String 输入的句子 = input.getString("input");
         静态引用.输入的句子对象 = new Document();
         静态引用.输入的句子对象.put(Cons._id, new ObjectId());
