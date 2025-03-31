@@ -1,11 +1,8 @@
 package com.kjgs.conversation2.func;
 
-import com.kjgs.conversation.mysql.逻辑Impl;
+import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
-import com.kjgs.枚举.Cons;
-import org.apache.commons.lang3.StringUtils;
-import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class 记录 extends FuncAbstract {
 
     @Autowired
-    private 逻辑Impl 逻辑impl;
+    private Impl逻辑 逻辑impl;
 
     @Override
     public void 功能() {

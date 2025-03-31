@@ -1,12 +1,10 @@
 package com.kjgs.逻辑流程2;
 
-import com.kjgs.conversation.mysql.mapper.词性Mapper;
-import com.kjgs.conversation.mysql.逻辑Impl;
+import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.功能.内置功能.执行获取当前逻辑链路方法;
 import com.kjgs.功能.功能对象;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.启动执行包.获取所有功能名;
-import com.kjgs.实体.词性实体;
 import com.kjgs.实体.逻辑实体;
 import com.kjgs.实体.逻辑层级实体;
 import com.kjgs.数据库.MongoCRUDDao;
@@ -20,14 +18,12 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class 新处理逻辑 {
@@ -35,7 +31,7 @@ public class 新处理逻辑 {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private 逻辑Impl 逻辑MapperImpl;
+    private Impl逻辑 逻辑MapperImpl;
 
     @Autowired
     private 组装句子中由词性组成的句子Service 组装句子中由词性组成的句子Impl;

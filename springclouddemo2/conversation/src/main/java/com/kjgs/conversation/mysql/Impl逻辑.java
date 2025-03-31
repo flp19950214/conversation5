@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Repository
-public class 逻辑Impl{
+public class Impl逻辑 {
 
     @Autowired
     private 逻辑Mapper 逻辑MapperImpl;

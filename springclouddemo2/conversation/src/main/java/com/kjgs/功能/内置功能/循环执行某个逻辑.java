@@ -1,6 +1,6 @@
 package com.kjgs.功能.内置功能;
 
-import com.kjgs.conversation.mysql.逻辑Impl;
+import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import com.kjgs.实体.逻辑实体;
@@ -22,7 +22,7 @@ public class 循环执行某个逻辑 extends 功能抽象 {
     private 新处理逻辑 新处理逻辑Impl;
 
     @Autowired
-    private 逻辑Impl 逻辑impl;
+    private Impl逻辑 逻辑impl;
 
     @Override
     public void 初始化记录内置功能属性() {

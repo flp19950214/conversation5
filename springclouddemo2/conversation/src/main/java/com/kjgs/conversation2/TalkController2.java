@@ -2,9 +2,8 @@ package com.kjgs.conversation2;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.kjgs.conversation.mysql.mapper.数据Mapper;
 import com.kjgs.conversation.mysql.mapper.逻辑Mapper;
-import com.kjgs.conversation.mysql.逻辑Impl;
-import com.kjgs.conversation2.func.句子;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +24,9 @@ public class TalkController2 {
 
     @Autowired
     private 逻辑Mapper 逻辑MapperImpl;
+
+    @Autowired
+    private 数据Mapper 数据MapperImpl;
 
     final int max = 30;
 
@@ -98,6 +99,7 @@ public class TalkController2 {
         System.out.println(静态引用.逻辑句子的成分集合);
         System.out.println(静态引用.输入句子的成分集合);
         System.out.println(after);
+        数据MapperImpl.保存数据(Tool.格式化输入句子(输入的句子));
         return 静态引用.输出内容;
     }
 

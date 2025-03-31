@@ -41,6 +41,11 @@ public interface Cons {
     public String 主键="主键";
     public String 开始下标="开始下标";
     public String 结束下标="结束下标";
+    public String 操作库="操作库";
+    public String 数据表="数据表";
+    public String 数字="数字";
+    public String 单位词="单位词";
+    public String 方位词="方位词";
     public String 下标="下标";
     public String 是否是无用词="是否是无用词";
 
@@ -80,6 +85,7 @@ public interface Cons {
     public String 顶层逻辑="顶层逻辑";
     public String 异常逻辑="异常逻辑";
     public String 词语="词语";
+    public String 中的="中的";
     public String 当前词="当前词";
     public String 别名="别名";
     public String 代词组成成分="代词组成成分";

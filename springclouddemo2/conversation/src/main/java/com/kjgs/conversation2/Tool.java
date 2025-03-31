@@ -113,6 +113,18 @@ public class Tool {
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
     }
+    public static Document 指定下标前面的逻辑成分(int 下标,String 词语){
+        //过滤出小于下标的，然后排序，找出第一条
+        Document result =  静态引用.逻辑句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter (m -> m.getInteger(Cons.下标) < 下标)
+                .filter(m -> m.containsKey(Cons.词语))
+                .filter (m -> StringUtils.equals(m.get(Cons.词语).toString(), 词语))
+                .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
+                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
+                .findFirst().orElse(null);
+        return 代词的最终指向(result);
+    }
     public static Document 指定下标前面的逻辑成分(int 下标){
         //过滤出小于下标的，然后排序，找出第一条
         Document result =  静态引用.逻辑句子的成分集合.stream()
@@ -153,6 +165,14 @@ public class Tool {
             return 指定下标后面一个句子成分(下标+1);
         }
         return result2;
+    }
+
+    public static String 格式化输入句子(String 输入的句子){
+        StringBuffer sb = new StringBuffer();
+//        sb.append(Cons.输入的句子);
+//        sb.append(Cons.是);
+        sb.append(输入的句子);
+        return sb.toString();
     }
 
     public static boolean 对象是否是无用词(Document m){

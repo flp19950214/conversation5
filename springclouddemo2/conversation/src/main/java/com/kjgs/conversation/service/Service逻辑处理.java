@@ -1,7 +1,7 @@
 package com.kjgs.conversation.service;
 
 import com.alibaba.fastjson2.JSON;
-import com.kjgs.conversation.mysql.逻辑Impl;
+import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.实体.逻辑实体;
 import com.kjgs.数据库.MongoCRUDDao;
 import com.kjgs.枚举.Cons;
@@ -14,8 +14,6 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.print.Doc;
-import javax.tools.Tool;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,7 +22,7 @@ public class Service逻辑处理 {
     @Autowired
     private MongoCRUDDao mongoCRUDDao;
     @Autowired
-    private 逻辑Impl 逻辑MapperImpl;
+    private Impl逻辑 逻辑MapperImpl;
 
     @Autowired
     private 新处理逻辑 新处理逻辑;

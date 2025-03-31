@@ -1,6 +1,6 @@
 package com.kjgs.conversation.service;
 
-import com.kjgs.conversation.mysql.逻辑Impl;
+import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.功能.功能对象;
 import com.kjgs.实体.逻辑实体;
 import com.kjgs.枚举.Cons;
@@ -17,7 +17,7 @@ public class TalkService {
     private 新处理逻辑 新处理逻辑Impl;
 
     @Autowired
-    private 逻辑Impl 逻辑MapperImpl;
+    private Impl逻辑 逻辑MapperImpl;
 
     @Autowired
     private 执行逻辑 执行逻辑Impl;

@@ -2,7 +2,7 @@ package com.kjgs.conversation.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.kjgs.conversation.mysql.逻辑Impl;
+import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.conversation.service.Service逻辑处理;
 import com.kjgs.conversation.service.TalkService;
 import com.kjgs.conversation.service.ToolService;
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.tools.Tool;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -35,7 +34,7 @@ public class TalkController {
     private 新处理逻辑 新处理逻辑Impl;
 
     @Autowired
-    private 逻辑Impl 逻辑MapperImpl;
+    private Impl逻辑 逻辑MapperImpl;
 
     @Autowired
     private 执行逻辑 执行逻辑Impl;

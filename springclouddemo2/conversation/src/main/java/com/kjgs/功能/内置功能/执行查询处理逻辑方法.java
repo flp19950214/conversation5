@@ -1,6 +1,6 @@
 package com.kjgs.功能.内置功能;
 
-import com.kjgs.conversation.mysql.逻辑Impl;
+import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.功能.功能抽象;
 import com.kjgs.实体.内置功能实体;
 import com.kjgs.实体.逻辑实体;
@@ -14,7 +14,7 @@ public class 执行查询处理逻辑方法 extends 功能抽象 {
     public static final String 查询的逻辑名 = "查询的逻辑名";
 
     @Autowired
-    private 逻辑Impl 逻辑Mapper;
+    private Impl逻辑 逻辑Mapper;
 
     @Override
     public void 初始化记录内置功能属性() {
