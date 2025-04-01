@@ -36,6 +36,7 @@ public interface Cons {
     public String 名字="名字";
     public String 名称="名称";
     public String 词性="词性";
+    public String 名词="名词";
     public String 代词="代词";
     public String 句型="句型";
     public String 主键="主键";
@@ -44,8 +45,11 @@ public interface Cons {
     public String 操作库="操作库";
     public String 数据表="数据表";
     public String 数字="数字";
+    public String 量词 = "量词";
     public String 单位词="单位词";
     public String 方位词="方位词";
+    public String 后面="后面";
+    public String 序号词="序号词";
     public String 下标="下标";
     public String 是否是无用词="是否是无用词";
 

@@ -51,7 +51,7 @@ public class 执行查询名词指向方法 extends FuncAbstract {
         if(StringUtils.equals(操作库, Cons.数据表)){
             List<Model数据> 查询所有数据 = impl数据.查询所有数据();
             if(查询个数 != null){
-                List 过滤数据表个数 = Tool查库.过滤数据表个数(查询个数, 查询所有数据);
+                List<Model数据> 过滤数据表个数 = Tool查库.过滤数据表个数(查询个数, 查询所有数据);
             }
         }
 

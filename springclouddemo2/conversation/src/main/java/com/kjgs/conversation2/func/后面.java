@@ -15,6 +15,16 @@ public class 后面 extends FuncAbstract {
         后面几个字();
         当前词后面();
         后面几个成分();
+
+        作用到后面第一个名词();
+    }
+
+    public void 作用到后面第一个名词(){
+        Document 往后找指定词性的逻辑成分 = Tool.往后找指定词性的逻辑成分(下标, Cons.名词);
+        if(往后找指定词性的逻辑成分 == null){
+            return;
+        }
+        往后找指定词性的逻辑成分.put(Cons.方位词, Cons.后面);
     }
 
     public void 当前词后面(){

@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tool {
+    public static boolean 是否数字(String 词语){
+        return 词语.matches("-?\\d+(\\.\\d+)?");
+    }
     public static Document 往后找归属对象(int 下标, Document 下一个成分){
         Document result =  静态引用.逻辑句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标))
@@ -36,6 +39,15 @@ public class Tool {
                 .filter (m -> m.getInteger(Cons.下标) > 下标)
                 .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
                 .filter (m -> StringUtils.equals(m.getString(Cons.词语), 词语))
+                .findFirst().orElse(null);
+        return 代词的最终指向(result);
+    }
+    public static Document 往后找指定词性的逻辑成分(int 下标, String 词性){
+        Document result =  静态引用.逻辑句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter (m -> m.getInteger(Cons.下标) > 下标)
+                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
+                .filter (m -> StringUtils.equals(m.getString(Cons.词性), 词性))
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
     }

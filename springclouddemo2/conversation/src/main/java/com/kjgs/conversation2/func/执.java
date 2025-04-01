@@ -11,6 +11,7 @@ public class 执 extends FuncAbstract {
 
     public void 功能() {
         分词_执行相加方法();
+        分词_执行查询名词指向方法();
     }
 
     public void 分词_执行相加方法(){
