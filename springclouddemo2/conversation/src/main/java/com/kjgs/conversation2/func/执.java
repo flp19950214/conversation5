@@ -37,6 +37,9 @@ public class 执 extends FuncAbstract {
             return;
         }
         int 结束下标 =  下标+10;
+        if(结束下标 > 逻辑句子.length()){
+            return;
+        }
         String 执行相加方法 = 逻辑句子.substring(下标, 结束下标);
         if (!"执行查询名词指向方法".equals(执行相加方法)) {
             return;

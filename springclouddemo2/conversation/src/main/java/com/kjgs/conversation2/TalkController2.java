@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,6 +68,8 @@ public class TalkController2 {
 //            add("如果当前词的词性是数字，并且后面1个成分是加，那就把当前词作为后面1个成分的被加数");
 //            add("如果当前词是加，并且后面1个成分的词性是数字，那就把后面1个成分作为当前词的加数");
 //            add("如果遇到空格，那就标记当前词的是否是无用词为true");
+//            add("如果遇到话，那就标记当前词的词性为名词");
+//            add("如果当前词的词性是数字，那就标记后面第1个名词的数字为当前词");
 //        }};
 
         List<Document> 输入句子的成分集合Temp;
