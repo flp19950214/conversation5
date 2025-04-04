@@ -1,5 +1,6 @@
 package com.kjgs.conversation2;
 
+import com.alibaba.fastjson2.JSON;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
@@ -8,6 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tool {
+    public static Document 复制对象(Document 旧对象) {
+        return JSON.parseObject(JSON.toJSONString(旧对象), Document.class);
+    }
+    public static Integer 转数字(String 词语){
+        if(StringUtils.isEmpty(词语)){
+            return null;
+        }
+        if(词语.matches("-?\\d+(\\.\\d+)?")){
+            return Integer.parseInt(词语);
+        }
+        return null;
+    }
     public static boolean 是否数字(String 词语){
         return 词语.matches("-?\\d+(\\.\\d+)?");
     }

@@ -1,6 +1,8 @@
 package com.kjgs.conversation2.model;
 
-public class Model数据 {
+import org.bson.Document;
+
+public class Model数据 extends Document {
     public int id;
     public String 数据;
 }

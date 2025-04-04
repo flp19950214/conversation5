@@ -22,8 +22,11 @@ public class 第 extends FuncAbstract {
         }
         Integer 数字 =  Integer.parseInt(往后找指定词性的逻辑成分1.get(Cons.词语).toString());
         for(Document document : 静态引用.逻辑句子的成分集合){
+            if(!document.containsKey(Cons._id) || !往后找指定词性的逻辑成分.containsKey(Cons._id)){
+                continue;
+            }
             if(document.getObjectId(Cons._id).equals(往后找指定词性的逻辑成分.getObjectId(Cons._id))){
-                document.put(Cons.序号词, 数字);
+                document.put(Cons.数字, 数字);
             }
         }
     }
