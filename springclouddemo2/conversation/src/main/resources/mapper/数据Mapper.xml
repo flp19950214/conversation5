@@ -4,8 +4,9 @@
 <!--mapper开始就是自己定义的了-->
 <mapper namespace="com.kjgs.conversation.mysql.mapper.数据Mapper">    <!--对应的mapper类的包路径-->
     <select id = "查询所有数据" resultType="com.kjgs.conversation2.model.Model数据">
-        select id,数据 from 数据表
+        select id,数据 from 数据表 order by id desc
     </select>
+
     <insert id="保存数据">
         insert into 数据表 (数据) values (#{数据})
     </insert>
