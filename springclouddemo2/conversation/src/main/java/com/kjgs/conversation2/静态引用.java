@@ -14,7 +14,8 @@ public class 静态引用 {
     public static List<Document> 输入句子的成分集合 = new ArrayList<>();
     public static List<Document> 逻辑句子的成分集合 = new ArrayList<>();
 
-    public static String 输出内容 = "";
+    public static Document 输出内容 = null;
+    public static Integer 操作库下标 = null;
     public void 全部置空(){
         输入的句子对象=null;
         逻辑句子对象 = null;

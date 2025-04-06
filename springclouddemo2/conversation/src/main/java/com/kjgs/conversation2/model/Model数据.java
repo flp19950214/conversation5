@@ -5,4 +5,5 @@ import org.bson.Document;
 public class Model数据 extends Document {
     public int id;
     public String 数据;
+    public String type;
 }

@@ -5,14 +5,49 @@ import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Tool {
+
+    public static boolean 判断一个逻辑是否已经操作过某个增量方法(Document 句子成分,Document 逻辑成分, String 方法, String 操作属性){
+        String key = 操作属性+Cons.的+Cons.执行记录;
+        if(!句子成分.containsKey(key)){
+            return false;
+        }
+        Document document = 句子成分.get(key, Document.class);
+        return true;
+    }
+    public static Document 记录增量方法操作记录(Document 逻辑成分, String 方法, String 操作属性){
+        Document document = new Document();
+        document.put(Cons.执行逻辑, 逻辑成分.get(Cons.词语));
+        document.put(Cons.方法, 方法);
+        document.put(Cons.操作属性, 操作属性);
+        return document;
+    }
+
+    public static Document 生成输入的对象(String 词语) {
+        Document document = new Document();
+        document.put(Cons.输入的句子, 词语);
+        document.put(Cons.时间, ToolTime.getCurrentTime());
+        return document;
+    }
+    public static Document 生成输出的对象(String 词语) {
+        Document document = new Document();
+        document.put(Cons.输出的句子, 词语);
+        document.put(Cons.时间, ToolTime.getCurrentTime());
+        return document;
+    }
     public static Document 复制对象(Document 旧对象) {
         return JSON.parseObject(JSON.toJSONString(旧对象), Document.class);
     }
-    public static Integer 转数字(String 词语){
+    public static Integer 转数字(Object data){
+        if(data == null){
+            return null;
+        }
+        String 词语 = data +"";
         if(StringUtils.isEmpty(词语)){
             return null;
         }

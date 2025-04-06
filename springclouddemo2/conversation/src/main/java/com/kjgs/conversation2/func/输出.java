@@ -41,7 +41,8 @@ public class 输出 extends FuncAbstract {
         }else{
             result = 指定后面下标的逻辑成分.get(Cons.词语).toString();
         }
-        静态引用.输出内容 = result;
+        指定后面下标的逻辑成分.put(Cons.输出的句子, result);
+        静态引用.输出内容 = 指定后面下标的逻辑成分;
     }
 
 

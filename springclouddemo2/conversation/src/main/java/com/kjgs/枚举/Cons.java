@@ -3,6 +3,12 @@ package com.kjgs.枚举;
 import org.bson.types.ObjectId;
 
 public interface Cons {
+    public String 执行逻辑 = "执行逻辑";
+    public String 方法 = "方法";
+    public String 操作属性= "操作属性";
+    public String 执行记录 = "执行记录";
+
+
     public String 左尖括号 = "《";
     public String 右尖括号 = "》";
     public String 左变量标识符 = "￥{";
@@ -45,7 +51,9 @@ public interface Cons {
     public String 操作库="操作库";
     public String 操作库下标="操作库下标";
     public String 数据表="数据表";
+    public String 数据表类型="数据表类型";
     public String 数字="数字";
+    public String 偏移量="偏移量";
     public String 数据="数据";
     public String 量词 = "量词";
     public String 单位词="单位词";
@@ -60,6 +68,7 @@ public interface Cons {
     public String 待处理的对象的下标="待处理的对象的下标";
     public String 待处理对象所在句子="待处理对象所在句子";
     public String 输入的句子="输入的句子";
+    public String 输出的句子="输出的句子";
     public String 当前处理的逻辑句子="当前处理的逻辑句子";
     public String 输入的句子的词语集合="输入的句子的词语集合";
     public String 处理的句子="处理的句子";
@@ -91,6 +100,7 @@ public interface Cons {
     public String 顶层逻辑="顶层逻辑";
     public String 异常逻辑="异常逻辑";
     public String 词语="词语";
+    public String 时间="时间";
     public String 中的="中的";
     public String 当前词="当前词";
     public String 别名="别名";
@@ -158,7 +168,6 @@ public interface Cons {
     public String 好感度="好感度";
     public String 对="对";
     public String 找="找";//查找词
-    public String 输出="输出";//查找词
 
     //句型种类
     public String 疑问句="疑问句";

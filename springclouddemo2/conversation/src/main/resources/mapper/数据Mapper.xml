@@ -4,10 +4,24 @@
 <!--mapper开始就是自己定义的了-->
 <mapper namespace="com.kjgs.conversation.mysql.mapper.数据Mapper">    <!--对应的mapper类的包路径-->
     <select id = "查询所有数据" resultType="com.kjgs.conversation2.model.Model数据">
-        select id,数据 from 数据表 order by id desc
+        select 数据表下标,数据 from 数据表 order by 数据表下标 desc
     </select>
 
-    <insert id="保存数据">
-        insert into 数据表 (数据) values (#{数据})
+    <select id = "查询上一个输出对象" resultType="String">
+        select 数据对象 from 数据表 order by 数据表下标 desc limit 1
+    </select>
+    <select id = "查询数据表指向" resultType="String">
+        SELECT 数据对象
+        FROM 数据表
+        WHERE JSON_CONTAINS_PATH(数据对象, 'ALL', '$."数据表指向"')
+        order by 数据表下标 desc limit 1
+    </select>
+
+    <insert id="保存输入数据">
+        insert into 数据表 (数据,类型) values (#{数据}, '输入的句子')
     </insert>
+    <insert id="保存输出数据">
+        insert into 数据表 (数据,类型) values (#{数据}, '输出的句子')
+    </insert>
+
 </mapper>

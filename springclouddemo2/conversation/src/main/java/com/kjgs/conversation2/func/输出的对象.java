@@ -3,8 +3,6 @@ package com.kjgs.conversation2.func;
 import com.kjgs.conversation.mysql.Impl数据;
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
-import com.kjgs.conversation2.Tool查询;
-import com.kjgs.conversation2.model.Model数据;
 import com.kjgs.conversation2.静态引用;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
@@ -12,14 +10,12 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class 执行查询名词指向方法 extends FuncAbstract {
+public class 输出的对象 extends FuncAbstract {
 
     @Autowired
-    private Tool查询 tool查询;
-
+    private Impl数据 impl数据;
+    @Override
     public void 功能() {
 
     }
@@ -30,14 +26,18 @@ public class 执行查询名词指向方法 extends FuncAbstract {
         if(!判断结果){
             return;
         }
-        执行查询名词指向方法();
+        找出上句的输出对象并标记指向();
     }
-    public void 执行查询名词指向方法(){
-        Model数据 查询数据表单个目标 = tool查询.查询数据表单个目标(句子成分);
-        if(查询数据表单个目标 == null || 查询数据表单个目标.get(Cons.数据) == null){
+
+    public void 找出上句的输出对象并标记指向(){
+        Document 查询上一个输出对象 = impl数据.查询上一个输出对象();
+        if(查询上一个输出对象== null){
             return;
         }
-        逻辑成分.put(Cons.指向, 查询数据表单个目标);
+        Document 新成分 = Tool.复制对象(句子成分);
+        新成分.putAll(查询上一个输出对象);
+        逻辑成分.put(Cons.指向,新成分);
     }
+
 
 }

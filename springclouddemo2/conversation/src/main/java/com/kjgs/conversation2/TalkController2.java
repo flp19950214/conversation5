@@ -2,6 +2,7 @@ package com.kjgs.conversation2;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.kjgs.conversation.mysql.Impl数据;
 import com.kjgs.conversation.mysql.mapper.数据Mapper;
 import com.kjgs.conversation.mysql.mapper.逻辑Mapper;
 import com.kjgs.枚举.Cons;
@@ -27,7 +28,7 @@ public class TalkController2 {
     private 逻辑Mapper 逻辑MapperImpl;
 
     @Autowired
-    private 数据Mapper 数据MapperImpl;
+    private Impl数据 impl数据;
 
     final int max = 30;
 
@@ -114,7 +115,8 @@ public class TalkController2 {
         System.out.println(静态引用.逻辑句子的成分集合);
         System.out.println(静态引用.输入句子的成分集合);
         System.out.println(after);
-        数据MapperImpl.保存数据(Tool.格式化输入句子(输入的句子));
+        impl数据.保存输入的数据对象(Tool.生成输入的对象(输入的句子));
+        impl数据.保存输出的数据对象(静态引用.输出内容);
         return 静态引用.输出内容;
     }
 

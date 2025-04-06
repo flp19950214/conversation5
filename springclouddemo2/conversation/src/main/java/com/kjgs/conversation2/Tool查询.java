@@ -3,6 +3,7 @@ package com.kjgs.conversation2;
 
 import com.beust.ah.A;
 import com.kjgs.conversation.mysql.Impl数据;
+import com.kjgs.conversation2.func.句子;
 import com.kjgs.conversation2.model.Model数据;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
@@ -59,21 +60,30 @@ public class Tool查询 {
         }else{
             return null;
         }
-        if (句子成分.containsKey(Cons.方位词) && 句子成分.containsKey(Cons.操作库下标)) {
+        if(句子成分.containsKey(Cons.数据表类型) && 句子成分.get(Cons.数据表类型) != null){
+            String 数据表类型 = 句子成分.get(Cons.数据表类型).toString();
+            数据表集合 = 数据表集合.stream().filter(m -> m.containsKey(数据表类型))
+                    .collect(Collectors.toList());
+        }
+        if (句子成分.containsKey(Cons.方位词)) {
             //注意 这里是逻辑成分的方位词  但是用的是句子成分的下标
-            int 操作库下标 = 句子成分.getInteger(Cons.操作库下标);
+            Integer 操作库下标 = 句子成分.getInteger(Cons.操作库下标);
+            if(操作库下标 == null){
+                操作库下标 = 数据表集合.size()-1;
+            }
+            Integer final操作库下标 = 操作库下标;
             if (StringUtils.equalsAny(句子成分.getString(Cons.方位词), Cons.后面,Cons.向后)) {
                 数据表集合 = 数据表集合.stream()
-                        .filter(m -> m.id > 操作库下标)
+                        .filter(m -> m.id > final操作库下标)
                         .collect(Collectors.toList());
             }else if(StringUtils.equals(句子成分.getString(Cons.方位词), Cons.向前)){
                 数据表集合 = 数据表集合.stream()
-                        .filter(m -> m.id < 操作库下标)
+                        .filter(m -> m.id < final操作库下标)
                         .collect(Collectors.toList());
             }
         }
-        if (句子成分.containsKey(Cons.数字)) {
-            Integer 序号 = Tool.转数字(句子成分.get(Cons.数字)+"");
+        if (句子成分.containsKey(Cons.偏移量)) {
+            Integer 序号 = Tool.转数字(句子成分.get(Cons.偏移量)+"");
             if(序号 != null){
                 序号--;
                 if(序号<数据表集合.size()){
@@ -106,8 +116,8 @@ public class Tool查询 {
                     .filter(m -> StringUtils.equalsAny(m.getString(Cons.词性), 词性))
                     .collect(Collectors.toList());
         }
-        if (逻辑成分.containsKey(Cons.数字)) {
-            Integer 序号 = Tool.转数字(逻辑成分.get(Cons.数字)+"");
+        if (逻辑成分.containsKey(Cons.偏移量)) {
+            Integer 序号 = Tool.转数字(逻辑成分.get(Cons.偏移量)+"");
             if(序号 != null){
                 序号--;
                 if(序号<句子成分集合.size()){
