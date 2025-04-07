@@ -49,8 +49,8 @@ public interface Cons {
     public String 开始下标="开始下标";
     public String 结束下标="结束下标";
     public String 操作库="操作库";
-    public String 操作库下标="操作库下标";
     public String 数据表="数据表";
+    public String 数据表下标="数据表下标";
     public String 数据表类型="数据表类型";
     public String 数字="数字";
     public String 偏移量="偏移量";

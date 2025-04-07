@@ -67,18 +67,18 @@ public class Tool查询 {
         }
         if (句子成分.containsKey(Cons.方位词)) {
             //注意 这里是逻辑成分的方位词  但是用的是句子成分的下标
-            Integer 操作库下标 = 句子成分.getInteger(Cons.操作库下标);
-            if(操作库下标 == null){
-                操作库下标 = 数据表集合.size()-1;
+            Integer 数据表下标 = 句子成分.getInteger(Cons.数据表下标);
+            if(数据表下标 == null){
+                数据表下标 = 数据表集合.size()-1;
             }
-            Integer final操作库下标 = 操作库下标;
+            Integer final数据表下标 = 数据表下标;
             if (StringUtils.equalsAny(句子成分.getString(Cons.方位词), Cons.后面,Cons.向后)) {
                 数据表集合 = 数据表集合.stream()
-                        .filter(m -> m.id > final操作库下标)
+                        .filter(m -> m.id > final数据表下标)
                         .collect(Collectors.toList());
             }else if(StringUtils.equals(句子成分.getString(Cons.方位词), Cons.向前)){
                 数据表集合 = 数据表集合.stream()
-                        .filter(m -> m.id < final操作库下标)
+                        .filter(m -> m.id < final数据表下标)
                         .collect(Collectors.toList());
             }
         }

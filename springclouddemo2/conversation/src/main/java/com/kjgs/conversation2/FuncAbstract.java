@@ -16,9 +16,9 @@ public abstract class FuncAbstract {
     public int 下标;
     public int 结束下标;
 
-    public abstract void 功能();
+    public abstract void 功能() throws IngoreException;
 
-    public void 执行流程(Document 逻辑成分, Document 句子成分) {
+    public void 执行流程(Document 逻辑成分, Document 句子成分) throws IngoreException {
         this.逻辑成分 = 逻辑成分;
         this.句子成分 = 句子成分;
         赋值常用字段();

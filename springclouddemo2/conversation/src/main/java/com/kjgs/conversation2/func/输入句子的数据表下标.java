@@ -9,16 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class 输入句子的操作库下标 extends FuncAbstract {
+public class 输入句子的数据表下标 extends FuncAbstract {
 
     @Autowired
     private Impl数据 impl数据;
     @Override
     public void 功能() {
-        输入句子的操作库下标();
+        输入句子的数据表下标();
     }
 
-    public void 输入句子的操作库下标(){
+    public void 输入句子的数据表下标(){
         //到数据表中找，找其中包含数据表指向属性的数据
         Document 查询上一个输出对象 = impl数据.查询数据表指向();
         if(查询上一个输出对象== null){

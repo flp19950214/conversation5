@@ -22,6 +22,7 @@ public class 个 extends FuncAbstract {
                 || "词".equals(指定下标的逻辑成分.getString(Cons.词语))
                 || "成分".equals(指定下标的逻辑成分.getString(Cons.词语))
                 || "属性是".equals(指定下标的逻辑成分.getString(Cons.词语))
+                || "名词".equals(指定下标的逻辑成分.getString(Cons.词语))
         ) {
             //满足条件 合并果，创建新成分，删除旧成分
             逻辑成分.put(Cons.词语, 逻辑成分.getString(Cons.词语) + 指定下标的逻辑成分.getString(Cons.词语));

@@ -22,7 +22,7 @@ public class Tool {
     }
     public static Document 记录增量方法操作记录(Document 逻辑成分, String 方法, String 操作属性){
         Document document = new Document();
-        document.put(Cons.执行逻辑, 逻辑成分.get(Cons.词语));
+        document.put(Cons.执行逻辑, 逻辑成分.getObjectId(Cons._id));
         document.put(Cons.方法, 方法);
         document.put(Cons.操作属性, 操作属性);
         return document;
@@ -213,6 +213,19 @@ public class Tool {
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
     }
+    public static Document 指定下标前面一个句子成分(int 下标){
+        Document result =  静态引用.输入句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter (m -> m.getInteger(Cons.下标) < 下标)
+                .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
+                .sorted((a,b) -> a.getInteger(Cons.下标) -  b.getInteger(Cons.下标))
+                .findFirst().orElse(null);
+        Document result2 = 代词的最终指向(result);
+        if(result2 != null && 对象是否是无用词(result2)){
+            return 指定下标后面一个句子成分(下标+1);
+        }
+        return result2;
+    }
     public static Document 指定下标后面一个句子成分(int 下标){
         Document result =  静态引用.输入句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标))
@@ -221,7 +234,22 @@ public class Tool {
                 .sorted((a,b) -> a.getInteger(Cons.下标) -  b.getInteger(Cons.下标))
                 .findFirst().orElse(null);
         Document result2 = 代词的最终指向(result);
-        if(对象是否是无用词(result2)){
+        if(result2 != null && 对象是否是无用词(result2)){
+            return 指定下标后面一个句子成分(下标+1);
+        }
+        return result2;
+    }
+    public static Document 指定下标后面一个句子成分(int 下标, String 词性){
+        Document result =  静态引用.输入句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter (m -> m.getInteger(Cons.下标) > 下标)
+                .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
+                .filter(m -> m.containsKey(Cons.词性))
+                .filter(m -> StringUtils.equals(m.getString(Cons.词性), 词性))
+                .sorted((a,b) -> a.getInteger(Cons.下标) -  b.getInteger(Cons.下标))
+                .findFirst().orElse(null);
+        Document result2 = 代词的最终指向(result);
+        if(result2 != null && 对象是否是无用词(result2)){
             return 指定下标后面一个句子成分(下标+1);
         }
         return result2;
@@ -236,6 +264,9 @@ public class Tool {
     }
 
     public static boolean 对象是否是无用词(Document m){
+        if(m == null){
+            return true;
+        }
         return !(!m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"));
     }
     public static Document 指定下标的下下一个逻辑成分(int 下标){

@@ -15,17 +15,18 @@ public class 后面 extends FuncAbstract {
         后面几个字();
         当前词后面();
         后面几个成分();
+        后面第几个名词();
 
-        作用到后面第一个名词();
+//        作用到后面第一个名词();
     }
 
-    public void 作用到后面第一个名词(){
-        Document 往后找指定词性的逻辑成分 = Tool.往后找指定词性的逻辑成分(下标, Cons.名词);
-        if(往后找指定词性的逻辑成分 == null){
-            return;
-        }
-        往后找指定词性的逻辑成分.put(Cons.方位词, Cons.后面);
-    }
+//    public void 作用到后面第一个名词(){
+//        Document 往后找指定词性的逻辑成分 = Tool.往后找指定词性的逻辑成分(下标, Cons.名词);
+//        if(往后找指定词性的逻辑成分 == null){
+//            return;
+//        }
+//        往后找指定词性的逻辑成分.put(Cons.方位词, Cons.后面);
+//    }
 
     public void 当前词后面(){
         Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分_无迭代(下标);
@@ -33,6 +34,30 @@ public class 后面 extends FuncAbstract {
             逻辑成分.put(Cons.归属对象, 指定下标前面的逻辑成分);
             找到后面某个字并赋值指向(逻辑成分, 句子.length() - 句子结束下标);
         }
+    }
+    public void 后面第几个名词(){
+        Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
+        Document 指定下标后面的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);
+        Document 指定下标的下下一个逻辑成分 = Tool.指定下标的下下一个逻辑成分(下标);
+        if(指定下标前面的逻辑成分 == null || 指定下标后面的逻辑成分 == null || 指定下标的下下一个逻辑成分==null){
+            return;
+        }
+        if(StringUtils.isEmpty(指定下标后面的逻辑成分.getString(Cons.词语)) ||
+                !指定下标后面的逻辑成分.getString(Cons.词语).matches("-?\\d+(\\.\\d+)?")){
+            return;
+        }
+        if(!StringUtils.equals(指定下标的下下一个逻辑成分.getString(Cons.词语), "个名词")){
+            return;
+        }
+        //满足条件 合并果，创建新成分，删除旧成分
+        逻辑成分.put(Cons.词语, 逻辑成分.getString(Cons.词语) + 指定下标后面的逻辑成分.getString(Cons.词语)
+                + 指定下标的下下一个逻辑成分.getString(Cons.词语));
+        逻辑成分.put(Cons.结束下标, 指定下标的下下一个逻辑成分.getInteger(Cons.结束下标));
+        Tool.删除指定下标的逻辑成分(指定下标后面的逻辑成分.getInteger(Cons.下标));
+        Tool.删除指定下标的逻辑成分(指定下标的下下一个逻辑成分.getInteger(Cons.下标));
+        int 量词 = Integer.parseInt(指定下标后面的逻辑成分.getString(Cons.词语));
+
+        找到后面1个名词并赋值指向(逻辑成分, 量词);
     }
     public void 后面几个成分(){
         Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
@@ -92,6 +117,16 @@ public class 后面 extends FuncAbstract {
             逻辑成分.put(Cons.指向,新句子成分);
         }
     }
+    public void 找到后面1个名词并赋值指向(Document 逻辑成分, int num){
+        if(句子下标 + num + 1> 句子.length()){
+            return;
+        }
+        Document 新句子成分 = Tool.指定下标后面一个句子成分(句子下标, Cons.名词);
+        if(新句子成分 != null){
+            逻辑成分.put(Cons.指向,新句子成分);
+        }
+    }
+
     public void 找到后面某个字并赋值指向(Document 逻辑成分, int num){
         if(句子下标 + num + 1> 句子.length()){
             return;

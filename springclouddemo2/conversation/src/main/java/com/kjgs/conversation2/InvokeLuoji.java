@@ -26,6 +26,8 @@ public class InvokeLuoji {
             FuncAbstract funcAbstract = (FuncAbstract)
                     context.getBean(Class.forName("com.kjgs.conversation2.func." + 动作));
             funcAbstract.执行流程(逻辑成分, 句子成分);
+        }catch (IngoreException e){
+//            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
