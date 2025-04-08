@@ -7,21 +7,23 @@ import org.bson.Document;
 import org.springframework.stereotype.Service;
 
 @Service
-public class 操 extends FuncAbstract {
+public class 刚 extends FuncAbstract {
 
     public void 功能() {
-        分词_操作表();
+        分词_刚才输出内容();
     }
 
-    public void 分词_操作表(){
+    public void 分词_刚才输出内容(){
         Document 指定下标的逻辑成分 = Tool.指定下标的逻辑成分(结束下标);
         if (指定下标的逻辑成分 == null) {
             return;
         }
-        String 词语 = "操作表";
-        int 结束下标 =  下标+词语.length();
+        int 结束下标 =  下标+7;
+        if(结束下标 > 逻辑句子.length()){
+            return;
+        }
         String 记录成处理逻辑 = 逻辑句子.substring(下标, 结束下标);
-        if (!词语.equals(记录成处理逻辑)) {
+        if (!"刚才输出的内容".equals(记录成处理逻辑)) {
             return;
         }
         //满足条件 合并果，创建新成分，删除旧成分
@@ -30,4 +32,3 @@ public class 操 extends FuncAbstract {
         Tool.删除指定范围下标的逻辑成分(下标+1, 结束下标);
     }
 }
-

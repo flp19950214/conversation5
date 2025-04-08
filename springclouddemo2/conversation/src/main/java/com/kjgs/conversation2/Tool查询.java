@@ -51,10 +51,10 @@ public class Tool查询 {
 
     @Autowired
     private Impl数据 impl数据;
-    public Model数据 查询数据表单个目标(Document 句子成分) {
-        List<Model数据> 数据表集合 = new ArrayList<>();
-        if (句子成分.containsKey(Cons.操作库)) {
-            if (StringUtils.equalsAny(句子成分.getString(Cons.操作库), Cons.数据表)) {
+    public Document 查询数据表单个目标(Document 句子成分) {
+        List<Document> 数据表集合 = new ArrayList<>();
+        if (句子成分.containsKey(Cons.操作表)) {
+            if (StringUtils.equalsAny(句子成分.getString(Cons.操作表), Cons.数据表)) {
                 数据表集合 = impl数据.查询所有数据();
             }
         }else{
@@ -67,18 +67,18 @@ public class Tool查询 {
         }
         if (句子成分.containsKey(Cons.方位词)) {
             //注意 这里是逻辑成分的方位词  但是用的是句子成分的下标
-            Integer 数据表下标 = 句子成分.getInteger(Cons.数据表下标);
+            Integer 数据表下标 = Tool.转数字(句子成分.get(Cons.数据表下标)+"");
             if(数据表下标 == null){
                 数据表下标 = 数据表集合.size()-1;
             }
             Integer final数据表下标 = 数据表下标;
             if (StringUtils.equalsAny(句子成分.getString(Cons.方位词), Cons.后面,Cons.向后)) {
                 数据表集合 = 数据表集合.stream()
-                        .filter(m -> m.id > final数据表下标)
+                        .filter(m -> m.getInteger(Cons.数据表下标) > final数据表下标)
                         .collect(Collectors.toList());
             }else if(StringUtils.equals(句子成分.getString(Cons.方位词), Cons.向前)){
                 数据表集合 = 数据表集合.stream()
-                        .filter(m -> m.id < final数据表下标)
+                        .filter(m ->m.getInteger(Cons.数据表下标) < final数据表下标)
                         .collect(Collectors.toList());
             }
         }

@@ -15,7 +15,7 @@ public class InvokeLuoji {
     @Autowired
     private ApplicationContext context;
 
-    public void 执行逻辑(String 动作, Document 逻辑成分, Document 句子成分){
+    public void 执行逻辑(String 动作, Document 逻辑成分, Document 句子成分, Document 原句子成分){
         if(Tool.是否数字(动作)){
             逻辑成分.put(Cons.词性, Cons.数字);
         }
@@ -25,7 +25,7 @@ public class InvokeLuoji {
         try {
             FuncAbstract funcAbstract = (FuncAbstract)
                     context.getBean(Class.forName("com.kjgs.conversation2.func." + 动作));
-            funcAbstract.执行流程(逻辑成分, 句子成分);
+            funcAbstract.执行流程(逻辑成分, 句子成分, 原句子成分);
         }catch (IngoreException e){
 //            e.printStackTrace();
         } catch (Exception e) {

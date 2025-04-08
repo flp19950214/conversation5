@@ -3,25 +3,33 @@
 <!--上面是头部命名空间-->
 <!--mapper开始就是自己定义的了-->
 <mapper namespace="com.kjgs.conversation.mysql.mapper.数据Mapper">    <!--对应的mapper类的包路径-->
-    <select id = "查询所有数据" resultType="com.kjgs.conversation2.model.Model数据">
-        select 数据表下标,数据 from 数据表 order by 数据表下标 desc
+    <select id = "查询所有数据" resultType="String">
+        select JSON_INSERT(数据对象,'$."数据表下标"', 数据表下标) as 数据对象 from 数据表 order by 数据表下标 desc
     </select>
 
     <select id = "查询上一个输出对象" resultType="String">
-        select 数据对象 from 数据表 order by 数据表下标 desc limit 1
+        select JSON_INSERT(数据对象,'$."数据表下标"', 数据表下标) as 数据对象
+        from 数据表
+         where JSON_CONTAINS_PATH(数据对象, 'ALL', '$."输出的句子"')
+         order by 数据表下标 desc limit 1
+    </select>
+    <select id = "查询上一个输入对象" resultType="String">
+       SELECT JSON_INSERT(数据对象,'$."数据表下标"', 数据表下标) as 数据对象
+        FROM 数据表
+         where JSON_CONTAINS_PATH(数据对象, 'ALL', '$."输入的句子"')
+        order by 数据表下标 desc limit 1
     </select>
     <select id = "查询数据表指向" resultType="String">
-        SELECT 数据对象
+        SELECT JSON_INSERT(数据对象,'$."数据表下标"', 数据表下标) as 数据对象
         FROM 数据表
         WHERE JSON_CONTAINS_PATH(数据对象, 'ALL', '$."数据表指向"')
         order by 数据表下标 desc limit 1
     </select>
 
-    <insert id="保存输入数据">
-        insert into 数据表 (数据,类型) values (#{数据}, '输入的句子')
-    </insert>
-    <insert id="保存输出数据">
-        insert into 数据表 (数据,类型) values (#{数据}, '输出的句子')
+
+
+    <insert id="保存数据表">
+        insert into 数据表 (数据对象) values (#{数据对象})
     </insert>
 
 </mapper>

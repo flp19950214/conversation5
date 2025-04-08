@@ -20,6 +20,7 @@ public interface Cons {
     public String 在上级对象中的成分="在上级对象中的成分";
     public String 指向="指向";
     public String 空格="空格";
+    public String 数据表指向="数据表指向";
     public String 集合类型="集合类型";
     public String 指向id="指向id";
     public String 并列集合="并列集合";
@@ -48,13 +49,14 @@ public interface Cons {
     public String 主键="主键";
     public String 开始下标="开始下标";
     public String 结束下标="结束下标";
-    public String 操作库="操作库";
+    public String 操作表="操作表";
     public String 数据表="数据表";
     public String 数据表下标="数据表下标";
     public String 数据表类型="数据表类型";
     public String 数字="数字";
     public String 偏移量="偏移量";
     public String 数据="数据";
+    public String 数据对象="数据对象";
     public String 量词 = "量词";
     public String 单位词="单位词";
     public String 方位词="方位词";

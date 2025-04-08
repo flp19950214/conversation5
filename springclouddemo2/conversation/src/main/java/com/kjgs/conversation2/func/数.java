@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 public class 数 extends FuncAbstract {
 
     public void 功能() {
-        分词_数字();
+        分词_数据表类型();
+        分词_数据表指向();
+        分词_数据表下标();
         分词_数字格式();
         分词_数据表();
-        分词_数据表下标();
+        分词_数字();
     }
 
     public void 分词_数字(){
@@ -79,6 +81,45 @@ public class 数 extends FuncAbstract {
             return;
         }
         String 词语 = "数据表下标";
+        int 结束下标 =  下标+词语.length();
+        if(结束下标 > 逻辑句子.length()){
+            return;
+        }
+        String 记录成处理逻辑 = 逻辑句子.substring(下标, 结束下标);
+        if (!词语.equals(记录成处理逻辑)) {
+            return;
+        }
+        //满足条件 合并果，创建新成分，删除旧成分
+        逻辑成分.put(Cons.词语, 记录成处理逻辑);
+        逻辑成分.put(Cons.结束下标, 结束下标);
+        Tool.删除指定范围下标的逻辑成分(下标+1, 结束下标);
+    }
+    public void 分词_数据表指向(){
+        Document 指定下标的逻辑成分 = Tool.指定下标的逻辑成分(结束下标);
+        if (指定下标的逻辑成分 == null) {
+            return;
+        }
+        String 词语 = "数据表指向";
+        int 结束下标 =  下标+词语.length();
+        if(结束下标 > 逻辑句子.length()){
+            return;
+        }
+        String 记录成处理逻辑 = 逻辑句子.substring(下标, 结束下标);
+        if (!词语.equals(记录成处理逻辑)) {
+            return;
+        }
+        //满足条件 合并果，创建新成分，删除旧成分
+        逻辑成分.put(Cons.词语, 记录成处理逻辑);
+        逻辑成分.put(Cons.结束下标, 结束下标);
+        Tool.删除指定范围下标的逻辑成分(下标+1, 结束下标);
+    }
+
+    public void 分词_数据表类型(){
+        Document 指定下标的逻辑成分 = Tool.指定下标的逻辑成分(结束下标);
+        if (指定下标的逻辑成分 == null) {
+            return;
+        }
+        String 词语 = "数据表类型";
         int 结束下标 =  下标+词语.length();
         if(结束下标 > 逻辑句子.length()){
             return;

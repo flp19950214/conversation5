@@ -5,6 +5,7 @@ import org.bson.Document;
 
 public abstract class FuncAbstract {
     public Document 句子成分;
+    public Document 原句子成分;
     public String 句子;
     public String 句子词语;
     public int 句子下标;
@@ -18,9 +19,10 @@ public abstract class FuncAbstract {
 
     public abstract void 功能() throws IngoreException;
 
-    public void 执行流程(Document 逻辑成分, Document 句子成分) throws IngoreException {
+    public void 执行流程(Document 逻辑成分, Document 句子成分, Document 原句子成分) throws IngoreException {
         this.逻辑成分 = 逻辑成分;
         this.句子成分 = 句子成分;
+        this.原句子成分 = 原句子成分;
         赋值常用字段();
         功能();
         判断结果是true时执行();
@@ -31,9 +33,9 @@ public abstract class FuncAbstract {
     }
 
     protected void 赋值常用字段(){
-        句子下标 = 句子成分.getInteger(Cons.下标);
-        句子结束下标 = 句子成分.getInteger(Cons.结束下标);
-        句子词语 = 句子成分.getString(Cons.词语);
+        句子下标 = 句子成分.containsKey(Cons.下标) ? 句子成分.getInteger(Cons.下标):原句子成分.getInteger(Cons.下标);
+        句子结束下标 = 句子成分.containsKey(Cons.结束下标) ? 句子成分.getInteger(Cons.结束下标) : 原句子成分.getInteger(Cons.结束下标);
+        句子词语 = 句子成分.containsKey(Cons.词语) ? 句子成分.getString(Cons.词语):原句子成分.getString(Cons.词语);
         句子 = 静态引用.输入的句子对象.getString(Cons.词语);
 
         下标 = 逻辑成分.getInteger(Cons.下标);

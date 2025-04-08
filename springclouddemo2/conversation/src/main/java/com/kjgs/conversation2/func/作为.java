@@ -28,7 +28,10 @@ public class 作为 extends FuncAbstract {
         if(指定前面下标的逻辑成分 == null || 指定后面下标的逻辑成分 == null){
            return;
         }
-        String 属性值 = 指定前面下标的逻辑成分.getString(Cons.词语);
+        Object 属性值 = 指定前面下标的逻辑成分.getString(Cons.词语);
+        if(指定前面下标的逻辑成分.containsKey(Cons.归属对象)){
+            属性值 = Tool.最终的归属对象(指定前面下标的逻辑成分).get(属性值);
+        }
         Document 属性对象 = Tool.往后找归属对象(下标, 指定后面下标的逻辑成分);
         if(属性对象==null){
             return;

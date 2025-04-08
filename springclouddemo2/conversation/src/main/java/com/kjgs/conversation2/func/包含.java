@@ -17,7 +17,7 @@ public class 包含 extends FuncAbstract {
         //前面一个成分包含后面一个成分
         Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
         Document 指定下标后面的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);
-        if(指定下标前面的逻辑成分 == null || 指定下标后面的逻辑成分 == null){
+        if(指定下标前面的逻辑成分 == null || 指定下标后面的逻辑成分 == null || 指定下标前面的逻辑成分.getString(Cons.词语) == null){
             return;
         }
         boolean result = 指定下标前面的逻辑成分.getString(Cons.词语)

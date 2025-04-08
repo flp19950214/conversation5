@@ -31,12 +31,14 @@ public class Tool {
     public static Document 生成输入的对象(String 词语) {
         Document document = new Document();
         document.put(Cons.输入的句子, 词语);
+        document.put(Cons.词语, 词语);
         document.put(Cons.时间, ToolTime.getCurrentTime());
         return document;
     }
     public static Document 生成输出的对象(String 词语) {
         Document document = new Document();
         document.put(Cons.输出的句子, 词语);
+        document.put(Cons.词语, 词语);
         document.put(Cons.时间, ToolTime.getCurrentTime());
         return document;
     }
@@ -218,7 +220,7 @@ public class Tool {
                 .filter(m -> m.containsKey(Cons.下标))
                 .filter (m -> m.getInteger(Cons.下标) < 下标)
                 .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
-                .sorted((a,b) -> a.getInteger(Cons.下标) -  b.getInteger(Cons.下标))
+                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
                 .findFirst().orElse(null);
         Document result2 = 代词的最终指向(result);
         if(result2 != null && 对象是否是无用词(result2)){
