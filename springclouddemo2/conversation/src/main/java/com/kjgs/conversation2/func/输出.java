@@ -29,19 +29,12 @@ public class 输出 extends FuncAbstract {
         if( 指定后面下标的逻辑成分 == null){
            return;
         }
-        Document 属性对象 = Tool.往后找归属对象(下标, 指定后面下标的逻辑成分);
-        String result ="";
-        if(属性对象!=null){
-            String 属性 = 属性对象.get(Cons.词语).toString();
-            if(StringUtils.equals(属性, Cons.值)){
-                result = 指定后面下标的逻辑成分.get(Cons.词语).toString();
-            }else{
-                result = 指定后面下标的逻辑成分.get(属性).toString();
-            }
+        Object result = Tool.往后找归属对象的属性值(下标, 指定后面下标的逻辑成分);
+        if(result!=null){
+            静态引用.输出内容 = result.toString();
         }else{
-            result = 指定后面下标的逻辑成分.get(Cons.词语).toString();
+            静态引用.输出内容 = "";
         }
-        静态引用.输出内容 = result;
     }
 
 

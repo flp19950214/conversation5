@@ -10,8 +10,36 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Tool {
+    public static void main(String[] args) {
+        String s = "如果遇到再，并且后面第12个名词包含偏移量属性，那就给后面第1个名词的偏移量加1";
+        int 下标 = 8;
+        String s2 = s.substring(下标);
+        System.out.println(s2.matches("^后面第[0-9]+个名词"));
+
+        System.out.println(是否正则匹配(s, 下标, "^后面第[0-9]+个名词"));
+        System.out.println(获取正则匹陪内容(s, 下标, "^后面第[0-9]+个名词"));
+
+    }
+
+    public static boolean 是否正则匹配(String 逻辑, int 下标, String 正则){
+        String s2 = 逻辑.substring(下标);
+        Pattern pattern = Pattern.compile(正则);
+        Matcher matcher = pattern.matcher(s2);
+        return matcher.find();
+    }
+    public static String 获取正则匹陪内容(String 逻辑, int 下标, String 正则){
+        String s2 = 逻辑.substring(下标);
+        Pattern pattern = Pattern.compile(正则);
+        Matcher matcher = pattern.matcher(s2);
+        if (matcher.find()){
+            return matcher.group();
+        }
+        return null;
+    }
 
     public static boolean 判断一个逻辑是否已经操作过某个增量方法(Document 句子成分,Document 逻辑成分, String 方法, String 操作属性){
         String key = 操作属性+Cons.的+Cons.执行记录;
@@ -37,7 +65,7 @@ public class Tool {
     }
     public static Document 记录增量方法操作记录(Document 逻辑成分,Document 句子成分, String 方法, String 操作属性){
         Document document = new Document();
-        document.put(Cons.逻辑成分, 逻辑成分.getObjectId(Cons._id).toString());
+        document.put(Cons.逻辑成分, 逻辑成分.get(Cons._id).toString());
         if(!(句子成分 instanceof Document) || !句子成分.containsKey(Cons._id)){
             return null;
         }
@@ -90,6 +118,22 @@ public class Tool {
                 .findFirst().orElse(null);
         return result;
     }
+
+    public static Object 往后找归属对象的属性值(int 下标, Document 主体){
+        Document 属性对象 = Tool.往后找归属对象(下标, 主体);
+        Object result;
+        if(属性对象!=null){
+            String 属性 = 属性对象.get(Cons.词语).toString();
+            if(StringUtils.equals(属性, Cons.值)){
+                result = 主体.get(Cons.词语);
+            }else{
+                result = 主体.get(属性);
+            }
+        }else{
+            result = 主体.get(Cons.词语);
+        }
+        return result;
+    }
     public static Document 指定词语的句子成分(String 词语){
         Document result =  静态引用.输入句子的成分集合.stream()
                 .filter (m -> StringUtils.equals(m.getString(Cons.词语), 词语))
@@ -122,6 +166,12 @@ public class Tool {
     }
     // 因为遵从 逻辑中只有并且 没有或者的理念 所有只要有一个判断结果为false 就为false
     public static boolean 往前找判断结果(int 下标){
+        //没有判断结果就是false
+        if(静态引用.逻辑句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.判断的结果))
+                .count()==0){
+            return false;
+        }
         boolean 判断的结果 =静态引用.逻辑句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.判断的结果))
                 .filter(m -> !m.getBoolean(Cons.判断的结果))

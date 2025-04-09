@@ -39,7 +39,8 @@ public class 加 extends FuncAbstract {
         String 属性 = 指定下标前面的逻辑成分.getString(Cons.词语);
         Object 属性值 = 最终的归属对象.get(属性);
         Integer 被加数 = Tool.转数字(属性值);
-        Integer 加数 = Tool.转数字(指定下标后面的逻辑成分.get(Cons.词语));
+
+        Integer 加数 = Tool.转数字(Tool.往后找归属对象的属性值(下标,指定下标后面的逻辑成分));
         if(被加数 == null){
             被加数 = 0;
         }
