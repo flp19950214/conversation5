@@ -1,6 +1,7 @@
 package com.kjgs.conversation2;
 
 import com.alibaba.fastjson2.JSON;
+import com.kjgs.conversation2.func.句子;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
@@ -17,12 +18,30 @@ public class Tool {
         if(!句子成分.containsKey(key)){
             return false;
         }
+        if(!(句子成分 instanceof Document)){
+            return false;
+        }
+        if(!(句子成分.get(key) instanceof Document)){
+            return false;
+        }
         Document document = 句子成分.get(key, Document.class);
-        return true;
+        if(
+        StringUtils.equals(document.getString(Cons.逻辑成分),逻辑成分.get(Cons._id).toString())  &&
+         StringUtils.equals(document.getString(Cons.句子成分),句子成分.get(Cons._id).toString()) &&
+         StringUtils.equals(document.getString(Cons.方法),方法)
+        && StringUtils.equals(document.getString(Cons.操作属性),操作属性)
+        ){
+            return true;
+        }
+        return false;
     }
-    public static Document 记录增量方法操作记录(Document 逻辑成分, String 方法, String 操作属性){
+    public static Document 记录增量方法操作记录(Document 逻辑成分,Document 句子成分, String 方法, String 操作属性){
         Document document = new Document();
-        document.put(Cons.执行逻辑, 逻辑成分.getObjectId(Cons._id));
+        document.put(Cons.逻辑成分, 逻辑成分.getObjectId(Cons._id).toString());
+        if(!(句子成分 instanceof Document) || !句子成分.containsKey(Cons._id)){
+            return null;
+        }
+        document.put(Cons.句子成分, 句子成分.get(Cons._id).toString());
         document.put(Cons.方法, 方法);
         document.put(Cons.操作属性, 操作属性);
         return document;

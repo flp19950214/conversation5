@@ -11,6 +11,15 @@ public class 加 extends FuncAbstract {
 
     public void 功能() {
         分词_加数();
+
+    }
+
+    @Override
+    public void 判断结果是true时执行(){
+        boolean 判断结果 = Tool.往前找判断结果(下标);
+        if(!判断结果){
+            return;
+        }
         给属性加量();
     }
 
@@ -38,12 +47,14 @@ public class 加 extends FuncAbstract {
             加数 = 0;
         }
 
-        if(Tool.判断一个逻辑是否已经操作过某个增量方法(句子成分, 逻辑成分, "加", 属性)){
+        if(Tool.判断一个逻辑是否已经操作过某个增量方法(句子成分, 最终的归属对象, "加", 属性)){
             return;
         }
         最终的归属对象.put(指定下标前面的逻辑成分.get(Cons.词语)+"", 加数 + 被加数);
-        Document 属性的执行记录对象 = Tool.记录增量方法操作记录(逻辑成分, "加", 属性);
-        句子成分.put(属性+Cons.的+Cons.执行记录, 属性的执行记录对象);
+        Document 属性的执行记录对象 = Tool.记录增量方法操作记录(最终的归属对象,句子成分, "加", 属性);
+        if(属性的执行记录对象 != null){
+            句子成分.put(属性+Cons.的+Cons.执行记录, 属性的执行记录对象);
+        }
     }
 
     public void 分词_加数(){

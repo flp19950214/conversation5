@@ -36,7 +36,7 @@ public class 输入句子的数据表下标 extends FuncAbstract {
         }
         Document 新成分 = Tool.复制对象(句子成分);
         新成分.putAll(查询上一个输出对象);
-        逻辑成分.put(Cons.指向,新成分);
+        逻辑成分.put(Cons.指向,查询上一个输出对象);
     }
 
 

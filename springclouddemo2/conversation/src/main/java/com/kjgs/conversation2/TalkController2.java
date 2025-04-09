@@ -55,29 +55,31 @@ public class TalkController2 {
             静态引用.输入句子的成分集合.add(成分对象);
         }
 
-        List<String> 所有逻辑 = 逻辑MapperImpl.查询所有逻辑();
+//        List<String> 所有逻辑 = 逻辑MapperImpl.查询所有逻辑();
         //重置输入句子成分();
         //查询所有逻辑
         //测试指定逻辑
-//        List<String> 所有逻辑 = new ArrayList(){{
-////            add("如果遇到等，并且后面1个字是于，那就把当前词和后面1个字合并为1个词");
-////            add("如果遇到合，并且后面1个字是并，那就把当前词和后面1个字合并为1个词");
-////            add("如果遇到合并，并且后面1个字是为，那就把当前词和后面1个字合并为1个词");
-////            add("如果当前词后面是是数字，那就记录如果遇到当前词，那就标记当前词的词性为数字");
-////            add("如果遇到1，那就标记当前词的词性为数字");
-////            add("如果遇到一，那就把当前词转义为1");
-////            add("如果当前词的词性是数字，并且后面1个成分是加，那就把当前词作为后面1个成分的被加数");
-////            add("如果当前词是加，并且后面1个成分的词性是数字，那就把后面1个成分作为当前词的加数");
-////            add("如果遇到空格，那就标记当前词的是否是无用词为true");
-////            add("如果遇到上，那就标记当前词的词性为方位词");
-//            add("如果遇到话，那就标记当前词的词性为名词");
-////            add("如果当前词的词性是数字，那就标记后面第1个名词的数字为当前词");
-////            add("如果遇到话，并且当前词的词性是名词，那就标记当前词的操作表为数据表");
-////            add("如果遇到话，并且当前词的词性是名词，那就找到输入句子的数据表下标作为当前词的数据表下标");
-////            add("如果当前词的词性是数字，并且前面1个成分的词性是方位词，那就标记后面第1个名词的偏移量为当前词");
+        List<String> 所有逻辑 = new ArrayList(){{
+//            add("如果遇到等，并且后面1个字是于，那就把当前词和后面1个字合并为1个词");
+//            add("如果遇到合，并且后面1个字是并，那就把当前词和后面1个字合并为1个词");
+//            add("如果遇到合并，并且后面1个字是为，那就把当前词和后面1个字合并为1个词");
+//            add("如果当前词后面是是数字，那就记录如果遇到当前词，那就标记当前词的词性为数字");
+//            add("如果遇到1，那就标记当前词的词性为数字");
+//            add("如果遇到一，那就把当前词转义为1");
+//            add("如果当前词的词性是数字，并且后面1个成分是加，那就把当前词作为后面1个成分的被加数");
+//            add("如果当前词是加，并且后面1个成分的词性是数字，那就把后面1个成分作为当前词的加数");
+//            add("如果遇到空格，那就标记当前词的是否是无用词为true");
+//            add("如果遇到上，那就标记当前词的词性为方位词");
+            add("如果遇到话，那就标记当前词的词性为名词");
+//            add("如果当前词的词性是数字，那就标记后面第1个名词的数字为当前词");
+//            add("如果遇到话，并且当前词的词性是名词，那就标记当前词的操作表为数据表");
+//            add("如果遇到话，并且当前词的词性是名词，那就找到输入句子的数据表下标作为当前词的数据表下标");
+//            add("如果当前词的词性是数字，并且前面1个成分的词性是方位词，那就标记后面第1个名词的偏移量为当前词");
 //            add("如果遇到再，并且后面第1个名词是话，那就找到刚才输出的内容的数据表下标作为后面第1个名词的数据表下标");
 //            add("如果遇到话，并且当前词的词性是名词，那就标记当前词的数据表类型为输入的句子");
-//        }};
+//            add("如果当前词的词性是名词，并且后面3个字是是什么，那就输出当前词");
+            add("如果遇到再，并且后面第1个名词包含偏移量属性，那就给后面第1个名词的偏移量加1");
+        }};
 
         List<Document> 输入句子的成分集合Temp;
         String before;
@@ -92,31 +94,31 @@ public class TalkController2 {
             }
             before = JSON.toJSONString(输入句子的成分集合Temp);
             after = JSON.toJSONString(静态引用.输入句子的成分集合);
-        }while (!StringUtils.equals(before, after) && loopN<max);
+        }while ( loopN<max);
         //最后再检查一次
-        int loopN2=0;
-        do{
-            loopN2++;
-            输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
-            for (int i = 0; i <所有逻辑.size() ; i++) {
-                静态引用.逻辑句子的成分集合.clear();
-                处理句子(所有逻辑.get(i));
-            }
-            before = JSON.toJSONString(输入句子的成分集合Temp);
-            after = JSON.toJSONString(静态引用.输入句子的成分集合);
-        }while (!StringUtils.equals(before, after) && loopN2<max);
+//        int loopN2=0;
+//        do{
+//            loopN2++;
+//            输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
+//            for (int i = 0; i <所有逻辑.size() ; i++) {
+//                静态引用.逻辑句子的成分集合.clear();
+//                处理句子(所有逻辑.get(i));
+//            }
+//            before = JSON.toJSONString(输入句子的成分集合Temp);
+//            after = JSON.toJSONString(静态引用.输入句子的成分集合);
+//        }while (!StringUtils.equals(before, after) && loopN2<max);
         //最后再检查一次
-        int loopN3=0;
-        do{
-            loopN3++;
-            输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
-            for (int i = 0; i <所有逻辑.size() ; i++) {
-                静态引用.逻辑句子的成分集合.clear();
-                处理句子(所有逻辑.get(i));
-            }
-            before = JSON.toJSONString(输入句子的成分集合Temp);
-            after = JSON.toJSONString(静态引用.输入句子的成分集合);
-        }while (!StringUtils.equals(before, after) && loopN3<max);
+//        int loopN3=0;
+//        do{
+//            loopN3++;
+//             输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
+//            for (int i = 0; i <所有逻辑.size() ; i++) {
+//                静态引用.逻辑句子的成分集合.clear();
+//                处理句子(所有逻辑.get(i));
+//            }
+//            before = JSON.toJSONString(输入句子的成分集合Temp);
+//            after = JSON.toJSONString(静态引用.输入句子的成分集合);
+//        }while (!StringUtils.equals(before, after) && loopN3<max);
         System.out.println("最终的句子成分：");
         System.out.println(静态引用.逻辑句子的成分集合);
         System.out.println(静态引用.输入句子的成分集合);

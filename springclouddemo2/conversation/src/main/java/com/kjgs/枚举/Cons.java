@@ -3,7 +3,6 @@ package com.kjgs.枚举;
 import org.bson.types.ObjectId;
 
 public interface Cons {
-    public String 执行逻辑 = "执行逻辑";
     public String 方法 = "方法";
     public String 操作属性= "操作属性";
     public String 执行记录 = "执行记录";
@@ -88,6 +87,7 @@ public interface Cons {
     public String 当前处理逻辑名="当前处理逻辑名";
     public String 对象类型="对象类型";
     public String 句子成分="句子成分";
+    public String 逻辑成分="逻辑成分";
     public String 成分="成分";
     public String 所有="所有";
     public String 逻辑句子成分="逻辑句子成分";
