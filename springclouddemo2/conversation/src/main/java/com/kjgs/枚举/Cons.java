@@ -9,6 +9,7 @@ public interface Cons {
 
 
     public String 左尖括号 = "《";
+    public String 左尖括号_名字 = "左尖括号";
     public String 右尖括号 = "》";
     public String 左变量标识符 = "￥{";
     public String 右变量标识符 = "}";

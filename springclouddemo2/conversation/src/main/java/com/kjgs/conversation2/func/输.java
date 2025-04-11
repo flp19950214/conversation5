@@ -35,6 +35,9 @@ public class 输 extends FuncAbstract {
             return;
         }
         int 结束下标 =  下标+5;
+        if(结束下标>逻辑句子.length()){
+            return;
+        }
         String 执行相加方法 = 逻辑句子.substring(下标, 结束下标);
         if (!"输出的对象".equals(执行相加方法)) {
             return;
@@ -51,6 +54,9 @@ public class 输 extends FuncAbstract {
             return;
         }
         int 结束下标 =  下标+5;
+        if(结束下标>逻辑句子.length()){
+            return;
+        }
         String 执行相加方法 = 逻辑句子.substring(下标, 结束下标);
         if (!"输入的句子".equals(执行相加方法)) {
             return;

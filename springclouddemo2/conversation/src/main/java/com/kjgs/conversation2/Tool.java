@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Tool {
     public static void main(String[] args) {
@@ -21,7 +22,7 @@ public class Tool {
 
     }
 
-    public static String 匹配某数字某格式(String 逻辑, int 下标, String before, String after){
+        public static String 匹配某数字某格式(String 逻辑, int 下标, String before, String after){
         String s2 = 逻辑.substring(下标);
         if(!StringUtils.startsWith(s2, before)){
             return null;
@@ -161,7 +162,7 @@ public class Tool {
         Document result =  静态引用.逻辑句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标))
                 .filter (m -> m.getInteger(Cons.下标) > 下标)
-                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
+                .sorted((a,b) -> a.getInteger(Cons.下标) -  b.getInteger(Cons.下标))
                 .filter (m -> StringUtils.equals(m.getString(Cons.词语), 词语))
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
@@ -321,6 +322,8 @@ public class Tool {
         }
         return result2;
     }
+
+
     public static Document 指定下标后面一个句子成分(int 下标, String 词性){
         Document result =  静态引用.输入句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标))
@@ -335,6 +338,15 @@ public class Tool {
             return 指定下标后面一个句子成分(下标+1);
         }
         return result2;
+    }
+
+    public static String 合并逻辑集合指定范围的词语(int 下标, int 结束下标) {
+        String result =  静态引用.逻辑句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter (m -> m.getInteger(Cons.下标) >= 下标 && m.getInteger(Cons.下标) <= 结束下标)
+                .map(m -> m.getString(Cons.词语))
+                .collect(Collectors.joining(""));
+        return result;
     }
 
     public static String 格式化输入句子(String 输入的句子){
@@ -472,6 +484,24 @@ public class Tool {
         }else{
             return document;
         }
+    }
+
+    public static Object 获取前面的属性值(Document 指定前面下标的逻辑成分){
+        Object 属性值 = 指定前面下标的逻辑成分.getString(Cons.词语);
+        if(指定前面下标的逻辑成分.containsKey(Cons.归属对象)){
+            属性值 = Tool.最终的归属对象(指定前面下标的逻辑成分).get(属性值);
+        }
+        return 属性值;
+    }
+    public static Object 获取后面的属性值(int 下标, Document 指定后面下标的逻辑成分){
+        Document 属性对象 = Tool.往后找归属对象(下标, 指定后面下标的逻辑成分);
+        Object 属性值;
+        if(属性对象==null){
+            属性值 = 指定后面下标的逻辑成分.get(Cons.词语);
+        }else{
+            属性值 = 指定后面下标的逻辑成分.get(属性对象.getString(Cons.词语));
+        }
+        return 属性值;
     }
 
     public static Document 最终的归属对象(Document document){
