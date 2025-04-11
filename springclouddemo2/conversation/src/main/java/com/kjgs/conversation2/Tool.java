@@ -15,30 +15,41 @@ import java.util.regex.Pattern;
 
 public class Tool {
     public static void main(String[] args) {
-        String s = "如果遇到再，并且后面第12个名词包含偏移量属性，那就给后面第1个名词的偏移量加1";
+        String s = "如果遇到如，并且后面12个字是果，那就把当前词和后面1个字合并为1个词";
         int 下标 = 8;
-        String s2 = s.substring(下标);
-        System.out.println(s2.matches("^后面第[0-9]+个名词"));
-
-        System.out.println(是否正则匹配(s, 下标, "^后面第[0-9]+个名词"));
-        System.out.println(获取正则匹陪内容(s, 下标, "^后面第[0-9]+个名词"));
+        System.out.println(匹配某数字某格式(s,下标, "后面", "个字"));
 
     }
 
-    public static boolean 是否正则匹配(String 逻辑, int 下标, String 正则){
+    public static String 匹配某数字某格式(String 逻辑, int 下标, String before, String after){
         String s2 = 逻辑.substring(下标);
-        Pattern pattern = Pattern.compile(正则);
-        Matcher matcher = pattern.matcher(s2);
-        return matcher.find();
-    }
-    public static String 获取正则匹陪内容(String 逻辑, int 下标, String 正则){
-        String s2 = 逻辑.substring(下标);
-        Pattern pattern = Pattern.compile(正则);
-        Matcher matcher = pattern.matcher(s2);
-        if (matcher.find()){
-            return matcher.group();
+        if(!StringUtils.startsWith(s2, before)){
+            return null;
         }
-        return null;
+        String s3 = s2.substring(before.length());
+        int index=-1;
+        StringBuilder sb= new StringBuilder();
+        while('0' <= s3.charAt(index+1) && s3.charAt(index+1)<='9'){
+            sb.append(s3.charAt(index+1));
+            index++;
+        }
+        if(index==-1){
+            return null;
+        }
+        String s4= s3.substring(index+1);
+        if(!s4.startsWith(after)){
+            return null;
+        }
+        StringBuilder result = new StringBuilder();
+        result.append(before).append(sb.toString()).append(after);
+        return result.toString();
+    }
+    public static String 匹配开头(String 逻辑, int 下标, String 词语){
+        String s2 = 逻辑.substring(下标);
+        if(!s2.startsWith(词语)){
+            return null;
+        }
+        return 词语;
     }
 
     public static boolean 判断一个逻辑是否已经操作过某个增量方法(Document 句子成分,Document 逻辑成分, String 方法, String 操作属性){
