@@ -110,18 +110,18 @@ public class TalkController2 {
 //            before = JSON.toJSONString(输入句子的成分集合Temp);
 //            after = JSON.toJSONString(静态引用.输入句子的成分集合);
 //        }while (!StringUtils.equals(before, after) && loopN2<max);
-////        最后再检查一次
-//        int loopN3=0;
-//        do{
-//            loopN3++;
-//             输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
-//            for (int i = 0; i <所有逻辑.size() ; i++) {
-//                静态引用.逻辑句子的成分集合.clear();
-//                处理句子(所有逻辑.get(i));
-//            }
-//            before = JSON.toJSONString(输入句子的成分集合Temp);
-//            after = JSON.toJSONString(静态引用.输入句子的成分集合);
-//        }while (!StringUtils.equals(before, after) && loopN3<max);
+//        最后再检查一次
+        int loopN3=0;
+        do{
+            loopN3++;
+             输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
+            for (int i = 0; i <所有逻辑.size() ; i++) {
+                静态引用.逻辑句子的成分集合.clear();
+                处理句子(所有逻辑.get(i));
+            }
+            before = JSON.toJSONString(输入句子的成分集合Temp);
+            after = JSON.toJSONString(静态引用.输入句子的成分集合);
+        }while (!StringUtils.equals(before, after) && loopN3<max);
         System.out.println("最终的句子成分：");
         System.out.println(静态引用.逻辑句子的成分集合);
         System.out.println(静态引用.输入句子的成分集合);

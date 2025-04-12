@@ -5,6 +5,7 @@ import com.kjgs.conversation2.Tool;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import java.util.regex.Matcher;
@@ -97,6 +98,7 @@ public class 后 extends FuncAbstract {
             }
             词语.append(句子.substring(句子结束下标+i, 句子结束下标 + i +1));
         }
+        新句子成分.put(Cons._id, new ObjectId());
         新句子成分.put(Cons.词语, 词语.toString());
         新句子成分.put(Cons.下标, 句子结束下标);
         新句子成分.put(Cons.结束下标, 句子结束下标 + num );

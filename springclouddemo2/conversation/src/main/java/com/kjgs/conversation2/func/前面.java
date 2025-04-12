@@ -6,6 +6,7 @@ import com.kjgs.conversation2.静态引用;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -123,6 +124,7 @@ public class 前面 extends FuncAbstract {
 
     public void 找到前面某个属性并赋值指向(Document 逻辑成分,String 属性, int num){
         Document 新句子成分 = new Document();
+        新句子成分.put(Cons._id, new ObjectId());
         新句子成分.put(Cons.词语, "");
         逻辑成分.put(Cons.指向,新句子成分);
         List<Document> 指定范围下标的句子成分 = Tool.获取指定范围下标的句子成分(0, 句子下标);

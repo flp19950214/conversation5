@@ -9,6 +9,7 @@ import org.bson.Document;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -301,7 +302,8 @@ public class Tool {
                 .filter(m -> m.containsKey(Cons.下标))
                 .filter (m -> m.getInteger(Cons.下标) < 下标)
                 .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
-                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
+                .sorted(Comparator.comparing((Document m1) ->m1.getInteger(Cons.下标), Comparator.reverseOrder())
+                        .thenComparing(m1 -> m1.getObjectId(Cons._id), Comparator.reverseOrder()))
                 .findFirst().orElse(null);
         Document result2 = 代词的最终指向(result);
         if(result2 != null && 对象是否是无用词(result2)){
@@ -314,7 +316,8 @@ public class Tool {
                 .filter(m -> m.containsKey(Cons.下标))
                 .filter (m -> m.getInteger(Cons.下标) > 下标)
                 .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
-                .sorted((a,b) -> a.getInteger(Cons.下标) -  b.getInteger(Cons.下标))
+                .sorted(Comparator.comparing((Document m1) ->m1.getInteger(Cons.下标))
+                        .thenComparing(m1 -> m1.getObjectId(Cons._id), Comparator.reverseOrder()))
                 .findFirst().orElse(null);
         Document result2 = 代词的最终指向(result);
         if(result2 != null && 对象是否是无用词(result2)){
@@ -399,14 +402,27 @@ public class Tool {
             删除指定下标的逻辑成分(i);
         }
     }
-    public static void 添加句子成分(Document document){
+    // 下标和词语一样
+    public static Document 获取句子中的已有成分(int 下标, String 词语){
+        Document result =  静态引用.输入句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标) && m.containsKey(Cons.词语))
+                .filter (m -> m.getInteger(Cons.下标).equals(下标)
+                        && StringUtils.equals(m.getString(Cons.词语), 词语))
+                .findFirst().orElse(null);
+        return result;
+    }
+    public static void 添加句子成分(Document document, int 下标, String 词语){
         //先删除再增加
         if(document != null && document.getInteger(Cons.下标) != null
             && document.containsKey(Cons.是否是句子成分)
                 && document.getBoolean(Cons.是否是句子成分)){
-            删除指定下标的句子成分(document.getInteger(Cons.下标));
-            document.put(Cons.是否是句子成分, true);
-            静态引用.输入句子的成分集合.add(document);
+            Document 句子中的已有成分 = 获取句子中的已有成分(下标, 词语);
+            if(句子中的已有成分 != null){
+                句子中的已有成分.putAll(document);
+            }else {
+                document.put(Cons.是否是句子成分, true);
+                静态引用.输入句子的成分集合.add(document);
+            }
         }
     }
     public static void 添加逻辑成分(Document document){
