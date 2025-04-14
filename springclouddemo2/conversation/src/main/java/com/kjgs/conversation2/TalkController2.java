@@ -30,6 +30,9 @@ public class TalkController2 {
     @Autowired
     private Impl数据 impl数据;
 
+    @Autowired
+    private 给输入句子生成内置句子成分 impl给输入句子生成内置句子成分;
+
     final int max = 10;
 
     @PostMapping("/process3")
@@ -45,13 +48,7 @@ public class TalkController2 {
         //给每个词添加成句子成分
         for (int i = 0; i < 输入的句子元素集合.length; i++) {
             String item = 输入的句子元素集合[i];
-            Document 成分对象 = new Document();
-            成分对象.put(Cons._id, new ObjectId());
-            成分对象.put(Cons.父id, 静态引用.输入的句子对象.get(Cons._id));
-            成分对象.put(Cons.词语, item);
-            成分对象.put(Cons.下标, i);
-            成分对象.put(Cons.结束下标, i + 1);
-            成分对象.put(Cons.是否是句子成分, true);
+            Document 成分对象 = Tool.生成成分对象(item,i,1);
             静态引用.输入句子的成分集合.add(成分对象);
         }
 
@@ -128,6 +125,7 @@ public class TalkController2 {
         System.out.println(after);
         impl数据.保存输入的数据对象(Tool.生成输入的对象(输入的句子));
         impl数据.保存输出的数据对象(Tool.生成输出的对象(静态引用.输出内容));
+        impl给输入句子生成内置句子成分.生成内置句子成分(输入的句子);
         return 静态引用.输出内容;
     }
 

@@ -23,6 +23,13 @@ public class 静态引用 {
         逻辑句子的成分集合 = new ArrayList<>();
     }
 
+    public static List<String> 内置词语集合 = new ArrayList(){{
+        add("如果");
+        add("遇到");
+        add("那就");
+        add("输出");
+    }};
+
     public static List<String> 所有库 = new ArrayList(){{
         add("数据表");
         add("逻辑表2");

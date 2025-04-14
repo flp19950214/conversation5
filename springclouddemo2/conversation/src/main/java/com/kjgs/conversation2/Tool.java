@@ -5,6 +5,7 @@ import com.kjgs.conversation2.func.句子;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,6 +17,19 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Tool {
+
+    public static Document 生成成分对象(String 词语, int 下标, int 词语长度){
+        Document 成分对象 = new Document();
+        成分对象.put(Cons._id, new ObjectId());
+        成分对象.put(Cons.父id, 静态引用.输入的句子对象.get(Cons._id));
+        成分对象.put(Cons.词语, 词语);
+        成分对象.put(Cons.下标, 下标);
+        成分对象.put(Cons.结束下标, 下标 + 词语长度);
+        成分对象.put(Cons.是否是句子成分, true);
+        return 成分对象;
+    }
+
+
     public static void main(String[] args) {
         String s = "如果遇到如，并且后面12个字是果，那就把当前词和后面1个字合并为1个词";
         int 下标 = 8;
