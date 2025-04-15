@@ -102,6 +102,7 @@ public interface Cons {
     public String uuidLevel="uuidLevel";
     public String 顶层逻辑="顶层逻辑";
     public String 异常逻辑="异常逻辑";
+    public String 原词语="原词语";
     public String 词语="词语";
     public String 时间="时间";
     public String 中的="中的";

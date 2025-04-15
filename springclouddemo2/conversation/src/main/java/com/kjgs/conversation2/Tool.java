@@ -421,7 +421,9 @@ public class Tool {
         Document result =  静态引用.输入句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标) && m.containsKey(Cons.词语))
                 .filter (m -> m.getInteger(Cons.下标).equals(下标)
-                        && StringUtils.equals(m.getString(Cons.词语), 词语))
+                        && (StringUtils.equals(m.getString(Cons.词语), 词语)
+                || StringUtils.equals(m.getString(Cons.原词语), 词语)
+                ))
                 .findFirst().orElse(null);
         return result;
     }
@@ -431,6 +433,7 @@ public class Tool {
             && document.containsKey(Cons.是否是句子成分)
                 && document.getBoolean(Cons.是否是句子成分)){
             Document 句子中的已有成分 = 获取句子中的已有成分(下标, 词语);
+            Document 原句子中的已有成分 = 获取句子中的已有成分(下标, 词语);
             if(句子中的已有成分 != null){
                 句子中的已有成分.putAll(document);
             }else {

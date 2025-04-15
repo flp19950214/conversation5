@@ -17,6 +17,18 @@ public class 给输入句子生成内置句子成分 {
     @Autowired
     Impl逻辑 impl逻辑;
 
+    public void 生成内置句子成分(){
+        String 句子 = 静态引用.输入的句子对象.getString(Cons.词语);
+        List<Document> 输入句子的成分集合 = 静态引用.输入句子的成分集合;
+        for (int i = 输入句子的成分集合.size()-1; i>=0 ; i--) {
+            Document document = 输入句子的成分集合.get(i);
+            //判断当前词是否是内置词语，如果是就替换掉在原句子中的位置
+            String 词语 = document.getString(Cons.词语);
+            String 词性 = document.getString(Cons.词性);
+
+        }
+    }
+
     public void 生成内置句子成分(String 句子){
         //是判断句就行了
         Document 输入的句子对象 = 静态引用.输入的句子对象;

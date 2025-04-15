@@ -4,7 +4,9 @@ import com.kjgs.枚举.Cons;
 import org.bson.Document;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class 静态引用 {
@@ -22,7 +24,10 @@ public class 静态引用 {
         输入句子的成分集合 = new ArrayList<>();
         逻辑句子的成分集合 = new ArrayList<>();
     }
-
+    public static Map<String, String> 内置词语与词性映射 = new HashMap(){{
+        put("假设词","如果");
+        put("输出词","输出");
+    }};
     public static List<String> 内置词语集合 = new ArrayList(){{
         add("如果");
         add("遇到");

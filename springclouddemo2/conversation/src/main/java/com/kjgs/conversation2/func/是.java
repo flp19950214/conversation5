@@ -44,7 +44,8 @@ public class 是 extends FuncAbstract {
             return;
         }
         //前面也是是 当前词不作为动词处理
-        if(StringUtils.equals(指定下标前面的逻辑成分.getString(Cons.词语), "是")){
+        if(StringUtils.equals(指定下标前面的逻辑成分.getString(Cons.词语), "是")
+        && 指定下标前面的逻辑成分.getBoolean(Cons.是否是句子成分) != Boolean.TRUE){
             return;
         }
         String 前面的词语 = 指定下标前面的逻辑成分.getString(Cons.词语);
