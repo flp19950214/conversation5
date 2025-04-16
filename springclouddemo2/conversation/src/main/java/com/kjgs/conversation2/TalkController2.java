@@ -33,6 +33,9 @@ public class TalkController2 {
     @Autowired
     private 给输入句子生成内置句子成分 impl给输入句子生成内置句子成分;
 
+    @Autowired
+    private 给输入的句子生成内置格式化逻辑 impl给输入的句子生成内置格式化逻辑;
+
     final int max = 10;
 
     @PostMapping("/process3")
@@ -132,6 +135,7 @@ public class TalkController2 {
         impl数据.保存输入的数据对象(Tool.生成输入的对象(输入的句子));
         impl数据.保存输出的数据对象(Tool.生成输出的对象(静态引用.输出内容));
 //        impl给输入句子生成内置句子成分.生成内置句子成分(输入的句子);
+        impl给输入的句子生成内置格式化逻辑.生成格式化逻辑();
         return 静态引用.输出内容;
     }
 

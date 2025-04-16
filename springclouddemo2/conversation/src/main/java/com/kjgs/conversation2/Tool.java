@@ -339,8 +339,15 @@ public class Tool {
         }
         return result2;
     }
-
-
+    public static List<Document> 根据键值对往后找句子成分(int 下标, String key, String value){
+        return 静态引用.输入句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter (m -> m.getInteger(Cons.下标) > 下标)
+                .filter(m -> m.containsKey(key))
+                .filter(m -> StringUtils.equals(m.get(key).toString(), value))
+                .sorted((a,b) -> a.getInteger(Cons.下标) -  b.getInteger(Cons.下标))
+                .collect(Collectors.toList());
+    }
     public static Document 指定下标后面一个句子成分(int 下标, String 词性){
         Document result =  静态引用.输入句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标))

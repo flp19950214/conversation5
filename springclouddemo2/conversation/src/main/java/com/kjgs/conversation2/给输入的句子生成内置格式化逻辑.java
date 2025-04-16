@@ -1,0 +1,71 @@
+package com.kjgs.conversation2;
+
+import com.kjgs.conversation.mysql.Impl逻辑;
+import com.kjgs.枚举.Cons;
+import org.apache.commons.lang3.StringUtils;
+import org.bson.Document;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Repository
+public class 给输入的句子生成内置格式化逻辑 {
+    @Autowired
+    Impl逻辑 impl逻辑;
+
+    /**
+     * 只要句子是假设句就行
+     * 然后就是给每个成分加上《》
+     * 最后拼在一起
+     * 然后保存即可
+     */
+    public void 生成格式化逻辑(){
+        Document 输入的句子对象 = 静态引用.输入的句子对象;
+        List<Document> 输入句子的成分集合 = 静态引用.输入句子的成分集合;
+        if(!输入的句子对象.containsKey(Cons.句型)){
+        return;
+        }
+        //找到每个成分的最后结构即可
+        List<int[]> dataList = new ArrayList<>();
+        List<Document> result = new ArrayList<>();
+        for (int i = 输入句子的成分集合.size()-1; i >=0; i--) {
+            Document document = 输入句子的成分集合.get(i);
+            if(document.containsKey(Cons.下标) && document.containsKey(Cons.结束下标)
+                && document.containsKey(Cons.词语)){
+                int 下标 = document.getInteger(Cons.下标);
+                int 结束下标 = document.getInteger(Cons.结束下标);
+                int[] data = {下标, 结束下标};
+                if(!是否在已处理区间(下标, 结束下标, dataList)){
+                    result.add(document);
+                }
+                dataList.add(data);
+            }
+        }
+        //排序
+        result = result.stream().sorted((a,b) -> a.getInteger(Cons.下标) -  b.getInteger(Cons.下标))
+                .collect(Collectors.toList());
+        StringBuilder 新逻辑 = new StringBuilder();
+        for(Document m : result){
+            新逻辑.append(Cons.左尖括号).append(m.getString(Cons.词语)).append(Cons.右尖括号);
+
+        }
+        if(StringUtils.isEmpty(新逻辑.toString())){
+            return;
+        }
+        impl逻辑.保存逻辑(新逻辑.toString());
+    }
+
+    public boolean 是否在已处理区间(int 下标, int 结束下标, List<int[]> dataList){
+        for(int[] m : dataList){
+            int one = m[0];
+            int two = m[1];
+            if((one<=下标 && 下标 < two) || (one<=下标 && 结束下标 < two)){
+                return true;
+            }
+        }
+        return false;
+    }
+}

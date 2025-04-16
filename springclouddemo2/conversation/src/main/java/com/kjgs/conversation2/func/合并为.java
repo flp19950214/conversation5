@@ -40,12 +40,29 @@ public class 合并为 extends FuncAbstract {
         if(!StringUtils.equals(指定下标的下下一个逻辑成分.getString(Cons.词语), "个词")){
             return;
         }
+        boolean 前面是之间的内容就优先合并前面词语 = 前面是之间的内容就优先合并前面词语();
+        if(前面是之间的内容就优先合并前面词语){
+            return;
+        }
         //满足条件 合并前面的多对象成分
         Document 合并结果 = 合并前面成分中的并列对象(指定下标前面的包含并列集合的逻辑成分);
         if(合并结果 != null){
             逻辑成分.put(Cons.动作结果, 合并结果.get(Cons.词语));
             逻辑成分.put(Cons.合并的结果, 合并结果);
         }
+    }
+
+    public boolean 前面是之间的内容就优先合并前面词语(){
+        Document 指定下标前面的逻辑成分_无迭代 = Tool.指定下标前面的逻辑成分_无迭代(下标);
+        if(指定下标前面的逻辑成分_无迭代 == null){
+            return false;
+        }
+        if(!StringUtils.equals(指定下标前面的逻辑成分_无迭代.getString(Cons.词语), "之间的内容")){
+            return false;
+        }
+        Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
+        Tool.添加句子成分(指定下标前面的逻辑成分, 下标, 指定下标前面的逻辑成分.getString(Cons.词语));
+        return true;
     }
     public Document 合并前面成分中的并列对象(Document 指定下标前面的包含并列集合的逻辑成分){
         if(!指定下标前面的包含并列集合的逻辑成分.containsKey(Cons.并列集合)){
