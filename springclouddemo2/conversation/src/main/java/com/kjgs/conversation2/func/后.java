@@ -57,7 +57,7 @@ public class 后 extends FuncAbstract {
         //找到句子后面的内容，并赋值指向
         Document 新句子成分 = new Document();
         新句子成分.put(Cons._id, new ObjectId());
-        新句子成分.put(Cons.词语, 句子.substring(句子下标));
+        新句子成分.put(Cons.词语, 句子.substring(句子结束下标));
         新句子成分.put(Cons.下标, 句子结束下标);
         新句子成分.put(Cons.结束下标, 句子.length() );
         新句子成分.put(Cons.是否是句子成分, true);

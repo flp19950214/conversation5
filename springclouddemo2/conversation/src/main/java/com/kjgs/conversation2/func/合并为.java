@@ -28,6 +28,9 @@ public class 合并为 extends FuncAbstract {
 
     public void 合并为几个词(){
         Document 指定下标前面的包含并列集合的逻辑成分 = Tool.指定下标前面包含某key的逻辑成分(下标, Cons.并列集合);
+        if(指定下标前面的包含并列集合的逻辑成分 == null){
+            指定下标前面的包含并列集合的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
+        }
         Document 指定下标后面的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);
         Document 指定下标的下下一个逻辑成分 = Tool.指定下标的下下一个逻辑成分(下标);
         if(指定下标前面的包含并列集合的逻辑成分 == null || 指定下标后面的逻辑成分 == null || 指定下标的下下一个逻辑成分==null){
@@ -57,7 +60,7 @@ public class 合并为 extends FuncAbstract {
         if(指定下标前面的逻辑成分_无迭代 == null){
             return false;
         }
-        if(!StringUtils.equals(指定下标前面的逻辑成分_无迭代.getString(Cons.词语), "之间的内容")){
+        if(!StringUtils.equalsAny(指定下标前面的逻辑成分_无迭代.getString(Cons.词语), "之间的内容","后面的内容","前面的内容")){
             return false;
         }
         Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);

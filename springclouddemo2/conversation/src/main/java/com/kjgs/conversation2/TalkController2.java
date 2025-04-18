@@ -89,6 +89,7 @@ public class TalkController2 {
 //            add("如果遇到《要是》，那就把当前词替换为如果");
 //            add("如果遇到那，并且后面1个字是就，那就把当前词和后面1个字合并为1个词");
 
+//            add("如果遇到输出，并且句子的句型是假设句，那就把当前词后面的内容合并为1个词");
 //            add("如果遇到如，并且后面1个字是果，那就把当前词和后面1个字合并为1个词");
 //            add("如果遇到遇，并且后面1个字是到，那就把当前词和后面1个字合并为1个词");
 //            add("如果当前词是遇到，并且前面1个成分是如果，那就把当前词和后面1个分隔符之间的内容合并为1个词");
@@ -108,18 +109,6 @@ public class TalkController2 {
             before = JSON.toJSONString(输入句子的成分集合Temp);
             after = JSON.toJSONString(静态引用.输入句子的成分集合);
         }while (!StringUtils.equals(before, after) && loopN<max);
-        //最后再检查一次
-//        int loopN2=0;
-//        do{
-//            loopN2++;
-//            输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
-//            for (int i = 0; i <所有逻辑.size() ; i++) {
-//                静态引用.逻辑句子的成分集合.clear();
-//                处理句子(所有逻辑.get(i));
-//            }
-//            before = JSON.toJSONString(输入句子的成分集合Temp);
-//            after = JSON.toJSONString(静态引用.输入句子的成分集合);
-//        }while (!StringUtils.equals(before, after) && loopN2<max);
 //        最后再检查一次
         int loopN3=0;
         do{
@@ -182,6 +171,8 @@ public class TalkController2 {
     }
     public void 处理逻辑(Document 原句子成分){
         Document 句子成分 = Tool.代词的最终指向(原句子成分);
+        //先把重置判断逻辑
+        静态引用.判断的结果=true;
         //开始处理每个逻辑成分
         for (int i = 0; i < 静态引用.逻辑句子的成分集合.size() ; i++) {
             Document 逻辑成分 = 静态引用.逻辑句子的成分集合.get(i);

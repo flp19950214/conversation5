@@ -193,18 +193,8 @@ public class Tool {
     }
     // 因为遵从 逻辑中只有并且 没有或者的理念 所有只要有一个判断结果为false 就为false
     public static boolean 往前找判断结果(int 下标){
-        //没有判断结果就是false
-        if(静态引用.逻辑句子的成分集合.stream()
-                .filter(m -> m.containsKey(Cons.判断的结果))
-                .count()==0){
-            return false;
-        }
-        boolean 判断的结果 =静态引用.逻辑句子的成分集合.stream()
-                .filter(m -> m.containsKey(Cons.下标) && m.getInteger(Cons.下标)<下标)
-                .filter(m -> m.containsKey(Cons.判断的结果))
-                .filter(m -> !m.getBoolean(Cons.判断的结果))
-                .count()>0?false:true;
-        return 判断的结果;
+        //20250418  改为静态变量
+        return 静态引用.判断的结果;
     }
     public static Object 往前找指定的键值(int 下标, String key){
         //过滤出小于下标的，然后排序，找出第一条
@@ -221,20 +211,20 @@ public class Tool {
     }
 
     public static void 赋值判断结果(Document document, Boolean 判断结果){
-        document.put(Cons.判断的结果, 判断结果);
+        静态引用.判断的结果 = 判断结果;
     }
     public static void 赋值句型(Document document, String 句型){
         document.put(Cons.句型, 句型);
     }
-    public static Document 指定下标前面包含判断结果的逻辑成分(int 下标){
-        //过滤出小于下标的，然后排序，找出第一条
-        Document result =  静态引用.逻辑句子的成分集合.stream()
-                .filter(m -> m.containsKey(Cons.下标) && m.containsKey(Cons.判断的结果))
-                .filter (m -> m.getInteger(Cons.下标) < 下标)
-                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
-                .findFirst().orElse(null);
-        return 代词的最终指向(result);
-    }
+//    public static Document 指定下标前面包含判断结果的逻辑成分(int 下标){
+//        //过滤出小于下标的，然后排序，找出第一条
+//        Document result =  静态引用.逻辑句子的成分集合.stream()
+//                .filter(m -> m.containsKey(Cons.下标) && m.containsKey(Cons.判断的结果))
+//                .filter (m -> m.getInteger(Cons.下标) < 下标)
+//                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
+//                .findFirst().orElse(null);
+//        return 代词的最终指向(result);
+//    }
     public static Document 指定下标前面包含某key的逻辑成分(int 下标, String key){
         //过滤出小于下标的，然后排序，找出第一条
         Document result =  静态引用.逻辑句子的成分集合.stream()
@@ -244,15 +234,15 @@ public class Tool {
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
     }
-    public static Document 指定下标后面包含判断结果的逻辑成分(int 下标){
-        //过滤出小于下标的，然后排序，找出第一条
-        Document result =  静态引用.逻辑句子的成分集合.stream()
-                .filter(m -> m.containsKey(Cons.下标) && m.containsKey(Cons.判断的结果))
-                .filter (m -> m.getInteger(Cons.下标) > 下标)
-                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
-                .findFirst().orElse(null);
-        return 代词的最终指向(result);
-    }
+//    public static Document 指定下标后面包含判断结果的逻辑成分(int 下标){
+//        //过滤出小于下标的，然后排序，找出第一条
+//        Document result =  静态引用.逻辑句子的成分集合.stream()
+//                .filter(m -> m.containsKey(Cons.下标) && m.containsKey(Cons.判断的结果))
+//                .filter (m -> m.getInteger(Cons.下标) > 下标)
+//                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
+//                .findFirst().orElse(null);
+//        return 代词的最终指向(result);
+//    }
     public static Document 指定下标前面的逻辑成分_无迭代(int 下标){
         //过滤出小于下标的，然后排序，找出第一条
         Document result =  静态引用.逻辑句子的成分集合.stream()
@@ -315,10 +305,10 @@ public class Tool {
     public static Document 指定下标前面一个句子成分(int 下标){
         Document result =  静态引用.输入句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标))
-                .filter (m -> m.getInteger(Cons.下标) < 2)
+                .filter (m -> m.getInteger(Cons.下标) < 下标)
                 .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
-                .sorted(Comparator.comparing((Document m1) ->m1.getObjectId(Cons._id), Comparator.reverseOrder())
-                        .thenComparing(m1 -> m1.getInteger(Cons.结束下标), Comparator.reverseOrder()))
+                .sorted(Comparator.comparing((Document m1) ->m1.getObjectId(Cons._id), Comparator.nullsLast(ObjectId::compareTo).reversed())
+                        .thenComparing(m1 -> m1.getInteger(Cons.结束下标), Comparator.nullsLast(Integer::compareTo).reversed()))
                 .findFirst().orElse(null);
         Document result2 = 代词的最终指向(result);
         if(result2 != null && 对象是否是无用词(result2)){
@@ -331,8 +321,8 @@ public class Tool {
                 .filter(m -> m.containsKey(Cons.下标))
                 .filter (m -> m.getInteger(Cons.下标) > 下标)
                 .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
-                .sorted(Comparator.comparing((Document m1) ->m1.getInteger(Cons.下标))
-                        .thenComparing(m1 -> m1.getObjectId(Cons._id), Comparator.reverseOrder()))
+                .sorted(Comparator.comparing((Document m1) ->m1.getInteger(Cons.下标), Comparator.nullsLast(Integer::compareTo))
+                        .thenComparing(m1 -> m1.getObjectId(Cons._id),  Comparator.nullsLast(ObjectId::compareTo).reversed()))
                 .findFirst().orElse(null);
         Document result2 = 代词的最终指向(result);
         if(result2 != null && 对象是否是无用词(result2)){
@@ -502,11 +492,14 @@ public class Tool {
             }
         }
     }
-    public static void 删除指定下标的逻辑成分(int 下标){
+
+    public static void 删除指定下标的逻辑成分(int 下标) {
         for (int i = 0; i < 静态引用.逻辑句子的成分集合.size(); i++) {
-            Document document = 静态引用.逻辑句子的成分集合.get(i);
-            if(document.getInteger(Cons.下标) == 下标){
-                静态引用.逻辑句子的成分集合.remove(i);
+            if (i < 静态引用.逻辑句子的成分集合.size()) {
+                Document document = 静态引用.逻辑句子的成分集合.get(i);
+                if (document.getInteger(Cons.下标) == 下标) {
+                    静态引用.逻辑句子的成分集合.remove(i);
+                }
             }
         }
     }
@@ -521,11 +514,12 @@ public class Tool {
 
     public static Document 代词的最终指向(Document document){
         if(document != null && document.containsKey(Cons.指向)){
-            Document document1 = document.get(Cons.指向, Document.class);
-            return 代词的最终指向(document1);
-        }else{
-            return document;
+            if(document.get(Cons.指向) instanceof Document){
+                Document document1 = document.get(Cons.指向, Document.class);
+                return 代词的最终指向(document1);
+            }
         }
+        return document;
     }
 
     public static Object 获取前面的属性值(Document 指定前面下标的逻辑成分){

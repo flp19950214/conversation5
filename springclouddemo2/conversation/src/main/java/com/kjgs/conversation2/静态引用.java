@@ -19,10 +19,11 @@ public class 静态引用 {
     public static List<String> 内置判断方法集合 = new ArrayList<>();
 
     public static String 输出内容 = null;
+    public static boolean 判断的结果 = true;
     public static Integer 数据表下标 = null;
 
     //在处理“那就”方法时赋值，用于如果在处理陈述方法时，判断结果为false就不做处理了
-    public static boolean 是否是陈述部分逻辑=false;
+    public static boolean 是否是陈述部分逻辑=true;
 
     public void 全部置空(){
         输入的句子对象=null;
