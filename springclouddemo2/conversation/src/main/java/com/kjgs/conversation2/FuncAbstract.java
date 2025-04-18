@@ -34,6 +34,10 @@ public abstract class FuncAbstract {
             }
         }
 
+        //如果判断的结果逻辑，判断结果要为true才执行
+        if(静态引用.是否是陈述部分逻辑 && Tool.往前找判断结果(下标) == false){
+            return;
+        }
         功能();
         判断结果是true时执行();
     }
