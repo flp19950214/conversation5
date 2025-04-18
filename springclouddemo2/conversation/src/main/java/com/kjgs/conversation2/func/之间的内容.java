@@ -54,8 +54,8 @@ public class 之间的内容 extends FuncAbstract {
         if(document1.getBoolean(Cons.是否是句子成分) == false || document2.getBoolean(Cons.是否是句子成分) ==false){
             return null;
         }
-        int startIndex = document1.getInteger(Cons.下标);
-        int endIndex = document1.getInteger(Cons.下标);
+        int startIndex = document1.getInteger(Cons.结束下标);
+        int endIndex = document2.getInteger(Cons.下标);
         if(startIndex>endIndex){
             int temp = startIndex;
             startIndex=endIndex;

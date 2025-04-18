@@ -61,7 +61,7 @@ public class 合并为 extends FuncAbstract {
             return false;
         }
         Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
-        Tool.添加句子成分(指定下标前面的逻辑成分, 下标, 指定下标前面的逻辑成分.getString(Cons.词语));
+        Tool.添加句子成分(指定下标前面的逻辑成分);
         return true;
     }
     public Document 合并前面成分中的并列对象(Document 指定下标前面的包含并列集合的逻辑成分){
@@ -94,7 +94,7 @@ public class 合并为 extends FuncAbstract {
             System.out.println("校验词语 要跟下标和结束下标的长度相匹配："+ 新句子成分.getString(Cons.词语));
         }
         新句子成分.put(Cons.词语, 词语.toString());
-        Tool.添加句子成分(新句子成分, 下标, 词语.toString());
+        Tool.添加句子成分(新句子成分);
         return 新句子成分;
     }
 }

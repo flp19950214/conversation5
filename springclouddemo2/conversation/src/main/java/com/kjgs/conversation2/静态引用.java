@@ -16,6 +16,8 @@ public class 静态引用 {
     public static List<Document> 输入句子的成分集合 = new ArrayList<>();
     public static List<Document> 逻辑句子的成分集合 = new ArrayList<>();
 
+    public static List<String> 内置判断方法集合 = new ArrayList<>();
+
     public static String 输出内容 = null;
     public static Integer 数据表下标 = null;
     public void 全部置空(){
@@ -24,6 +26,16 @@ public class 静态引用 {
         输入句子的成分集合 = new ArrayList<>();
         逻辑句子的成分集合 = new ArrayList<>();
     }
+    public static List<Document> get输入句子的指向成分集合(){
+        List<Document> result = new ArrayList<>();
+        for(Document document : 输入句子的成分集合){
+            if(document.containsKey(Cons.指向)){
+                result.add(Tool.代词的最终指向(document));
+            }
+        }
+        return result;
+    }
+
     public static Map<String, String> 内置词语与词性映射 = new HashMap(){{
         put("假设词","如果");
         put("输出词","输出");

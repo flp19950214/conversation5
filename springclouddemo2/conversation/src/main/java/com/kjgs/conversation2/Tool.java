@@ -200,6 +200,7 @@ public class Tool {
             return false;
         }
         boolean 判断的结果 =静态引用.逻辑句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标) && m.getInteger(Cons.下标)<下标)
                 .filter(m -> m.containsKey(Cons.判断的结果))
                 .filter(m -> !m.getBoolean(Cons.判断的结果))
                 .count()>0?false:true;
@@ -314,10 +315,10 @@ public class Tool {
     public static Document 指定下标前面一个句子成分(int 下标){
         Document result =  静态引用.输入句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标))
-                .filter (m -> m.getInteger(Cons.下标) < 下标)
+                .filter (m -> m.getInteger(Cons.下标) < 2)
                 .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
-                .sorted(Comparator.comparing((Document m1) ->m1.getInteger(Cons.下标), Comparator.reverseOrder())
-                        .thenComparing(m1 -> m1.getObjectId(Cons._id), Comparator.reverseOrder()))
+                .sorted(Comparator.comparing((Document m1) ->m1.getObjectId(Cons._id), Comparator.reverseOrder())
+                        .thenComparing(m1 -> m1.getInteger(Cons.结束下标), Comparator.reverseOrder()))
                 .findFirst().orElse(null);
         Document result2 = 代词的最终指向(result);
         if(result2 != null && 对象是否是无用词(result2)){
@@ -340,7 +341,7 @@ public class Tool {
         return result2;
     }
     public static List<Document> 根据键值对往后找句子成分(int 下标, String key, String value){
-        return 静态引用.输入句子的成分集合.stream()
+        return 静态引用.get输入句子的指向成分集合().stream()
                 .filter(m -> m.containsKey(Cons.下标))
                 .filter (m -> m.getInteger(Cons.下标) > 下标)
                 .filter(m -> m.containsKey(key))
@@ -434,14 +435,15 @@ public class Tool {
                 .findFirst().orElse(null);
         return result;
     }
-    public static void 添加句子成分(Document document, int 下标, String 词语){
+    public static void 添加句子成分(Document document){
         //先删除再增加
         if(document != null && document.getInteger(Cons.下标) != null
             && document.containsKey(Cons.是否是句子成分)
                 && document.getBoolean(Cons.是否是句子成分)){
-            Document 句子中的已有成分 = 获取句子中的已有成分(下标, 词语);
-            Document 原句子中的已有成分 = 获取句子中的已有成分(下标, 词语);
+            Document 句子中的已有成分 = 获取句子中的已有成分(document.getInteger(Cons.下标), document.getString(Cons.词语));
+//            Document 原句子中的已有成分 = 获取句子中的已有成分(document.getInteger(Cons.下标), document.getString(Cons.词语));
             if(句子中的已有成分 != null){
+                document.remove(Cons._id);
                 句子中的已有成分.putAll(document);
             }else {
                 document.put(Cons.是否是句子成分, true);

@@ -2,6 +2,7 @@ package com.kjgs.conversation2.func;
 
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
+import com.kjgs.conversation2.静态引用;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 是 extends FuncAbstract {
+    {
+        静态引用.内置判断方法集合.add(this.getClass().getName().substring(this.getClass().getName().lastIndexOf(".")+1));
+    }
     @Override
     public void 功能() {
         判断句的包含动作();
@@ -78,13 +82,6 @@ public class 是 extends FuncAbstract {
         }
         //前面一个成分等于后面一个成分
         boolean result = 前面的词语.equals(指定下标后面的逻辑成分.getString(Cons.词语));
-        if(result==false){
-            if(结束下标+前面的词语.length()<=逻辑句子.length()
-            && 前面的词语.length() > 0){
-                String 跟句子词语长度相同 = 逻辑句子.substring(结束下标, 结束下标+前面的词语.length());
-                result = StringUtils.equals(前面的词语, 跟句子词语长度相同);
-            }
-        }
         Tool.赋值判断结果(逻辑成分, result);
     }
 }

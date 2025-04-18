@@ -65,13 +65,6 @@ public class 为 extends FuncAbstract {
         }
         //前面一个成分等于后面一个成分
         boolean result = 指定下标前面的逻辑成分.getString(Cons.词语).equals(指定下标后面的逻辑成分.getString(Cons.词语));
-        if(result==false){
-            if(结束下标+指定下标前面的逻辑成分.getString(Cons.词语).length()<=逻辑句子.length()
-            && 指定下标前面的逻辑成分.getString(Cons.词语).length() > 0){
-                String 跟句子词语长度相同 = 逻辑句子.substring(结束下标, 结束下标+指定下标前面的逻辑成分.getString(Cons.词语).length());
-                result = StringUtils.equals(指定下标前面的逻辑成分.getString(Cons.词语), 跟句子词语长度相同);
-            }
-        }
         Tool.赋值判断结果(逻辑成分, result);
     }
 }

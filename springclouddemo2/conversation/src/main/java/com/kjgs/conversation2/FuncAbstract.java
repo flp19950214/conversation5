@@ -24,6 +24,16 @@ public abstract class FuncAbstract {
         this.句子成分 = 句子成分;
         this.原句子成分 = 原句子成分;
         赋值常用字段();
+
+        //如果前面一个逻辑成分是内置判断方法 那么就当前这次判断方法就不执行
+        Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
+        if(指定下标前面的逻辑成分 != null && 指定下标前面的逻辑成分.containsKey(Cons.词语)) {
+            if(静态引用.内置判断方法集合.contains(指定下标前面的逻辑成分.getString(Cons.词语))
+                && 静态引用.内置判断方法集合.contains(逻辑词语)){
+                return;
+            }
+        }
+
         功能();
         判断结果是true时执行();
     }
