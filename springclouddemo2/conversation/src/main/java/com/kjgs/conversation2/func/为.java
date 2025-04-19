@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 为 extends FuncAbstract {
+    {
+        静态引用.内置判断方法集合.add(this.getClass().getName().substring(this.getClass().getName().lastIndexOf(".") + 1));
+    }
     @Override
     public void 功能() {
         判断句的包含动作();

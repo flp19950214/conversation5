@@ -1,20 +1,32 @@
 package com.kjgs.conversation2.func;
 
+import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
 
 @Service
 public class 记 extends FuncAbstract {
 
-
+    @Autowired
+    Impl逻辑 impl逻辑;
+    @PostConstruct
+    public void init(){
+        //加载初始化逻辑语句
+        impl逻辑.保存逻辑("如果遇到记，并且后面6个字是《录成处理逻辑》，那就把当前词和后面6个字合并为1个词");
+        impl逻辑.保存逻辑("如果遇到记，并且后面6个字是《录当前词对象》，那就把当前词和后面6个字合并为1个词");
+        impl逻辑.保存逻辑("如果遇到记，并且后面1个字是录，那就把当前词和后面1个字合并为1个词");
+    }
 
     public void 功能() {
         分词_记录成处理逻辑();
-        分词_记录();
         分词_记录当前词对象();
+        分词_记录();
     }
 
     public void 分词_记录(){

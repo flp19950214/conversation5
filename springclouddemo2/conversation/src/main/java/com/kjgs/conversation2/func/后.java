@@ -1,5 +1,6 @@
 package com.kjgs.conversation2.func;
 
+import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
 import com.kjgs.枚举.Cons;
@@ -7,14 +8,41 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
 public class 后 extends FuncAbstract {
+    @Autowired
+    Impl逻辑 impl逻辑;
+    @PostConstruct
+    public void init(){
+        // 初始化加载逻辑的目的是：要在形成逻辑的时候分割出其中的动态变量，所以加载初始化逻辑很有必要。。
+        //加载初始化逻辑语句
+        impl逻辑.保存逻辑("如果遇到0，那就标记该词的词性为数字");
+        impl逻辑.保存逻辑("如果遇到1，那就标记该词的词性为数字");
+        impl逻辑.保存逻辑("如果遇到2，那就标记该词的词性为数字");
+        impl逻辑.保存逻辑("如果遇到3，那就标记该词的词性为数字");
+        impl逻辑.保存逻辑("如果遇到4，那就标记该词的词性为数字");
+        impl逻辑.保存逻辑("如果遇到5，那就标记该词的词性为数字");
+        impl逻辑.保存逻辑("如果遇到6，那就标记该词的词性为数字");
+        impl逻辑.保存逻辑("如果遇到7，那就标记该词的词性为数字");
+        impl逻辑.保存逻辑("如果遇到8，那就标记该词的词性为数字");
+        impl逻辑.保存逻辑("如果遇到9，那就标记该词的词性为数字");
+        impl逻辑.保存逻辑("如果遇到后，并且后面2个字是《面第》，那就把当前词和后面2个字合并为1个词");
+        impl逻辑.保存逻辑("如果遇到后，并且后面4个字是《面的内容》，那就把当前词和后面4个字合并为1个词");
+        impl逻辑.保存逻辑("如果遇到后，并且后面1个字是《面》，那就把当前词和后面1个字合并为1个词");
+        impl逻辑.保存逻辑("如果当前词的词性是数字，并且前面1个成分是《后面第》，并且后面1个成分是《个名词》，那就把前面1个成分和当前词，再和后面1个成分合并为1个词");
+        impl逻辑.保存逻辑("如果当前词的词性是数字，并且前面1个成分是《后面》，并且后面1个成分是《个成分》，那就把前面1个成分和当前词，再和后面1个成分合并为1个词");
+        impl逻辑.保存逻辑("如果当前词的词性是数字，并且前面1个成分是《后面》，并且后面1个成分是《个字》，那就把前面1个成分和当前词，再和后面1个成分合并为1个词");
+        impl逻辑.保存逻辑("如果当前词的词性是数字，并且前面1个成分是《后面》，并且后面1个成分是《个分隔符》，那就把前面1个成分和当前词，再和后面1个成分合并为1个词");
+    }
+
 
     /**
      * 分词后直接干活

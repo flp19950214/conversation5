@@ -1,17 +1,33 @@
 package com.kjgs.conversation2.func;
 
+import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
 import com.kjgs.conversation2.静态引用;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
 
 @Service
 public class 是 extends FuncAbstract {
     {
         静态引用.内置判断方法集合.add(this.getClass().getName().substring(this.getClass().getName().lastIndexOf(".")+1));
+    }
+
+    @Autowired
+    Impl逻辑 impl逻辑;
+    @PostConstruct
+    public void init(){
+        //加载初始化逻辑语句
+        impl逻辑.保存逻辑("如果遇到是，并且后面8个字是《否具有分隔符功能》，那就把当前词和后面8个字合并为1个词");
+        impl逻辑.保存逻辑("如果遇到是，并且后面5个字是《否是无用词》，那就把当前词和后面5个字合并为1个词");
+
+        impl逻辑.保存逻辑("如果遇到是，并且句子的句型是假设句，那就把当前词和后面1个分隔符之间的内容合并为1个词");
+
     }
     @Override
     public void 功能() {

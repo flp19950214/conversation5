@@ -1,19 +1,26 @@
 package com.kjgs.conversation2.func;
 
+import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
 import com.kjgs.conversation2.静态引用;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
 
 @Service
 public class 第 extends FuncAbstract {
+
     @Override
     public void 功能() {
         作用到后面第一个名词();
     }
 
+
+    //给后面第一个名词 和数字 然后把这个数字作为数字属性 作用在这个名词上
     public void 作用到后面第一个名词(){
         Document 往后找指定词性的逻辑成分1 = Tool.往后找指定词性的逻辑成分(下标, Cons.数字);
         Document 往后找指定词性的逻辑成分 = Tool.往后找指定词性的逻辑成分(下标, Cons.名词);

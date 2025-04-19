@@ -1,16 +1,26 @@
 package com.kjgs.conversation2.func;
 
+import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
 
 @Service
 public class 之 extends FuncAbstract {
-
+    @Autowired
+    Impl逻辑 impl逻辑;
+    @PostConstruct
+    public void init(){
+        //加载初始化逻辑语句
+        impl逻辑.保存逻辑("如果遇到之，并且后面4个字是《间的内容》，那就把当前词和后面4个字合并为1个词");
+    }
     public void 功能() {
         分词_之间的内容();
     }

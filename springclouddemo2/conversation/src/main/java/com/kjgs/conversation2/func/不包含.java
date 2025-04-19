@@ -2,6 +2,7 @@ package com.kjgs.conversation2.func;
 
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
+import com.kjgs.conversation2.静态引用;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
@@ -9,7 +10,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 不包含 extends FuncAbstract {
-    @Override
+    {
+        静态引用.内置判断方法集合.add(this.getClass().getName().substring(this.getClass().getName().lastIndexOf(".") + 1));
+    }
+        @Override
     public void 功能() {
         不包含某个属性();
         判断句的不包含动作();

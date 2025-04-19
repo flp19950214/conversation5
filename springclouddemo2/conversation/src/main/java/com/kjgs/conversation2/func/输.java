@@ -1,13 +1,29 @@
 package com.kjgs.conversation2.func;
 
+import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
 
 @Service
 public class 输 extends FuncAbstract {
+    @Autowired
+    Impl逻辑 impl逻辑;
+    @PostConstruct
+    public void init(){
+        //加载初始化逻辑语句
+        impl逻辑.保存逻辑("如果遇到输，并且后面9个字是《入句子的数据表下标》，那就把当前词和后面9个字合并为1个词");
+        impl逻辑.保存逻辑("如果遇到输，并且后面4个字是《入的句子》，那就把当前词和后面4个字合并为1个词");
+        impl逻辑.保存逻辑("如果遇到输，并且后面4个字是《出的对象》，那就把当前词和后面4个字合并为1个词");
+        impl逻辑.保存逻辑("如果遇到输，并且后面1个字是出，那就把当前词和后面1个字合并为1个词");
+
+        impl逻辑.保存逻辑("如果遇到输出，并且句子的句型是假设句，那就把后面的内容合并为1个词");
+    }
 
     public void 功能() {
         分词_输入句子的数据表下标();
