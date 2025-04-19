@@ -55,6 +55,9 @@ public class 替换为 extends FuncAbstract {
         String 替换词 = 指定后面下标的逻辑成分.getString(Cons.词语);
         String replace = StringUtils.replace(句子, 被替换词, 替换词);
         指定前前面下标的逻辑成分.put(Cons.词语, replace);
+        if(!指定前前面下标的逻辑成分.containsKey(Cons.原词语)){
+            指定前前面下标的逻辑成分.put(Cons.原词语, 句子);
+         }
     }
 
 
