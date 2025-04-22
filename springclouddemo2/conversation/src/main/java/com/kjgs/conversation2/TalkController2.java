@@ -136,6 +136,9 @@ public class TalkController2 {
     public void 处理句子(String 逻辑句子){
         for (int j = 0; j <静态引用.输入句子的成分集合.size() ; j++) {
             Document 句子成分 = 静态引用.输入句子的成分集合.get(j);
+            if(!StringUtils.containsAny(逻辑句子, 句子成分.getString(Cons.词语), Cons.句子)){
+                continue;
+            }
 //            String 逻辑句子 = "如果句子以是数字结尾，那就句子记录成处理逻辑";
             静态引用.逻辑句子对象 = new Document();
             静态引用.逻辑句子对象.put(Cons._id, new ObjectId());
