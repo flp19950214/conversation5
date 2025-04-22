@@ -61,6 +61,9 @@ public class 之间的内容 extends FuncAbstract {
             startIndex=endIndex;
             endIndex=temp;
         }
+        if(endIndex>句子.length()){
+            return null;
+        }
         String 词语 = 句子.substring(startIndex,endIndex);
         //合并之间的词语 新句子成分
         Document 新句子成分 = new Document();

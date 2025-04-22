@@ -62,7 +62,7 @@ public class 给输入的句子生成内置格式化逻辑 {
         for(int[] m : dataList){
             int one = m[0];
             int two = m[1];
-            if((one<=下标 && 下标 <= two) || (one<=下标 && 结束下标 <= two)){
+            if((one<=下标 && 下标 < two) || (one<结束下标 && 结束下标 < two) || (下标<one && 结束下标>=two)){
                 return true;
             }
         }

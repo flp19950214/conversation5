@@ -158,6 +158,7 @@ public interface Cons {
     public String 叫="叫";
     public String 替换成="替换成";
     public String 如果="如果";
+    public String 那就="那就";
     public String 那么="那么";
     public String 否则="否则";
     public String 遇到="遇到";//视觉词

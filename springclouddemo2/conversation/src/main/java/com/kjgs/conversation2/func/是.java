@@ -23,8 +23,8 @@ public class 是 extends FuncAbstract {
     @PostConstruct
     public void init(){
         //加载初始化逻辑语句
-        impl逻辑.保存逻辑("如果遇到是，并且后面8个字是《否具有分隔符功能》，那就把当前词和后面8个字合并为1个词");
         impl逻辑.保存逻辑("如果遇到是，并且后面5个字是《否是无用词》，那就把当前词和后面5个字合并为1个词");
+        impl逻辑.保存逻辑("如果遇到是，并且后面8个字是《否具有分隔符功能》，那就把当前词和后面8个字合并为1个词");
 
         impl逻辑.保存逻辑("如果遇到是，并且句子的句型是假设句，那就把当前词和后面1个分隔符之间的内容合并为1个词");
 
@@ -73,19 +73,9 @@ public class 是 extends FuncAbstract {
         Tool.删除指定范围下标的逻辑成分(下标+1, 结束下标);
     }
     public void 判断句的包含动作(){
-        // 是判断句
-        Object 句型 = Tool.往前找指定的键值(下标, Cons.句型);
-        if(句型 == null || !StringUtils.equals(Cons.假设句, 句型.toString())){
-            return;
-        }
         Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
         Document 指定下标后面的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);
         if(指定下标前面的逻辑成分 == null || 指定下标后面的逻辑成分 == null){
-            return;
-        }
-        //前面也是是 当前词不作为动词处理
-        if(StringUtils.equals(指定下标前面的逻辑成分.getString(Cons.词语), "是")
-        && 指定下标前面的逻辑成分.getBoolean(Cons.是否是句子成分) != Boolean.TRUE){
             return;
         }
         String 前面的词语 = 指定下标前面的逻辑成分.getString(Cons.词语);

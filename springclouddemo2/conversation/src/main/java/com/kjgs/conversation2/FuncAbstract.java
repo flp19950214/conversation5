@@ -27,25 +27,21 @@ public abstract class FuncAbstract {
         赋值常用字段();
 
         //如果前面一个逻辑成分是内置判断方法 那么就当前这次判断方法就不执行
-        Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
+        Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分_无迭代(下标);
         if(指定下标前面的逻辑成分 != null && 指定下标前面的逻辑成分.containsKey(Cons.词语)) {
             if(静态引用.内置判断方法集合.contains(指定下标前面的逻辑成分.getString(Cons.词语))
                 && 静态引用.内置判断方法集合.contains(逻辑词语)){
                 return;
             }
         }
-
-        //如果判断的结果逻辑，判断结果要为true才执行
-        if(!StringUtils.equalsAny(逻辑词语,"如", Cons.如果)
+        功能();
+        //如果是判断的结果逻辑，判断结果要为true才执行
+        //如果是《那就》后面的动作，要判断结果为true才行，并且要有判断结果
+        Document 那就 = Tool.指定下标前面的逻辑成分_无迭代(下标, Cons.那就);
+        if(那就!= null
                 && Tool.往前找判断结果(下标) == false){
             return;
         }
-//        if(!StringUtils.equalsAny(逻辑词语,"如", Cons.如果)
-//                && 静态引用.是否是陈述部分逻辑
-//                && Tool.往前找判断结果(下标) == false){
-//            return;
-//        }
-        功能();
         判断结果是true时执行();
     }
 

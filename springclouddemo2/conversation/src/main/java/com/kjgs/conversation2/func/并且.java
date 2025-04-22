@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 并且 extends FuncAbstract {
-    {
-        静态引用.内置判断方法集合.add(this.getClass().getName().substring(this.getClass().getName().lastIndexOf(".") + 1));
-    }
+//    {
+//        静态引用.内置判断方法集合.add(this.getClass().getName().substring(this.getClass().getName().lastIndexOf(".") + 1));
+//    }
     @Override
     public void 功能() throws IngoreException {
 //        对前面一个成分和后面一个成分取并();

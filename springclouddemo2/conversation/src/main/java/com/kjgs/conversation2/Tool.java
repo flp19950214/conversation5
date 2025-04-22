@@ -193,9 +193,20 @@ public class Tool {
     }
     // 因为遵从 逻辑中只有并且 没有或者的理念 所有只要有一个判断结果为false 就为false
     public static boolean 往前找判断结果(int 下标){
-        //20250418  改为静态变量
-        return 静态引用.判断的结果;
+        //没有判断结果就是false
+        if(静态引用.逻辑句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.判断的结果))
+                .count()==0){
+            return false;
+        }
+        boolean 判断的结果 =静态引用.逻辑句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标) && m.getInteger(Cons.下标)<下标)
+                .filter(m -> m.containsKey(Cons.判断的结果))
+                .filter(m -> !m.getBoolean(Cons.判断的结果))
+                .count()>0?false:true;
+        return 判断的结果;
     }
+
     public static Object 往前找指定的键值(int 下标, String key){
         //过滤出小于下标的，然后排序，找出第一条
         Document result =  静态引用.逻辑句子的成分集合.stream()
@@ -211,7 +222,7 @@ public class Tool {
     }
 
     public static void 赋值判断结果(Document document, Boolean 判断结果){
-        静态引用.判断的结果 = 判断结果;
+        document.put(Cons.判断的结果, 判断结果);
     }
     public static void 赋值句型(Document document, String 句型){
         document.put(Cons.句型, 句型);
@@ -261,6 +272,18 @@ public class Tool {
                 .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
+    }
+    public static Document 指定下标前面的逻辑成分_无迭代(int 下标,String 词语){
+        //过滤出小于下标的，然后排序，找出第一条
+        Document result =  静态引用.逻辑句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter (m -> m.getInteger(Cons.下标) < 下标)
+                .filter(m -> m.containsKey(Cons.词语))
+                .filter (m -> StringUtils.equals(m.get(Cons.词语).toString(), 词语))
+                .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
+                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
+                .findFirst().orElse(null);
+        return result;
     }
     public static Document 指定下标前面的逻辑成分(int 下标,String 词语){
         //过滤出小于下标的，然后排序，找出第一条
