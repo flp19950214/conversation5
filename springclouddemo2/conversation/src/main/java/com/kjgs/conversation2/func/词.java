@@ -18,7 +18,7 @@ public class 词 extends FuncAbstract {
     @PostConstruct
     public void init(){
         //加载初始化逻辑语句
-        impl逻辑.保存逻辑("如果遇到转，并且后面1个字是性，那就把当前词和后面1个字合并为1个词");
+        impl逻辑.保存逻辑("《如果》《遇到》《转》《，》《并且》《后面》《1》《个字》《是》《性》《，》《那就》《把》《当前词》《和》《后面》《1》《个字》《合并为》《1》《个词》");
     }
 
     public void 功能() {

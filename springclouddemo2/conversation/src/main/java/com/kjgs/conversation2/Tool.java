@@ -18,6 +18,16 @@ import java.util.stream.Collectors;
 
 public class Tool {
 
+    public static List<String> 生成格式化逻辑对象(String 逻辑){
+        Pattern pattern = Pattern.compile(Cons.左尖括号+"(.*?)"+Cons.右尖括号);
+        Matcher matcher = pattern.matcher(逻辑);
+        List<String> result = new ArrayList<>();
+        while (matcher.find()){
+            result.add(matcher.group(1));
+        }
+        return result;
+    }
+
     public static Document 生成成分对象(String 词语, int 下标, int 词语长度){
         Document 成分对象 = new Document();
         成分对象.put(Cons._id, new ObjectId());

@@ -21,6 +21,12 @@ public class 静态引用 {
     public static String 输出内容 = null;
     public static Integer 数据表下标 = null;
 
+
+//    public static Map<Integer, String> 所有逻辑对 = new HashMap<>();
+    public static Map<Integer, String> 所有逻辑 = new HashMap<>();
+    public static Map<Integer, String> 所有逻辑句子对象 = new HashMap<>();
+    public static Map<Integer, String> 所有逻辑句子成分对象 = new HashMap<>();
+
     //在处理“那就”方法时赋值，用于如果在处理陈述方法时，判断结果为false就不做处理了
     public static boolean 是否是陈述部分逻辑=true;
 

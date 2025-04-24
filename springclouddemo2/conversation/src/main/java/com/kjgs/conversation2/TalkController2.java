@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController()
@@ -60,50 +61,6 @@ public class TalkController2 {
             静态引用.输入句子的成分集合.add(成分对象);
         }
 
-//        List<String> 所有逻辑 = 逻辑MapperImpl.查询所有逻辑();
-        //重置输入句子成分();
-        //查询所有逻辑
-        //测试指定逻辑
-        List<String> 所有逻辑 = new ArrayList(){{
-//            add("如果遇到等，并且后面1个字是于，那就把当前词和后面1个字合并为1个词");
-//            add("如果遇到合，并且后面1个字是并，那就把当前词和后面1个字合并为1个词");
-//            add("如果遇到合并，并且后面1个字是为，那就把当前词和后面1个字合并为1个词");
-//            add("如果当前词后面是是数字，那就记录如果遇到当前词，那就标记当前词的词性为数字");
-//            add("如果遇到1，那就标记当前词的词性为数字");
-//            add("如果遇到5，那就标记当前词的词性为数字");
-//            add("如果遇到一，那就把当前词转义为1");
-//            add("如果当前词的词性是数字，并且后面1个成分是加，那就把当前词作为后面1个成分的被加数");
-//            add("如果当前词是加，并且后面1个成分的词性是数字，那就把后面1个成分作为当前词的加数");
-//            add("如果遇到空格，那就标记当前词的是否是无用词为true");
-//            add("如果遇到上，那就标记当前词的词性为方位词");
-//            add("如果遇到话，那就标记当前词的词性为名词");
-//            add("如果遇到话，那就标记当前词的偏移量为1");
-//            add("如果当前词的词性是数字，那就标记后面第1个名词的数字为当前词");
-//            add("如果遇到话，并且当前词的词性是名词，那就标记当前词的操作表为数据表");
-//            add("如果遇到话，并且当前词的词性是名词，那就找到输入句子的数据表下标作为当前词的数据表下标");
-//            add("如果当前词的词性是数字，并且前面1个成分的词性是方位词，那就标记后面第1个名词的偏移量尺寸为当前词");
-//            add("如果遇到再，并且后面第1个名词是话，那就找到刚才输出的内容的数据表下标作为后面第1个名词的数据表下标");
-//            add("如果遇到话，并且当前词的词性是名词，那就标记当前词的数据表类型为输入的句子");
-//            add("如果当前词的词性是名词，并且后面3个字是是什么，那就输出当前词");
-//            add("如果遇到再，并且后面第1个名词包含偏移量尺寸属性，那就给后面第1个名词的偏移量加后面第1个名词的偏移量尺寸");
-//            add("如果句子是《你好》，那就输出《你也好》");
-//            add("如果句子包含如果，并且句子包含那就，那就标记句子的《句型》为《假设句》");
-//            add("如果句子的《句型》是《假设句》，那就把句子记录成处理逻辑");
-//            add("如果句子的《句型》是《假设句》，并且句子包含说，那就把句子中的说替换为输出");
-//            add("如果遇到要，并且后面1个字是是，那就把当前词和后面1个字合并为1个词");
-//            add("如果遇到《要是》，那就把当前词替换为如果");
-//            add("如果遇到那，并且后面1个字是就，那就把当前词和后面1个字合并为1个词");
-
-//            add("如果遇到输出，并且句子的句型是假设句，那就把当前词后面的内容合并为1个词");
-//            add("如果遇到如，并且后面1个字是果，那就把当前词和后面1个字合并为1个词");
-//            add("如果遇到并，并且后面1个字是《且》，那就把当前词和后面1个字合并为1个词");
-            add("如果遇到前，并且后面1个字是《面》，那就把当前词和后面1个字合并为1个词");
-            add("如果遇到成，并且后面1个字是《分》，那就把当前词和后面1个字合并为1个词");
-            add("如果遇到个，并且后面2个字是《成分》，那就把当前词和后面2个字合并为1个词");
-            add("如果遇到一，并且前面1个成分是前面，后面1个成分是个成分，那就把当前词的词语替换为1");
-//            add("如果当前词是遇到，并且前面1个成分是如果，那就把当前词和后面1个分隔符之间的内容合并为1个词");
-        }};
-
         List<Document> 输入句子的成分集合Temp;
         String before;
         String after;
@@ -111,9 +68,9 @@ public class TalkController2 {
         do{
             loopN++;
             输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
-            for (int i = 0; i <所有逻辑.size() ; i++) {
+            for(Map.Entry<Integer, String> entry : 静态引用.所有逻辑.entrySet()){
                 静态引用.逻辑句子的成分集合.clear();
-                处理句子(所有逻辑.get(i));
+                处理句子(entry.getKey(), entry.getValue());
             }
             before = JSON.toJSONString(输入句子的成分集合Temp);
             after = JSON.toJSONString(静态引用.输入句子的成分集合);
@@ -123,9 +80,9 @@ public class TalkController2 {
         do{
             loopN3++;
              输入句子的成分集合Temp = 静态引用.输入句子的成分集合.stream().collect(Collectors.toList());
-            for (int i = 0; i <所有逻辑.size() ; i++) {
+            for(Map.Entry<Integer, String> entry : 静态引用.所有逻辑.entrySet()){
                 静态引用.逻辑句子的成分集合.clear();
-                处理句子(所有逻辑.get(i));
+                处理句子(entry.getKey(), entry.getValue());
             }
             before = JSON.toJSONString(输入句子的成分集合Temp);
             after = JSON.toJSONString(静态引用.输入句子的成分集合);
@@ -141,29 +98,33 @@ public class TalkController2 {
         return 静态引用.输出内容;
     }
 
-    public void 处理句子(String 逻辑句子){
+    public void 处理句子(Integer 逻辑键, String 逻辑句子){
         for (int j = 0; j <静态引用.输入句子的成分集合.size() ; j++) {
             Document 句子成分 = 静态引用.输入句子的成分集合.get(j);
             if(!StringUtils.containsAny(逻辑句子, 句子成分.getString(Cons.词语), Cons.句子)){
                 continue;
             }
+            //获取已经格式化好的逻辑对象 并转成Document
+            静态引用.逻辑句子对象 = JSON.parseArray(静态引用.所有逻辑句子对象.get(逻辑键), Document.class).get(0);
+            静态引用.逻辑句子的成分集合 = JSON.parseArray(静态引用.所有逻辑句子成分对象.get(逻辑键), Document.class);
+
 //            String 逻辑句子 = "如果句子以是数字结尾，那就句子记录成处理逻辑";
-            静态引用.逻辑句子对象 = new Document();
-            静态引用.逻辑句子对象.put(Cons._id, new ObjectId());
-            静态引用.逻辑句子对象.put(Cons.词语, 逻辑句子);
-            静态引用.逻辑句子对象.put(Cons.词语类型, Cons.逻辑句子);
-            String[] 逻辑句子元素集合 = 逻辑句子.split("");
-            //给每个词添加成句子成分
-            for (int i = 0; i < 逻辑句子元素集合.length; i++) {
-                String item = 逻辑句子元素集合[i];
-                Document 成分对象 = new Document();
-                成分对象.put(Cons._id, new ObjectId());
-                成分对象.put(Cons.父id, 静态引用.逻辑句子对象.get(Cons._id));
-                成分对象.put(Cons.词语, item);
-                成分对象.put(Cons.下标, i);
-                成分对象.put(Cons.结束下标, i + 1);
-                Tool.添加逻辑成分(成分对象);
-            }
+//            静态引用.逻辑句子对象 = new Document();
+//            静态引用.逻辑句子对象.put(Cons._id, new ObjectId());
+//            静态引用.逻辑句子对象.put(Cons.词语, 逻辑句子);
+//            静态引用.逻辑句子对象.put(Cons.词语类型, Cons.逻辑句子);
+//            String[] 逻辑句子元素集合 = 逻辑句子.split("");
+//            //给每个词添加成句子成分
+//            for (int i = 0; i < 逻辑句子元素集合.length; i++) {
+//                String item = 逻辑句子元素集合[i];
+//                Document 成分对象 = new Document();
+//                成分对象.put(Cons._id, new ObjectId());
+//                成分对象.put(Cons.父id, 静态引用.逻辑句子对象.get(Cons._id));
+//                成分对象.put(Cons.词语, item);
+//                成分对象.put(Cons.下标, i);
+//                成分对象.put(Cons.结束下标, i + 1);
+//                Tool.添加逻辑成分(成分对象);
+//            }
             String before = JSON.toJSONString(静态引用.逻辑句子的成分集合);
             处理逻辑(句子成分);
             String after = JSON.toJSONString(静态引用.逻辑句子的成分集合);
