@@ -27,98 +27,39 @@ public class 后面 extends FuncAbstract {
      */
     @Override
     public void 功能() {
-        String 方法名 = Tool.匹配某数字某格式(逻辑句子,下标, "后面第", "个名词");
-        if(方法名 != null){
-            后面第几个名词(方法名);
-            return;
+        Document 后面一个成分 = Tool.指定下标后面的逻辑成分_无迭代(下标);
+        Document 再后面一个成分 = Tool.指定下标后面的逻辑成分_无迭代(Tool.指定下标后面的逻辑成分_无迭代(下标).getInteger(Cons.下标));
+        String 后面一个词语 = "";
+        String 再后面一个词语 = "";
+        if(后面一个成分!=null){
+            后面一个词语=后面一个成分.getString(Cons.词语);
         }
-        方法名 = Tool.匹配某数字某格式(逻辑句子,下标, "后面", "个成分");
-        if(方法名 != null){
-            后面几个成分(方法名);
-            return;
+        if(再后面一个成分!=null){
+            再后面一个词语=再后面一个成分.getString(Cons.词语);
         }
-        方法名 = Tool.匹配某数字某格式(逻辑句子,下标, "后面", "个字");
-        if(方法名 != null){
-            后面几个字(方法名);
-            return;
-        }
-        方法名 = Tool.匹配某数字某格式(逻辑句子,下标, "后面", "个分隔符");
-        if(方法名 != null){
-            后面几个分隔符(方法名);
-            return;
-        }
-        方法名 = Tool.匹配开头(逻辑句子,下标, "后面的内容");
-        if(方法名 != null){
-            后面的内容(方法名);
-            return;
+
+        String method = "后面"+后面一个词语+再后面一个词语;
+        if(StringUtils.equals(再后面一个词语, "个成分")){
+            //满足条件 合并果，创建新成分，删除旧成分
+            int 结束下标 = 下标+method.length();
+            逻辑成分.put(Cons.词语, method);
+            逻辑成分.put(Cons.结束下标, 结束下标);
+            int 量词 = Tool.转数字(StringUtils.substringBetween(method, "后面","个成分"));
+            Tool.删除指定下标的逻辑成分(后面一个成分.getInteger(Cons.下标));
+            Tool.删除指定下标的逻辑成分(再后面一个成分.getInteger(Cons.下标));
+            找到后面1个成分并赋值指向(逻辑成分, 量词);
+        }else if(StringUtils.equals(再后面一个词语, "个字")){
+            //满足条件 合并果，创建新成分，删除旧成分
+            int 结束下标 = 下标+method.length();
+            逻辑成分.put(Cons.词语, method);
+            逻辑成分.put(Cons.结束下标, 结束下标);
+            int 量词 = Tool.转数字(StringUtils.substringBetween(method, "后面","个字"));
+            Tool.删除指定下标的逻辑成分(后面一个成分.getInteger(Cons.下标));
+            Tool.删除指定下标的逻辑成分(再后面一个成分.getInteger(Cons.下标));
+            找到后面某个字并赋值指向(逻辑成分, 量词);
         }
     }
 
-    public void 后面的内容(String method){
-        //满足条件 合并果，创建新成分，删除旧成分
-        int 结束下标 = 下标+method.length();
-        逻辑成分.put(Cons.词语, method);
-        逻辑成分.put(Cons.结束下标, 结束下标);
-        Tool.删除指定范围下标的逻辑成分(下标+1, 结束下标);
-        //找到句子后面的内容，并赋值指向
-        Document 新句子成分 = new Document();
-        新句子成分.put(Cons._id, new ObjectId());
-        if(句子结束下标>=句子.length()){return;}
-        新句子成分.put(Cons.词语, 句子.substring(句子结束下标));
-        新句子成分.put(Cons.下标, 句子结束下标);
-        新句子成分.put(Cons.结束下标, 句子.length() );
-        新句子成分.put(Cons.是否是句子成分, true);
-        逻辑成分.put(Cons.指向,新句子成分);
-    }
-
-    public void 后面第几个名词(String method){
-        //满足条件 合并果，创建新成分，删除旧成分
-        int 结束下标 = 下标+method.length();
-        逻辑成分.put(Cons.词语, method);
-        逻辑成分.put(Cons.结束下标, 结束下标);
-        int 量词 = Tool.转数字(StringUtils.substringBetween(method, "后面第","个名词"));
-        Tool.删除指定范围下标的逻辑成分(下标+1, 结束下标);
-        找到后面1个名词并赋值指向(逻辑成分, 量词);
-    }
-
-    public void 找到后面1个名词并赋值指向(Document 逻辑成分, int num){
-        if(句子下标 + num + 1> 句子.length()){
-            return;
-        }
-        Document 新句子成分 = Tool.指定下标后面一个句子成分(句子下标, Cons.名词);
-        if(新句子成分 != null){
-            逻辑成分.put(Cons.指向,新句子成分);
-        }
-    }
-    public void 后面几个成分(String method){
-        //满足条件 合并果，创建新成分，删除旧成分
-        int 结束下标 = 下标+method.length();
-        逻辑成分.put(Cons.词语, method);
-        逻辑成分.put(Cons.结束下标, 结束下标);
-        int 量词 = Tool.转数字(StringUtils.substringBetween(method, "后面","个成分"));
-        Tool.删除指定范围下标的逻辑成分(下标+1, 结束下标);
-        找到后面1个成分并赋值指向(逻辑成分, 量词);
-    }
-
-    public void 后面几个字(String method){
-        //满足条件 合并果，创建新成分，删除旧成分
-        int 结束下标 = 下标+method.length();
-        逻辑成分.put(Cons.词语, method);
-        逻辑成分.put(Cons.结束下标, 结束下标);
-        int 量词 = Tool.转数字(StringUtils.substringBetween(method, "后面","个字"));
-        Tool.删除指定范围下标的逻辑成分(下标+1, 结束下标);
-        找到后面某个字并赋值指向(逻辑成分, 量词);
-    }
-
-    public void 后面几个分隔符(String method){
-        //满足条件 合并果，创建新成分，删除旧成分
-        int 结束下标 = 下标+method.length();
-        逻辑成分.put(Cons.词语, method);
-        逻辑成分.put(Cons.结束下标, 结束下标);
-        int 量词 = Tool.转数字(StringUtils.substringBetween(method, "后面","个分隔符"));
-        Tool.删除指定范围下标的逻辑成分(下标+1, 结束下标);
-        找到后面某个分隔符并赋值指向(逻辑成分, 量词);
-    }
     public void 找到后面1个成分并赋值指向(Document 逻辑成分, int num){
         if(句子下标 + num + 1> 句子.length()){
             return;
@@ -127,17 +68,6 @@ public class 后面 extends FuncAbstract {
         if(新句子成分 != null){
             逻辑成分.put(Cons.指向,新句子成分);
         }
-    }
-    public void 找到后面某个分隔符并赋值指向(Document 逻辑成分, int num){
-        if(句子下标 + num + 1> 句子.length()){
-            return;
-        }
-        //往后找是分隔符的句子成分
-        List<Document> 后面的句子成分 = Tool.根据键值对往后找句子成分(句子下标, Cons.是否具有分隔符功能, "true");
-        if(CollectionUtils.isEmpty(后面的句子成分) || 后面的句子成分.size()<num || num==0){
-            return;
-        }
-        逻辑成分.put(Cons.指向,后面的句子成分.get(num-1));
     }
 
     public void 找到后面某个字并赋值指向(Document 逻辑成分, int num){
