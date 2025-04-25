@@ -4,12 +4,15 @@ import com.alibaba.fastjson.JSON;
 import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.conversation.mysql.mapper.逻辑Mapper;
 import com.kjgs.枚举.Cons;
+import org.apache.commons.collections4.MapUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +23,7 @@ public class 启动执行初始化数据 {
     @Autowired
     private 逻辑Mapper 逻辑MapperImpl;
     public void init (){
-        逻辑impl.保存逻辑("如果句子以如果开头，那就把句子记录成处理逻辑");
+//        逻辑impl.保存逻辑("《如果》《句子》《以》《如果》《开头》《，》《那就》《把》《句子》《记录成处理逻辑》");
         生成格式化逻辑对象();
     }
 
@@ -42,6 +45,20 @@ public class 启动执行初始化数据 {
             静态引用.所有逻辑句子对象.put(i, JSON.toJSONString(逻辑句子对象));
 
             List<String> 格式化逻辑词语 = Tool.生成格式化逻辑对象(所有逻辑.get(i));
+            if(格式化逻辑词语.size()<3){
+                continue;
+            }
+            if(StringUtils.equals(格式化逻辑词语.get(0), Cons.如果)
+                    && StringUtils.equals(格式化逻辑词语.get(1), Cons.遇到)){
+                String 关键词 = 格式化逻辑词语.get(2);
+                if(静态引用.关键词与逻辑.containsKey(关键词)){
+                    MapUtils.getObject(静态引用.关键词与逻辑, 关键词, new HashSet<>()).add(i);
+                }else{
+                   HashSet<Integer>  hashSet = new HashSet<>();
+                   hashSet.add(i);
+                    静态引用.关键词与逻辑.put(关键词, hashSet);
+                }
+            }
             List<Document> 格式化逻辑对象 = new ArrayList<>();
             for (int j = 0; j < 格式化逻辑词语.size(); j++) {
                 Document 成分对象 = new Document();

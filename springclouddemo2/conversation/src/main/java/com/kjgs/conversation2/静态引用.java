@@ -3,10 +3,7 @@ package com.kjgs.conversation2;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class 静态引用 {
@@ -18,6 +15,7 @@ public class 静态引用 {
 
     public static List<String> 内置判断方法集合 = new ArrayList<>();
 
+    public static boolean 是否继续处理句子 = true;
     public static String 输出内容 = null;
     public static Integer 数据表下标 = null;
 
@@ -26,6 +24,7 @@ public class 静态引用 {
     public static Map<Integer, String> 所有逻辑 = new HashMap<>();
     public static Map<Integer, String> 所有逻辑句子对象 = new HashMap<>();
     public static Map<Integer, String> 所有逻辑句子成分对象 = new HashMap<>();
+    public static Map<String, HashSet<Integer>> 关键词与逻辑 = new HashMap<>();
 
     //在处理“那就”方法时赋值，用于如果在处理陈述方法时，判断结果为false就不做处理了
     public static boolean 是否是陈述部分逻辑=true;

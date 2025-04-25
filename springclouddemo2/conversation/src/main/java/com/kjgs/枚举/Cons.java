@@ -44,6 +44,7 @@ public interface Cons {
     public String 名字="名字";
     public String 名称="名称";
     public String 词性="词性";
+    public String 属于="属于";
     public String 名词="名词";
     public String 代词="代词";
     public String 句型="句型";
