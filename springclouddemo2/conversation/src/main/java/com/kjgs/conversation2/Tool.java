@@ -505,17 +505,29 @@ public class Tool {
         document.put(Cons.集合类型, 集合数据);
         return document;
     }
-    public static List<Document> 获取指定范围下标的句子成分(int start, int end){
+    public static List<Document> 获取指定范围下标的句子成分(int start, Integer end){
         List<Document> result = new ArrayList<>();
-        for (int i = 0; i < 静态引用.输入句子的成分集合.size(); i++) {
-            Document document = 静态引用.输入句子的成分集合.get(i);
-            if(document != null && document.getInteger(Cons.下标) !=null
-                    && document.getInteger(Cons.下标) >=start
-                    && document.getInteger(Cons.下标) <end ){
-                result.add(静态引用.输入句子的成分集合.get(i));
+        if(end == null){
+            for (int i = 0; i < 静态引用.输入句子的成分集合.size(); i++) {
+                Document document = 静态引用.输入句子的成分集合.get(i);
+                if(document != null && document.getInteger(Cons.下标) !=null
+                        && document.getInteger(Cons.下标) >=start){
+                    result.add(静态引用.输入句子的成分集合.get(i));
+                }
             }
+            return result;
+        }else{
+            for (int i = 0; i < 静态引用.输入句子的成分集合.size(); i++) {
+                Document document = 静态引用.输入句子的成分集合.get(i);
+                if(document != null && document.getInteger(Cons.下标) !=null
+                        && document.getInteger(Cons.下标) >=start
+                        && document.getInteger(Cons.下标) <end ){
+                    result.add(静态引用.输入句子的成分集合.get(i));
+                }
+            }
+            return result;
         }
-        return result;
+
     }
     public static void 删除指定下标的句子成分(int 下标){
         for (int i = 0; i < 静态引用.输入句子的成分集合.size(); i++) {
