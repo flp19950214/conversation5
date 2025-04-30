@@ -77,7 +77,8 @@ public class TalkController2 {
         int loop =0;
         while (静态引用.是否继续处理句子 && loop<10){
             loop++;
-            for(Document 句子成分 : 静态引用.输入句子的成分集合){
+            for (int i = 0; i <静态引用.输入句子的成分集合.size() ; i++) {
+                Document 句子成分 = 静态引用.输入句子的成分集合.get(i);
                 //找逻辑
                 String 词语 = 句子成分.getString(Cons.词语);
                 String 词性 = 句子成分.getString(Cons.词性);
