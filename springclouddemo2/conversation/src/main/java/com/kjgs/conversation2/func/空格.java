@@ -10,6 +10,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 空格 extends FuncAbstract {
+    public 空格(){
+        后面能否跟内置动作=true;
+        执行层级=1;
+    }
+
     @Override
     public void 功能() {
         转义空格();

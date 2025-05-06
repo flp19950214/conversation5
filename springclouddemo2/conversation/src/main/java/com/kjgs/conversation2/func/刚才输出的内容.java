@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 刚才输出的内容 extends FuncAbstract {
-
+    public 刚才输出的内容(){
+        后面能否跟内置动作=true;
+    }
     @Autowired
     private Impl数据 impl数据;
 

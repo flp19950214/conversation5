@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 当前词 extends FuncAbstract {
+    public 当前词(){
+        后面能否跟内置动作=true;
+        执行层级=1;
+    }
     @Override
     public void 功能() {
         添加指向();

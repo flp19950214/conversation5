@@ -11,6 +11,9 @@ import java.util.List;
 
 @Service
 public class 和 extends FuncAbstract {
+    public 和(){
+        后面能否跟内置动作=true;
+    }
     @Override
     public void 功能() {
         合并前后成分并指向多成分();

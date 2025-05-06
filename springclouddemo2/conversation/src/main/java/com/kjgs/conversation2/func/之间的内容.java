@@ -13,6 +13,9 @@ import java.util.List;
 
 @Service
 public class 之间的内容 extends FuncAbstract {
+    public 之间的内容(){
+        后面能否跟内置动作=false;
+    }
     @Override
     public void 功能() {
 

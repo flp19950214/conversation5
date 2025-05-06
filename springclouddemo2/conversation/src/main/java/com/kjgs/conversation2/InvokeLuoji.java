@@ -21,7 +21,7 @@ public class InvokeLuoji {
             逻辑成分.put(Cons.词性, Cons.数字);
         }
         if(StringUtils.equals(动作, Cons.左尖括号)){
-            invoke(Cons.左尖括号_名字, 逻辑成分, 句子成分, 原句子成分);
+            invoke( Cons.左尖括号_名字, 逻辑成分, 句子成分, 原句子成分);
             return;
         }
         if(!获取所有功能名.funcList.contains(动作)){
@@ -31,11 +31,11 @@ public class InvokeLuoji {
 
     }
 
-    public void invoke(String 动作, Document 逻辑成分, Document 句子成分, Document 原句子成分){
+    public void invoke( String 动作, Document 逻辑成分, Document 句子成分, Document 原句子成分){
         try {
             FuncAbstract funcAbstract = (FuncAbstract)
                     context.getBean(Class.forName("com.kjgs.conversation2.func." + 动作));
-            funcAbstract.执行流程(逻辑成分, 句子成分, 原句子成分);
+            funcAbstract.执行流程( 逻辑成分, 句子成分, 原句子成分);
         }catch (IngoreException e){
 //            e.printStackTrace();
         } catch (Exception e) {

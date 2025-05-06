@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 左尖括号 extends FuncAbstract {
-
+    public 左尖括号(){
+        后面能否跟内置动作=true;
+        执行层级=1;
+    }
     public void 功能() {
         合并左右尖括号中的内容();
     }

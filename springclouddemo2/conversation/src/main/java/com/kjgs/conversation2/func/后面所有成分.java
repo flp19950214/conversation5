@@ -10,6 +10,10 @@ import java.util.List;
 
 @Service
 public class 后面所有成分 extends FuncAbstract {
+    public 后面所有成分(){
+        后面能否跟内置动作=true;
+        执行层级=1;
+    }
     @Override
     public void 功能() {
         后面所有成分();

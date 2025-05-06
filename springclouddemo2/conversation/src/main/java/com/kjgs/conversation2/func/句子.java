@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 句子 extends FuncAbstract {
+    public 句子(){
+        后面能否跟内置动作=true;
+        执行层级=1;
+    }
     @Override
     public void 功能() {
         赋值代指对象();

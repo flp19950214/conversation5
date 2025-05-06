@@ -10,10 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 不包含 extends FuncAbstract {
-    {
-        静态引用.内置判断方法集合.add(this.getClass().getName().substring(this.getClass().getName().lastIndexOf(".") + 1));
-    }
-        @Override
+
+
+    @Override
     public void 功能() {
         不包含某个属性();
         判断句的不包含动作();

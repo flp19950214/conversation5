@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 合并后的词 extends FuncAbstract {
+    public 合并后的词(){
+        后面能否跟内置动作=true;
+    }
     @Override
     public void 功能() {
         找合并的结果();

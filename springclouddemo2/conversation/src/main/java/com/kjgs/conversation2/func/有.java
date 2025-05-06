@@ -12,9 +12,6 @@ import java.util.List;
 
 @Service
 public class 有 extends FuncAbstract {
-    {
-        静态引用.内置判断方法集合.add(this.getClass().getName().substring(this.getClass().getName().lastIndexOf(".") + 1));
-    }
     @Override
     public void 功能() {
         前面一个成分词语包含后面一个成分词语();

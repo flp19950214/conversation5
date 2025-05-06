@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 那就 extends FuncAbstract {
+    public 那就(){
+        后面能否跟内置动作=true;
+        执行层级=1;
+    }
     @Override
     public void 功能() {
         到那就之间的成分赋值为假设句();

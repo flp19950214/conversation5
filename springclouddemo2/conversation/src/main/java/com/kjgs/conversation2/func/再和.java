@@ -12,6 +12,10 @@ import java.util.List;
 
 @Service
 public class 再和 extends FuncAbstract {
+    public 再和(){
+        后面能否跟内置动作=true;
+    }
+
     @Override
     public void 功能() {
         找到前面一个并列集合再合并到后面一个集合();

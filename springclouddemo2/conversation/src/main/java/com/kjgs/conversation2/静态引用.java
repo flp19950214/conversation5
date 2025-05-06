@@ -13,11 +13,13 @@ public class 静态引用 {
     public static List<Document> 输入句子的成分集合 = new ArrayList<>();
     public static List<Document> 逻辑句子的成分集合 = new ArrayList<>();
 
-    public static List<String> 内置判断方法集合 = new ArrayList<>();
-
     public static boolean 是否继续处理句子 = true;
     public static String 输出内容 = null;
     public static Integer 数据表下标 = null;
+    public static int 逻辑执行层级 = 0;
+    public static boolean 上个逻辑后面能否跟内置动作 = false;
+
+    public static boolean 句子成分是否发生变化=false;
 
 
 //    public static Map<Integer, String> 所有逻辑对 = new HashMap<>();
@@ -45,7 +47,7 @@ public class 静态引用 {
         return result;
     }
 
-    //继续完善逻辑  要加内置逻辑间的执行层级：比如先执行“的” 再主席那个动作
+    //继续完善逻辑  要加内置逻辑间的执行层级：比如先执行“的”
     // 再者是比如 “遇到”作为动词，后面不能再跟内置动作，无论是动作还是非动作的
     //再者是给加是否变化的标识
     //再者是继续加内置功能

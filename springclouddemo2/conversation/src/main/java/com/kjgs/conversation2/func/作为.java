@@ -2,12 +2,14 @@ package com.kjgs.conversation2.func;
 
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
+import com.kjgs.conversation2.静态引用;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 
 @Service
 public class 作为 extends FuncAbstract {
+
     @Override
     public void 功能() {
 
@@ -39,6 +41,7 @@ public class 作为 extends FuncAbstract {
         String 属性 = 属性对象.getString(Cons.词语);
         Document 对象 = 指定后面下标的逻辑成分;
         对象.put(属性, 属性值);
+        静态引用.句子成分是否发生变化=true;
 //        Tool.添加句子成分(对象);
     }
 

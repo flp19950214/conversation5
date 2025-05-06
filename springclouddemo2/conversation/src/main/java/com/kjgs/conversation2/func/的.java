@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 的 extends FuncAbstract {
+
+    public 的(){
+        后面能否跟内置动作=true;
+        执行层级=1;
+    }
     @Override
     public void 功能() {
         //给后面的属性添加所属对象

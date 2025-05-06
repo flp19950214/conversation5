@@ -16,6 +16,10 @@ import java.util.List;
 
 @Service
 public class 后面 extends FuncAbstract {
+    public 后面(){
+        后面能否跟内置动作=true;
+        执行层级=1;
+    }
     @Autowired
     Impl逻辑 impl逻辑;
     @PostConstruct

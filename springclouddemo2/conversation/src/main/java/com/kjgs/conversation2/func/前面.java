@@ -13,6 +13,11 @@ import java.util.List;
 
 @Service
 public class 前面 extends FuncAbstract {
+    public 前面(){
+        后面能否跟内置动作=true;
+        执行层级=1;
+    }
+
     @Override
     public void 功能() {
         Document 后面一个成分 = Tool.指定下标后面的逻辑成分_无迭代(下标);

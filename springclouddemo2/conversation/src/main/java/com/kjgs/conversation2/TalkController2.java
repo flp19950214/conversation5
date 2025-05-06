@@ -41,13 +41,14 @@ public class TalkController2 {
 
     /**
      * 输入的原句子 不能动
+     *
      * @param input
      * @return
      */
     @PostMapping("/process3")
     public Object process(@RequestBody JSONObject input) {
-        静态引用.输出内容=null;
-        静态引用.是否继续处理句子=true;
+        静态引用.输出内容 = null;
+        静态引用.是否继续处理句子 = true;
         String 输入的句子 = input.getString("input");
         静态引用.输入的句子对象 = new Document();
         静态引用.输入的句子对象.put(Cons._id, new ObjectId());
@@ -58,7 +59,7 @@ public class TalkController2 {
         //给每个词添加成句子成分
         for (int i = 0; i < 输入的句子元素集合.length; i++) {
             String item = 输入的句子元素集合[i];
-            Document 成分对象 = Tool.生成成分对象(item,i,1);
+            Document 成分对象 = Tool.生成成分对象(item, i, 1);
             静态引用.输入句子的成分集合.add(成分对象);
         }
         静态引用.逻辑句子的成分集合.clear();
@@ -73,16 +74,16 @@ public class TalkController2 {
         return 静态引用.输出内容;
     }
 
-    public void 处理句子New(){
-        int loop =0;
-        while (静态引用.是否继续处理句子 && loop<10){
+    public void 处理句子New() {
+        int loop = 0;
+        while (静态引用.是否继续处理句子 && loop < 10) {
             loop++;
-            for (int i = 0; i <静态引用.输入句子的成分集合.size() ; i++) {
+            for (int i = 0; i < 静态引用.输入句子的成分集合.size(); i++) {
                 Document 句子成分 = 静态引用.输入句子的成分集合.get(i);
                 //找逻辑
                 String 词语 = 句子成分.getString(Cons.词语);
                 String 词性 = 句子成分.getString(Cons.词性);
-                String 属于= 句子成分.getString(Cons.属于);
+                String 属于 = 句子成分.getString(Cons.属于);
                 HashSet<Integer> 逻辑idSet = MapUtils.getObject(静态引用.关键词与逻辑, 词语, new HashSet<>());
                 逻辑idSet.addAll(MapUtils.getObject(静态引用.关键词与逻辑, 词性, new HashSet<>()));
                 逻辑idSet.addAll(MapUtils.getObject(静态引用.关键词与逻辑, 属于, new HashSet<>()));
@@ -92,23 +93,27 @@ public class TalkController2 {
         }
     }
 
-    public void 执行处理逻辑(List<Integer> list,Document 句子成分){
+    public void 执行处理逻辑(List<Integer> list, Document 句子成分) {
         Collections.sort(list);
-        for(Integer id:list){
-            处理句子(id,句子成分);
+        for (Integer id : list) {
+            处理句子(id, 句子成分);
         }
     }
 
-    public void 处理句子(Integer 逻辑键,Document 原句子成分){
+    public void 处理句子(Integer 逻辑键, Document 原句子成分) {
         Document 句子成分 = Tool.代词的最终指向(原句子成分);
         //获取已经格式化好的逻辑对象 并转成Document
         静态引用.逻辑句子对象 = JSON.parseArray(静态引用.所有逻辑句子对象.get(逻辑键), Document.class).get(0);
         静态引用.逻辑句子的成分集合 = JSON.parseArray(静态引用.所有逻辑句子成分对象.get(逻辑键), Document.class);
         //开始处理每个逻辑成分
-        for (int i = 0; i < 静态引用.逻辑句子的成分集合.size() ; i++) {
-            Document 逻辑成分 = 静态引用.逻辑句子的成分集合.get(i);
-            String 动作 = 逻辑成分.getString(Cons.词语);
-            invokeLuoji.执行逻辑(动作, 逻辑成分, 句子成分, 原句子成分);
+        for (int j = 1; j <= 2; j++) {
+            静态引用.逻辑执行层级=j;
+            静态引用.上个逻辑后面能否跟内置动作=false;
+            for (int i = 0; i < 静态引用.逻辑句子的成分集合.size(); i++) {
+                Document 逻辑成分 = 静态引用.逻辑句子的成分集合.get(i);
+                String 动作 = 逻辑成分.getString(Cons.词语);
+                invokeLuoji.执行逻辑(动作, 逻辑成分, 句子成分, 原句子成分);
+            }
         }
         List<Document> 输入句子的成分集合 = 静态引用.输入句子的成分集合;
         Document 逻辑句子对象 = 静态引用.逻辑句子对象;
@@ -117,7 +122,7 @@ public class TalkController2 {
 
     }
 
-    public void 重置输入句子成分(){
+    public void 重置输入句子成分() {
         静态引用.输入句子的成分集合.clear();
         Document 成分对象 = new Document();
         成分对象.put(Cons._id, new ObjectId());
