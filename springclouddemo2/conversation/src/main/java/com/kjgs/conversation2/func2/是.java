@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 
-@Service
+@Service("是2")
 public class 是 extends FuncAbstract {
     @Autowired
     Impl逻辑 impl逻辑;

@@ -13,13 +13,11 @@ public class 静态引用 {
     public static List<Document> 输入句子的成分集合 = new ArrayList<>();
     public static List<Document> 逻辑句子的成分集合 = new ArrayList<>();
 
-    public static boolean 是否继续处理句子 = true;
     public static String 输出内容 = null;
     public static Integer 数据表下标 = null;
     public static int 逻辑执行层级 = 0;
     public static boolean 上个逻辑后面能否跟内置动作 = false;
 
-    public static boolean 句子成分是否发生变化=false;
 
 
 //    public static Map<Integer, String> 所有逻辑对 = new HashMap<>();

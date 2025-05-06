@@ -48,7 +48,6 @@ public class TalkController2 {
     @PostMapping("/process3")
     public Object process(@RequestBody JSONObject input) {
         静态引用.输出内容 = null;
-        静态引用.是否继续处理句子 = true;
         String 输入的句子 = input.getString("input");
         静态引用.输入的句子对象 = new Document();
         静态引用.输入的句子对象.put(Cons._id, new ObjectId());
@@ -76,7 +75,10 @@ public class TalkController2 {
 
     public void 处理句子New() {
         int loop = 0;
-        while (静态引用.是否继续处理句子 && loop < 10) {
+        //还是比较字符串是否发生变换 判断是否进行下一次循环吧
+        String before = JSON.toJSONString(静态引用.输入句子的成分集合);
+        String after = "";
+        do{
             loop++;
             for (int i = 0; i < 静态引用.输入句子的成分集合.size(); i++) {
                 Document 句子成分 = 静态引用.输入句子的成分集合.get(i);
@@ -90,7 +92,8 @@ public class TalkController2 {
                 //执行处理逻辑
                 执行处理逻辑(new ArrayList<>(逻辑idSet), 句子成分);
             }
-        }
+            after = JSON.toJSONString(静态引用.输入句子的成分集合);
+        }while (before.length() != after.length() || (before.length()==after.length() && !before.equals(after)));
     }
 
     public void 执行处理逻辑(List<Integer> list, Document 句子成分) {

@@ -3,6 +3,7 @@ package com.kjgs.conversation2.func;
 import com.kjgs.conversation.mysql.Impl数据;
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
+import com.kjgs.conversation2.静态引用;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;

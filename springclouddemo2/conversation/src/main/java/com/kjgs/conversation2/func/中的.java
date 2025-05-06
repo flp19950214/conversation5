@@ -23,6 +23,5 @@ public class 中的 extends FuncAbstract {
             return;
         }
         指定后面下标的逻辑成分.put(Cons.归属对象, 指定前面下标的逻辑成分);
-        静态引用.句子成分是否发生变化=true;
     }
 }
