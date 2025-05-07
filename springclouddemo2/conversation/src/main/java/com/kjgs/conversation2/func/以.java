@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 以 extends FuncAbstract {
+    public 以(){
+        后面能否跟内置动作=false;
+    }
     @Override
     public void 功能() {
         判断句中以某某结尾();

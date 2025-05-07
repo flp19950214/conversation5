@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 输出的对象 extends FuncAbstract {
-
+    public 输出的对象(){
+        后面能否跟内置动作=true;
+    }
     @Autowired
     private Impl数据 impl数据;
     @Override

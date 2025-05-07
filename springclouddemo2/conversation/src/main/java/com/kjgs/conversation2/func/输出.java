@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 输出 extends FuncAbstract {
+    public 输出(){
+        后面能否跟内置动作=false;
+    }
     @Override
     public void 功能() {
 

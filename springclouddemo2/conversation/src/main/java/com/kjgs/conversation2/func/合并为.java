@@ -13,6 +13,9 @@ import java.util.List;
 
 @Service
 public class 合并为 extends FuncAbstract {
+    public 合并为(){
+        后面能否跟内置动作=false;
+    }
     @Override
     public void 功能() {
 

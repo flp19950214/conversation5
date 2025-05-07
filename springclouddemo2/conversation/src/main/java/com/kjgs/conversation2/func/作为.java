@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class 作为 extends FuncAbstract {
 
+    public 作为(){
+        后面能否跟内置动作=false;
+    }
+
     @Override
     public void 功能() {
 

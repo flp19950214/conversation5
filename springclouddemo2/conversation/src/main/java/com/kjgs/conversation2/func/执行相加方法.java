@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 执行相加方法 extends FuncAbstract {
-
+    public 执行相加方法(){
+        后面能否跟内置动作=false;
+    }
     public void 功能() {
 
     }

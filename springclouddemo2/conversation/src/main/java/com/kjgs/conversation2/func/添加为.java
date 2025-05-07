@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 添加为 extends FuncAbstract {
+    public 添加为(){
+        后面能否跟内置动作=false;
+    }
 
     @Autowired
     private Impl逻辑 逻辑impl;

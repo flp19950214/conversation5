@@ -14,7 +14,9 @@ import javax.annotation.PostConstruct;
 
 @Service
 public class 是 extends FuncAbstract {
-
+    public 是(){
+        后面能否跟内置动作=false;
+    }
     @Autowired
     Impl逻辑 impl逻辑;
     @PostConstruct

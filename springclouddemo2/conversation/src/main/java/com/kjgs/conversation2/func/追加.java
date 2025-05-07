@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 追加 extends FuncAbstract {
+    public 追加(){
+        后面能否跟内置动作=false;
+    }
     @Override
     public void 功能() {
         前面成分追加后面成分();

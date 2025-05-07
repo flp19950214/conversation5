@@ -15,6 +15,9 @@ import java.util.List;
 
 @Service
 public class 记录成处理逻辑 extends FuncAbstract {
+    public 记录成处理逻辑(){
+        后面能否跟内置动作=false;
+    }
     //碰撞形成内置逻辑
     public static void 能否形成内置逻辑(List<Document> 成分集合){
         //必须包含如果

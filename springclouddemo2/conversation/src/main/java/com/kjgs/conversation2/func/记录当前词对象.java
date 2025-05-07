@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 记录当前词对象 extends FuncAbstract {
-
+    public 记录当前词对象(){
+        后面能否跟内置动作=false;
+    }
     @Autowired
     private Impl逻辑 逻辑impl;
     @Autowired

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 遇到 extends FuncAbstract {
-
+    public 遇到(){
+        后面能否跟内置动作=false;
+    }
     @Override
     public void 功能() {
         当前处理成分是遇到的后面一个成分();

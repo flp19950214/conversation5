@@ -84,7 +84,7 @@ public class 前面 extends FuncAbstract {
         }
     }
     public void 找到前面1个成分并赋值指向(Document 逻辑成分, int num){
-        if(句子下标 + num + 1> 句子.length()){
+        if(句子下标 + num > 句子.length()){
             return;
         }
         Document 新句子成分 = Tool.指定下标前面一个句子成分(句子下标);

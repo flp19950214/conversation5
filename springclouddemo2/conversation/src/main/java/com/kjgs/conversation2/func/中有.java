@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 中有 extends FuncAbstract {
+    public 中有(){
+        后面能否跟内置动作=false;
+    }
 
     @Override
     public void 功能() {

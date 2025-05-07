@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 输入句子的数据表下标 extends FuncAbstract {
-
+    public 输入句子的数据表下标(){
+        后面能否跟内置动作=false;
+    }
     @Autowired
     private Impl数据 impl数据;
     @Override

@@ -19,7 +19,7 @@ public abstract class FuncAbstract {
     public int 结束下标;
 
     public int 执行层级=2;
-    public boolean 后面能否跟内置动作=false;
+    public boolean 后面能否跟内置动作=true;
 
     public abstract void 功能() throws IngoreException;
 

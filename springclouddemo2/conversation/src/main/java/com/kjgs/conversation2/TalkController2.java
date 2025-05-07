@@ -93,7 +93,8 @@ public class TalkController2 {
                 执行处理逻辑(new ArrayList<>(逻辑idSet), 句子成分);
             }
             after = JSON.toJSONString(静态引用.输入句子的成分集合);
-        }while (before.length() != after.length() || (before.length()==after.length() && !before.equals(after)));
+        }while (loop<10 && (before.length() != after.length() ||
+                (before.length()==after.length() && !before.equals(after))));
     }
 
     public void 执行处理逻辑(List<Integer> list, Document 句子成分) {
@@ -111,7 +112,6 @@ public class TalkController2 {
         //开始处理每个逻辑成分
         for (int j = 1; j <= 2; j++) {
             静态引用.逻辑执行层级=j;
-            静态引用.上个逻辑后面能否跟内置动作=false;
             for (int i = 0; i < 静态引用.逻辑句子的成分集合.size(); i++) {
                 Document 逻辑成分 = 静态引用.逻辑句子的成分集合.get(i);
                 String 动作 = 逻辑成分.getString(Cons.词语);

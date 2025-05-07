@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 句子中的当前词替换为 extends FuncAbstract {
-
+    public 句子中的当前词替换为(){
+        后面能否跟内置动作=false;
+    }
     public void 功能() {
 
     }

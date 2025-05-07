@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class 替换为 extends FuncAbstract {
+    public 替换为(){
+        后面能否跟内置动作=false;
+    }
     @Override
     public void 功能() {
 

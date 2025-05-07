@@ -12,6 +12,9 @@ import java.util.List;
 
 @Service
 public class 有 extends FuncAbstract {
+    public 有(){
+        后面能否跟内置动作=false;
+    }
     @Override
     public void 功能() {
         前面一个成分词语包含后面一个成分词语();

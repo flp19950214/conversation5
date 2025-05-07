@@ -16,7 +16,9 @@ import java.util.List;
 
 @Service
 public class 执行查询名词指向方法 extends FuncAbstract {
-
+    public 执行查询名词指向方法(){
+        后面能否跟内置动作=false;
+    }
     @Autowired
     private Tool查询 tool查询;
 

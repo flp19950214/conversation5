@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class 不包含 extends FuncAbstract {
 
+    public 不包含(){
+        后面能否跟内置动作=false;
+    }
 
     @Override
     public void 功能() {

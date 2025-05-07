@@ -1,9 +1,7 @@
 package com.kjgs.conversation2;
 
-import com.kjgs.功能.功能抽象;
 import com.kjgs.启动执行包.获取所有功能名;
 import com.kjgs.枚举.Cons;
-import com.kjgs.逻辑流程.执行逻辑;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +23,7 @@ public class InvokeLuoji {
             return;
         }
         if(!获取所有功能名.funcList.contains(动作)){
+            静态引用.上个逻辑后面能否跟内置动作 = true;
             return;
         }
         invoke(动作, 逻辑成分, 句子成分, 原句子成分);
@@ -36,6 +35,7 @@ public class InvokeLuoji {
             FuncAbstract funcAbstract = (FuncAbstract)
                     context.getBean(Class.forName("com.kjgs.conversation2.func." + 动作));
             funcAbstract.执行流程( 逻辑成分, 句子成分, 原句子成分);
+            静态引用.上个逻辑后面能否跟内置动作 = funcAbstract.后面能否跟内置动作;
         }catch (IngoreException e){
 //            e.printStackTrace();
         } catch (Exception e) {

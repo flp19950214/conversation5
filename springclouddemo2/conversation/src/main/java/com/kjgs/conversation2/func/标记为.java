@@ -12,6 +12,9 @@ import java.util.List;
 
 @Service
 public class 标记为 extends FuncAbstract {
+    public 标记为(){
+        后面能否跟内置动作=false;
+    }
     @Override
     public void 功能() {
 
