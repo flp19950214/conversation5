@@ -2,21 +2,17 @@ package com.kjgs.conversation2.func;
 
 import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.conversation2.FuncAbstract;
-import com.kjgs.conversation2.Tool;
 import com.kjgs.枚举.Cons;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 
 @Service
-public class 后面的内容 extends FuncAbstract {
-    public 后面的内容(){
+public class 后面的成分 extends FuncAbstract {
+    public 后面的成分(){
         后面能否跟内置动作=true;
         执行层级=1;
     }
@@ -28,10 +24,10 @@ public class 后面的内容 extends FuncAbstract {
 
     @Override
     public void 功能() {
-        后面的内容();
+        后面的成分();
     }
 
-    public void 后面的内容(){
+    public void 后面的成分(){
         //找到句子后面的内容，并赋值指向
         Document 新句子成分 = new Document();
         新句子成分.put(Cons._id, new ObjectId());

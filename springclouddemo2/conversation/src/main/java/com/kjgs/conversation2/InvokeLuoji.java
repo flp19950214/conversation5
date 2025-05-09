@@ -22,6 +22,7 @@ public class InvokeLuoji {
             invoke( Cons.左尖括号_名字, 逻辑成分, 句子成分, 原句子成分);
             return;
         }
+        动作 = 修改动作名(动作);
         if(!获取所有功能名.funcList.contains(动作)){
             静态引用.上个逻辑后面能否跟内置动作 = true;
             return;
@@ -41,5 +42,20 @@ public class InvokeLuoji {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String 修改动作名(String 动作){
+        if(动作.startsWith("后面") && 动作.endsWith("个字")){
+            动作 = "后面某个字";
+        }else if(动作.startsWith("后面") && 动作.endsWith("个成分")){
+            动作 = "后面某个成分";
+        }else if(动作.startsWith("后面第") && 动作.endsWith("某个名词")){
+            动作 = "后面第某个名词";
+        }else if(动作.startsWith("前面") && 动作.endsWith("个字")){
+            动作 = "前面某个字";
+        }else if(动作.startsWith("前面") && 动作.endsWith("个成分")){
+            动作 = "前面某个成分";
+        }
+        return 动作;
     }
 }

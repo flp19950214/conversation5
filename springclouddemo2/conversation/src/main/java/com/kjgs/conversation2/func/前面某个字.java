@@ -1,0 +1,51 @@
+package com.kjgs.conversation2.func;
+
+import com.kjgs.conversation2.FuncAbstract;
+import com.kjgs.conversation2.Tool;
+import com.kjgs.枚举.Cons;
+import org.apache.commons.lang3.StringUtils;
+import org.bson.Document;
+import org.bson.types.ObjectId;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class 前面某个字 extends FuncAbstract {
+    public 前面某个字(){
+        后面能否跟内置动作=true;
+        执行层级=1;
+    }
+
+    /**
+     * 分词后直接干活
+     */
+    @Override
+    public void 功能() {
+        Integer 量词 = Tool.转数字(StringUtils.substringBetween(逻辑词语, "前面", "个字"));
+        if(量词 == null){
+            return;
+        }
+        找到前面某个字并赋值指向(逻辑成分, 量词);
+    }
+
+    public void 找到前面某个字并赋值指向(Document 逻辑成分, int num){
+        if(句子下标 + num + 1> 句子.length()){
+            return;
+        }
+        Document 新句子成分 = new Document();
+        StringBuffer 词语 = new StringBuffer();
+        for (int i = num; i >0 ; i--) {
+            if(句子下标-i<0){
+                return;
+            }
+            词语.append(句子.substring(句子下标-i,句子下标-i+1));
+        }
+        新句子成分.put(Cons.词语, 词语.toString());
+        新句子成分.put(Cons.下标, 句子下标-num);
+        新句子成分.put(Cons.结束下标, 句子下标);
+        新句子成分.put(Cons.是否是句子成分, true);
+
+        逻辑成分.put(Cons.指向,新句子成分);
+    }
+}

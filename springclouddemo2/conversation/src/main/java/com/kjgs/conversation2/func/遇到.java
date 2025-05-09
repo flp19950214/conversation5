@@ -24,8 +24,13 @@ public class 遇到 extends FuncAbstract {
         if(指定下标后面的逻辑成分 == null){
             return;
         }
+        //额外判断词性和属于的值
 
-        boolean result = StringUtils.equals(句子词语, 指定下标后面的逻辑成分.getString(Cons.词语));
+        boolean result =
+                (StringUtils.equals(句子词语, 指定下标后面的逻辑成分.getString(Cons.词语))
+                || StringUtils.equals(句子成分.getString(Cons.词性), 指定下标后面的逻辑成分.getString(Cons.词语))
+                || StringUtils.equals(句子成分.getString(Cons.属于), 指定下标后面的逻辑成分.getString(Cons.词语))
+                );
         Tool.赋值判断结果(逻辑成分, result);
     }
 }
