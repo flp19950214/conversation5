@@ -36,6 +36,6 @@ public class 再和 extends FuncAbstract {
         List<Document> 多成分 = new ArrayList<>();
         多成分.addAll(子成分);
         多成分.add(指定下标后面的逻辑成分);
-        逻辑成分.put(Cons.并列集合, 子成分);
+        逻辑成分.put(Cons.并列集合, 多成分);
     }
 }

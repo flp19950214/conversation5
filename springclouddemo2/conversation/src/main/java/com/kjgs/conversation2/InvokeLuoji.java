@@ -49,6 +49,8 @@ public class InvokeLuoji {
             动作 = "后面某个字";
         }else if(动作.startsWith("后面") && 动作.endsWith("个成分")){
             动作 = "后面某个成分";
+        }else if(动作.startsWith("再后面") && 动作.endsWith("个成分")){
+            动作 = "再后面某个成分";
         }else if(动作.startsWith("后面第") && 动作.endsWith("某个名词")){
             动作 = "后面第某个名词";
         }else if(动作.startsWith("前面") && 动作.endsWith("个字")){

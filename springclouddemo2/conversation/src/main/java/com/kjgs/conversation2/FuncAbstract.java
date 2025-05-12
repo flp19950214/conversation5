@@ -38,13 +38,13 @@ public abstract class FuncAbstract {
            return;
         }
         功能();
-        //如果是判断的结果逻辑，判断结果要为true才执行
+        boolean 往前找判断结果 = Tool.往前找判断结果(下标);
         //如果是《那就》后面的动作，要判断结果为true才行，并且要有判断结果
-        Document 那就 = Tool.指定下标前面的逻辑成分_无迭代(下标, Cons.那就);
-        if(那就!= null
-                && Tool.往前找判断结果(下标) == false){
+        Integer 那就的下标 = 静态引用.逻辑的那就对象.getInteger(Cons.下标);
+        if(下标>那就的下标 && 往前找判断结果 == false){
             return;
         }
+        //如果是判断的结果逻辑，判断结果要为true才执行
         判断结果是true时执行();
     }
 

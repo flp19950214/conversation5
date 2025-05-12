@@ -17,6 +17,7 @@ public class 静态引用 {
     public static Integer 数据表下标 = null;
     public static int 逻辑执行层级 = 0;
     public static boolean 上个逻辑后面能否跟内置动作 = true;
+    public static Document 逻辑的那就对象=null;
 
 
 

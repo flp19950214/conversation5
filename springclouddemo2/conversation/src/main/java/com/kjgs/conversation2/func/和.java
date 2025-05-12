@@ -32,7 +32,12 @@ public class 和 extends FuncAbstract {
     public void 添加指向(Document 新逻辑成分, Document 指定下标前面的逻辑成分,Document 指定下标后面的逻辑成分){
         List<Document> 多成分 = new ArrayList<>();
         多成分.add(指定下标前面的逻辑成分);
-        多成分.add(指定下标后面的逻辑成分);
+        if(Tool.判断对象指向是否是集合(指定下标后面的逻辑成分)){
+            多成分.addAll(指定下标后面的逻辑成分.get(Cons.指向, List.class));
+        }else{
+            多成分.add(指定下标后面的逻辑成分);
+        }
+
         新逻辑成分.put(Cons.并列集合, 多成分);
     }
 }

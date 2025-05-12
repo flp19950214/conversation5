@@ -4,6 +4,7 @@ import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
 import com.kjgs.枚举.Cons;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 @Service
 public class 后面某个成分 extends FuncAbstract {
@@ -37,9 +39,14 @@ public class 后面某个成分 extends FuncAbstract {
         if(句子下标 + num + 1> 句子.length()){
             return;
         }
-        Document 新句子成分 = Tool.指定下标后面一个句子成分(句子下标);
-        if(新句子成分 != null){
-            逻辑成分.put(Cons.指向,新句子成分);
+        List<Document> 指定下标后面连续的句子成分 = Tool.指定下标后面连续的句子成分(句子结束下标, num);
+        if(CollectionUtils.isEmpty(指定下标后面连续的句子成分)){
+            return;
+        }
+        if(指定下标后面连续的句子成分.size()==1 && num==1){
+            逻辑成分.put(Cons.指向, 指定下标后面连续的句子成分.get(0));
+        }else{
+            逻辑成分.put(Cons.指向, 指定下标后面连续的句子成分);
         }
     }
 }

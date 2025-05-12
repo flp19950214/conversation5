@@ -337,30 +337,40 @@ public class Tool {
     }
     public static Document 指定下标前面一个句子成分(int 下标){
         Document result =  静态引用.输入句子的成分集合.stream()
-                .filter(m -> m.containsKey(Cons.下标))
-                .filter (m -> m.getInteger(Cons.下标) < 下标)
+                .filter(m -> m.containsKey(Cons.结束下标))
+                .filter (m -> m.getInteger(Cons.结束下标) <= 下标)
                 .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
                 .sorted(Comparator.comparing((Document m1) ->m1.getObjectId(Cons._id), Comparator.nullsLast(ObjectId::compareTo).reversed())
                         .thenComparing(m1 -> m1.getInteger(Cons.结束下标), Comparator.nullsLast(Integer::compareTo).reversed()))
                 .findFirst().orElse(null);
         Document result2 = 代词的最终指向(result);
-        if(result2 != null && 对象是否是无用词(result2)){
-            return 指定下标后面一个句子成分(下标+1);
-        }
         return result2;
     }
-    public static Document 指定下标后面一个句子成分(int 下标){
+    public static List<Document> 指定下标后面连续的句子成分(int 结束下标, int num){
+        List<Document> result = new ArrayList<>();
+        for (int i = 0; i < num ; i++) {
+            Document 指定下标后面一个句子成分 = 指定下标后面一个句子成分(结束下标);
+            if(指定下标后面一个句子成分==null || !指定下标后面一个句子成分.containsKey(Cons.下标)){
+                break;
+            }
+            result.add(指定下标后面一个句子成分);
+            结束下标 = 指定下标后面一个句子成分.getInteger(Cons.结束下标);
+        }
+        return result;
+    }
+    public static Document 指定下标后面一个句子成分_无迭代(int 结束下标){
         Document result =  静态引用.输入句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标))
-                .filter (m -> m.getInteger(Cons.下标) > 下标)
+                .filter (m -> m.getInteger(Cons.下标) >= 结束下标)
                 .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
                 .sorted(Comparator.comparing((Document m1) ->m1.getInteger(Cons.下标), Comparator.nullsLast(Integer::compareTo))
                         .thenComparing(m1 -> m1.getObjectId(Cons._id),  Comparator.nullsLast(ObjectId::compareTo).reversed()))
                 .findFirst().orElse(null);
+        return result;
+    }
+    public static Document 指定下标后面一个句子成分(int 结束下标){
+        Document result =  指定下标后面一个句子成分_无迭代(结束下标);
         Document result2 = 代词的最终指向(result);
-        if(result2 != null && 对象是否是无用词(result2)){
-            return 指定下标后面一个句子成分(下标+1);
-        }
         return result2;
     }
     public static List<Document> 根据键值对往后找句子成分(int 下标, String key, String value){
@@ -550,6 +560,13 @@ public class Tool {
         }
     }
 
+    public static boolean 判断对象指向是否是集合(Document document){
+        if(document.containsKey(Cons.指向) &&
+                document.get(Cons.指向) instanceof List){
+            return true;
+        }
+        return false;
+    }
     public static boolean 判断是否是句子成分(Document document){
         if(document.containsKey(Cons.是否是句子成分) &&
             document.getBoolean(Cons.是否是句子成分)){

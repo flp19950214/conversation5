@@ -109,6 +109,8 @@ public class TalkController2 {
         //获取已经格式化好的逻辑对象 并转成Document
         静态引用.逻辑句子对象 = JSON.parseArray(静态引用.所有逻辑句子对象.get(逻辑键), Document.class).get(0);
         静态引用.逻辑句子的成分集合 = JSON.parseArray(静态引用.所有逻辑句子成分对象.get(逻辑键), Document.class);
+        //获取逻辑那就的对象
+        静态引用.逻辑的那就对象 = Tool.指定词语的逻辑成分(Cons.那就);
         //开始处理每个逻辑成分
         for (int j = 1; j <= 2; j++) {
             静态引用.逻辑执行层级=j;
