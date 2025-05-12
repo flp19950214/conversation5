@@ -346,6 +346,16 @@ public class Tool {
         Document result2 = 代词的最终指向(result);
         return result2;
     }
+
+    public static List<Document> 指定下标的句子成分(int 下标) {
+        List<Document> result2 = 静态引用.输入句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter(m -> m.getInteger(Cons.下标) == 下标)
+                .sorted(Comparator.comparing((Document m1) -> m1.getObjectId(Cons._id), Comparator.nullsLast(ObjectId::compareTo).reversed())
+                        .thenComparing(m1 -> m1.getInteger(Cons.结束下标), Comparator.nullsLast(Integer::compareTo).reversed()))
+                .collect(Collectors.toList());
+        return result2;
+    }
     public static List<Document> 指定下标后面连续的句子成分(int 结束下标, int num){
         List<Document> result = new ArrayList<>();
         for (int i = 0; i < num ; i++) {

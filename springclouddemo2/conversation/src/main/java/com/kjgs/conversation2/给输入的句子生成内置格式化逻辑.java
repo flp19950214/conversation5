@@ -2,6 +2,7 @@ package com.kjgs.conversation2;
 
 import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.枚举.Cons;
+import com.kjgs.静态变量;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ import java.util.stream.Collectors;
 public class 给输入的句子生成内置格式化逻辑 {
     @Autowired
     Impl逻辑 impl逻辑;
+
+    @Autowired
+    private 启动执行初始化数据 impl启动执行初始化数据;
 
     /**
      * 只要句子是假设句就行
@@ -56,6 +60,7 @@ public class 给输入的句子生成内置格式化逻辑 {
             return;
         }
         impl逻辑.保存逻辑(新逻辑.toString());
+        impl启动执行初始化数据.加载单个逻辑(静态引用.获取所有逻辑键的最大值()+1, 新逻辑.toString());
     }
 
     public boolean 是否在已处理区间(int 下标, int 结束下标, List<int[]> dataList){

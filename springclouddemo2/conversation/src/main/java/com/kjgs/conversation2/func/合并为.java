@@ -44,7 +44,8 @@ public class 合并为 extends FuncAbstract {
                 !指定下标后面的逻辑成分.getString(Cons.词语).matches("-?\\d+(\\.\\d+)?")){
             return;
         }
-        if(!StringUtils.equals(指定下标的下下一个逻辑成分.getString(Cons.词语), "个词")){
+        if(!StringUtils.equals(指定下标的下下一个逻辑成分.getString(Cons.词语), "个词")
+        && !StringUtils.equals(指定下标的下下一个逻辑成分.getString(Cons.词语), "个成分")){
             return;
         }
         boolean 前面是之间的内容就优先合并前面词语 = 前面是之间的内容就优先合并前面词语();

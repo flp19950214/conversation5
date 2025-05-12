@@ -36,41 +36,46 @@ public class 启动执行初始化数据 {
 ////            add("如果遇到一，并且前面1个成分是前面，后面1个成分是个成分，那就把当前词的词语替换为1");
 //        }};
         for (int i = 0; i <所有逻辑.size() ; i++) {
-            静态引用.所有逻辑.put(i, 所有逻辑.get(i));
-
-            Document 逻辑句子对象 = new Document();
-            逻辑句子对象.put(Cons._id, new ObjectId());
-            逻辑句子对象.put(Cons.词语, 所有逻辑.get(i));
-            逻辑句子对象.put(Cons.词语类型, Cons.逻辑句子);
-            静态引用.所有逻辑句子对象.put(i, JSON.toJSONString(逻辑句子对象));
-
-            List<String> 格式化逻辑词语 = Tool.生成格式化逻辑对象(所有逻辑.get(i));
-            if(格式化逻辑词语.size()<3){
-                continue;
-            }
-            if(StringUtils.equals(格式化逻辑词语.get(0), Cons.如果)
-                    && StringUtils.equals(格式化逻辑词语.get(1), Cons.遇到)){
-                String 关键词 = 格式化逻辑词语.get(2);
-                if(静态引用.关键词与逻辑.containsKey(关键词)){
-                    MapUtils.getObject(静态引用.关键词与逻辑, 关键词, new HashSet<>()).add(i);
-                }else{
-                   HashSet<Integer>  hashSet = new HashSet<>();
-                   hashSet.add(i);
-                    静态引用.关键词与逻辑.put(关键词, hashSet);
-                }
-            }
-            List<Document> 格式化逻辑对象 = new ArrayList<>();
-            for (int j = 0; j < 格式化逻辑词语.size(); j++) {
-                Document 成分对象 = new Document();
-                成分对象.put(Cons._id, new ObjectId());
-                成分对象.put(Cons.父id, 逻辑句子对象.get(Cons._id));
-                成分对象.put(Cons.词语, 格式化逻辑词语.get(j));
-                成分对象.put(Cons.下标, j);
-                成分对象.put(Cons.结束下标, j + 1);
-                格式化逻辑对象.add(成分对象);
-            }
-            静态引用.所有逻辑句子成分对象.put(i, JSON.toJSONString(格式化逻辑对象));
+            加载单个逻辑(i, 所有逻辑.get(i));
         }
         System.out.println("---加载逻辑初始化完成------");
+    }
+
+
+    public void 加载单个逻辑(int index, String luoji){
+        静态引用.所有逻辑.put(index, luoji);
+
+        Document 逻辑句子对象 = new Document();
+        逻辑句子对象.put(Cons._id, new ObjectId());
+        逻辑句子对象.put(Cons.词语, luoji);
+        逻辑句子对象.put(Cons.词语类型, Cons.逻辑句子);
+        静态引用.所有逻辑句子对象.put(index, JSON.toJSONString(逻辑句子对象));
+
+        List<String> 格式化逻辑词语 = Tool.生成格式化逻辑对象(luoji);
+        if(格式化逻辑词语.size()<3){
+            return;
+        }
+        if(StringUtils.equals(格式化逻辑词语.get(0), Cons.如果)
+                && StringUtils.equals(格式化逻辑词语.get(1), Cons.遇到)){
+            String 关键词 = 格式化逻辑词语.get(2);
+            if(静态引用.关键词与逻辑.containsKey(关键词)){
+                MapUtils.getObject(静态引用.关键词与逻辑, 关键词, new HashSet<>()).add(index);
+            }else{
+                HashSet<Integer>  hashSet = new HashSet<>();
+                hashSet.add(index);
+                静态引用.关键词与逻辑.put(关键词, hashSet);
+            }
+        }
+        List<Document> 格式化逻辑对象 = new ArrayList<>();
+        for (int j = 0; j < 格式化逻辑词语.size(); j++) {
+            Document 成分对象 = new Document();
+            成分对象.put(Cons._id, new ObjectId());
+            成分对象.put(Cons.父id, 逻辑句子对象.get(Cons._id));
+            成分对象.put(Cons.词语, 格式化逻辑词语.get(j));
+            成分对象.put(Cons.下标, j);
+            成分对象.put(Cons.结束下标, j + 1);
+            格式化逻辑对象.add(成分对象);
+        }
+        静态引用.所有逻辑句子成分对象.put(index, JSON.toJSONString(格式化逻辑对象));
     }
 }

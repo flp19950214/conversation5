@@ -27,6 +27,11 @@ public class 静态引用 {
     public static Map<Integer, String> 所有逻辑句子成分对象 = new HashMap<>();
     public static Map<String, HashSet<Integer>> 关键词与逻辑 = new HashMap<>();
 
+    public static int 获取所有逻辑键的最大值(){
+       int 最大值 =  所有逻辑.keySet().stream().sorted((a, b) -> b - a).findFirst().get();
+       return 最大值;
+    }
+
     //在处理“那就”方法时赋值，用于如果在处理陈述方法时，判断结果为false就不做处理了
     public static boolean 是否是陈述部分逻辑=true;
 
