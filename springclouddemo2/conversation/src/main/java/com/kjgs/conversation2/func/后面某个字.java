@@ -45,14 +45,20 @@ public class 后面某个字 extends FuncAbstract {
         if (句子下标 + num + 1 > 句子.length()) {
             return;
         }
-        List<Document> 指定下标的逻辑成分 = Tool.指定下标的句子成分(句子结束下标);
-        //获取其中长度是1的
-        Document result = 指定下标的逻辑成分.stream().filter(m -> m.containsKey(Cons.词语)
-                && m.getString(Cons.词语).length() == 1).findFirst().orElse(null);
-        if(result==null){
-            return;
+        Document 新句子成分 = new Document();
+        StringBuffer 词语 = new StringBuffer();
+        for (int i = 0; i < num; i++) {
+            if (句子结束下标 + i + 1 > 句子.length()) {
+                return;
+            }
+            词语.append(句子.substring(句子结束下标 + i, 句子结束下标 + i + 1));
         }
-        逻辑成分.put(Cons.指向, result);
+        新句子成分.put(Cons._id, new ObjectId());
+        新句子成分.put(Cons.词语, 词语.toString());
+        新句子成分.put(Cons.下标, 句子结束下标);
+        新句子成分.put(Cons.结束下标, 句子结束下标 + num);
+        新句子成分.put(Cons.是否是句子成分, true);
+        逻辑成分.put(Cons.指向, 新句子成分);
     }
 
 }
