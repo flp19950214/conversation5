@@ -38,7 +38,8 @@ public class 给输入的句子生成内置格式化逻辑 {
         for (int i = 输入句子的成分集合.size()-1; i >=0; i--) {
             Document document = 输入句子的成分集合.get(i);
             if(document.containsKey(Cons.下标) && document.containsKey(Cons.结束下标)
-                && document.containsKey(Cons.词语)){
+                && document.containsKey(Cons.词语)
+            ){
                 int 下标 = document.getInteger(Cons.下标);
                 int 结束下标 = document.getInteger(Cons.结束下标);
                 int[] data = {下标, 结束下标};

@@ -340,8 +340,8 @@ public class Tool {
                 .filter(m -> m.containsKey(Cons.结束下标))
                 .filter (m -> m.getInteger(Cons.结束下标) <= 下标)
                 .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
-                .sorted(Comparator.comparing((Document m1) ->m1.getObjectId(Cons._id), Comparator.nullsLast(ObjectId::compareTo).reversed())
-                        .thenComparing(m1 -> m1.getInteger(Cons.结束下标), Comparator.nullsLast(Integer::compareTo).reversed()))
+                .sorted(Comparator.comparing((Document m1) ->m1.getInteger(Cons.结束下标), Comparator.nullsLast(Integer::compareTo).reversed())
+                        .thenComparing(m1 -> m1.getObjectId(Cons._id),  Comparator.nullsLast(ObjectId::compareTo).reversed()))
                 .findFirst().orElse(null);
         Document result2 = 代词的最终指向(result);
         return result2;

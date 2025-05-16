@@ -63,6 +63,7 @@ public class TalkController2 {
         }
         静态引用.逻辑句子的成分集合.clear();
         处理句子New();
+        处理句子New();
         System.out.println("最终的句子成分：");
         System.out.println(静态引用.逻辑句子的成分集合);
         System.out.println(静态引用.输入句子的成分集合);
@@ -76,10 +77,11 @@ public class TalkController2 {
     public void 处理句子New() {
         int loop = 0;
         //还是比较字符串是否发生变换 判断是否进行下一次循环吧
-        String before = JSON.toJSONString(静态引用.输入句子的成分集合);
+        String before = "";
         String after = "";
         do{
             loop++;
+            before = JSON.toJSONString(静态引用.输入句子的成分集合);
             for (int i = 0; i < 静态引用.输入句子的成分集合.size(); i++) {
                 Document 句子成分 = 静态引用.输入句子的成分集合.get(i);
                 //找逻辑
@@ -93,8 +95,12 @@ public class TalkController2 {
                 执行处理逻辑(new ArrayList<>(逻辑idSet), 句子成分);
             }
             after = JSON.toJSONString(静态引用.输入句子的成分集合);
-        }while (loop<10 && (before.length() != after.length() ||
-                (before.length()==after.length() && !before.equals(after))));
+            if(loop>20){
+                break;
+            }
+        }while ((before.length() != after.length() ||
+                (before.length()==after.length() && !before.equals(after)))
+        );
     }
 
     public void 执行处理逻辑(List<Integer> list, Document 句子成分) {
