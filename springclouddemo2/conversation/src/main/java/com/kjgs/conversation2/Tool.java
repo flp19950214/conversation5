@@ -485,14 +485,16 @@ public class Tool {
                 && document.getBoolean(Cons.是否是句子成分)){
             Document 句子中的已有成分 = 获取句子中的已有成分(document.getInteger(Cons.下标), document.getString(Cons.词语));
 //            Document 原句子中的已有成分 = 获取句子中的已有成分(document.getInteger(Cons.下标), document.getString(Cons.词语));
-            if(句子中的已有成分 != null){
-                document.remove(Cons._id);
-                句子中的已有成分.putAll(document);
-            }else {
+            //删掉之前的 重新入试试
+            静态引用.输入句子的成分集合.remove(句子中的已有成分);
+//            if(句子中的已有成分 != null){
+//                document.remove(Cons._id);
+//                句子中的已有成分.putAll(document);
+//            }else {
                 document.put(Cons.是否是句子成分, true);
                 document.put("新成分的归属处理逻辑", 静态引用.逻辑句子对象.get(Cons.词语));
                 静态引用.输入句子的成分集合.add(document);
-            }
+//            }
         }
     }
     public static void 添加逻辑成分(Document document){
