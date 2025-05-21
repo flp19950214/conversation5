@@ -63,15 +63,21 @@ public class TalkController2 {
         }
         静态引用.逻辑句子的成分集合.clear();
         处理句子New();
-        处理句子New();
         System.out.println("最终的句子成分：");
         System.out.println(静态引用.逻辑句子的成分集合);
         System.out.println(静态引用.输入句子的成分集合);
         impl数据.保存输入的数据对象(Tool.生成输入的对象(输入的句子));
         impl数据.保存输出的数据对象(Tool.生成输出的对象(静态引用.输出内容));
-//        impl给输入句子生成内置句子成分.生成内置句子成分(输入的句子);
+        保存输入对象集合到数据库();
         impl给输入的句子生成内置格式化逻辑.生成格式化逻辑();
         return 静态引用.输出内容;
+    }
+
+    public void 保存输入对象集合到数据库(){
+        //保存输入对象集合
+        for (int i = 0; i < 静态引用.输入句子的成分集合.size(); i++) {
+            impl数据.保存输出的数据对象(静态引用.输入句子的成分集合.get(i));
+        }
     }
 
     public void 处理句子New() {

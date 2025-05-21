@@ -492,6 +492,7 @@ public class Tool {
                 }
                 句子中的已有成分.putAll(document);
             }else {
+//                document.put(Cons.父id, 静态引用.输入的句子对象.get(Cons._id));
                 document.put(Cons.是否是句子成分, true);
                 document.put("新成分的归属处理逻辑", new HashSet(){{add(静态引用.逻辑句子对象.get(Cons.词语));}});
                 静态引用.输入句子的成分集合.add(document);
