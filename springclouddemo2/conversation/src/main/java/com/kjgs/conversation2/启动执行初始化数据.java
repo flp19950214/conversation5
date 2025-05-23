@@ -66,7 +66,7 @@ public class 启动执行初始化数据 {
                 静态引用.关键词与逻辑.put(关键词, hashSet);
             }
         }
-        List<Document> 格式化逻辑对象 = new ArrayList<>();
+        List<String> 格式化逻辑对象 = new ArrayList<>();
         for (int j = 0; j < 格式化逻辑词语.size(); j++) {
             Document 成分对象 = new Document();
             成分对象.put(Cons._id, new ObjectId());
@@ -74,8 +74,17 @@ public class 启动执行初始化数据 {
             成分对象.put(Cons.词语, 格式化逻辑词语.get(j));
             成分对象.put(Cons.下标, j);
             成分对象.put(Cons.结束下标, j + 1);
-            格式化逻辑对象.add(成分对象);
+            格式化逻辑对象.add(成分对象.toJson());
         }
-        静态引用.所有逻辑句子成分对象.put(index, JSON.toJSONString(格式化逻辑对象));
+        静态引用.所有逻辑句子成分对象.put(index, 格式化逻辑对象);
+    }
+
+    public List<Document> 获取同词语的逻辑集合(int index){
+        List<String> strings = 静态引用.所有逻辑句子成分对象.get(index);
+        List<Document> result = new ArrayList<>();
+        for(String m: strings){
+            result.add(Document.parse(m));
+        }
+        return result;
     }
 }
