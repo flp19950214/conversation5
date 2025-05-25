@@ -487,14 +487,15 @@ public class Tool {
 //            静态引用.输入句子的成分集合.remove(句子中的已有成分);
             if(句子中的已有成分 != null){
 //                document.remove(Cons._id);
-                if(句子中的已有成分.containsKey(Cons.新成分的归属处理逻辑)){
-                    句子中的已有成分.get(Cons.新成分的归属处理逻辑, Set.class).add(静态引用.逻辑句子对象.get(Cons.词语));
-                }
+//                if(句子中的已有成分.containsKey(Cons.新成分的处理逻辑)){
+//                    句子中的已有成分.get(Cons.新成分的处理逻辑, Set.class).add(静态引用.逻辑句子对象.get(Cons.词语));
+//                }
                 句子中的已有成分.putAll(document);
             }else {
 //                document.put(Cons.父id, 静态引用.输入的句子对象.get(Cons._id));
                 document.put(Cons.是否是句子成分, true);
-                document.put("新成分的归属处理逻辑", new HashSet(){{add(静态引用.逻辑句子对象.get(Cons.词语));}});
+                document.put(Cons.新成分的处理逻辑, 静态引用.逻辑句子对象.get(Cons.词语));
+                document.put(Cons.新成分的处理逻辑下标, 静态引用.逻辑句子对象下标);
                 静态引用.输入句子的成分集合.add(document);
             }
         }

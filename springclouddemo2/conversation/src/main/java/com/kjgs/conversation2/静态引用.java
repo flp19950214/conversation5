@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 public class 静态引用 {
     public static Document 输入的句子对象;
     public static Document 逻辑句子对象;
+    public static int 逻辑句子对象下标;
 
     public static List<Document> 输入句子的成分集合 = new ArrayList<>();
     public static List<Document> 逻辑句子的成分集合 = new ArrayList<>();

@@ -45,6 +45,7 @@ public interface Cons {
     public String 名称="名称";
     public String 词性="词性";
     public String 属于="属于";
+    public String 个数="个数";
     public String 名词="名词";
     public String 代词="代词";
     public String 句型="句型";
@@ -63,11 +64,16 @@ public interface Cons {
     public String 单位词="单位词";
     public String 方位词="方位词";
     public String 后面="后面";
+    public String 后面某个字="后面某个字";
     public String 前面="前面";
+    public String 前面某个字="前面某个字";
     public String 下标="下标";
     public String 是否是无用词="是否是无用词";
 
-    public String 新成分的归属处理逻辑="新成分的归属处理逻辑";
+    public String 新属性的处理逻辑="新属性的处理逻辑";
+    public String 新属性的处理逻辑下标="新属性的处理逻辑下标";
+    public String 新成分的处理逻辑="新成分的处理逻辑";
+    public String 新成分的处理逻辑下标="新成分的处理逻辑下标";
 
 
     public String 判断条件="判断条件";

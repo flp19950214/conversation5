@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,9 @@ public class 给输入的句子生成内置格式化逻辑 {
         if(!输入的句子对象.containsKey(Cons.句型)){
         return;
         }
+        输入句子的成分集合 = 输入句子的成分集合.stream()
+                .sorted(Comparator.comparing(a -> a.getInteger(Cons.新成分的处理逻辑下标), Comparator.nullsFirst(Integer::compareTo)))
+                .collect(Collectors.toList());
         //找到每个成分的最后结构即可
         List<int[]> dataList = new ArrayList<>();
         List<Document> result = new ArrayList<>();
