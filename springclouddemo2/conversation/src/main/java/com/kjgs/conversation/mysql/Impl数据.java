@@ -50,13 +50,13 @@ public class Impl数据 {
         return JSON.parseObject(上一个输出对象, Document.class);
     }
     public void 保存数据对象(Document document){
-        String 数据对象 = JSON.toJSONString(document);
+        String 数据对象 = document.toJson();
         if(document !=  null){
             数据MapperImpl.保存数据表(数据对象);
         }
     }
     public void 保存输入的数据对象(Document document){
-        String 数据对象 = JSON.toJSONString(document);
+        String 数据对象 = document.toJson();
         if(document !=  null){
             数据MapperImpl.保存数据表(数据对象);
         }
@@ -64,7 +64,7 @@ public class Impl数据 {
 
     public void 保存输出的数据对象(Document document){
         if(document !=  null){
-            String 数据对象 = JSON.toJSONString(document);
+            String 数据对象 =  document.toJson();
             数据MapperImpl.保存数据表(数据对象);
         }
     }

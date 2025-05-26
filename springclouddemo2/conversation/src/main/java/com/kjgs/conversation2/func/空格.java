@@ -23,7 +23,7 @@ public class 空格 extends FuncAbstract {
 
     public void 转义空格(){
         if(StringUtils.equals(" ", 句子词语)){
-            Document 新成分 = JSON.parseObject(JSON.toJSONString(句子成分), Document.class);
+            Document 新成分 = Document.parse(句子成分.toJson());
             新成分.put(Cons.词语, Cons.空格);
             句子成分.put(Cons.指向, 新成分);
 

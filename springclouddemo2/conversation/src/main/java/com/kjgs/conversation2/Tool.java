@@ -125,7 +125,7 @@ public class Tool {
         return document;
     }
     public static Document 复制对象(Document 旧对象) {
-        return JSON.parseObject(JSON.toJSONString(旧对象), Document.class);
+        return Document.parse(旧对象.toJson());
     }
     public static Integer 转数字(Object data){
         if(data == null){

@@ -70,8 +70,10 @@ public interface Cons {
     public String 下标="下标";
     public String 是否是无用词="是否是无用词";
 
-    public String 新属性的处理逻辑="新属性的处理逻辑";
-    public String 新属性的处理逻辑下标="新属性的处理逻辑下标";
+    public String 更新属性的处理逻辑="更新%s属性的处理逻辑";
+    public String 更新属性的处理逻辑下标="更新%s属性的处理逻辑下标";
+    public String 新增属性的处理逻辑="新增属性的处理逻辑";
+    public String 新增属性的处理逻辑下标="新增属性的处理逻辑下标";
     public String 新成分的处理逻辑="新成分的处理逻辑";
     public String 新成分的处理逻辑下标="新成分的处理逻辑下标";
 

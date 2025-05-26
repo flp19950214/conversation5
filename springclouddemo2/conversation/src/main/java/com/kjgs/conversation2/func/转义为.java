@@ -36,8 +36,10 @@ public class 转义为 extends FuncAbstract {
        if(指定下标前面的逻辑成分 == null  || 指定下标后面的逻辑成分 == null){
            return;
        }
-       Document 新成分 = JSON.parseObject(JSON.toJSONString(指定下标前面的逻辑成分), Document.class);
+        Document 新成分 = Document.parse(指定下标前面的逻辑成分.toJson());
        新成分.put(Cons.词语, 指定下标后面的逻辑成分.get(Cons.词语));
+       新成分.put(String.format(Cons.更新属性的处理逻辑, Cons.词语), 逻辑句子);
+
        指定下标前面的逻辑成分.put(Cons.指向, 新成分);
     }
 

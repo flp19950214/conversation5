@@ -49,7 +49,7 @@ public class 启动执行初始化数据 {
         逻辑句子对象.put(Cons._id, new ObjectId());
         逻辑句子对象.put(Cons.词语, luoji);
         逻辑句子对象.put(Cons.词语类型, Cons.逻辑句子);
-        静态引用.所有逻辑句子对象.put(index, JSON.toJSONString(逻辑句子对象));
+        静态引用.所有逻辑句子对象.put(index, 逻辑句子对象.toJson());
 
         List<String> 格式化逻辑词语 = Tool.生成格式化逻辑对象(luoji);
         if(格式化逻辑词语.size()<3){
