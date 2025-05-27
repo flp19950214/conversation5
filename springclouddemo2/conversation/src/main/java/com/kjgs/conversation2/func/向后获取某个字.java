@@ -13,9 +13,6 @@ import javax.annotation.PostConstruct;
 
 @Service
 public class 向后获取某个字 extends FuncAbstract {
-    public 向后获取某个字(){
-        后面能否跟内置动作=false;
-    }
     @Autowired
     Impl逻辑 impl逻辑;
     @PostConstruct
@@ -35,7 +32,10 @@ public class 向后获取某个字 extends FuncAbstract {
         ){
             return;
         }
-        int 个数 = 指定下标前面的句子成分.getInteger(Cons.个数);
+        Integer 个数 = Tool.转数字(指定下标前面的句子成分.get(Cons.个数));
+        if(个数 ==null){
+            return;
+        }
         String 词语 = 句子.substring(句子结束下标, 句子结束下标+个数);
         Document 新句子成分 = new Document();
         新句子成分.put(Cons._id, new ObjectId());

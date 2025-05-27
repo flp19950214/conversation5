@@ -486,7 +486,7 @@ public class Tool {
             //删掉之前的 重新入试试
 //            静态引用.输入句子的成分集合.remove(句子中的已有成分);
             if(句子中的已有成分 != null){
-//                document.remove(Cons._id);
+                document.remove(Cons._id);
 //                if(句子中的已有成分.containsKey(Cons.新成分的处理逻辑)){
 //                    句子中的已有成分.get(Cons.新成分的处理逻辑, Set.class).add(静态引用.逻辑句子对象.get(Cons.词语));
 //                }
