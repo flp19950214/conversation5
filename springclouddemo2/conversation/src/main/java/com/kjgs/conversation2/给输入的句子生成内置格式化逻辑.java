@@ -33,6 +33,18 @@ public class 给输入的句子生成内置格式化逻辑 {
         if(!输入的句子对象.containsKey(Cons.句型)){
         return;
         }
+        String 新逻辑 = 生成格式化逻辑(输入句子的成分集合);
+        if(StringUtils.isEmpty(新逻辑)){
+            return;
+        }
+        if(!StringUtils.containsAny(新逻辑, "《如果》","《遇到》","《那就》")){
+            return;
+        }
+        impl逻辑.保存逻辑(新逻辑);
+        impl启动执行初始化数据.加载单个逻辑(静态引用.获取所有逻辑键的最大值()+1, 新逻辑);
+    }
+
+    public String 生成格式化逻辑(List<Document> 输入句子的成分集合){
         输入句子的成分集合 = 输入句子的成分集合.stream()
                 .sorted(Comparator.comparing(a -> a.getInteger(Cons.新成分的处理逻辑下标), Comparator.nullsFirst(Integer::compareTo)))
                 .collect(Collectors.toList());
@@ -42,7 +54,7 @@ public class 给输入的句子生成内置格式化逻辑 {
         for (int i = 输入句子的成分集合.size()-1; i >=0; i--) {
             Document document = 输入句子的成分集合.get(i);
             if(document.containsKey(Cons.下标) && document.containsKey(Cons.结束下标)
-                && document.containsKey(Cons.词语)
+                    && document.containsKey(Cons.词语)
             ){
                 int 下标 = document.getInteger(Cons.下标);
                 int 结束下标 = document.getInteger(Cons.结束下标);
@@ -61,15 +73,9 @@ public class 给输入的句子生成内置格式化逻辑 {
             新逻辑.append(Cons.左尖括号).append(m.getString(Cons.词语)).append(Cons.右尖括号);
 
         }
-        if(StringUtils.isEmpty(新逻辑.toString())){
-            return;
-        }
-        if(!StringUtils.containsAny(新逻辑.toString(), "《如果》","《遇到》","《那就》")){
-            return;
-        }
-        impl逻辑.保存逻辑(新逻辑.toString());
-        impl启动执行初始化数据.加载单个逻辑(静态引用.获取所有逻辑键的最大值()+1, 新逻辑.toString());
+        return 新逻辑.toString();
     }
+
 
     public boolean 是否在已处理区间(int 下标, int 结束下标, List<int[]> dataList){
         for(int[] m : dataList){
