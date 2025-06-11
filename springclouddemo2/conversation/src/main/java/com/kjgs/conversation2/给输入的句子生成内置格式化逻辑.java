@@ -2,7 +2,6 @@ package com.kjgs.conversation2;
 
 import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.枚举.Cons;
-import com.kjgs.静态变量;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;

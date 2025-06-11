@@ -4,32 +4,6 @@
 <!--mapper开始就是自己定义的了-->
 <mapper namespace="com.kjgs.conversation.mysql.mapper.逻辑Mapper">    <!--对应的mapper类的包路径-->
 
-    <select id="根据逻辑名查询单个处理逻辑" resultType="逻辑实体"> <!--传参是对象的话parameterType就写那个对象的路径,这边是int的type-->
-        select * from 逻辑表 where 逻辑名 = #{逻辑名} order by 下标 desc limit 1
-    </select>
-    <select id="根据逻辑名查询所有处理逻辑" resultType="逻辑实体"> <!--传参是对象的话parameterType就写那个对象的路径,这边是int的type-->
-        select * from 逻辑表 where 逻辑名 = #{逻辑名}
-    </select>
-    <select id="根据多个逻辑名查询List" resultType="逻辑实体"> <!--传参是对象的话parameterType就写那个对象的路径,这边是int的type-->
-        select * from 逻辑表
-        <where>
-            逻辑名 in
-            <foreach collection="逻辑名集合" item="item" open="(" close=")" separator=",">
-                #{item}
-            </foreach>
-        </where>
-    </select>
-    <select id="根据逻辑名和逻辑类型查询" resultType="逻辑实体"> <!--传参是对象的话parameterType就写那个对象的路径,这边是int的type-->
-        select * from 逻辑表
-        <where>
-            逻辑类型  = #{逻辑类型}
-            and 逻辑名 in
-            <foreach collection="逻辑名集合" item="item" open="(" close=")" separator=",">
-                #{item}
-            </foreach>
-        </where>
-    </select>
-
     <select id = "查询所有逻辑" resultType="String">
         select 逻辑 from 逻辑表2
     </select>

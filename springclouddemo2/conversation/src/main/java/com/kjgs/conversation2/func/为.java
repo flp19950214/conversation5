@@ -2,8 +2,6 @@ package com.kjgs.conversation2.func;
 
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
-import com.kjgs.conversation2.静态引用;
-import com.kjgs.功能.内置功能.执行更新对象属性方法;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
@@ -35,15 +33,17 @@ public class 为 extends FuncAbstract {
         if(指定前面下标的逻辑成分 == null || 指定后面下标的逻辑成分 == null){
             return;
         }
-        if(!指定前面下标的逻辑成分.containsKey(Cons.归属对象)){
-            return;
+        if(指定前面下标的逻辑成分.containsKey(Cons.归属对象)){
+            String 属性 = 指定前面下标的逻辑成分.getString(Cons.词语);
+            String 属性值 = 指定后面下标的逻辑成分.getString(Cons.词语);
+            Document 对象 = 指定前面下标的逻辑成分.get(Cons.归属对象,Document.class);
+            对象 = Tool.代词的最终指向(对象);
+            对象.put(属性, 属性值);
+            Tool.添加句子成分(对象);
+        }else{
+            String 属性值 = 指定后面下标的逻辑成分.getString(Cons.词语);
+            指定前面下标的逻辑成分.put("为", 属性值);
         }
-        String 属性 = 指定前面下标的逻辑成分.getString(Cons.词语);
-        String 属性值 = 指定后面下标的逻辑成分.getString(Cons.词语);
-        Document 对象 = 指定前面下标的逻辑成分.get(Cons.归属对象,Document.class);
-        对象 = Tool.代词的最终指向(对象);
-        对象.put(属性, 属性值);
-        Tool.添加句子成分(对象);
     }
 
 

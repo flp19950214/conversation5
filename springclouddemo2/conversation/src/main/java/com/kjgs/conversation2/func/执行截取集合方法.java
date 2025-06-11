@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class 执行更新方法 extends FuncAbstract {
-    public 执行更新方法(){
+public class 执行截取集合方法 extends FuncAbstract {
+    public 执行截取集合方法(){
         后面能否跟内置动作=false;
     }
     @Autowired

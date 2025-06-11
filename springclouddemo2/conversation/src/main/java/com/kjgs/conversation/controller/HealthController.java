@@ -1,6 +1,6 @@
 package com.kjgs.conversation.controller;
 
-import com.kjgs.conversation.service.TestDaoService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,8 +12,6 @@ import java.util.Map;
 @RestController
 public class HealthController {
 
-    @Autowired
-    private TestDaoService testDaoService;
 
     @RequestMapping("/getHealth")
     public Map getHealth(){
@@ -24,8 +22,7 @@ public class HealthController {
 
     @RequestMapping("/testDao")
     public List<Map<String, Object>> testDao(){
-        List<Map<String, Object>> users = testDaoService.getUsers();
-        return users;
+        return null;
     }
 
 }

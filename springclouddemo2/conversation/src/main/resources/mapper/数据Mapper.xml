@@ -19,6 +19,10 @@
          where JSON_CONTAINS_PATH(数据对象, 'ALL', '$."输入的句子"')
         order by 数据表下标 desc limit 1
     </select>
+    <select id = "根据键值对查询" resultType="String">
+      SELECT 数据对象 FROM 数据表
+      WHERE JSON_EXTRACT(数据对象,  concat("$.",#{键}))=  #{值}
+    </select>
     <select id = "查询数据表指向" resultType="String">
         SELECT JSON_INSERT(数据对象,'$."数据表下标"', 数据表下标) as 数据对象
         FROM 数据表

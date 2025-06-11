@@ -24,7 +24,10 @@ public class 是 extends FuncAbstract {
     }
     @Override
     public void 功能() {
-        判断句的包含动作();
+        Integer 那就的下标 = 静态引用.逻辑的那就对象.getInteger(Cons.下标);
+        if(下标 < 那就的下标){
+            判断句的包含动作();
+        }
     }
 
     public void 判断句的包含动作(){
@@ -44,5 +47,33 @@ public class 是 extends FuncAbstract {
         //前面一个成分等于后面一个成分
         boolean result = 前面的词语.equals(指定下标后面的逻辑成分.getString(Cons.词语));
         Tool.赋值判断结果(逻辑成分, result);
+    }
+
+    @Override
+    public void 判断结果是true时执行(){
+        boolean 判断结果 = Tool.往前找判断结果(下标);
+        if(!判断结果){
+            return;
+        }
+        标记对象属性值();
+    }
+
+    public void 标记对象属性值(){
+        Document 指定前面下标的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
+        Document 指定后面下标的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);
+        if(指定前面下标的逻辑成分 == null || 指定后面下标的逻辑成分 == null){
+            return;
+        }
+        if(指定前面下标的逻辑成分.containsKey(Cons.归属对象)){
+            String 属性 = 指定前面下标的逻辑成分.getString(Cons.词语);
+            String 属性值 = 指定后面下标的逻辑成分.getString(Cons.词语);
+            Document 对象 = 指定前面下标的逻辑成分.get(Cons.归属对象,Document.class);
+            对象 = Tool.代词的最终指向(对象);
+            对象.put(属性, 属性值);
+            Tool.添加句子成分(对象);
+        }else{
+            String 属性值 = 指定后面下标的逻辑成分.getString(Cons.词语);
+            指定前面下标的逻辑成分.put("是", 属性值);
+        }
     }
 }
