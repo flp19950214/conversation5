@@ -34,17 +34,21 @@ public class 作为 extends FuncAbstract {
         if(指定前面下标的逻辑成分 == null || 指定后面下标的逻辑成分 == null){
            return;
         }
-        Object 属性值 = 指定前面下标的逻辑成分.getString(Cons.词语);
+        Object 属性值 = Tool.获取是或者作为的值(指定前面下标的逻辑成分);
         if(指定前面下标的逻辑成分.containsKey(Cons.归属对象)){
             属性值 = Tool.最终的归属对象(指定前面下标的逻辑成分).get(属性值);
         }
         Document 属性对象 = Tool.往后找归属对象(下标, 指定后面下标的逻辑成分);
-        if(属性对象==null){
-            return;
+        if(属性对象!=null){
+            String 属性 = 属性对象.getString(Cons.词语);
+            指定后面下标的逻辑成分.put(属性, 属性值);
+        }else{
+            指定后面下标的逻辑成分.put(Cons.指向, Tool.生成动作结果指向对象(属性值));
         }
-        String 属性 = 属性对象.getString(Cons.词语);
-        Document 对象 = 指定后面下标的逻辑成分;
-        对象.put(属性, 属性值);
+        if(Tool.判断是否是句子成分(指定后面下标的逻辑成分)){
+            指定后面下标的逻辑成分.put(String.format(Cons.更新属性的处理逻辑, Cons.词语), 逻辑句子);
+        }
+
 //        Tool.添加句子成分(对象);
     }
 

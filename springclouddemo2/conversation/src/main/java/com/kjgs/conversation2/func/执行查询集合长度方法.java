@@ -26,18 +26,14 @@ public class 执行查询集合长度方法 extends FuncAbstract {
         if(!判断结果){
             return;
         }
-        执行查询名词指向方法();
+        执行查询集合长度方法();
     }
-    public void 执行查询名词指向方法(){
-        Document 查询数据表单个目标 = tool查询.查询数据表单个目标(句子成分);
-        if(查询数据表单个目标 == null){
+    public void 执行查询集合长度方法(){
+        Document 查询的集合 = Tool.指定下标前面的逻辑成分(下标, "查询的集合");
+        if (查询的集合==null){
             return;
         }
-        Document 新成分 = Tool.复制对象(句子成分);
-        新成分.putAll(查询数据表单个目标);
-//        逻辑成分.put(Cons.指向, 查询数据表单个目标);
-        句子成分.put(Cons.指向, 新成分);
-        句子成分.put(Cons.数据表指向, 新成分);
+        逻辑成分.put("查询集合长度的结果", 查询的集合.size());
     }
 
 }

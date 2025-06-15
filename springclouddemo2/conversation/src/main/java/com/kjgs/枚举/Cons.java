@@ -64,8 +64,10 @@ public interface Cons {
     public String 单位词="单位词";
     public String 方位词="方位词";
     public String 后面="后面";
+    public String 后="后";
     public String 后面某个字="后面某个字";
     public String 前面="前面";
+    public String 前="前";
     public String 前面某个字="前面某个字";
     public String 下标="下标";
     public String 是否是无用词="是否是无用词";
@@ -168,6 +170,7 @@ public interface Cons {
     //功能代表词
     public String 的="的";
     public String 是="是";
+    public String 作为="作为";
     public String 叫="叫";
     public String 替换成="替换成";
     public String 如果="如果";

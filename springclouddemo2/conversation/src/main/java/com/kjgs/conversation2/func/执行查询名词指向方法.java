@@ -42,6 +42,7 @@ public class 执行查询名词指向方法 extends FuncAbstract {
         Document 新成分 = Tool.复制对象(句子成分);
         新成分.putAll(查询数据表单个目标);
 //        逻辑成分.put(Cons.指向, 查询数据表单个目标);
+        新成分.put(String.format(Cons.更新属性的处理逻辑, Cons.词语), 逻辑句子);
         句子成分.put(Cons.指向, 新成分);
         句子成分.put(Cons.数据表指向, 新成分);
     }

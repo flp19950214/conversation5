@@ -3,7 +3,6 @@ package com.kjgs.conversation2.func;
 import com.kjgs.conversation.mysql.Impl数据;
 import com.kjgs.conversation2.FuncAbstract;
 import com.kjgs.conversation2.Tool;
-import com.kjgs.conversation2.Tool查询;
 import com.kjgs.枚举.Cons;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class 执行查询方法 extends FuncAbstract {
-    public 执行查询方法(){
+public class 执行查询数据库方法 extends FuncAbstract {
+    public 执行查询数据库方法(){
         后面能否跟内置动作=false;
     }
     @Autowired
@@ -29,16 +28,20 @@ public class 执行查询方法 extends FuncAbstract {
         if(!判断结果){
             return;
         }
-        执行查询方法();
+        执行查询数据库方法();
     }
-    public void 执行查询方法(){
+    public void 执行查询数据库方法(){
         //获取需要的茶树
-        Document 查询的键 = Tool.指定下标前面的逻辑成分(下标, "查询的键");
-        Document 查询的值 = Tool.指定下标前面的逻辑成分(下标, "查询的值");
+        Document 查询的键 = Tool.指定下标前面的逻辑成分(下标, "查询数据库的键");
+        Document 查询的值 = Tool.指定下标前面的逻辑成分(下标, "查询数据库的值");
         if(查询的键 == null || 查询的值 == null){
             return;
         }
-        List<Document> 查询的结果 = impl数据.根据键值对查询(查询的键.get(Cons.是), 查询的值.get(Cons.是));
+        if(Tool.获取是或者作为的值(查询的键) == null || Tool.获取是或者作为的值(查询的值) == null){
+            return;
+        }
+        List<Document> 查询的结果 = impl数据.根据键值对查询(Tool.获取是或者作为的值(查询的键),
+                Tool.获取是或者作为的值(查询的值));
         逻辑成分.put("查询的结果", 查询的结果);
     }
 

@@ -337,6 +337,7 @@ public class Tool {
         Document result =  静态引用.输入句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.结束下标))
                 .filter (m -> m.getInteger(Cons.结束下标) <= 下标)
+                .filter (m -> m.getObjectId(Cons._id) != null)
                 .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
                 .sorted(Comparator.comparing((Document m1) ->m1.getInteger(Cons.结束下标), Comparator.nullsLast(Integer::compareTo).reversed())
                         .thenComparing(m1 -> m1.getObjectId(Cons._id),  Comparator.nullsLast(ObjectId::compareTo).reversed()))
@@ -344,7 +345,45 @@ public class Tool {
         Document result2 = 代词的最终指向(result);
         return result2;
     }
+    public static Object 获取是或者作为的值(Document document){
 
+//        if(document.containsKey(Cons.是)){
+//            return document.get(Cons.是);
+//        }
+//        if(document.containsKey(Cons.作为)){
+//            return document.get(Cons.作为);
+//        }
+        if(document.containsKey(Cons.词语)){
+            return document.get(Cons.词语);
+        }
+        return null;
+    }
+    public static Document 生成动作结果指向对象(Object 动作结果){
+        Document document = new Document();
+        document.put(Cons.词语, 动作结果);
+        return document;
+    }
+    public static List<Document> 获取大于下标的子集合(List<Document> list, int 下标) {
+        List<Document> result2 = list.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter(m -> m.getInteger(Cons.下标)> 下标)
+                .collect(Collectors.toList());
+        return result2;
+    }
+    public static List<Document> 获取小于结束下标的子集合(List<Document> list, int 结束下标) {
+        List<Document> result2 = list.stream()
+                .filter(m -> m.containsKey(Cons.结束下标))
+                .filter(m -> m.getInteger(Cons.结束下标)< 结束下标)
+                .collect(Collectors.toList());
+        return result2;
+    }
+    public static List<Document> 根据键值对过滤输入句子成分集合(String key, Object value) {
+        List<Document> result2 = 静态引用.输入句子的成分集合.stream()
+                .filter(m -> m.containsKey(key)
+                    && StringUtils.equals(String.valueOf(m.get(key)), String.valueOf(value)))
+                .collect(Collectors.toList());
+        return result2;
+    }
     public static List<Document> 指定下标的句子成分(int 下标) {
         List<Document> result2 = 静态引用.输入句子的成分集合.stream()
                 .filter(m -> m.containsKey(Cons.下标))
@@ -486,7 +525,13 @@ public class Tool {
             //删掉之前的 重新入试试
 //            静态引用.输入句子的成分集合.remove(句子中的已有成分);
             if(句子中的已有成分 != null){
-                document.remove(Cons._id);
+                if(句子中的已有成分.containsKey(Cons._id)){
+                    document.remove(Cons._id);
+                }
+                if(!句子中的已有成分.containsKey(Cons._id)
+                    && !document.containsKey(Cons._id)){
+                   document.put(Cons._id, new ObjectId());
+                }
 //                if(句子中的已有成分.containsKey(Cons.新成分的处理逻辑)){
 //                    句子中的已有成分.get(Cons.新成分的处理逻辑, Set.class).add(静态引用.逻辑句子对象.get(Cons.词语));
 //                }
