@@ -54,10 +54,10 @@ public class 合并为 extends FuncAbstract {
         }
         //满足条件 合并前面的多对象成分
         Document 合并结果 = 合并前面成分中的并列对象(指定下标前面的包含并列集合的逻辑成分);
-        if(合并结果 != null){
-            逻辑成分.put(Cons.动作结果, 合并结果.get(Cons.词语));
-            逻辑成分.put(Cons.合并的结果, 合并结果);
+        if(合并结果 == null){
+            return;
         }
+        逻辑成分.put(Cons.指向, Tool.生成动作结果指向对象(合并结果));
     }
 
     public boolean 前面是之间的内容就优先合并前面词语(){

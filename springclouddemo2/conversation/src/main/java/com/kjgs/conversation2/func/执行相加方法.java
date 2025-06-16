@@ -41,7 +41,7 @@ public class 执行相加方法 extends FuncAbstract {
         }
         double 动作结果 = Double.parseDouble(指定下标前面的逻辑成分.getString(Cons.被加数))
                 + Double.parseDouble(指定下标前面的逻辑成分.getString(Cons.加数));
-        指定下标前面的逻辑成分.put(Cons.动作结果, 动作结果);
+        逻辑成分.put(Cons.指向, Tool.生成动作结果指向对象(动作结果));
     }
 
 }

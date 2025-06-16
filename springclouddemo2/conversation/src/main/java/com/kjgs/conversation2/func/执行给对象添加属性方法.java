@@ -49,9 +49,7 @@ public class 执行给对象添加属性方法 extends FuncAbstract {
             return;
         }
         添加对象 = (Document) Tool.获取是或者作为的值(添加对象);
-        if(Tool.判断是否是句子成分(添加对象)){
-            添加对象.put(String.format(Cons.更新属性的处理逻辑, Cons.词语), 逻辑句子);
-        }
+        Tool.添加更新逻辑内容(添加对象, 逻辑句子);
         添加对象.put(Tool.获取是或者作为的值(属性的键).toString(), Tool.获取是或者作为的值(属性的值));
     }
 

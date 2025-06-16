@@ -42,11 +42,9 @@ public class 为 extends FuncAbstract {
             Tool.添加句子成分(对象);
         }else{
             String 属性值 = 指定后面下标的逻辑成分.getString(Cons.词语);
-            if(Tool.判断是否是句子成分(指定前面下标的逻辑成分)){
-                指定前面下标的逻辑成分.put(String.format(Cons.更新属性的处理逻辑, Cons.词语), 逻辑句子);
-            }
             指定前面下标的逻辑成分.put(Cons.指向, Tool.生成动作结果指向对象(属性值));
         }
+        Tool.添加更新逻辑内容(指定前面下标的逻辑成分, 逻辑句子);
     }
 
 

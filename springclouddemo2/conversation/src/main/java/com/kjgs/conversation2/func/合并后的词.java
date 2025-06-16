@@ -18,10 +18,17 @@ public class 合并后的词 extends FuncAbstract {
     }
 
     public void 找合并的结果(){
-        //往前找动作对象的动作结果
-        Document 合并后的词 = Tool.往前根据属性找对象(Cons.合并的结果, 下标);
-        if(合并后的词 != null){
-            逻辑成分.put(Cons.指向, 合并后的词.get(Cons.合并的结果));
+        Document 指定下标前面的逻辑成分_无迭代 = Tool.指定下标前面的逻辑成分_无迭代(下标, "合并为");
+        if(指定下标前面的逻辑成分_无迭代 == null  || !指定下标前面的逻辑成分_无迭代.containsKey(Cons.指向)){
+            return;
         }
+        Document 执行查询句子成分方法的值 = Tool.指定下标前面的逻辑成分(下标, "合并为");
+        if(执行查询句子成分方法的值 == null){
+            return;
+        }
+        if(Tool.获取是或者作为的值(执行查询句子成分方法的值) == null ){
+            return;
+        }
+        逻辑成分.put(Cons.指向, Tool.生成动作结果指向对象(执行查询句子成分方法的值));
     }
 }

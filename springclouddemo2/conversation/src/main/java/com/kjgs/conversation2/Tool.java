@@ -545,6 +545,13 @@ public class Tool {
             }
         }
     }
+
+    public static void 添加更新逻辑内容(Document document, String 逻辑句子){
+        if(Tool.判断是否是句子成分(document)){
+            document.put(String.format(Cons.更新属性的处理逻辑, Cons.词语), 逻辑句子);
+            document.put(String.format(Cons.更新属性的处理逻辑下标, Cons.词语),  静态引用.逻辑句子对象下标);
+        }
+    }
     public static void 添加逻辑成分(Document document){
         //先删除再增加
         if(document != null && document.getInteger(Cons.下标) != null){
@@ -639,6 +646,12 @@ public class Tool {
         if(document != null && document.containsKey(Cons.指向)){
             if(document.get(Cons.指向) instanceof Document){
                 Document document1 = document.get(Cons.指向, Document.class);
+                return 代词的最终指向(document1);
+            }
+        }
+        if(document != null && document.keySet().size()==1 && document.containsKey(Cons.词语)){
+            if(document.get(Cons.词语) instanceof Document){
+                Document document1 = document.get(Cons.词语, Document.class);
                 return 代词的最终指向(document1);
             }
         }
