@@ -353,10 +353,11 @@ public class Tool {
 //        if(document.containsKey(Cons.作为)){
 //            return document.get(Cons.作为);
 //        }
-        if(document.containsKey(Cons.词语)){
+        if(document.containsKey(Cons.词语) &&
+        !StringUtils.equals(String.valueOf(document.get(Cons.是否是句子成分)), "true")){
             return document.get(Cons.词语);
         }
-        return null;
+        return document;
     }
     public static Document 生成动作结果指向对象(Object 动作结果){
         Document document = new Document();

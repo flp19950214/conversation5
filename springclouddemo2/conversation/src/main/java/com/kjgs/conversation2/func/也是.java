@@ -36,6 +36,9 @@ public class 也是 extends FuncAbstract {
             Tool.赋值判断结果(逻辑成分, false);
             return;
         }
+        //前面一个成分等于后面一个成分
+        boolean result = 前面的词语.equals(指定下标后面的逻辑成分.getString(Cons.词语));
+        Tool.赋值判断结果(逻辑成分, result);
 
     }
 }
