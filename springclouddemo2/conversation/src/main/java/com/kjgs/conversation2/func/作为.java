@@ -39,14 +39,16 @@ public class 作为 extends FuncAbstract {
             属性值 = Tool.最终的归属对象(指定前面下标的逻辑成分).get(属性值);
         }
         Document 属性对象 = Tool.往后找归属对象(下标, 指定后面下标的逻辑成分);
+        String 属性;
         if(属性对象!=null){
-            String 属性 = 属性对象.getString(Cons.词语);
+            属性 = 属性对象.getString(Cons.词语);
             指定后面下标的逻辑成分.put(属性, 属性值);
         }else{
+            属性=Cons.指向;
             指定后面下标的逻辑成分.put(Cons.指向, Tool.生成动作结果指向对象(属性值));
         }
 
-        Tool.添加更新逻辑内容(指定后面下标的逻辑成分, 逻辑句子);
+        Tool.添加更新逻辑内容(指定后面下标的逻辑成分, 属性,逻辑句子);
     }
 
 

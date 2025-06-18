@@ -45,12 +45,13 @@ public class 执行给对象添加属性方法 extends FuncAbstract {
         if(Tool.获取是或者作为的值(属性的键) == null || Tool.获取是或者作为的值(属性的值) == null){
             return;
         }
+        String 属性 = Tool.获取是或者作为的值(属性的键).toString();
         if(!(Tool.获取是或者作为的值(添加对象) instanceof Document)){
             return;
         }
         添加对象 = (Document) Tool.获取是或者作为的值(添加对象);
-        Tool.添加更新逻辑内容(添加对象, 逻辑句子);
-        添加对象.put(Tool.获取是或者作为的值(属性的键).toString(), Tool.获取是或者作为的值(属性的值));
+        Tool.添加更新逻辑内容(添加对象, 属性, 逻辑句子);
+        添加对象.put(属性, Tool.获取是或者作为的值(属性的值));
     }
 
 }

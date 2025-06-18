@@ -33,18 +33,21 @@ public class 为 extends FuncAbstract {
         if(指定前面下标的逻辑成分 == null || 指定后面下标的逻辑成分 == null){
             return;
         }
+        String 属性 = null;
         if(指定前面下标的逻辑成分.containsKey(Cons.归属对象)){
-            String 属性 = 指定前面下标的逻辑成分.getString(Cons.词语);
+            属性 = 指定前面下标的逻辑成分.getString(Cons.词语);
             String 属性值 = 指定后面下标的逻辑成分.getString(Cons.词语);
             Document 对象 = 指定前面下标的逻辑成分.get(Cons.归属对象,Document.class);
             对象 = Tool.代词的最终指向(对象);
             对象.put(属性, 属性值);
+            Tool.添加更新逻辑内容(对象, 属性,逻辑句子);
             Tool.添加句子成分(对象);
         }else{
             String 属性值 = 指定后面下标的逻辑成分.getString(Cons.词语);
+            属性=Cons.指向;
             指定前面下标的逻辑成分.put(Cons.指向, Tool.生成动作结果指向对象(属性值));
         }
-        Tool.添加更新逻辑内容(指定前面下标的逻辑成分, 逻辑句子);
+        Tool.添加更新逻辑内容(指定前面下标的逻辑成分, 属性,逻辑句子);
     }
 
 

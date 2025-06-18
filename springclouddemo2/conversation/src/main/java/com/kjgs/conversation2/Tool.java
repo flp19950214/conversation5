@@ -547,10 +547,10 @@ public class Tool {
         }
     }
 
-    public static void 添加更新逻辑内容(Document document, String 逻辑句子){
+    public static void 添加更新逻辑内容(Document document,String 属性, String 逻辑句子){
         if(Tool.判断是否是句子成分(document)){
-            document.put(String.format(Cons.更新属性的处理逻辑, Cons.词语), 逻辑句子);
-            document.put(String.format(Cons.更新属性的处理逻辑下标, Cons.词语),  静态引用.逻辑句子对象下标);
+            document.put(String.format(Cons.更新属性的处理逻辑, 属性), 逻辑句子);
+            document.put(String.format(Cons.更新属性的处理逻辑下标, 属性),  静态引用.逻辑句子对象下标);
         }
     }
     public static void 添加逻辑成分(Document document){
@@ -678,7 +678,9 @@ public class Tool {
     }
 
     public static Document 最终的归属对象(Document document){
-        if(document != null && document.containsKey(Cons.归属对象)){
+        if(document != null && document.containsKey(Cons.归属对象)
+        && !StringUtils.equals(String.valueOf(document.get(Cons.是否是句子成分)), "true")
+        ){
             Document document1 = document.get(Cons.归属对象, Document.class);
             return 最终的归属对象(document1);
         }else{
