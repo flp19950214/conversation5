@@ -137,7 +137,11 @@ public class TalkController2 {
             for (int i = 0; i < 静态引用.逻辑句子的成分集合.size(); i++) {
                 Document 逻辑成分 = 静态引用.逻辑句子的成分集合.get(i);
                 String 动作 = 逻辑成分.getString(Cons.词语);
-                invokeLuoji.执行逻辑(动作, 逻辑成分, 句子成分, 原句子成分);
+                try{
+                    invokeLuoji.执行逻辑(动作, 逻辑成分, 句子成分, 原句子成分);
+                }catch (IngoreException e){
+                    break;
+                }
             }
         }
         List<Document> 输入句子的成分集合 = 静态引用.输入句子的成分集合;

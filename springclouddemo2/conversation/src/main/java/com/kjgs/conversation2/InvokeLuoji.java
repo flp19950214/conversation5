@@ -14,7 +14,7 @@ public class InvokeLuoji {
     @Autowired
     private ApplicationContext context;
 
-    public void 执行逻辑(String 动作, Document 逻辑成分, Document 句子成分, Document 原句子成分){
+    public void 执行逻辑(String 动作, Document 逻辑成分, Document 句子成分, Document 原句子成分) throws IngoreException{
         if(Tool.是否数字(动作)){
             逻辑成分.put(Cons.词性, Cons.数字);
         }
@@ -31,13 +31,14 @@ public class InvokeLuoji {
 
     }
 
-    public void invoke( String 动作, Document 逻辑成分, Document 句子成分, Document 原句子成分){
+    public void invoke( String 动作, Document 逻辑成分, Document 句子成分, Document 原句子成分) throws IngoreException {
         try {
             FuncAbstract funcAbstract = (FuncAbstract)
                     context.getBean(Class.forName("com.kjgs.conversation2.func." + 动作));
             funcAbstract.执行流程( 逻辑成分, 句子成分, 原句子成分);
             静态引用.上个逻辑后面能否跟内置动作 = funcAbstract.后面能否跟内置动作;
         }catch (IngoreException e){
+            throw new IngoreException(e.getMessage());
 //            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
