@@ -36,10 +36,19 @@ public class 为 extends FuncAbstract {
         String 属性 = null;
         if(指定前面下标的逻辑成分.containsKey(Cons.归属对象)){
             属性 = 指定前面下标的逻辑成分.getString(Cons.词语);
-            String 属性值 = 指定后面下标的逻辑成分.getString(Cons.词语);
             Document 对象 = 指定前面下标的逻辑成分.get(Cons.归属对象,Document.class);
             对象 = Tool.代词的最终指向(对象);
-            对象.put(属性, 属性值);
+            if(Tool.判断对象是否是句子成分(指定后面下标的逻辑成分)){
+                Document 属性对象 = Tool.往后找归属对象(下标, 指定后面下标的逻辑成分);
+                if(属性对象==null){
+                    对象.put(属性, 指定后面下标的逻辑成分);
+                }else{
+                    对象.put(属性, 指定后面下标的逻辑成分.get(属性对象.getString(Cons.词语)));
+                }
+            }else{
+                String 属性值 = 指定后面下标的逻辑成分.getString(Cons.词语);
+                对象.put(属性, 属性值);
+            }
             Tool.添加更新逻辑内容(对象, 属性,逻辑句子);
             Tool.添加句子成分(对象);
         }else{

@@ -28,6 +28,11 @@ public class 作为 extends FuncAbstract {
         标记对象属性值();
     }
 
+    public void 递归找最终属性值(Document doc){
+        Document 最终的归属对象 = Tool.最终的归属对象(doc);
+
+    }
+
     public void 标记对象属性值(){
         Document 指定前面下标的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
         Document 指定后面下标的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);

@@ -677,6 +677,10 @@ public class Tool {
         return 属性值;
     }
 
+    public static boolean 判断对象是否是句子成分(Document document){
+        return StringUtils.equals(String.valueOf(document.get(Cons.是否是句子成分)), "true");
+    }
+
     public static Document 最终的归属对象(Document document){
         if(document != null && document.containsKey(Cons.归属对象)
         && !StringUtils.equals(String.valueOf(document.get(Cons.是否是句子成分)), "true")
