@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class 查询对象属性值的结果 extends FuncAbstract {
+public class 查询对象属性值2的结果 extends FuncAbstract {
 
     @Autowired
     private Impl数据 impl数据;
@@ -34,11 +34,11 @@ public class 查询对象属性值的结果 extends FuncAbstract {
      */
     public void 查询对象属性值的结果(){
         //获取需要的茶树
-        Document 指定下标前面的逻辑成分_无迭代 = Tool.指定下标前面的逻辑成分_无迭代(下标, "执行查询对象属性值方法");
+        Document 指定下标前面的逻辑成分_无迭代 = Tool.指定下标前面的逻辑成分_无迭代(下标, "执行查询对象属性值方法2");
         if(!指定下标前面的逻辑成分_无迭代.containsKey(Cons.指向)){
             return;
         }
-        Document 执行查询句子成分方法的值 = Tool.指定下标前面的逻辑成分(下标, "执行查询对象属性值方法");
+        Document 执行查询句子成分方法的值 = Tool.指定下标前面的逻辑成分(下标, "执行查询对象属性值方法2");
         if(执行查询句子成分方法的值 == null){
             return;
         }

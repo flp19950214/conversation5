@@ -32,7 +32,12 @@ public class 向后获取某个字 extends FuncAbstract {
         ){
             return;
         }
-        Integer 个数 = Tool.转数字(指定下标前面的句子成分.get(Cons.个数));
+        Integer 个数 = null;
+        if(指定下标前面的句子成分.get(Cons.个数) instanceof Document){
+            个数 = Tool.转数字(指定下标前面的句子成分.get(Cons.个数, Document.class).get(Cons.词语));
+        }else{
+            个数 = Tool.转数字(指定下标前面的句子成分.get(Cons.个数));
+        }
         if(个数 ==null){
             return;
         }

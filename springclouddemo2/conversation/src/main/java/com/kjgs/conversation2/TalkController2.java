@@ -108,7 +108,7 @@ public class TalkController2 {
                 执行处理逻辑(new ArrayList<>(逻辑idSet), 句子成分);
             }
             after = JSON.toJSONString(静态引用.输入句子的成分集合);
-            if(loop>20){
+            if(loop>30){
                 break;
             }
         }while ((before.length() != after.length() ||

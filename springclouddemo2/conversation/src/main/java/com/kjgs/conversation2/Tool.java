@@ -350,9 +350,9 @@ public class Tool {
 //        if(document.containsKey(Cons.是)){
 //            return document.get(Cons.是);
 //        }
-//        if(document.containsKey(Cons.作为)){
-//            return document.get(Cons.作为);
-//        }
+        if(document.containsKey(Cons.指向)){
+            return document.get(Cons.指向);
+        }
         if(document.containsKey(Cons.词语) &&
         !StringUtils.equals(String.valueOf(document.get(Cons.是否是句子成分)), "true")){
             return document.get(Cons.词语);
