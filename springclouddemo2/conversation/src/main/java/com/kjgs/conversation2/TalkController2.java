@@ -48,6 +48,9 @@ public class TalkController2 {
     /**
      * 输入的原句子 不能动
      *
+     * 汇总动作的执行条件，参数，然后但就这个动作 形成一个逻辑 可行
+     * 动作就是要教， 不教咋会嘛
+     *
      * @param input
      * @return
      */
@@ -108,7 +111,7 @@ public class TalkController2 {
                 执行处理逻辑(new ArrayList<>(逻辑idSet), 句子成分);
             }
             after = JSON.toJSONString(静态引用.输入句子的成分集合);
-            if(loop>30){
+            if(loop>15){
                 break;
             }
         }while ((before.length() != after.length() ||

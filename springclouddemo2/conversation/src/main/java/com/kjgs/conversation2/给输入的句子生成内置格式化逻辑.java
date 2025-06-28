@@ -29,9 +29,9 @@ public class 给输入的句子生成内置格式化逻辑 {
     public void 生成格式化逻辑(){
         Document 输入的句子对象 = 静态引用.输入的句子对象;
         List<Document> 输入句子的成分集合 = 静态引用.输入句子的成分集合;
-        if(!输入的句子对象.containsKey(Cons.句型)){
-        return;
-        }
+//        if(!输入的句子对象.containsKey(Cons.句型)){
+//        return;
+//        }
         String 新逻辑 = 生成格式化逻辑(输入句子的成分集合);
         if(StringUtils.isEmpty(新逻辑)){
             return;
