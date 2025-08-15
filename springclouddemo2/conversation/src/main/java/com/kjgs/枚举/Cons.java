@@ -20,6 +20,7 @@ public interface Cons {
     public String 的对象="的对象";
     public String 在上级对象中的成分="在上级对象中的成分";
     public String 指向="指向";
+    public String 是否是输出动作="是否是输出动作";
     public String 空格="空格";
     public String 数据表指向="数据表指向";
     public String 集合类型="集合类型";

@@ -34,6 +34,9 @@ public class 输出 extends FuncAbstract {
         }
         Object result = Tool.往后找归属对象的属性值(下标, 指定后面下标的逻辑成分);
         if(result!=null){
+            句子成分.put(Cons.指向, Tool.生成动作结果指向对象(result));
+            句子成分.put(Cons.是否是输出动作, true);
+            Tool.添加更新逻辑内容(句子成分,Cons.指向, 逻辑句子);
             静态引用.输出内容 = result.toString();
         }else{
             静态引用.输出内容 = "";

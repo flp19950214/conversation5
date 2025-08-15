@@ -26,22 +26,16 @@ public class 执行相加方法 extends FuncAbstract {
         为当前词执行相加方法();
     }
     public void 为当前词执行相加方法(){
-        Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
-        Document 指定下标前面的逻辑成分_无迭代 = Tool.指定下标前面的逻辑成分_无迭代(下标);
-        if(指定下标前面的逻辑成分==null
-        || 指定下标前面的逻辑成分_无迭代 ==null
-        || !StringUtils.equals(指定下标前面的逻辑成分_无迭代.getString(Cons.词语), Cons.当前词)){
+        if(!句子成分.containsKey(Cons.被加数)){
             return;
         }
-        if(!指定下标前面的逻辑成分.containsKey(Cons.被加数)){
+        if(!句子成分.containsKey(Cons.加数)){
             return;
         }
-        if(!指定下标前面的逻辑成分.containsKey(Cons.加数)){
-            return;
-        }
-        double 动作结果 = Double.parseDouble(指定下标前面的逻辑成分.getString(Cons.被加数))
-                + Double.parseDouble(指定下标前面的逻辑成分.getString(Cons.加数));
-        逻辑成分.put(Cons.指向, Tool.生成动作结果指向对象(动作结果));
+        double 动作结果 = Double.parseDouble(句子成分.getString(Cons.被加数))
+                + Double.parseDouble(句子成分.getString(Cons.加数));
+        句子成分.put(Cons.指向, Tool.生成动作结果指向对象(动作结果));
+        Tool.添加更新逻辑内容(句子成分,Cons.指向, 逻辑句子);
     }
 
 }

@@ -43,6 +43,9 @@ public class TalkController2 {
     @Autowired
     private 组装输出结果 impl组装输出结果;
 
+    @Autowired
+    private 拦截处理 impl拦截处理;
+
     final int max = 10;
 
     /**
@@ -56,8 +59,9 @@ public class TalkController2 {
      */
     @PostMapping("/process3")
     public Object process(@RequestBody JSONObject input) {
-        静态引用.输出内容 = null;
         String 输入的句子 = input.getString("input");
+        impl拦截处理.method(输入的句子);
+        静态引用.输出内容 = null;
         静态引用.输入的句子对象 = new Document();
         静态引用.输入的句子对象.put(Cons._id, new ObjectId());
         静态引用.输入的句子对象.put(Cons.词语, 输入的句子);

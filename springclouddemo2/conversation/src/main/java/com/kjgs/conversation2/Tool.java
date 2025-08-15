@@ -549,8 +549,10 @@ public class Tool {
 
     public static void 添加更新逻辑内容(Document document,String 属性, String 逻辑句子){
         if(Tool.判断是否是句子成分(document)){
-            document.put(String.format(Cons.更新属性的处理逻辑, 属性), 逻辑句子);
-            document.put(String.format(Cons.更新属性的处理逻辑下标, 属性),  静态引用.逻辑句子对象下标);
+            Document 处理逻辑 = new Document();
+            处理逻辑.put(String.format(Cons.更新属性的处理逻辑, 属性), 逻辑句子);
+            处理逻辑.put(String.format(Cons.更新属性的处理逻辑下标, 属性),  静态引用.逻辑句子对象下标);
+            document.put(String.format(Cons.更新属性的处理逻辑, 属性), 处理逻辑);
         }
     }
     public static void 添加逻辑成分(Document document){
