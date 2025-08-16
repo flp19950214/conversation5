@@ -53,7 +53,15 @@ public class 作为 extends FuncAbstract {
             指定后面下标的逻辑成分.put(Cons.指向, Tool.生成动作结果指向对象(属性值));
         }
 
-        Tool.添加更新逻辑内容(指定后面下标的逻辑成分, 属性,逻辑句子);
+        //获取处理过程
+        //结构：动作名+"结果"+"参数名"+":"+"参数值"
+        StringBuilder sb = new StringBuilder();
+        sb.append("'作为'给对象属性赋值的结果是{");
+        sb.append("赋值").append(属性).append("=").append(属性值);
+        sb.append("}");
+        Document 处理过程 = new Document();
+        处理过程.put("输出的结果", sb.toString());
+        Tool.添加更新逻辑内容(指定后面下标的逻辑成分, 属性,逻辑句子, 处理过程);
     }
 
 

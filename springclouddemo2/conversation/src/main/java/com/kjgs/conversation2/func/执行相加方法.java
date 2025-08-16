@@ -32,10 +32,26 @@ public class 执行相加方法 extends FuncAbstract {
         if(!句子成分.containsKey(Cons.加数)){
             return;
         }
-        double 动作结果 = Double.parseDouble(句子成分.getString(Cons.被加数))
-                + Double.parseDouble(句子成分.getString(Cons.加数));
-        句子成分.put(Cons.指向, Tool.生成动作结果指向对象(动作结果));
-        Tool.添加更新逻辑内容(句子成分,Cons.指向, 逻辑句子);
+        double 被加数 = Double.parseDouble(句子成分.getString(Cons.被加数));
+        double 加数 = Double.parseDouble(句子成分.getString(Cons.加数));
+        double 动作结果 = 被加数 + 加数;
+        句子成分.put(Cons.指向, Tool.生成动作结果指向对象(动作结果+""));
+
+        //获取处理过程
+        Document 获取加数属性的处理过程 = Tool.获取属性的处理过程(句子成分, Cons.加数);
+        Document 获取被加数加数属性的处理过程 = Tool.获取属性的处理过程(句子成分, Cons.被加数);
+        //结构：动作名+"结果"+"参数名"+":"+"参数值"
+        StringBuilder sb = new StringBuilder();
+        sb.append("'执行相加方法'的结果是{");
+        sb.append(Cons.被加数).append("=").append(被加数)
+                .append("加上").append(Cons.加数).append("=").append(加数)
+                .append("等于").append(动作结果);
+        sb.append("}");
+        Document 处理过程 = new Document();
+        处理过程.put("被加数的来源", 获取被加数加数属性的处理过程);
+        处理过程.put("加数的来源", 获取加数属性的处理过程);
+        处理过程.put("输出的结果", sb.toString());
+        Tool.添加更新逻辑内容(句子成分,Cons.指向, 逻辑句子, 处理过程);
     }
 
 }

@@ -50,8 +50,19 @@ public class 执行给对象添加属性方法 extends FuncAbstract {
             return;
         }
         添加对象 = (Document) Tool.获取是或者作为的值(添加对象);
-        Tool.添加更新逻辑内容(添加对象, 属性, 逻辑句子);
-        添加对象.put(属性, Tool.获取是或者作为的值(属性的值));
+        Object 属性值 = Tool.获取是或者作为的值(属性的值);
+        添加对象.put(属性, 属性值);
+
+        //获取处理过程
+        //结构：动作名+"结果"+"参数名"+":"+"参数值"
+        StringBuilder sb = new StringBuilder();
+        sb.append("'执行给对象添加属性方法'的结果是{");
+        sb.append("对象=").append(添加对象.get(Cons.词语));
+        sb.append("属性=").append(属性).append("属性值=").append(属性值);
+        sb.append("}");
+        Document 处理过程 = new Document();
+        处理过程.put("输出的结果", sb.toString());
+        Tool.添加更新逻辑内容(添加对象,属性, 逻辑句子, 处理过程);
     }
 
 }

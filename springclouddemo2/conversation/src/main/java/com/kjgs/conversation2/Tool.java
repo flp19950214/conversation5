@@ -169,6 +169,22 @@ public class Tool {
         }
         return result;
     }
+
+    public static String 往后找归属对象的属性值的键名(int 下标, Document 主体){
+        Document 属性对象 = Tool.往后找归属对象(下标, 主体);
+        Object result;
+        if(属性对象!=null){
+            String 属性 = 属性对象.get(Cons.词语).toString();
+            if(StringUtils.equals(属性, Cons.值)){
+                result = Cons.词语;
+            }else{
+                result = 属性;
+            }
+        }else{
+            result = Cons.词语;
+        }
+        return result.toString();
+    }
     public static Document 指定词语的句子成分(String 词语){
         Document result =  静态引用.输入句子的成分集合.stream()
                 .filter (m -> StringUtils.equals(m.getString(Cons.词语), 词语))
@@ -547,13 +563,34 @@ public class Tool {
         }
     }
 
-    public static void 添加更新逻辑内容(Document document,String 属性, String 逻辑句子){
+    public static String 添加更新逻辑内容(Document document,String 属性, String 逻辑句子, Document 处理过程){
+        String result = String.format(Cons.更新属性的处理逻辑, 属性);
         if(Tool.判断是否是句子成分(document)){
             Document 处理逻辑 = new Document();
-            处理逻辑.put(String.format(Cons.更新属性的处理逻辑, 属性), 逻辑句子);
+            处理逻辑.put(result, 逻辑句子);
             处理逻辑.put(String.format(Cons.更新属性的处理逻辑下标, 属性),  静态引用.逻辑句子对象下标);
+            处理逻辑.put(Cons.处理过程,  处理过程);
             document.put(String.format(Cons.更新属性的处理逻辑, 属性), 处理逻辑);
+            return result;
         }
+        return null;
+    }
+
+    public static Document 获取集合中包含某属性的最后一个对象(List<Document> 对象集合, String 属性){
+        List<Document> collect = 对象集合.stream().filter(m -> m.containsKey(属性)).collect(Collectors.toList());
+        Collections.reverse(collect);
+        return collect.stream().findFirst().orElse(null);
+    }
+    public static Document 获取属性的处理过程(Document 属性所在对象, String 属性){
+        Document document = 属性所在对象.get(String.format(Cons.更新属性的处理逻辑, 属性), Document.class);
+        if(document == null){
+            return null;
+        }
+        Document 处理过程 = document.get(Cons.处理过程, Document.class);
+        if(处理过程 == null){
+            return null;
+        }
+        return 处理过程;
     }
     public static void 添加逻辑成分(Document document){
         //先删除再增加

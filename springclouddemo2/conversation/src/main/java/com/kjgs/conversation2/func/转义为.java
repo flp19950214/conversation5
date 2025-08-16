@@ -38,9 +38,12 @@ public class 转义为 extends FuncAbstract {
        }
         Document 新成分 = Document.parse(指定下标前面的逻辑成分.toJson());
        新成分.put(Cons.词语, 指定下标后面的逻辑成分.get(Cons.词语));
-       Tool.添加更新逻辑内容(新成分, Cons.词语, 逻辑句子);
 
-       指定下标前面的逻辑成分.put(Cons.指向, 新成分);
+        指定下标前面的逻辑成分.put(Cons.指向, 新成分);
+        //获取处理过程
+        Document 处理过程 = new Document();
+        处理过程.put("'转义为'的转义结果是{", "添加新成分="+指定下标后面的逻辑成分.get(Cons.词语));
+        Tool.添加更新逻辑内容(新成分, Cons.词语, 逻辑句子, 处理过程);
     }
 
 }

@@ -25,8 +25,12 @@ public class 空格 extends FuncAbstract {
         if(StringUtils.equals(" ", 句子词语)){
             Document 新成分 = Document.parse(句子成分.toJson());
             新成分.put(Cons.词语, Cons.空格);
-            Tool.添加更新逻辑内容(新成分, Cons.词语, 逻辑句子);
             句子成分.put(Cons.指向, 新成分);
+
+            //获取处理过程
+            Document 处理过程 = new Document();
+            处理过程.put("'空格'的转义结果是{", "' '->空格}");
+            Tool.添加更新逻辑内容(句子成分,Cons.指向, 逻辑句子, 处理过程);
 
         }
     }

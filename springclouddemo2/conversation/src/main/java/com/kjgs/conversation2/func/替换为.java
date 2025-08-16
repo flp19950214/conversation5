@@ -42,9 +42,20 @@ public class 替换为 extends FuncAbstract {
                 指定前面下标的逻辑成分.getString(Cons.词语))){
             return;
         }
+        Object 被替换的对象 = 指定前面下标的逻辑成分.get(Cons.词语);
         指定前面下标的逻辑成分.put(Cons.原词语, 指定前面下标的逻辑成分.get(Cons.词语));
         指定前面下标的逻辑成分.put(Cons.词语, 指定后面下标的逻辑成分.get(Cons.词语));
-        Tool.添加更新逻辑内容(指定前面下标的逻辑成分, Cons.词语,逻辑句子);
+
+        //获取处理过程
+        //结构：动作名+"结果"+"参数名"+":"+"参数值"
+        StringBuilder sb = new StringBuilder();
+        sb.append("'替换为'的替换对象词语的结果是{");
+        sb.append("被替换的对象=").append(被替换的对象);
+        sb.append("替换后的对象=").append(指定后面下标的逻辑成分.get(Cons.词语));
+        sb.append("}");
+        Document 处理过程 = new Document();
+        处理过程.put("输出的结果", sb.toString());
+        Tool.添加更新逻辑内容(指定前面下标的逻辑成分,Cons.词语, 逻辑句子, 处理过程);
     }
 
 //    public void 把什么中的什么替换为什么(){
