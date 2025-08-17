@@ -60,7 +60,9 @@ public class TalkController2 {
     @PostMapping("/process3")
     public Object process(@RequestBody JSONObject input) {
         String 输入的句子 = input.getString("input");
-        impl拦截处理.method(输入的句子);
+        if(impl拦截处理.method(输入的句子) != null){
+            return impl拦截处理.method(输入的句子);
+        }
         静态引用.输出内容 = null;
         静态引用.输入的句子对象 = new Document();
         静态引用.输入的句子对象.put(Cons._id, new ObjectId());

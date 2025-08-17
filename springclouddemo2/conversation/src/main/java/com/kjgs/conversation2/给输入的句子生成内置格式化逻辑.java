@@ -36,9 +36,14 @@ public class 给输入的句子生成内置格式化逻辑 {
         if(StringUtils.isEmpty(新逻辑)){
             return;
         }
-        if(!StringUtils.containsAny(新逻辑, "《如果》","《遇到》","《那就》")){
+        if(!(StringUtils.contains(新逻辑, "《如果》")
+            && StringUtils.contains(新逻辑,"《那就》"))){
             return;
         }
+        保持并刷新逻辑(新逻辑);
+    }
+
+    public void 保持并刷新逻辑(String 新逻辑){
         impl逻辑.保存逻辑(新逻辑);
         impl启动执行初始化数据.加载单个逻辑(静态引用.获取所有逻辑键的最大值()+1, 新逻辑);
     }

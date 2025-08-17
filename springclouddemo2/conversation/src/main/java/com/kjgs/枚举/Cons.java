@@ -117,6 +117,7 @@ public interface Cons {
     public String uuidLevel="uuidLevel";
     public String 顶层逻辑="顶层逻辑";
     public String 异常逻辑="异常逻辑";
+    public String 分词逻辑format = "《如果》《遇到》《%s》《，》《并且》《后面%s个字》《是》《%s》《，》《那就》《把》《当前词》《和》《后面%s个字》《合并为》《1》《个词》";
     public String 原词语="原词语";
     public String 词语="词语";
     public String 句子="句子";

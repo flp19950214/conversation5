@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class 执行查询集合下标值方法 extends FuncAbstract {
     public 执行查询集合下标值方法(){
-        后面能否跟内置动作=false;
+        后面能否跟内置动作=true;
     }
     @Autowired
     private Tool查询 tool查询;

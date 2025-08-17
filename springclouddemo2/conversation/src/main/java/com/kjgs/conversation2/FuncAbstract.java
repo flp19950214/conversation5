@@ -40,9 +40,11 @@ public abstract class FuncAbstract {
         功能();
         boolean 往前找判断结果 = Tool.往前找判断结果(下标);
         //如果是《那就》后面的动作，要判断结果为true才行，并且要有判断结果
-        Integer 那就的下标 = 静态引用.逻辑的那就对象.getInteger(Cons.下标);
-        if(下标<那就的下标 || 往前找判断结果 == false){
-            return;
+        if(静态引用.逻辑的那就对象 != null){
+            Integer 那就的下标 = 静态引用.逻辑的那就对象.getInteger(Cons.下标);
+            if(下标<那就的下标 || 往前找判断结果 == false){
+                return;
+            }
         }
         //如果是判断的结果逻辑，判断结果要为true才执行
         判断结果是true时执行();

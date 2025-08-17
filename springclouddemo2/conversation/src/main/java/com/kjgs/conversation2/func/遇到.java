@@ -21,7 +21,7 @@ public class 遇到 extends FuncAbstract {
 
     public void 当前处理成分是遇到的后面一个成分() throws IngoreException {
         //前面一个成分包含后面一个成分
-        Document 指定下标后面的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);
+        Document 指定下标后面的逻辑成分 = Tool.指定下标后面的逻辑成分_无迭代(下标);
         if(指定下标后面的逻辑成分 == null){
             return;
         }

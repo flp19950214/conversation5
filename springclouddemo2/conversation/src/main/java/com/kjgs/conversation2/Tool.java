@@ -362,7 +362,9 @@ public class Tool {
         return result2;
     }
     public static Object 获取是或者作为的值(Document document){
-
+        if(document==null){
+            return null;
+        }
 //        if(document.containsKey(Cons.是)){
 //            return document.get(Cons.是);
 //        }

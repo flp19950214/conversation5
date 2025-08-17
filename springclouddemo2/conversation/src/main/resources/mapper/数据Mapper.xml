@@ -21,7 +21,27 @@
     </select>
     <select id = "根据键值对查询" resultType="String">
       SELECT 数据对象 FROM 数据表
-      WHERE JSON_EXTRACT(数据对象,  concat("$.",#{键}))=  #{值}
+      WHERE
+      <choose>
+          <when test="键!=null and 键!='' and 值!=null and 值!=''">
+              JSON_EXTRACT(数据对象,  concat("$.",#{键}))=  #{值}
+          </when>
+          <when test="键!=null and 键!='' and (值==null or 值=='')">
+              JSON_EXTRACT(数据对象,  concat("$.",#{键}))
+          </when>
+          <otherwise>
+              1=1
+          </otherwise>
+      </choose>
+      order by 数据表下标 desc
+        <choose>
+            <when test="个数!=null">
+                limit ${个数}
+            </when>
+            <otherwise>
+                limit 10
+            </otherwise>
+        </choose>
     </select>
     <select id = "查询数据表指向" resultType="String">
         SELECT JSON_INSERT(数据对象,'$."数据表下标"', 数据表下标) as 数据对象

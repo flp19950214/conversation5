@@ -28,7 +28,8 @@ public class 向后获取某个字 extends FuncAbstract {
         Document 指定下标前面的句子成分 = Tool.指定下标前面一个句子成分(句子下标);
         if(指定下标前面的句子成分 == null || !指定下标前面的句子成分.containsKey(Cons.属于)
                 || !指定下标前面的句子成分.containsKey(Cons.个数)
-        || !指定下标前面的句子成分.getString(Cons.属于).equals(Cons.后面某个字)
+        || !(指定下标前面的句子成分.getString(Cons.属于).equals(Cons.后面某个字) ||
+                指定下标前面的句子成分.getString(Cons.属于).equals(Cons.前面某个字))
         ){
             return;
         }

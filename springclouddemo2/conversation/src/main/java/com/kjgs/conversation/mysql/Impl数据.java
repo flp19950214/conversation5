@@ -21,8 +21,8 @@ public class Impl数据 {
         .map(m -> JSON.parseObject(m, Document.class))
         .collect(Collectors.toList());
     }
-    public  List<Document> 根据键值对查询(Object 键, Object 值){
-        return 数据MapperImpl.根据键值对查询(键, 值).stream()
+    public  List<Document> 根据键值对查询(Object 键, Object 值, Object 个数){
+        return 数据MapperImpl.根据键值对查询(键, 值, 个数).stream()
         .map(m -> JSON.parseObject(m, Document.class))
         .collect(Collectors.toList());
     }

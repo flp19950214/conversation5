@@ -19,6 +19,7 @@ public class 当前词 extends FuncAbstract {
 
     public void 添加指向(){
         //指向当前句子成分
+
         逻辑成分.put(Cons.指向, 句子成分);
     }
 }

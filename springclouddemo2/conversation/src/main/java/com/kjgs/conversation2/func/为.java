@@ -65,8 +65,8 @@ public class 为 extends FuncAbstract {
         //结构：动作名+"结果"+"参数名"+":"+"参数值"
         StringBuilder sb = new StringBuilder();
         sb.append("'为'的给对象属性赋值的结果是{");
-        sb.append("对象=").append(对象.get(Cons.词语));
-        sb.append("属性=").append(属性).append("属性值=").append(属性值);
+        sb.append("对象=").append(对象.get(Cons.词语)).append(" | ");
+        sb.append("属性=").append(属性).append(" | ").append("属性值=").append(属性值);
         sb.append("}");
         Document 处理过程 = new Document();
         处理过程.put("输出的结果", sb.toString());
