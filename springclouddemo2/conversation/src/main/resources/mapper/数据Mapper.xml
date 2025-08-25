@@ -24,10 +24,10 @@
       WHERE
       <choose>
           <when test="键!=null and 键!='' and 值!=null and 值!=''">
-              JSON_EXTRACT(数据对象,  concat("$.",#{键}))=  #{值}
+              JSON_EXTRACT(数据对象,  concat("$.",'"',#{键},'"'))=  #{值}
           </when>
           <when test="键!=null and 键!='' and (值==null or 值=='')">
-              JSON_EXTRACT(数据对象,  concat("$.",#{键}))
+              JSON_EXTRACT(数据对象,  concat("$.",'"',#{键},'"'))
           </when>
           <otherwise>
               1=1

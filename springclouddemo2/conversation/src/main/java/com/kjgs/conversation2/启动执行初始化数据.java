@@ -62,7 +62,7 @@ public class 启动执行初始化数据 {
                 MapUtils.getObject(静态引用.关键词与逻辑, 关键词, new HashSet<>()).add(index);
             }else{
                 HashSet<Integer>  hashSet = new HashSet<>();
-                hashSet.add(index);
+                 hashSet.add(index);
                 静态引用.关键词与逻辑.put(关键词, hashSet);
             }
         }

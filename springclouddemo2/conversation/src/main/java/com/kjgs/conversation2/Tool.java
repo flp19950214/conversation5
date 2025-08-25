@@ -361,6 +361,20 @@ public class Tool {
         Document result2 = 代词的最终指向(result);
         return result2;
     }
+
+    public static Document 指定下标前面一个句子成分根据词语查询(int 下标, String 词语){
+        Document result =  静态引用.输入句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.结束下标))
+                .filter (m -> m.getInteger(Cons.结束下标) <= 下标)
+                .filter (m -> m.getObjectId(Cons._id) != null)
+                .filter(m -> StringUtils.equals(m.getString(Cons.词语), 词语))
+                .sorted(Comparator.comparing((Document m1) ->m1.getInteger(Cons.结束下标), Comparator.nullsLast(Integer::compareTo).reversed())
+                        .thenComparing(m1 -> m1.getObjectId(Cons._id),  Comparator.nullsLast(ObjectId::compareTo).reversed()))
+                .findFirst().orElse(null);
+        return result;
+    }
+
+
     public static Object 获取是或者作为的值(Document document){
         if(document==null){
             return null;
@@ -463,6 +477,15 @@ public class Tool {
         }
         return result2;
     }
+    public static Document 指定下标后面一个句子成分根据词语查询(int 下标, String 词语){
+        Document result =  静态引用.输入句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter (m -> m.getInteger(Cons.下标) > 下标)
+                .filter(m -> StringUtils.equals(m.getString(Cons.词语), 词语))
+                .findFirst().orElse(null);
+        return result;
+    }
+
 
     public static String 合并逻辑集合指定范围的词语(int 下标, int 结束下标) {
         String result =  静态引用.逻辑句子的成分集合.stream()

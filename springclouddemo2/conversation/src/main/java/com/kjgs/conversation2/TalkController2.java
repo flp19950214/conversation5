@@ -83,15 +83,16 @@ public class TalkController2 {
         System.out.println(静态引用.输入句子的成分集合);
         impl数据.保存输入的数据对象(Tool.生成输入的对象(输入的句子));
         impl数据.保存输出的数据对象(Tool.生成输出的对象(静态引用.输出内容));
-        保存输入对象集合到数据库();
+        保存输入对象集合到数据库(输入的句子);
         impl给输入的句子生成内置格式化逻辑.生成格式化逻辑();
         return impl组装输出结果.输出结果();
     }
 
 
-    public void 保存输入对象集合到数据库(){
+    public void 保存输入对象集合到数据库(String 输入的句子){
         //保存输入对象集合
         for (int i = 0; i < 静态引用.输入句子的成分集合.size(); i++) {
+            静态引用.输入句子的成分集合.get(i).put(Cons.成分所在的句子, 输入的句子);
             impl数据.保存输出的数据对象(静态引用.输入句子的成分集合.get(i));
         }
     }
@@ -133,7 +134,7 @@ public class TalkController2 {
     }
 
     public void 处理句子(Integer 逻辑键, Document 原句子成分) {
-        Document 句子成分 = Tool.代词的最终指向(原句子成分);
+        Document 句子成分 = 原句子成分;
         //获取已经格式化好的逻辑对象 并转成Document
         静态引用.逻辑句子对象 = JSON.parseArray(静态引用.所有逻辑句子对象.get(逻辑键), Document.class).get(0);
         静态引用.逻辑句子的成分集合 = impl启动执行初始化数据.获取同词语的逻辑集合(逻辑键);

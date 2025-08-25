@@ -18,11 +18,17 @@ public class 生成分词逻辑  extends FuncAbstract {
 
     @Override
     public void 功能() throws IngoreException {
-        Integer 那就的下标 = 静态引用.逻辑的那就对象.getInteger(Cons.下标);
-        if(下标 < 那就的下标){
-            生成逻辑();
-        }
     }
+
+    @Override
+    public void 判断结果是true时执行(){
+        boolean 判断结果 = Tool.往前找判断结果(下标);
+        if(!判断结果){
+            return;
+        }
+        生成逻辑();
+    }
+
 
     public void 生成逻辑(){
         Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);

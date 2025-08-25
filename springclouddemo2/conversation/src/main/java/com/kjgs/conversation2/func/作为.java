@@ -40,7 +40,7 @@ public class 作为 extends FuncAbstract {
            return;
         }
         Object 属性值 = Tool.获取是或者作为的值(指定前面下标的逻辑成分);
-        if(指定前面下标的逻辑成分.containsKey(Cons.归属对象)){
+        if(指定前面下标的逻辑成分.containsKey(Cons.归属对象) && 属性值 instanceof String){
             属性值 = Tool.最终的归属对象(指定前面下标的逻辑成分).get(属性值);
         }
         Document 属性对象 = Tool.往后找归属对象(下标, 指定后面下标的逻辑成分);

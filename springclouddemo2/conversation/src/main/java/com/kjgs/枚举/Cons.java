@@ -121,6 +121,7 @@ public interface Cons {
     public String 原词语="原词语";
     public String 词语="词语";
     public String 句子="句子";
+    public String 成分所在的句子="成分所在的句子";
     public String 是否具有分隔符功能="是否具有分隔符功能";
     public String 时间="时间";
     public String 中的="中的";

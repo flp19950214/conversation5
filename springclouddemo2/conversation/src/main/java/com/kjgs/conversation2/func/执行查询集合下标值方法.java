@@ -53,7 +53,7 @@ public class 执行查询集合下标值方法 extends FuncAbstract {
             return;
         }
         Object 查询集合下标值的结果 = 集合.get(下标);
-        逻辑成分.put(Cons.指向, Tool.生成动作结果指向对象(查询集合下标值的结果));
+        逻辑成分.put(Cons.指向, 查询集合下标值的结果);
     }
 
 }

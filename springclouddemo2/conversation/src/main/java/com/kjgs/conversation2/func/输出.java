@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class 输出 extends FuncAbstract {
     public 输出(){
-        后面能否跟内置动作=false;
+        后面能否跟内置动作=true;
     }
     @Override
     public void 功能() {

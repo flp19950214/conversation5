@@ -45,13 +45,25 @@ public class 执行给对象添加属性方法 extends FuncAbstract {
         if(Tool.获取是或者作为的值(属性的键) == null || Tool.获取是或者作为的值(属性的值) == null){
             return;
         }
-        String 属性 = Tool.获取是或者作为的值(属性的键).toString();
-        if(!(Tool.获取是或者作为的值(添加对象) instanceof Document)){
+
+        Object 属性=Tool.获取是或者作为的值(属性的键);
+        if(属性的键.containsKey(Cons.归属对象) && 属性 instanceof String){
+            属性 = Tool.最终的归属对象(属性的键).get(属性);
+        }else{
+            属性 = 属性的键.getString(Cons.词语);
+        }
+        Object 属性值=Tool.获取是或者作为的值(属性的值);
+        if(属性的值.containsKey(Cons.归属对象) && 属性值 instanceof String){
+            属性值 = Tool.最终的归属对象(属性的值).get(属性值);
+        }else{
+            属性值 = 属性的值.getString(Cons.词语);
+        }
+
+        if(!(属性 instanceof String)){
+            System.out.println("执行给对象添加属性方法 的 属性 类型 不是字符串");
             return;
         }
-        添加对象 = (Document) Tool.获取是或者作为的值(添加对象);
-        Object 属性值 = Tool.获取是或者作为的值(属性的值);
-        添加对象.put(属性, 属性值);
+        添加对象.put(属性.toString(), 属性值);
 
         //获取处理过程
         //结构：动作名+"结果"+"参数名"+":"+"参数值"
@@ -62,7 +74,7 @@ public class 执行给对象添加属性方法 extends FuncAbstract {
         sb.append("}");
         Document 处理过程 = new Document();
         处理过程.put("输出的结果", sb.toString());
-        Tool.添加更新逻辑内容(添加对象,属性, 逻辑句子, 处理过程);
+        Tool.添加更新逻辑内容(添加对象,属性.toString(), 逻辑句子, 处理过程);
     }
 
 }
