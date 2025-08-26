@@ -31,7 +31,7 @@ public class 是 extends FuncAbstract {
     }
 
     public void 判断句的包含动作(){
-        Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
+         Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
         Document 指定下标后面的逻辑成分 = Tool.指定下标后面的逻辑成分(下标);
         if(指定下标前面的逻辑成分 == null || 指定下标后面的逻辑成分 == null){
             return;

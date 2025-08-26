@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.kjgs.conversation.mysql.Impl数据;
 import com.kjgs.conversation.mysql.mapper.数据Mapper;
 import com.kjgs.conversation.mysql.mapper.逻辑Mapper;
+import com.kjgs.conversation2.method.生成句子成分归属逻辑;
 import com.kjgs.枚举.Cons;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
@@ -46,6 +47,9 @@ public class TalkController2 {
     @Autowired
     private 拦截处理 impl拦截处理;
 
+    @Autowired
+    private 生成句子成分归属逻辑 impl生成句子成分归属逻辑;
+
     final int max = 10;
 
     /**
@@ -85,6 +89,7 @@ public class TalkController2 {
         impl数据.保存输出的数据对象(Tool.生成输出的对象(静态引用.输出内容));
         保存输入对象集合到数据库(输入的句子);
         impl给输入的句子生成内置格式化逻辑.生成格式化逻辑();
+        impl生成句子成分归属逻辑.method(静态引用.待处理句子的成分集合);
         return impl组装输出结果.输出结果();
     }
 
@@ -129,6 +134,9 @@ public class TalkController2 {
     public void 执行处理逻辑(List<Integer> list, Document 句子成分) {
         Collections.sort(list);
         for (Integer id : list) {
+            if(!Tool.检查成分是否在句子成分集合中(句子成分)){
+                break;
+            }
             处理句子(id, 句子成分);
         }
     }
@@ -158,7 +166,7 @@ public class TalkController2 {
         Document 逻辑句子对象 = 静态引用.逻辑句子对象;
         Document 输入的句子对象 = 静态引用.输入的句子对象;
         List<Document> 逻辑句子的成分集合 = 静态引用.逻辑句子的成分集合;
-
+        静态引用.输入句子的成分集合 = Tool.获取干净的句子成分(静态引用.输入句子的成分集合);
     }
 
     public void 重置输入句子成分() {

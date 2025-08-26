@@ -16,6 +16,58 @@ import java.util.stream.Collectors;
 
 public class Tool {
 
+    public static String 优先获取词性(Document document){
+        //成立
+        if(document.containsKey(Cons.词性)){
+            return document.getString(Cons.词性);
+        }else{
+            return document.getString(Cons.词语);
+        }
+    }
+
+    public static boolean 检查成分是否在句子成分集合中(Document document){
+        List<String> objectIdList = 静态引用.输入句子的成分集合.stream().map(m -> m.getObjectId(Cons._id).toString()).collect(Collectors.toList());
+        String objectId = document.getObjectId(Cons._id).toString();
+        return objectIdList.contains(objectId);
+    }
+
+    public static String 获取句子词性组成(List<Document> 成分集合){
+        List<String> 句型组成=new ArrayList<>();
+        for(Document document : 成分集合){
+            句型组成.add(Tool.优先获取词性(document));
+        }
+        return String.format(Cons.竖杠, 句型组成);
+    }
+
+    public static List<Document> 获取干净的句子成分(List<Document> 成分集合) {
+        //找出最靠后的每个词组组合，就是句子的词性组成。有限词性 再是词组
+        //排序 现根据结束下标排序，再根据下标排序
+        成分集合 = 成分集合.stream()
+                .sorted(Comparator.comparing((Document m1) -> m1.getInteger(Cons.结束下标), Comparator.nullsLast(Integer::compareTo).reversed())
+                        .thenComparing(m1 -> m1.getObjectId(Cons._id), Comparator.nullsLast(ObjectId::compareTo).reversed()))
+                .collect(Collectors.toList());
+        //创建两个变量用来记录成分位置是否已经被占领
+        int tempEndIndex = Integer.MAX_VALUE;
+        int tempStartIndex = Integer.MAX_VALUE;
+        List<String> 句型组成 = new ArrayList<>();
+        List<Document> 过滤后的成分 = new ArrayList<>();
+        for (Document document : 成分集合) {
+            int 结束下标 = document.getInteger(Cons.结束下标);
+            int 下标 = document.getInteger(Cons.下标);
+            if (结束下标 < tempEndIndex && 下标 < tempStartIndex) {
+                //成立
+                句型组成.add(Tool.优先获取词性(document));
+                tempEndIndex = 结束下标;
+                tempStartIndex = 下标;
+                过滤后的成分.add(document);
+            }
+        }
+
+        Collections.reverse(句型组成);
+        Collections.reverse(过滤后的成分);
+        return 过滤后的成分;
+    }
+
     public static List<String> 生成格式化逻辑对象(String 逻辑){
         Pattern pattern = Pattern.compile(Cons.左尖括号+"(.*?)"+Cons.右尖括号);
         Matcher matcher = pattern.matcher(逻辑);
@@ -321,6 +373,16 @@ public class Tool {
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
     }
+    public static Document 指定下标前面的待处理句子成分(int 下标){
+        //过滤出小于下标的，然后排序，找出第一条
+        Document result =  静态引用.待处理句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter (m -> m.getInteger(Cons.下标) < 下标)
+                .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
+                .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
+                .findFirst().orElse(null);
+        return 代词的最终指向(result);
+    }
     public static Document 指定下标前面的逻辑成分(int 下标){
         //过滤出小于下标的，然后排序，找出第一条
         Document result =  静态引用.逻辑句子的成分集合.stream()
@@ -339,6 +401,15 @@ public class Tool {
                 .sorted((a,b) -> a.getInteger(Cons.下标) -  b.getInteger(Cons.下标))
                 .findFirst().orElse(null);
         return result;
+    }
+    public static Document 指定下标后面的待处理句子成分(int 下标){
+        Document result =  静态引用.待处理句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons.下标))
+                .filter (m -> m.getInteger(Cons.下标) > 下标)
+                .filter (m -> !m.containsKey(Cons.是否是无用词) || !StringUtils.equals(m.getString(Cons.是否是无用词), "true"))
+                .sorted((a,b) -> a.getInteger(Cons.下标) -  b.getInteger(Cons.下标))
+                .findFirst().orElse(null);
+        return 代词的最终指向(result);
     }
     public static Document 指定下标后面的逻辑成分(int 下标){
         Document result =  静态引用.逻辑句子的成分集合.stream()

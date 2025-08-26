@@ -13,6 +13,7 @@ import java.util.List;
 
 @Service
 public class 合并为 extends FuncAbstract {
+
     public 合并为(){
         后面能否跟内置动作=false;
     }
@@ -58,6 +59,7 @@ public class 合并为 extends FuncAbstract {
             return;
         }
         逻辑成分.put(Cons.指向, Tool.生成动作结果指向对象(合并结果));
+
     }
 
     public boolean 前面是之间的内容就优先合并前面词语(){

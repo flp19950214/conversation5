@@ -8,6 +8,7 @@ public interface Cons {
     public String 执行记录 = "执行记录";
 
 
+    public String 竖杠 = "|";
     public String 左尖括号 = "《";
     public String 左尖括号_名字 = "左尖括号";
     public String 右尖括号 = "》";
@@ -118,6 +119,9 @@ public interface Cons {
     public String 顶层逻辑="顶层逻辑";
     public String 异常逻辑="异常逻辑";
     public String 分词逻辑format = "《如果》《遇到》《%s》《，》《并且》《后面%s个字》《是》《%s》《，》《那就》《把》《当前词》《和》《后面%s个字》《合并为》《1》《个词》";
+    public String 归属逻辑format = "《如果》《遇到》《%s》《，》《并且》《句子词性组成》《是》《%s》《，》" +
+            "《那就》《把》《当前词》《作为》《给添加属性的对象》《，》《%s》《作为》《给对象添加属性的键》" +
+            "《后面第%s个成分》《作为》《给对象添加属性的值》《，》《执行给对象添加属性方法》";
     public String 原词语="原词语";
     public String 词语="词语";
     public String 句子="句子";
