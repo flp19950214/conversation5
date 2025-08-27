@@ -13,5 +13,6 @@ public class Test {
         ObjectId objectId1 = new ObjectId();
         ObjectId objectId2 = new ObjectId();
         System.out.println(objectId2.compareTo(objectId1));
+        System.out.println(1+5>>1);
     }
 }
