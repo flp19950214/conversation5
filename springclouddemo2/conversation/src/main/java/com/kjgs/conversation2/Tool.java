@@ -26,7 +26,9 @@ public class Tool {
     }
 
     public static boolean 检查成分是否在句子成分集合中(Document document){
-        List<String> objectIdList = 静态引用.输入句子的成分集合.stream().map(m -> m.getObjectId(Cons._id).toString()).collect(Collectors.toList());
+        List<String> objectIdList = 静态引用.输入句子的成分集合.stream()
+                .filter(m -> m.containsKey(Cons._id))
+            .map(m ->  m.getObjectId(Cons._id).toString()).collect(Collectors.toList());
         String objectId = document.getObjectId(Cons._id).toString();
         return objectIdList.contains(objectId);
     }
@@ -382,6 +384,13 @@ public class Tool {
                 .sorted((a,b) -> b.getInteger(Cons.下标) -  a.getInteger(Cons.下标))
                 .findFirst().orElse(null);
         return 代词的最终指向(result);
+    }
+    public static Object 从归属对象中找当前词的值(Document 当前成分){
+        Object 属性值 = Tool.获取是或者作为的值(当前成分);
+        if(当前成分.containsKey(Cons.归属对象) && 属性值 instanceof String){
+            属性值 = Tool.最终的归属对象(当前成分).get(属性值);
+        }
+        return 属性值;
     }
     public static Document 指定下标前面的逻辑成分(int 下标){
         //过滤出小于下标的，然后排序，找出第一条

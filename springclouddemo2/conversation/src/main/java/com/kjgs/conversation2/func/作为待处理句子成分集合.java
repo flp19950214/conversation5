@@ -37,15 +37,12 @@ public class 作为待处理句子成分集合 extends FuncAbstract {
      */
     public void 执行查询句子成分方法(){
         //获取需要的茶树
-        Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标);
-        if(!指定下标前面的逻辑成分.containsKey(Cons.指向)){
+        Document 指定下标前面的逻辑成分 = Tool.指定下标前面的逻辑成分(下标, Cons.目标对象);
+        if(指定下标前面的逻辑成分==null){
             return;
         }
-        Object 获取是或者作为的值 = Tool.获取是或者作为的值(指定下标前面的逻辑成分);
-        if(获取是或者作为的值 == null ){
-            return;
-        }
-        if(!(获取是或者作为的值 instanceof List)){
+        Object 获取是或者作为的值 = Tool.从归属对象中找当前词的值(指定下标前面的逻辑成分);
+        if(获取是或者作为的值 instanceof List){
             静态引用.待处理句子的成分集合 = (List)获取是或者作为的值;
             逻辑成分.put(Cons.指向, Tool.生成动作结果指向对象(获取是或者作为的值));
         }

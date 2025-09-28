@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--上面是头部命名空间-->
+<!--mapper开始就是自己定义的了-->
+<mapper namespace="com.kjgs.conversation4.mapper.数据4Mapper">    <!--对应的mapper类的包路径-->
+    <select id = "根据类型查询" resultType="String">
+        SELECT 数据 FROM `数据表4`
+        where 类型 = #{类型}
+    </select>
+
+    <insert id="insert">
+        insert into 数据表4 (类型, 数据) values (#{类型},#{数据})
+    </insert>
+
+</mapper>

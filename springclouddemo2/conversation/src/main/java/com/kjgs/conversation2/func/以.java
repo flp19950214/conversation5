@@ -34,8 +34,14 @@ public class 以 extends FuncAbstract {
         if(指定前面下标的逻辑成分 == null || 指定下标后面的逻辑成分 == null){
             return;
         }
+        Object 前面的词语 = Tool.获取是或者作为的值(指定前面下标的逻辑成分);
+        if(指定前面下标的逻辑成分.containsKey(Cons.归属对象) && 前面的词语 instanceof String){
+            前面的词语 = Tool.最终的归属对象(指定前面下标的逻辑成分).get(前面的词语);
+        }else{
+            return;
+        }
         //获取以和结尾之间的内容
-        boolean result = 指定前面下标的逻辑成分.get(Cons.词语).toString().endsWith(指定下标后面的逻辑成分.get(Cons.词语).toString());
+        boolean result = 前面的词语.toString().endsWith(指定下标后面的逻辑成分.get(Cons.词语).toString());
         Tool.赋值判断结果(逻辑成分, result);
     }
 

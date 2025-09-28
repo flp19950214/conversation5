@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@MapperScan("com.kjgs.conversation.mysql.mapper")
+@MapperScan(basePackages = {"com.kjgs.conversation.mysql.mapper","com.kjgs.conversation3.mapper","com.kjgs.conversation4.mapper"})
 public class ConversationApplication {
 
     /**

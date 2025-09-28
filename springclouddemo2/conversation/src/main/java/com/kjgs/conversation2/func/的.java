@@ -32,6 +32,10 @@ public class 的 extends FuncAbstract {
         if(指定前面下标的逻辑成分 == null || 指定后面下标的逻辑成分 == null){
             return;
         }
+        if(指定前面下标的逻辑成分.getBoolean(Cons.是否是句子成分, false) == false
+                && 指定后面下标的逻辑成分.getBoolean(Cons.是否是句子成分, false) == false) {
+            return;
+        }
         指定后面下标的逻辑成分.put(Cons.归属对象, 指定前面下标的逻辑成分);
     }
 }

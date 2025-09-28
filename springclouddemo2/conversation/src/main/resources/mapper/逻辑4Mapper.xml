@@ -2,13 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <!--上面是头部命名空间-->
 <!--mapper开始就是自己定义的了-->
-<mapper namespace="com.kjgs.conversation.mysql.mapper.逻辑Mapper">    <!--对应的mapper类的包路径-->
+<mapper namespace="com.kjgs.conversation4.mapper.逻辑4Mapper">    <!--对应的mapper类的包路径-->
 
+    <select id = "根据逻辑名查询逻辑" resultType="org.bson.Document">
+        SELECT * FROM `逻辑表4`
+        where POSITION(逻辑名 in #{逻辑名})
+    </select>
+    <select id = "根据逻辑名查询最新逻辑" resultType="org.bson.Document">
+        SELECT * FROM `逻辑表4`
+        where 逻辑名 = #{逻辑名} order by id desc limit 1
+    </select>
     <select id = "查询所有逻辑" resultType="org.bson.Document">
-        select id,  逻辑 from 逻辑表2
+        select id,  逻辑 from 逻辑表4
     </select>
     <select id = "模糊查询逻辑" resultType="String">
-        select 逻辑 from 逻辑表2
+        select 逻辑 from 逻辑表4
         <where>
             <if test="逻辑 != null and 逻辑 !=''">
                 逻辑 like concat('%', #{逻辑}, '%')

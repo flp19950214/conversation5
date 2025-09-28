@@ -27,7 +27,7 @@ public class 静态引用 {
     public static Map<Integer, String> 所有逻辑 = new HashMap<>();
     public static Map<Integer, String> 所有逻辑句子对象 = new HashMap<>();
     public static Map<Integer, List<String>> 所有逻辑句子成分对象 = new HashMap<>();
-    public static Map<String, HashSet<Integer>> 关键词与逻辑 = new HashMap<>();
+    public static Map<String, TreeSet<Integer>> 关键词与逻辑 = new HashMap<>();
 
     public static int 获取所有逻辑键的最大值(){
        int 最大值 =  所有逻辑.keySet().stream().sorted((a, b) -> b - a).findFirst().get();

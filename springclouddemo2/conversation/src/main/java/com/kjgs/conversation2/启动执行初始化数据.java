@@ -1,6 +1,5 @@
 package com.kjgs.conversation2;
 
-import com.alibaba.fastjson.JSON;
 import com.kjgs.conversation.mysql.Impl逻辑;
 import com.kjgs.conversation.mysql.mapper.逻辑Mapper;
 import com.kjgs.枚举.Cons;
@@ -11,10 +10,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class 启动执行初始化数据 {
@@ -24,19 +20,20 @@ public class 启动执行初始化数据 {
     private 逻辑Mapper 逻辑MapperImpl;
     public void init (){
 //        逻辑impl.保存逻辑("《如果》《句子》《以》《如果》《开头》《，》《那就》《把》《句子》《记录成处理逻辑》");
-        生成格式化逻辑对象();
+        查询所有逻辑并加载单个逻辑 ();
     }
 
-    public void 生成格式化逻辑对象(){
-        List<String> 所有逻辑 = 逻辑MapperImpl.查询所有逻辑();
+    public void 查询所有逻辑并加载单个逻辑(){
+        List<Document> 所有逻辑 = 逻辑MapperImpl.查询所有逻辑();
 //        List<String> 所有逻辑 = new ArrayList(){{
 //            add("《如果》《遇到》《一》《，》《并且》《前面1个成分》《是》《后面，》《后面1个成分》《是个成分》《，》《那就》《把》《句子》《中的》《当前词》《替换为》《1》");
 ////            add("如果遇到成，并且后面1个字是《分》，那就把当前词和后面1个字合并为1个词");
 ////            add("如果遇到个，并且后面2个字是《成分》，那就把当前词和后面2个字合并为1个词");
 ////            add("如果遇到一，并且前面1个成分是前面，后面1个成分是个成分，那就把当前词的词语替换为1");
 //        }};
-        for (int i = 0; i <所有逻辑.size() ; i++) {
-            加载单个逻辑(i, 所有逻辑.get(i));
+
+        for(Document document: 所有逻辑){
+            加载单个逻辑(document.getInteger("id"), document.getString("逻辑"));
         }
         System.out.println("---加载逻辑初始化完成------");
     }
@@ -59,9 +56,9 @@ public class 启动执行初始化数据 {
                 && StringUtils.equals(格式化逻辑词语.get(1), Cons.遇到)){
             String 关键词 = 格式化逻辑词语.get(2);
             if(静态引用.关键词与逻辑.containsKey(关键词)){
-                MapUtils.getObject(静态引用.关键词与逻辑, 关键词, new HashSet<>()).add(index);
+                MapUtils.getObject(静态引用.关键词与逻辑, 关键词, new TreeSet<>()).add(index);
             }else{
-                HashSet<Integer>  hashSet = new HashSet<>();
+                TreeSet<Integer> hashSet = new TreeSet<>(Comparator.reverseOrder());
                  hashSet.add(index);
                 静态引用.关键词与逻辑.put(关键词, hashSet);
             }

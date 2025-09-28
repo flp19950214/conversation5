@@ -116,9 +116,9 @@ public class TalkController2 {
                 String 词语 = 句子成分.getString(Cons.词语);
                 String 词性 = 句子成分.getString(Cons.词性);
                 String 属于 = 句子成分.getString(Cons.属于);
-                HashSet<Integer> 逻辑idSet = MapUtils.getObject(静态引用.关键词与逻辑, 词语, new HashSet<>());
-                逻辑idSet.addAll(MapUtils.getObject(静态引用.关键词与逻辑, 词性, new HashSet<>()));
-                逻辑idSet.addAll(MapUtils.getObject(静态引用.关键词与逻辑, 属于, new HashSet<>()));
+                TreeSet<Integer> 逻辑idSet = MapUtils.getObject(静态引用.关键词与逻辑, 词语, new TreeSet<>());
+                逻辑idSet.addAll(MapUtils.getObject(静态引用.关键词与逻辑, 词性, new TreeSet<>()));
+                逻辑idSet.addAll(MapUtils.getObject(静态引用.关键词与逻辑, 属于, new TreeSet<>()));
                 //执行处理逻辑
                 执行处理逻辑(new ArrayList<>(逻辑idSet), 句子成分);
             }
@@ -132,7 +132,7 @@ public class TalkController2 {
     }
 
     public void 执行处理逻辑(List<Integer> list, Document 句子成分) {
-        Collections.sort(list);
+//        Collections.sort(list);
         for (Integer id : list) {
             if(!Tool.检查成分是否在句子成分集合中(句子成分)){
                 break;
@@ -165,6 +165,7 @@ public class TalkController2 {
         List<Document> 输入句子的成分集合 = 静态引用.输入句子的成分集合;
         Document 逻辑句子对象 = 静态引用.逻辑句子对象;
         Document 输入的句子对象 = 静态引用.输入的句子对象;
+        String 逻辑句子 = 逻辑句子对象.getString(Cons.词语);
         List<Document> 逻辑句子的成分集合 = 静态引用.逻辑句子的成分集合;
         静态引用.输入句子的成分集合 = Tool.获取干净的句子成分(静态引用.输入句子的成分集合);
     }
