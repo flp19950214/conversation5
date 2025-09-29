@@ -12,7 +12,7 @@ import java.util.Map;
 public class 获取分割后的第一个元素 extends FuncAbstract4 {
 
     @Override
-    public void method(Map<String, Object> map上层逻辑内存, Map<String, Object> map当前逻辑内存) throws Exception {
+    public void method() throws Exception {
         Object object = MapUtils.getObject(map上层逻辑内存, Cons.分割结果);
         if(object==null){
             throw new Exception("获取分割后的第一个元素 的 分割结果 为null");

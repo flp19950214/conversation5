@@ -14,7 +14,7 @@ import java.util.Map;
 public class 执行分割方法 extends FuncAbstract4 {
 
     @Override
-    public void method(Map<String, Object> map上层逻辑内存, Map<String, Object> map当前逻辑内存) throws Exception {
+    public void method() throws Exception {
         Object 分割对象 = MapUtils.getString(map上层逻辑内存, Cons.分割对象);
         if(分割对象==null){
             throw new Exception("执行分割方法 的 分割对象 为null");

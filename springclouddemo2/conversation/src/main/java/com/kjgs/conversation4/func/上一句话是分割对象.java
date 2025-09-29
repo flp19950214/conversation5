@@ -11,7 +11,7 @@ import java.util.Map;
 public class 上一句话是分割对象 extends FuncAbstract4 {
 
     @Override
-    public void method(Map<String, Object> map上层逻辑内存, Map<String, Object> map当前逻辑内存)  throws Exception  {
+    public void method()  throws Exception  {
 
         Object 上一句话 = MapUtils.getString(map上层逻辑内存, Cons.上一句话);
         if(上一句话==null){

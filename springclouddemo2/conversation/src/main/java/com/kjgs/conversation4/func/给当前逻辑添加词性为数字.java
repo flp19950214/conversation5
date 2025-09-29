@@ -4,14 +4,11 @@ import com.kjgs.conversation4.Cons;
 import com.kjgs.conversation4.FuncAbstract4;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
-
 @Service
-public class 是是分割词 extends FuncAbstract4 {
+public class 给当前逻辑添加词性为数字 extends FuncAbstract4 {
 
     @Override
     public void method() {
-        map上层逻辑内存.put(Cons.分割词, Cons.是);
-        map当前逻辑内存.put(Cons.分割词, Cons.是);
+        当前逻辑.put(Cons.词性, Cons.数字);
     }
 }

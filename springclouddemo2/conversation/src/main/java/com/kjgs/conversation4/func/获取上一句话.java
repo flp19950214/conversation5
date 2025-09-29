@@ -20,7 +20,7 @@ public class 获取上一句话 extends FuncAbstract4 {
     private 数据4Mapper impl数据4Mapper;
 
     @Override
-    public void method(Map<String, Object> map上层逻辑内存, Map<String, Object> map当前逻辑内存) throws Exception {
+    public void method() throws Exception {
         List 输入类型结果 = impl数据4Mapper.根据类型查询(Cons.输入);
         if(CollectionUtils.isEmpty(输入类型结果)){
             throw new Exception("获取上一句话 的 查询根据输入类型的数据结果 为null");

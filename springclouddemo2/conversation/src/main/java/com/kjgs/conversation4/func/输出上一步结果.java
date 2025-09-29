@@ -17,7 +17,7 @@ public class 输出上一步结果 extends FuncAbstract4 {
     private 数据4Mapper impl数据4Mapper;
 
     @Override
-    public void method(Map<String, Object> map上层逻辑内存, Map<String, Object> map当前逻辑内存) throws Exception {
+    public void method() throws Exception {
         Object object = MapUtils.getObject(map上层逻辑内存, Cons.动作结果);
         if(object==null){
             throw new Exception("输出上一步结果 的 动作结果 为null");
