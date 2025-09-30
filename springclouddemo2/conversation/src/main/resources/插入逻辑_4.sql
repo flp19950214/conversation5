@@ -17,10 +17,18 @@ CREATE TABLE `逻辑表4` (
 INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (17, '是是分割词', '是是分割词', NULL);
 INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (18, '获取分割后的第一个元素', '获取分割后的第一个元素', NULL);
 INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (19, '执行分割方法', '执行分割方法', NULL);
-INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (20, '上一句话按照是分割后的第一个元素是什么', '获取上一句话,上一句话是分割对象,是是分割词,执行分割方法,获取分割后的第一个元素,输出上一步结果', NULL);
+INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (20, '上一句话按照是分割后的第一个元素是什么', '获取上一句话，上一句话是分割对象，是是分割词，执行分割方法，获取分割后的第一个元素，输出上一步结果', NULL);
 INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (21, '获取上一句话', '获取上一句话', NULL);
 INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (22, '上一句话是分割对象', '上一句话是分割对象', NULL);
 INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (23, '输出上一步结果', '输出上一步结果', NULL);
 INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (24, '1', '给当前逻辑添加词性为数字', NULL);
 INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (25, '2', '给当前逻辑添加词性为数字', NULL);
 INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (26, '给当前逻辑添加词性为数字', '给当前逻辑添加词性为数字', NULL);
+INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (27, '那就合并当前逻辑和下一个词', '那就合并当前逻辑和下一个词', NULL);
+INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (28, '如果下一个词也是数字，那就合并当前逻辑和下一个词，并删除当前逻辑和下一个词', '如果下一个词也是数字，那就合并当前逻辑和下一个词，并删除当前逻辑和下一个词', NULL);
+INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (29, '如果下一个词也是数字', '如果下一个词也是数字', NULL);
+INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (30, '1', '要是下一个词也是数字，那就合并这俩词', NULL);
+INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (31, '并删除当前逻辑和下一个词', '删除当前逻辑和下一个词', NULL);
+INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (32, '删除当前逻辑和下一个词', '删除当前逻辑和下一个词', NULL);
+INSERT INTO `conversation`.`逻辑表4` (`id`, `逻辑名`, `逻辑`, `逻辑类型`) VALUES (33, '要是下一个词也是数字，那就合并这俩词', '如果下一个词也是数字，那就合并当前逻辑和下一个词，并删除当前逻辑和下一个词', NULL);
+
