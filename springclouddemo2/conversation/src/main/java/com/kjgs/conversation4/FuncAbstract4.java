@@ -10,6 +10,7 @@ public abstract class FuncAbstract4 {
 
 
     public Document 当前逻辑;
+    public Document 输入词语对象;
     public Map<String, Object> map上层逻辑内存;
     public Map<String, Object> map当前逻辑内存;
 

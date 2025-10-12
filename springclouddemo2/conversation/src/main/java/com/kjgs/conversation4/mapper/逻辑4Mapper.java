@@ -1,6 +1,5 @@
 package com.kjgs.conversation4.mapper;
 
-import com.kjgs.conversation3.DoneModel;
 import org.bson.Document;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
